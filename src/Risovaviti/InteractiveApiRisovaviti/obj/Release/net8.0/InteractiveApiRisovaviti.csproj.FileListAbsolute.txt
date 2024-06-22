@@ -1,0 +1,15 @@
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\bin\Release\net8.0\InteractiveApiRisovaviti.deps.json
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\bin\Release\net8.0\InteractiveApiRisovaviti.dll
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\bin\Release\net8.0\InteractiveApiRisovaviti.pdb
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\bin\Release\net8.0\DomainModel.dll
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\bin\Release\net8.0\DomainModel.pdb
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\obj\Release\net8.0\InteractiveApiRisovaviti.csproj.AssemblyReference.cache
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\obj\Release\net8.0\InteractiveApiRisovaviti.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\obj\Release\net8.0\InteractiveApiRisovaviti.AssemblyInfoInputs.cache
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\obj\Release\net8.0\InteractiveApiRisovaviti.AssemblyInfo.cs
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\obj\Release\net8.0\InteractiveApiRisovaviti.csproj.CoreCompileInputs.cache
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\obj\Release\net8.0\Interact.53E9FAD2.Up2Date
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\obj\Release\net8.0\InteractiveApiRisovaviti.dll
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\obj\Release\net8.0\refint\InteractiveApiRisovaviti.dll
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\obj\Release\net8.0\InteractiveApiRisovaviti.pdb
+D:\Project\Csharp\Risovaviti\InteractiveApiRisovaviti\obj\Release\net8.0\ref\InteractiveApiRisovaviti.dll

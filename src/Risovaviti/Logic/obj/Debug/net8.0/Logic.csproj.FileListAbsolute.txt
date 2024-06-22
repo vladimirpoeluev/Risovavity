@@ -1,0 +1,17 @@
+D:\Project\Csharp\Risovaviti\Logic\bin\Debug\net8.0\Logic.deps.json
+D:\Project\Csharp\Risovaviti\Logic\bin\Debug\net8.0\Logic.dll
+D:\Project\Csharp\Risovaviti\Logic\bin\Debug\net8.0\Logic.pdb
+D:\Project\Csharp\Risovaviti\Logic\bin\Debug\net8.0\DomainModel.dll
+D:\Project\Csharp\Risovaviti\Logic\bin\Debug\net8.0\DomainModel.pdb
+D:\Project\Csharp\Risovaviti\Logic\obj\Debug\net8.0\Logic.csproj.AssemblyReference.cache
+D:\Project\Csharp\Risovaviti\Logic\obj\Debug\net8.0\Logic.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\Csharp\Risovaviti\Logic\obj\Debug\net8.0\Logic.AssemblyInfoInputs.cache
+D:\Project\Csharp\Risovaviti\Logic\obj\Debug\net8.0\Logic.AssemblyInfo.cs
+D:\Project\Csharp\Risovaviti\Logic\obj\Debug\net8.0\Logic.csproj.CoreCompileInputs.cache
+D:\Project\Csharp\Risovaviti\Logic\obj\Debug\net8.0\Logic.csproj.Up2Date
+D:\Project\Csharp\Risovaviti\Logic\obj\Debug\net8.0\Logic.dll
+D:\Project\Csharp\Risovaviti\Logic\obj\Debug\net8.0\refint\Logic.dll
+D:\Project\Csharp\Risovaviti\Logic\obj\Debug\net8.0\Logic.pdb
+D:\Project\Csharp\Risovaviti\Logic\obj\Debug\net8.0\ref\Logic.dll
+D:\Project\Csharp\Risovaviti\Logic\bin\Debug\net8.0\DataIntegration.dll
+D:\Project\Csharp\Risovaviti\Logic\bin\Debug\net8.0\DataIntegration.pdb

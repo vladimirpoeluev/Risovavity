@@ -1,0 +1,251 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Project\\Csharp\\Risovaviti\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C82FB1C4-4A7A-492A-818B-651DE08102D2}|TestRisovaviti\\TestRisovaviti.csproj|d:\\project\\csharp\\risovaviti\\testrisovaviti\\comparer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C82FB1C4-4A7A-492A-818B-651DE08102D2}|TestRisovaviti\\TestRisovaviti.csproj|solutionrelative:testrisovaviti\\comparer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C82FB1C4-4A7A-492A-818B-651DE08102D2}|TestRisovaviti\\TestRisovaviti.csproj|d:\\project\\csharp\\risovaviti\\testrisovaviti\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C82FB1C4-4A7A-492A-818B-651DE08102D2}|TestRisovaviti\\TestRisovaviti.csproj|solutionrelative:testrisovaviti\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A575234-1FB0-40EE-A771-4A754D9CDA93}|RisovavitiApi\\RisovavitiApi.csproj|d:\\project\\csharp\\risovaviti\\risovavitiapi\\controllers\\entrancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A575234-1FB0-40EE-A771-4A754D9CDA93}|RisovavitiApi\\RisovavitiApi.csproj|solutionrelative:risovavitiapi\\controllers\\entrancecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E115BF2-A619-4800-964D-5972C48707B3}|Logic\\Logic.csproj|d:\\project\\csharp\\risovaviti\\logic\\integration\\integrationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E115BF2-A619-4800-964D-5972C48707B3}|Logic\\Logic.csproj|solutionrelative:logic\\integration\\integrationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0E115BF2-A619-4800-964D-5972C48707B3}|Logic\\Logic.csproj|d:\\project\\csharp\\risovaviti\\logic\\entrance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0E115BF2-A619-4800-964D-5972C48707B3}|Logic\\Logic.csproj|solutionrelative:logic\\entrance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A575234-1FB0-40EE-A771-4A754D9CDA93}|RisovavitiApi\\RisovavitiApi.csproj|d:\\project\\csharp\\risovaviti\\risovavitiapi\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A575234-1FB0-40EE-A771-4A754D9CDA93}|RisovavitiApi\\RisovavitiApi.csproj|solutionrelative:risovavitiapi\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B74A1223-02D6-4701-8EB3-AD52197A910F}|DomainModel\\DomainModel.csproj|d:\\project\\csharp\\risovaviti\\domainmodel\\integration\\iruleintegrationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B74A1223-02D6-4701-8EB3-AD52197A910F}|DomainModel\\DomainModel.csproj|solutionrelative:domainmodel\\integration\\iruleintegrationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5A575234-1FB0-40EE-A771-4A754D9CDA93}|RisovavitiApi\\RisovavitiApi.csproj|d:\\project\\csharp\\risovaviti\\risovavitiapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5A575234-1FB0-40EE-A771-4A754D9CDA93}|RisovavitiApi\\RisovavitiApi.csproj|solutionrelative:risovavitiapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 198,
+          "SelectedChildIndex": 25,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:142:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:143:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:149:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:151:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:150:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:144:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:152:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:153:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:148:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:147:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:146:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:140:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:137:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:138:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:145:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:139:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:141:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Comparer.cs",
+              "DocumentMoniker": "D:\\Project\\Csharp\\Risovaviti\\TestRisovaviti\\Comparer.cs",
+              "RelativeDocumentMoniker": "TestRisovaviti\\Comparer.cs",
+              "ToolTip": "D:\\Project\\Csharp\\Risovaviti\\TestRisovaviti\\Comparer.cs",
+              "RelativeToolTip": "TestRisovaviti\\Comparer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T11:51:12.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "D:\\Project\\Csharp\\Risovaviti\\TestRisovaviti\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "TestRisovaviti\\UnitTest1.cs",
+              "ToolTip": "D:\\Project\\Csharp\\Risovaviti\\TestRisovaviti\\UnitTest1.cs",
+              "RelativeToolTip": "TestRisovaviti\\UnitTest1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T11:47:04.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EntranceController.cs",
+              "DocumentMoniker": "D:\\Project\\Csharp\\Risovaviti\\RisovavitiApi\\Controllers\\EntranceController.cs",
+              "RelativeDocumentMoniker": "RisovavitiApi\\Controllers\\EntranceController.cs",
+              "ToolTip": "D:\\Project\\Csharp\\Risovaviti\\RisovavitiApi\\Controllers\\EntranceController.cs",
+              "RelativeToolTip": "RisovavitiApi\\Controllers\\EntranceController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAABMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-11T09:09:12.947Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Project\\Csharp\\Risovaviti\\RisovavitiApi\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "RisovavitiApi\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Project\\Csharp\\Risovaviti\\RisovavitiApi\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "RisovavitiApi\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-09T14:10:29.115Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Entrance.cs",
+              "DocumentMoniker": "D:\\Project\\Csharp\\Risovaviti\\Logic\\Entrance.cs",
+              "RelativeDocumentMoniker": "Logic\\Entrance.cs",
+              "ToolTip": "D:\\Project\\Csharp\\Risovaviti\\Logic\\Entrance.cs",
+              "RelativeToolTip": "Logic\\Entrance.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T11:16:46.968Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IRuleIntegrationUser.cs",
+              "DocumentMoniker": "D:\\Project\\Csharp\\Risovaviti\\DomainModel\\Integration\\IRuleIntegrationUser.cs",
+              "RelativeDocumentMoniker": "DomainModel\\Integration\\IRuleIntegrationUser.cs",
+              "ToolTip": "D:\\Project\\Csharp\\Risovaviti\\DomainModel\\Integration\\IRuleIntegrationUser.cs",
+              "RelativeToolTip": "DomainModel\\Integration\\IRuleIntegrationUser.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T11:00:13.697Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IntegrationUser.cs",
+              "DocumentMoniker": "D:\\Project\\Csharp\\Risovaviti\\Logic\\Integration\\IntegrationUser.cs",
+              "RelativeDocumentMoniker": "Logic\\Integration\\IntegrationUser.cs",
+              "ToolTip": "D:\\Project\\Csharp\\Risovaviti\\Logic\\Integration\\IntegrationUser.cs",
+              "RelativeToolTip": "Logic\\Integration\\IntegrationUser.cs",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAswG8AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T10:59:02.082Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\Project\\Csharp\\Risovaviti\\RisovavitiApi\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "RisovavitiApi\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\Project\\Csharp\\Risovaviti\\RisovavitiApi\\Controllers\\UserController.cs",
+              "RelativeToolTip": "RisovavitiApi\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-10T10:53:53.753Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

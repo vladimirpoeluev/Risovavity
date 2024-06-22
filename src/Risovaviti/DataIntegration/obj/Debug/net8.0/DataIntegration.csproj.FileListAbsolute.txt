@@ -1,0 +1,15 @@
+D:\Project\Csharp\Risovaviti\DataIntegration\bin\Debug\net8.0\DataIntegration.deps.json
+D:\Project\Csharp\Risovaviti\DataIntegration\bin\Debug\net8.0\DataIntegration.dll
+D:\Project\Csharp\Risovaviti\DataIntegration\bin\Debug\net8.0\DataIntegration.pdb
+D:\Project\Csharp\Risovaviti\DataIntegration\obj\Debug\net8.0\DataIntegration.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\Csharp\Risovaviti\DataIntegration\obj\Debug\net8.0\DataIntegration.AssemblyInfoInputs.cache
+D:\Project\Csharp\Risovaviti\DataIntegration\obj\Debug\net8.0\DataIntegration.AssemblyInfo.cs
+D:\Project\Csharp\Risovaviti\DataIntegration\obj\Debug\net8.0\DataIntegration.csproj.CoreCompileInputs.cache
+D:\Project\Csharp\Risovaviti\DataIntegration\obj\Debug\net8.0\DataIntegration.dll
+D:\Project\Csharp\Risovaviti\DataIntegration\obj\Debug\net8.0\refint\DataIntegration.dll
+D:\Project\Csharp\Risovaviti\DataIntegration\obj\Debug\net8.0\DataIntegration.pdb
+D:\Project\Csharp\Risovaviti\DataIntegration\obj\Debug\net8.0\ref\DataIntegration.dll
+D:\Project\Csharp\Risovaviti\DataIntegration\obj\Debug\net8.0\DataIntegration.csproj.AssemblyReference.cache
+D:\Project\Csharp\Risovaviti\DataIntegration\bin\Debug\net8.0\DomainModel.dll
+D:\Project\Csharp\Risovaviti\DataIntegration\bin\Debug\net8.0\DomainModel.pdb
+D:\Project\Csharp\Risovaviti\DataIntegration\obj\Debug\net8.0\DataInte.3D91AF6F.Up2Date

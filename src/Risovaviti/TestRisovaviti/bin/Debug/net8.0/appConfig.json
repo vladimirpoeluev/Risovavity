@@ -1,0 +1,17 @@
+{
+  "SqlServer": {
+    "ConnectionStrings": {
+      "dataBase": "Data Source=NIGHSVOLK\\SQLEXPRESS;Initial Catalog=Risovaviti;Integrated Security=True;Encrypt=True;Trust Server Certificate=True"
+    }
+  },
+  "PostgreSql": {
+    "ConnectionStrings": {
+      "dataBase": ""
+    }
+
+  },
+  "Settings": {
+
+  }
+  
+}
