@@ -24,7 +24,6 @@ namespace RisovavitiApi.Controllers
             try
             {
                 Guid id = await entrance.EntranceInSystemAsync(login, password);
-                await Authenticate(login);
 				return Ok(id);
             }
             catch

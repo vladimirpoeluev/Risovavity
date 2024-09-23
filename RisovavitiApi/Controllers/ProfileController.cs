@@ -28,8 +28,8 @@ namespace RisovavitiApi.Controllers
 			{
 				Id = user?.Id ?? 0,
 				Name = user?.Name ?? "Отсутствует",
-				IdRoleNavigation = RoleResult.CreateRoleResultFromRole(user.Role),
-				Email = user?.Email ?? "Отсутствует"
+				Email = user?.Email ?? "Отсутствует",
+				IdRoleNavigation = RoleResult.CreateRoleResultFromRole(user.Role)
 			};
 			return Ok(userResult);
 		}
@@ -55,7 +55,6 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("setuser")]
 		public ActionResult<User> SetUser(Guid guid, UserResult user)
 		{
-
 			return Ok(user);
 		}
 	}

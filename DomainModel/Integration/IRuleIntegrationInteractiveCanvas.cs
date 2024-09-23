@@ -1,6 +1,6 @@
 ﻿
 
-using DomainModel.Records;
+using DomainModel.Model;
 
 namespace DomainModel.Integration
 {

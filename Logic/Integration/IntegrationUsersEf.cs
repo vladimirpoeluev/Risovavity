@@ -20,7 +20,9 @@ namespace Logic.Integration
 
 		public User Get(int id)
 		{
-			return db.Users.First(u => u.Id == id);
+			return db.Users
+					.Include(u => u.Role)
+					.First(u => u.Id == id);
 
 		}
 
@@ -32,7 +34,8 @@ namespace Logic.Integration
 		public User[] Get(string login, string password)
 		{
 			var result = db.Users.Where(user => user.Login == login && user.Password == password);
-			result = result.Select(x => x );
+			result = result.Select(x => x)
+						.Include(u => u.Role);
 			return result.ToArray();
 		}
 
