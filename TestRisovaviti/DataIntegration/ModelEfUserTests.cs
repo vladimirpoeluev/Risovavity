@@ -20,7 +20,7 @@ namespace TestRisovaviti.DataIntegration
 		public void TestEfUserCanvas()
 		{
 			DatabaseContext ctx = new DatabaseContext();
-			var expected = new InteractiveCanva()
+			var expected = new InteractiveCanvas()
 			{
 				Id = 1,
 				Name = "Canvas1",

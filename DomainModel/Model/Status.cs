@@ -7,7 +7,7 @@ public partial class Status
 
     public string Name { get; set; } = null!;
 
-    public virtual ICollection<Canvas> Canvas { get; set; } = new List<Canvas>();
+    public virtual ICollection<Canvas> Canvas { get; set; }
 
-    public virtual ICollection<InteractiveCanva> InteractiveCanvas { get; set; } = new List<InteractiveCanva>();
+    public virtual ICollection<InteractiveCanvas> InteractiveCanvas { get; set; }
 }

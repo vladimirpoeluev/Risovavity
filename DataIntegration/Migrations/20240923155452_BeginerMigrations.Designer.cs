@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataIntegration.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240626155023_Model.DatabasseContext")]
-    partial class ModelDatabasseContext
+    [Migration("20240923155452_BeginerMigrations")]
+    partial class BeginerMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace DataIntegration.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("DataIntegration.Model.Canva", b =>
+            modelBuilder.Entity("DomainModel.Model.Canvas", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,6 @@ namespace DataIntegration.Migrations
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Image")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
@@ -59,7 +58,7 @@ namespace DataIntegration.Migrations
                     b.ToTable("Canvas");
                 });
 
-            modelBuilder.Entity("DataIntegration.Model.InteractiveCanva", b =>
+            modelBuilder.Entity("DomainModel.Model.InteractiveCanvas", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -71,7 +70,6 @@ namespace DataIntegration.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ConnectionString")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
@@ -95,7 +93,7 @@ namespace DataIntegration.Migrations
                     b.ToTable("InteractiveCanvas");
                 });
 
-            modelBuilder.Entity("DataIntegration.Model.Role", b =>
+            modelBuilder.Entity("DomainModel.Model.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,7 +111,7 @@ namespace DataIntegration.Migrations
                     b.ToTable("Role", (string)null);
                 });
 
-            modelBuilder.Entity("DataIntegration.Model.Status", b =>
+            modelBuilder.Entity("DomainModel.Model.Status", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -131,7 +129,7 @@ namespace DataIntegration.Migrations
                     b.ToTable("Status", (string)null);
                 });
 
-            modelBuilder.Entity("DataIntegration.Model.User", b =>
+            modelBuilder.Entity("DomainModel.Model.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -175,15 +173,15 @@ namespace DataIntegration.Migrations
                     b.ToTable("User", (string)null);
                 });
 
-            modelBuilder.Entity("DataIntegration.Model.Canva", b =>
+            modelBuilder.Entity("DomainModel.Model.Canvas", b =>
                 {
-                    b.HasOne("DataIntegration.Model.User", "IdAuthorNavigation")
+                    b.HasOne("DomainModel.Model.User", "IdAuthorNavigation")
                         .WithMany("Canvas")
                         .HasForeignKey("IdAuthor")
                         .IsRequired()
                         .HasConstraintName("FK_Canvas_User");
 
-                    b.HasOne("DataIntegration.Model.Status", "IdStatusNavigation")
+                    b.HasOne("DomainModel.Model.Status", "IdStatusNavigation")
                         .WithMany("Canvas")
                         .HasForeignKey("IdStatus")
                         .IsRequired()
@@ -194,15 +192,15 @@ namespace DataIntegration.Migrations
                     b.Navigation("IdStatusNavigation");
                 });
 
-            modelBuilder.Entity("DataIntegration.Model.InteractiveCanva", b =>
+            modelBuilder.Entity("DomainModel.Model.InteractiveCanvas", b =>
                 {
-                    b.HasOne("DataIntegration.Model.User", "AuthorNavigation")
+                    b.HasOne("DomainModel.Model.User", "AuthorNavigation")
                         .WithMany("InteractiveCanvas")
                         .HasForeignKey("Author")
                         .IsRequired()
                         .HasConstraintName("FK_InteractiveCanvas_User");
 
-                    b.HasOne("DataIntegration.Model.Status", "IdStatusNavigation")
+                    b.HasOne("DomainModel.Model.Status", "IdStatusNavigation")
                         .WithMany("InteractiveCanvas")
                         .HasForeignKey("IdStatus")
                         .IsRequired()
@@ -213,30 +211,30 @@ namespace DataIntegration.Migrations
                     b.Navigation("IdStatusNavigation");
                 });
 
-            modelBuilder.Entity("DataIntegration.Model.User", b =>
+            modelBuilder.Entity("DomainModel.Model.User", b =>
                 {
-                    b.HasOne("DataIntegration.Model.Role", "IdRoleNavigation")
+                    b.HasOne("DomainModel.Model.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("IdRole")
                         .IsRequired()
                         .HasConstraintName("FK_User_Role");
 
-                    b.Navigation("IdRoleNavigation");
+                    b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("DataIntegration.Model.Role", b =>
+            modelBuilder.Entity("DomainModel.Model.Role", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("DataIntegration.Model.Status", b =>
+            modelBuilder.Entity("DomainModel.Model.Status", b =>
                 {
                     b.Navigation("Canvas");
 
                     b.Navigation("InteractiveCanvas");
                 });
 
-            modelBuilder.Entity("DataIntegration.Model.User", b =>
+            modelBuilder.Entity("DomainModel.Model.User", b =>
                 {
                     b.Navigation("Canvas");
 

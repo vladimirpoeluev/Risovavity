@@ -1,7 +1,4 @@
 ﻿
-
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace DomainModel.Model;
 
 public partial class User
@@ -20,9 +17,9 @@ public partial class User
 
     public byte[]? Icon { get; set; }
 
-    public virtual ICollection<Canvas> Canvas { get; set; } = new List<Canvas>();
+    public virtual ICollection<Canvas> Canvas { get; set; }
 
-    public virtual Role Role { get; set; } = null!;
+    public virtual Role Role { get; set; }
 
-    public virtual ICollection<InteractiveCanva> InteractiveCanvas { get; set; } = new List<InteractiveCanva>();
+    public virtual ICollection<InteractiveCanvas> InteractiveCanvas { get; set; }
 }

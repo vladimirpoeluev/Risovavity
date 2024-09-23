@@ -5,7 +5,7 @@
 namespace DataIntegration.Migrations
 {
     /// <inheritdoc />
-    public partial class ModelDatabasseContext : Migration
+    public partial class BeginerMigrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -67,7 +67,7 @@ namespace DataIntegration.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     IdStatus = table.Column<int>(type: "int", nullable: false),
                     IdAuthor = table.Column<int>(type: "int", nullable: false)
                 },
@@ -94,7 +94,7 @@ namespace DataIntegration.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConnectionString = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    ConnectionString = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     IdStatus = table.Column<int>(type: "int", nullable: false),
                     Author = table.Column<int>(type: "int", nullable: false)
                 },

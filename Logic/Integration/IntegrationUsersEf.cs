@@ -1,6 +1,7 @@
 ﻿using DomainModel.Integration;
 using DataIntegration.Model;
 using DomainModel.Model;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Logic.Integration
@@ -30,7 +31,9 @@ namespace Logic.Integration
 
 		public User[] Get(string login, string password)
 		{
-			return db.Users.Where(user => user.Login == login && user.Password == password).ToArray();
+			var result = db.Users.Where(user => user.Login == login && user.Password == password);
+			result = result.Select(x => x );
+			return result.ToArray();
 		}
 
 		public bool Remove(User user)

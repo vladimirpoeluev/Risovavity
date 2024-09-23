@@ -1,5 +1,8 @@
 ﻿using Logic.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace RisovavitiApi.Controllers
 {
@@ -16,11 +19,12 @@ namespace RisovavitiApi.Controllers
 
 
         [HttpGet("input")]
-        public async Task<ActionResult<Guid>> Authorization(string login, string password)
+        public async Task<ActionResult<Guid>> AuthorizationSystem(string login, string password)
         {
             try
             {
                 Guid id = await entrance.EntranceInSystemAsync(login, password);
+                await Authenticate(login);
 				return Ok(id);
             }
             catch
@@ -28,5 +32,18 @@ namespace RisovavitiApi.Controllers
                 return NotFound();
             }
         }
-    }
+
+		private async Task Authenticate(string userName)
+		{
+			// создаем один claim
+			var claims = new List<Claim>
+			{
+				new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
+			};
+			// создаем объект ClaimsIdentity
+			ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+			// установка аутентификационных куки
+			await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+		}
+	}
 }

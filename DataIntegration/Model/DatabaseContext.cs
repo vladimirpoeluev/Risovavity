@@ -16,7 +16,7 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<Canvas> Canvas { get; set; }
 
-    public virtual DbSet<InteractiveCanva> InteractiveCanvas { get; set; }
+    public virtual DbSet<InteractiveCanvas> InteractiveCanvas { get; set; }
 
     public virtual DbSet<Role> Roles { get; set; }
 
@@ -24,13 +24,15 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseSqlServer("Data Source=NIGHSVOLK\\SQLEXPRESS;Initial Catalog=Risovaviti;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+        => optionsBuilder.UseSqlServer("Data Source=NIGHSVOLK\\SQLEXPRESS;Initial Catalog=Risovaviti;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Canvas>(entity =>
         {
-            entity.Property(e => e.Name).HasMaxLength(50);
+			entity.HasKey(u => u.Id);
+			entity.Property(e => e.Name).HasMaxLength(50);
 
             entity.HasOne(d => d.IdAuthorNavigation).WithMany(p => p.Canvas)
                 .HasForeignKey(d => d.IdAuthor)
@@ -43,9 +45,10 @@ public partial class DatabaseContext : DbContext
                 .HasConstraintName("FK_Canvas_Status");
         });
 
-        modelBuilder.Entity<InteractiveCanva>(entity =>
+        modelBuilder.Entity<InteractiveCanvas>(entity =>
         {
-            entity.Property(e => e.ConnectionString).HasMaxLength(250);
+			entity.HasKey(u => u.Id);
+			entity.Property(e => e.ConnectionString).HasMaxLength(250);
             entity.Property(e => e.Name).HasMaxLength(50);
 
             entity.HasOne(d => d.AuthorNavigation).WithMany(p => p.InteractiveCanvas)
@@ -61,7 +64,8 @@ public partial class DatabaseContext : DbContext
 
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.ToTable("Role");
+			entity.HasKey(u => u.Id);
+			entity.ToTable("Role");
 
             entity.Property(e => e.Name).HasMaxLength(50);
         });
@@ -75,15 +79,20 @@ public partial class DatabaseContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
+            entity.HasKey(u => u.Id);
             entity.ToTable("User");
 
             entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .IsUnicode(false);
+
             entity.Property(e => e.Login)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.Name).HasMaxLength(50);
+
+            entity.Property(e => e.Name)
+                .HasMaxLength(50);
+
             entity.Property(e => e.Password)
                 .HasMaxLength(50)
                 .IsUnicode(false);
