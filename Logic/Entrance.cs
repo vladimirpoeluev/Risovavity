@@ -6,7 +6,12 @@ namespace Logic
 {
     public class Entrance : IEntrance
     {
-        public Guid EntranceInSystem(string login, string password)
+        IInputerSystem _inputerSystem;
+        public Entrance(IInputerSystem inputer) 
+        {
+            _inputerSystem = inputer;
+        }
+        public string EntranceInSystem(string login, string password)
         {
             var userInt = new IntegrationUsersEf();
             var users = userInt.Get(login, password);
@@ -19,15 +24,15 @@ namespace Logic
                 var saver = singleSaveUserToken.CreateSaver();
                 saver.Add(user, guid);
 
-                return guid;
+                return _inputerSystem.InputUser(user);
             }
             throw new Exception("Login or password was entered incorrectly");
         }
 
-        public async Task<Guid> EntranceInSystemAsync(string login, string password)
+        public async Task<string> EntranceInSystemAsync(string login, string password)
         {
 
-            var retult = await Task.Run<Guid>(() =>
+            var retult = await Task.Run<string>(() =>
             {
                 try
                 {
@@ -35,10 +40,10 @@ namespace Logic
 				}
                 catch
                 {
-                    return Guid.Empty;
+                    return String.Empty;
                 }
             });
-            if(retult == Guid.Empty)
+            if(retult == String.Empty)
             {
                 throw new Exception("Logoin or password was enterad incorrectly");
             }

@@ -2,7 +2,7 @@
 {
     public interface IEntrance
     {
-        Guid EntranceInSystem(string login, string password);
-        Task<Guid> EntranceInSystemAsync(string login, string password);
+        string EntranceInSystem(string login, string password);
+        Task<string> EntranceInSystemAsync(string login, string password);
     }
 }

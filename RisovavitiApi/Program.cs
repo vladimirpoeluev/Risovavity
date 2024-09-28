@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddTransient<IEntrance, Entrance>();
+builder.Services.AddTransient<IEntrance, Entrance>(h => new Entrance(new InputerSystem(new CreaterToken())));
 builder.Services.AddTransient<IRuleIntegrationUser, IntegrationUsersEf>();
 builder.Services.AddTransient<ICreateSaverToken, SingleSaveUserToken>();
 builder.Services.AddTransient<IGetUser, GetUsers>((h) => new GetUsers(new IntegrationUsersEf()));

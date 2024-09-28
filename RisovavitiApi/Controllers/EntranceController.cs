@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
+using RisovavitiApi.JwtBearerAuthentication;
 
 namespace RisovavitiApi.Controllers
 {
@@ -15,35 +16,22 @@ namespace RisovavitiApi.Controllers
         public EntranceController(IEntrance entrance)
         {
             this.entrance = entrance;
-            
         }
 
 
         [HttpGet("input")]
-        public async Task<ActionResult<Guid>> AuthorizationSystem(string login, string password)
+        public async Task<ActionResult<string>> AuthorizationSystem(string login, string password)
         {
             try
             {
-                Guid id = await entrance.EntranceInSystemAsync(login, password);
-				return Ok(id);
+                string token = await entrance.EntranceInSystemAsync(login, password);
+				return Ok(token);
             }
-            catch
+            catch(Exception ex)
             {
-                return NotFound();
+                return NotFound(ex.Message);
             }
         }
 
-		private async Task Authenticate(string userName)
-		{
-			// создаем один claim
-			var claims = new List<Claim>
-			{
-				new Claim(ClaimsIdentity.DefaultNameClaimType, userName)
-			};
-			// создаем объект ClaimsIdentity
-			ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
-			// установка аутентификационных куки
-			await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-		}
 	}
 }

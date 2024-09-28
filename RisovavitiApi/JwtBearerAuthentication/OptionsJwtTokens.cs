@@ -9,7 +9,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 	{
 		public static string ISSUER { get; } = "NighsVolk";
 		public static string AUDIENCE { get; } = "User of Risovatiti";
-		private static string KEY { get; } = "verysecretkey";
+		private static string KEY { get; } = "verysecretkeyoaihgaepogherklgjewiorghwprgiowehkgja;lhk";
 
 		public static SymmetricSecurityKey GetSecurityKey() => new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));
 	}

@@ -1,5 +1,6 @@
 ﻿using DomainModel.Model;
 using System.Security.Claims;
+using Logic.Interface;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
