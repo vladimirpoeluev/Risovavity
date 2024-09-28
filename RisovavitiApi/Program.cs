@@ -16,6 +16,7 @@ builder.Services.AddTransient<IRuleIntegrationUser, IntegrationUsersEf>();
 builder.Services.AddTransient<ICreateSaverToken, SingleSaveUserToken>();
 builder.Services.AddTransient<IGetUser, GetUsers>((h) => new GetUsers(new IntegrationUsersEf()));
 builder.Services.AddTransient<IGetCanvasAsync, GetCanvas>(h => new GetCanvas(new IntegrationCanvasesEf()));
+builder.Services.AddTransient<IInputerSystem, InputerSystem>(h => new InputerSystem(new CreaterToken()));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

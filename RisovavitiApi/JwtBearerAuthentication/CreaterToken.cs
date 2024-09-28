@@ -6,11 +6,11 @@ namespace RisovavitiApi.JwtBearerAuthentication
 {
 	public class CreaterToken : ICreaterToken
 	{
-		private List<Claim> claims;
+		public List<Claim> Claims { get; set; }
 
-		private CreaterToken()
+		public CreaterToken() 
 		{
-			claims = new List<Claim>();
+			Claims = new List<Claim>();
 		}
 
 		public string GenerateToken()
@@ -24,7 +24,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 			return new JwtSecurityToken(
 				issuer: OptionsJwtTokens.ISSUER,
 				audience: OptionsJwtTokens.AUDIENCE,
-				claims: claims,
+				claims: Claims,
 				expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
 				signingCredentials: new SigningCredentials(OptionsJwtTokens.GetSecurityKey(), SecurityAlgorithms.HmacSha256)
 				);
@@ -33,7 +33,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 		public static CreaterToken TokenGeneratorBasedOnClaim(List<Claim> claims)
 		{
 			var creater = new CreaterToken();
-			creater.claims = claims;
+			creater.Claims = claims;
 			return creater;
 		}
 	}

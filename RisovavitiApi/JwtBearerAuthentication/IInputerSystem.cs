@@ -3,6 +3,6 @@ namespace RisovavitiApi.JwtBearerAuthentication
 {
 	public interface IInputerSystem
 	{
-		public string InputUser();
+		public string InputUser(User user);
 	}
 }
