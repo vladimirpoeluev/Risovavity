@@ -24,13 +24,7 @@ namespace RisovavitiApi.Controllers
 		public ActionResult<UserResult> GetUser(Guid guid)
 		{
 			var user = _createSaver.CreateSaver().Get(guid);
-			var userResult = new UserResult()
-			{
-				Id = user?.Id ?? 0,
-				Name = user?.Name ?? "Отсутствует",
-				Email = user?.Email ?? "Отсутствует",
-				IdRoleNavigation = RoleResult.CreateRoleResultFromRole(user.Role)
-			};
+			var userResult = UserResult.CreateResultFromUser(user);
 			return Ok(userResult);
 		}
 
@@ -46,9 +40,9 @@ namespace RisovavitiApi.Controllers
 		public ActionResult<IFormFile> SetImage(Guid guid, IFormFile image)
 		{
 			using (var reader = new StreamReader(image.OpenReadStream()))
-			{
+			{ 
 				string a = reader.ReadToEnd();
-				return Ok(image);
+				return Ok(a);
 			}
 		}
 

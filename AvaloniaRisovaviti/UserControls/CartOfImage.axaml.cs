@@ -1,4 +1,4 @@
-using DomainModel.Records;
+using DomainModel.Model;
 using Avalonia.Controls;
 using AvaloniaRisovaviti.ViewModel;
 

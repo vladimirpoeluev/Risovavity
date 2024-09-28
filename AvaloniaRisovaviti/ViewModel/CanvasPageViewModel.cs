@@ -1,4 +1,4 @@
-using DomainModel.Records;
+using DomainModel.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -11,14 +11,14 @@ namespace AvaloniaRisovaviti.ViewModel
         public CanvasPageViewModel() 
         {
             Canvases = [
-                new CartOfImage(new InteractiveCanvas(1, "Изображение", "dsfj", null, new Status(1, "Public"), new User(1, "Name", "email.mail@gmail.com", "Login", "password", new Role(1, "User"), null))),
-                new CartOfImage(new InteractiveCanvas(1, "Изображение", "dsfj", null, new Status(1, "Public"), new User(1, "Name", "email.mail@gmail.com", "Login", "password", new Role(1, "User"), null))),
-                new CartOfImage(new InteractiveCanvas(1, "Изображение", "dsfj", null, new Status(1, "Public"), new User(1, "Name", "email.mail@gmail.com", "Login", "password", new Role(1, "User"), null))),
-                new CartOfImage(new InteractiveCanvas(1, "Изображение", "dsfj", null, new Status(1, "Public"), new User(1, "Name", "email.mail@gmail.com", "Login", "password", new Role(1, "User"), null))),
-                new CartOfImage(new InteractiveCanvas(1, "Изображение", "dsfj", null, new Status(1, "Public"), new User(1, "Name", "email.mail@gmail.com", "Login", "password", new Role(1, "User"), null))),
-                new CartOfImage(new InteractiveCanvas(1, "Изображение", "dsfj", null, new Status(1, "Public"), new User(1, "Name", "email.mail@gmail.com", "Login", "password", new Role(1, "User"), null))),
-                new CartOfImage(new InteractiveCanvas(1, "Изображение", "dsfj", null, new Status(1, "Public"), new User(1, "Name", "email.mail@gmail.com", "Login", "password", new Role(1, "User"), null))),
-                new CartOfImage(new InteractiveCanvas(1, "Изображение", "dsfj", null, new Status(1, "Public"), new User(1, "Name", "email.mail@gmail.com", "Login", "password", new Role(1, "User"), null))),
+                new CartOfImage(new InteractiveCanvas()),
+                new CartOfImage(new InteractiveCanvas()),
+                new CartOfImage(new InteractiveCanvas()),
+                new CartOfImage(new InteractiveCanvas()),
+                new CartOfImage(new InteractiveCanvas()),
+                new CartOfImage(new InteractiveCanvas()),
+                new CartOfImage(new InteractiveCanvas()),
+                new CartOfImage(new InteractiveCanvas()),
                 ];
         }
 

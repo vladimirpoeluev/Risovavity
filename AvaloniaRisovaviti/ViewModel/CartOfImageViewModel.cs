@@ -1,4 +1,4 @@
-using DomainModel.Records;
+using DomainModel.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 

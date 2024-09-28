@@ -1,4 +1,4 @@
-using DomainModel.Records;
+using DomainModel.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -11,10 +11,10 @@ namespace AvaloniaRisovaviti.ViewModel
         public AuthorViewModel()
         {
             Users = [
-                new (new User(1, "Вася", "ioiorgo@dag.aiosd", "sdddl", "sdk", new Role(1, "Пользователь"),  null)),
-                new (new User(1, "Вася2", "ioiorgo@dag.aiosd", "sdddl", "sdk", new Role(1, "Пользователь"),  null)),
-                new (new User(1, "Вася3", "ioiorgo@dag.aiosd", "sdddl", "sdk", new Role(1, "Пользователь"),  null)),
-                new (new User(1, "Вася4", "ioiorgo@dag.aiosd", "sdddl", "sdk", new Role(1, "Пользователь"),  null)),
+                new (new User()),
+                new (new User()),
+                new (new User()),
+                new (new User()),
                 ];
 
         }

@@ -15,6 +15,7 @@ namespace RisovavitiApi.Controllers
         public EntranceController(IEntrance entrance)
         {
             this.entrance = entrance;
+            
         }
 
 

@@ -24,4 +24,16 @@ public class UserResult
 			IdRole = IdRoleNavigation?.Id ?? 0
 		};
 	}
+
+	public static UserResult CreateResultFromUser(User user)
+	{
+		return new UserResult()
+		{
+			Id = user?.Id ?? 0,
+			Name = user?.Name ?? "Отсутствует",
+			Email = user?.Email ?? "Отсутствует",
+			IdRoleNavigation = RoleResult.CreateRoleResultFromRole(user?.Role ?? new Role())
+		};
+
+	}
 }

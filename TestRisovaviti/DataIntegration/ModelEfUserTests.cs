@@ -1,6 +1,6 @@
 ﻿using DataIntegration.Model;
 using DomainModel.Model;
-using RisovavitiApi.Controllers;
+using Logic.Integration;
 
 namespace TestRisovaviti.DataIntegration
 {
@@ -9,9 +9,9 @@ namespace TestRisovaviti.DataIntegration
 		[Fact]
 		public void TestEfUserRole()
 		{
-			DatabaseContext context = new DatabaseContext();
-			var expected = new Role() { Id = 1, Name = "Администратор" };
-			var result = context.Users.FirstOrDefault();
+			var getUser = new IntegrationUsersEf();
+			var expected = new Role() { Id = 1, Name = "Admin" };
+			var result = getUser.Get(1);
 
 			Assert.Equal(expected, result.Role);
 		}

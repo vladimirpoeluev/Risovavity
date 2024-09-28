@@ -1,4 +1,4 @@
-﻿using DomainModel.Records;
+﻿using DomainModel.Model;
 
 namespace InteractiveApiRisovaviti
 {
@@ -11,7 +11,7 @@ namespace InteractiveApiRisovaviti
 				IEntranceControllerIntegration entranceController = new EntranceControllerIntegration();
 				var code = entranceController.GetCode(login, password);
 				
-				return new Role(1, code.ToString());
+				return new Role();
 			}
 			catch (Exception ex)
 			{

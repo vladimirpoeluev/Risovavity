@@ -1,6 +1,6 @@
 using AvaloniaRisovaviti.ViewModel;
 using Avalonia.Controls;
-using DomainModel.Records;
+using DomainModel.Model;
 
 namespace AvaloniaRisovaviti;
 

@@ -1,5 +1,5 @@
 ﻿
-using DomainModel.Records;
+using DomainModel.Model;
 using InteractiveApiRisovaviti;
 
 Console.Write("Введите логин: ");
