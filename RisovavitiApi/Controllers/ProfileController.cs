@@ -4,40 +4,39 @@ using Microsoft.AspNetCore.Mvc;
 using DomainModel.ResultsRequest;
 using DomainModel.Model;
 using DomainModel.Integration;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RisovavitiApi.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class ProfileController : Controller
 	{
-		private ICreateSaverToken _createSaver;
 		private IRuleIntegrationUser _integrationUser;
 
-		public ProfileController(ICreateSaverToken create, IRuleIntegrationUser integrationUser) 
+		public ProfileController(IRuleIntegrationUser integrationUser) 
 		{
-			_createSaver = create;
 			_integrationUser = integrationUser;
 		}
 
 		[HttpGet()]
-		public ActionResult<UserResult> GetUser(Guid guid)
+		public ActionResult<UserResult> GetUser()
 		{
-			var user = _createSaver.CreateSaver().Get(guid);
-			var userResult = UserResult.CreateResultFromUser(user);
-			return Ok(userResult);
+			User user = _integrationUser.Get(new UserNameFilter(HttpContext.User.Identity.Name));
+			var result = UserResult.CreateResultFromUser(user);
+			return Ok(result);
 		}
 
 		[HttpGet("getimage")]
-		public ActionResult<byte[]> GetImage(Guid guid)
+		public ActionResult<byte[]> GetImage()
 		{
-			var user = _createSaver.CreateSaver().Get(guid);
 
-			return Ok(user.Icon);
+			return Ok();
 		}
 
 		[HttpPost("setimage")]
-		public ActionResult<IFormFile> SetImage(Guid guid, IFormFile image)
+		public ActionResult<IFormFile> SetImage(IFormFile image)
 		{
 			using (var reader = new StreamReader(image.OpenReadStream()))
 			{ 
@@ -47,7 +46,7 @@ namespace RisovavitiApi.Controllers
 		}
 
 		[HttpPost("setuser")]
-		public ActionResult<User> SetUser(Guid guid, UserResult user)
+		public ActionResult<User> SetUser(UserResult user)
 		{
 			return Ok(user);
 		}

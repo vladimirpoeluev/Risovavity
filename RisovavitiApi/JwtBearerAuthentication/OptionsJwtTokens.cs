@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.IdentityModel.Protocols;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
 	public class OptionsJwtTokens
 	{
-		public static string ISSUER { get; } = "NighsVolk";
-		public static string AUDIENCE { get; } = "User of Risovatiti";
-		private static string KEY { get; } = "verysecretkeyoaihgaepogherklgjewiorghwprgiowehkgja;lhk";
+		public static string ISSUER { get; } = "MyAuthServer";
+		public static string AUDIENCE { get; } = "MyAuthClient";
+		private static string KEY { get; } = "mysupersecret_secretsecretsecretkey!123";
 
 		public static SymmetricSecurityKey GetSecurityKey() => new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));
 	}

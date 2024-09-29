@@ -3,7 +3,6 @@ using DataIntegration.Model;
 using DomainModel.Model;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace Logic.Integration
 {
 	public class IntegrationUsersEf : IRuleIntegrationUser
@@ -37,6 +36,12 @@ namespace Logic.Integration
 			result = result.Select(x => x)
 						.Include(u => u.Role);
 			return result.ToArray();
+		}
+
+		public User Get(UserNameFilter userNameFilter)
+		{
+			var result = db.Users.Include(user => user.Role).Where(user => user.Name == userNameFilter.Name).First();
+			return result;
 		}
 
 		public bool Remove(User user)

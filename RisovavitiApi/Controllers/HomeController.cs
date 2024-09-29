@@ -3,11 +3,13 @@ using Logic.Integration;
 using DomainModel.Model;
 using DomainModel.Integration;
 using Logic.Interface;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RisovavitiApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     public class HomeController : Controller
     {
 		IGetUser _getUser;

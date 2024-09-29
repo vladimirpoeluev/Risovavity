@@ -9,6 +9,25 @@ using RisovavitiApi.JwtBearerAuthentication;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication((o => {
+	o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+	o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}))
+	.AddJwtBearer((options) =>
+	{
+		options.TokenValidationParameters = new TokenValidationParameters
+		{
+			ValidateIssuer = true,
+			ValidIssuer = OptionsJwtTokens.ISSUER,
+			ValidateAudience = true,
+			ValidAudience = OptionsJwtTokens.AUDIENCE,
+			ValidateLifetime = true,
+			IssuerSigningKey = OptionsJwtTokens.GetSecurityKey(),
+			ValidateIssuerSigningKey = true,
+		};
+	});
+
 
 builder.Services.AddControllers();
 builder.Services.AddTransient<IEntrance, Entrance>(h => new Entrance(new InputerSystem(new CreaterToken())));
@@ -22,21 +41,6 @@ builder.Services.AddTransient<IInputerSystem, InputerSystem>(h => new InputerSys
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAuthorization();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer((options) =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = OptionsJwtTokens.ISSUER,
-            ValidAudience = OptionsJwtTokens.AUDIENCE,
-            IssuerSigningKey = OptionsJwtTokens.GetSecurityKey()
-        };
-    });
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -46,12 +50,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
 
 app.MapControllers();
 

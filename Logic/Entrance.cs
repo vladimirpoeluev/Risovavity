@@ -11,6 +11,7 @@ namespace Logic
         {
             _inputerSystem = inputer;
         }
+
         public string EntranceInSystem(string login, string password)
         {
             var userInt = new IntegrationUsersEf();
@@ -18,11 +19,6 @@ namespace Logic
             if (users.Length == 1)
             {
                 User user = users[0];
-                Guid guid = Guid.NewGuid();
-                var role = user.Role;
-                SingleSaveUserToken singleSaveUserToken = new SingleSaveUserToken();
-                var saver = singleSaveUserToken.CreateSaver();
-                saver.Add(user, guid);
 
                 return _inputerSystem.InputUser(user);
             }
