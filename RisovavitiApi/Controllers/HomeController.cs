@@ -17,17 +17,28 @@ namespace RisovavitiApi.Controllers
 			_getUser = getUser;
         }
 
-        [HttpPost("getuser")]
+        [HttpGet("getuser")]
         public IActionResult GetUser(int id)
         {
             try
             {
                 return Ok(UserFullResult.CreateResultFromUser(_getUser.Get(id)));
             }
-            catch (Exception ex)
+            catch
             {
-                return NotFound(ex);
+                return ResultNotFound();
             }
+        }
+
+        private IActionResult ResultNotFound()
+        {
+			return NotFound(new Exception("Пользователь не найден или что то пошло не так"));
+		}
+
+        [HttpGet("getallusers")]
+        public IActionResult GetUsers()
+        {
+            return Ok(_getUser.Get());
         }
     }
 }

@@ -17,7 +17,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 			List<Claim> claims = new List<Claim>
 			{
 				new Claim(ClaimTypes.Name, user.Name),
-				new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.Name),
+				new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.Name ?? "Admin"),
 			};
 			this.СreaterToken.Claims = claims;
 			return СreaterToken.GenerateToken();
