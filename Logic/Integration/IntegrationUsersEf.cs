@@ -19,10 +19,11 @@ namespace Logic.Integration
 
 		public User Get(int id)
 		{
-			return db.Users
+			var user = db.Users
 					.Include(u => u.Role)
-					.First(u => u.Id == id);
-
+					.Where(u => u.Id == id)
+					.First();
+			return user;
 		}
 
 		public User[] Get()

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Logic.Integration;
-using DomainModel.Model;
-using DomainModel.Integration;
 using Logic.Interface;
+using DomainModel.ResultsRequest;
 using Microsoft.AspNetCore.Authorization;
 
 namespace RisovavitiApi.Controllers
@@ -20,9 +18,16 @@ namespace RisovavitiApi.Controllers
         }
 
         [HttpPost("getuser")]
-        public User GetUser(int id)
+        public IActionResult GetUser(int id)
         {
-            return _getUser.Get(id);
+            try
+            {
+                return Ok(UserFullResult.CreateResultFromUser(_getUser.Get(id)));
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex);
+            }
         }
     }
 }
