@@ -5,6 +5,11 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 {
 	internal class ApiGet : IApiGet
 	{
+		public ApiGet()
+		{
+
+		}
+
 		public HttpResponseMessage GetRequest(string url)
 		{
 			HttpClient client = SettingClient();
