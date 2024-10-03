@@ -2,23 +2,19 @@
 using System.Net;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using InteractiveApiRisovaviti.HttpIntegration;
 
 namespace InteractiveApiRisovaviti
 {
 	internal class EntranceControllerIntegration : IEntranceControllerIntegration
 	{
-		public Guid GetCode(string login, string password)
+		public string EntranceSystem(string login, string password)
 		{
-			HttpClient client = new HttpClient();
-			client.BaseAddress = new Uri("https://localhost:7281/");
-			client.DefaultRequestHeaders.Accept.Clear();
-			client.DefaultRequestHeaders.Accept.Add(
-				new MediaTypeWithQualityHeaderValue("application/json"));
-			HttpResponseMessage message = client.GetAsync($"api/Entrance/input?login={login}&password={password}").Result;
+			HttpResponseMessage message = new ApiGet().GetRequest($"api/Entrance/input?login={login}&password={password}");
 
 			if (message.StatusCode == HttpStatusCode.OK)
 			{
-				var result = message.Content.ReadAsAsync<Guid>().Result;
+				var result = message.Content.ReadAsAsync<string>().Result;
 				return result;
 			}
 			else

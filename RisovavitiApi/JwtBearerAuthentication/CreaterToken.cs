@@ -25,7 +25,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 				issuer: OptionsJwtTokens.ISSUER,
 				audience: OptionsJwtTokens.AUDIENCE,
 				claims: Claims,
-				expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(2)),
+				expires: OptionsJwtTokens.Expires,
 				signingCredentials: new SigningCredentials(OptionsJwtTokens.GetSecurityKey(), SecurityAlgorithms.HmacSha256)
 				);
 		}

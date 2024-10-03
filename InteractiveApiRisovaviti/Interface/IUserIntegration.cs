@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InteractiveApiRisovaviti
+namespace InteractiveApiRisovaviti.Interface
 {
-	internal interface IUserIntegration
-	{
-	}
+    internal interface IUserIntegration
+    {
+    }
 }

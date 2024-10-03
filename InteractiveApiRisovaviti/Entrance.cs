@@ -1,8 +1,9 @@
 ﻿using DomainModel.Model;
+using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti
 {
-	public class Entrance : IEntrance
+    public class Entrance : IEntrance
 	{
 		public Role IputSystem(string login, string password)
 		{

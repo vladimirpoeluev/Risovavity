@@ -15,4 +15,8 @@
     <ProjectReference Include="..\DomainModel\DomainModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entrance\" />
+  </ItemGroup>
+
 </Project>
