@@ -5,9 +5,16 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 {
 	internal class ApiGet : IApiGet
 	{
-		public ApiGet()
-		{
+		private IAuthenticationUser _user;
 
+		public ApiGet(IAuthenticationUser user)
+		{
+			_user = user;
+		}
+
+		public ApiGet() 
+		{
+			_user = new AuthenticationUser(String.Empty);
 		}
 
 		public HttpResponseMessage GetRequest(string url)
@@ -24,6 +31,7 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 			client.DefaultRequestHeaders.Accept.Clear();
 			client.DefaultRequestHeaders.Accept.Add(
 				new MediaTypeWithQualityHeaderValue("application/json"));
+			_user.SettingUpDataProvisioning(client);
 
 			return client;
 		}
