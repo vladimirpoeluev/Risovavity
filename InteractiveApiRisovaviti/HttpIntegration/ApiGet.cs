@@ -1,8 +1,9 @@
-﻿using System.Net.Http.Headers;
+﻿using InteractiveApiRisovaviti.Interface;
+using System.Net.Http.Headers;
 
 namespace InteractiveApiRisovaviti.HttpIntegration
 {
-	internal class ApiGet
+	internal class ApiGet : IApiGet
 	{
 		public HttpResponseMessage GetRequest(string url)
 		{
@@ -10,7 +11,7 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 			HttpResponseMessage message = client.GetAsync(url).Result;
 			return message;
 		}
-		
+
 		private HttpClient SettingClient()
 		{
 			HttpClient client = new HttpClient();
