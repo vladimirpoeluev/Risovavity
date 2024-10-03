@@ -24,5 +24,9 @@ namespace InteractiveApiRisovaviti
 			}
 		}
 
+		public string GetCode(string login, string password)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
