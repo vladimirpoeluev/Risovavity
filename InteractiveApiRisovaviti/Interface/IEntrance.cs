@@ -4,6 +4,6 @@ namespace InteractiveApiRisovaviti.Interface
 {
     internal interface IEntrance
     {
-        Role IputSystem(string login, string password);
+        IAuthenticationUser IputSystem(string login, string password);
     }
 }

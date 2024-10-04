@@ -1,7 +1,7 @@
 ﻿
 namespace InteractiveApiRisovaviti.Interface
 {
-	internal interface IAuthenticationUser
+	public interface IAuthenticationUser
 	{
 		void SettingUpDataProvisioning(HttpClient client);
 	}

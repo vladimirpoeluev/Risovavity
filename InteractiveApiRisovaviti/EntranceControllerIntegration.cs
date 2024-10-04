@@ -3,10 +3,11 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using InteractiveApiRisovaviti.HttpIntegration;
+using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti
 {
-	internal class EntranceControllerIntegration : IEntranceControllerIntegration
+    internal class EntranceControllerIntegration : IEntranceControllerIntegration
 	{
 		public string EntranceSystem(string login, string password)
 		{

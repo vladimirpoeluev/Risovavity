@@ -1,18 +1,18 @@
-﻿using DomainModel.Model;
-using InteractiveApiRisovaviti.Interface;
+﻿using InteractiveApiRisovaviti.Interface;
+using InteractiveApiRisovaviti.HttpIntegration;
 
 namespace InteractiveApiRisovaviti
 {
     public class Entrance : IEntrance
 	{
-		public Role IputSystem(string login, string password)
+		public IAuthenticationUser IputSystem(string login, string password)
 		{
 			try
 			{
 				IEntranceControllerIntegration entranceController = new EntranceControllerIntegration();
 				var code = entranceController.GetCode(login, password);
 				
-				return new Role();
+				return new AuthenticationUser(code);
 			}
 			catch (Exception ex)
 			{
