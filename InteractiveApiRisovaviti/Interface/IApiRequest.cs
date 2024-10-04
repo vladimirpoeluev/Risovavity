@@ -1,9 +1,8 @@
 ﻿
 namespace InteractiveApiRisovaviti.Interface
 {
-	internal interface IApiGet
+	internal interface IApiRequest
 	{
 		HttpResponseMessage GetRequest(string url);
-
 	}
 }
