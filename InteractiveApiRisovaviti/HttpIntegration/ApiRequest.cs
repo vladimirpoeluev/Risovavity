@@ -6,18 +6,24 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 {
 	internal abstract class ApiRequest : IApiRequest
 	{
-		private IAuthenticationUser _user;
-		protected Uri Url {  get; private set; }
+		public IAuthenticationUser User { get; set; }
+		protected string Url {  get; private set; }
 
-		public ApiRequest(IAuthenticationUser user)
+		public ApiRequest(IAuthenticationUser user) : this()
 		{
-			_user = user;
-			this.Url = new Uri(String.Empty);
+			User = user;
+			
+		}
+
+		public ApiRequest() 
+		{
+			User = new AuthenticationUser(String.Empty);
+			this.Url = string.Empty;
 		}
 
 		public HttpResponseMessage GetRequest(string url)
 		{
-			Url = new Uri(url);
+			Url = url;
 			var client = OptionRequst();
 			return ExecutingRequest(client);
 		}
@@ -31,7 +37,7 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 			client.DefaultRequestHeaders.Accept.Clear();
 			client.DefaultRequestHeaders.Accept.Add(
 				new MediaTypeWithQualityHeaderValue("application/json"));
-			_user.SettingUpDataProvisioning(client);
+			User.SettingUpDataProvisioning(client);
 
 			return client;
 		}

@@ -8,7 +8,7 @@ Console.Write("Введите пароль: ");
 string password = Console.ReadLine() ?? "";
 try
 {
-	Console.WriteLine(new Entrance().IputSystem(login, password).Name);
+	Console.WriteLine(new Entrance().IputSystem(login, password));
 }
 catch(Exception ex)
 {

@@ -1,5 +1,4 @@
-﻿
-using InteractiveApiRisovaviti.Interface;
+﻿using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti
 {
@@ -12,11 +11,13 @@ namespace InteractiveApiRisovaviti
 			User = user;
 		}
 
-		private void OptionAuthentication(HttpClient client) 
-		{
-			User.SettingUpDataProvisioning(client);
-		}
+		protected abstract IApiRequest SettingApiRequest();
 
-		public abstract HttpRequestMessage StartRequest(IApiRequest client);
+		protected abstract HttpResponseMessage StartRequest(IApiRequest client);
+
+		protected HttpResponseMessage GetResponseMessage()
+		{
+			return StartRequest(SettingApiRequest());
+		}
 	}
 }

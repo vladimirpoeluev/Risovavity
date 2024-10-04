@@ -2,6 +2,6 @@
 {
     internal interface IEntranceControllerIntegration
     {
-        string GetCode(string login, string password);
+        string EntranceSystem(string login, string password);
     }
 }

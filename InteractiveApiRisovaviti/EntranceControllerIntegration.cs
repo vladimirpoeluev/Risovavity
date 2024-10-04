@@ -2,32 +2,44 @@
 using System.Net;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using DomainModel.ResultsRequest.Error;
 using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti
 {
-    internal class EntranceControllerIntegration : IEntranceControllerIntegration
+    internal class EntranceControllerIntegration : GetControllerIntegration, IEntranceControllerIntegration
 	{
+		private string Password { get; set; } = string.Empty;
+		private string Login { get; set; } = string.Empty;
+
+		public EntranceControllerIntegration(IAuthenticationUser user) : base(user)
+		{
+
+		}
+
 		public string EntranceSystem(string login, string password)
 		{
-			HttpResponseMessage message = new ApiGet().GetRequest($"api/Entrance/input?login={login}&password={password}");
+			Login = login;
+			Password = password;
+			HttpResponseMessage message = GetResponseMessage();
+			CheckStatusCode(message);
+			var result = message.Content.ReadAsStringAsync().Result;
+			return result;
+		}
 
-			if (message.StatusCode == HttpStatusCode.OK)
+		private void CheckStatusCode(HttpResponseMessage message)
+		{
+			if (message.StatusCode != HttpStatusCode.OK)
 			{
-				var result = message.Content.ReadAsAsync<string>().Result;
-				return result;
-			}
-			else
-			{
-				string result = message.Content.ReadAsAsync<string>().Result;
+				var result = message.Content.ReadAsStringAsync().Result;
 				throw new Exception($"Code: {(int)message.StatusCode} Message: {result}");
 			}
 		}
 
-		public string GetCode(string login, string password)
+		protected override HttpResponseMessage StartRequest(IApiRequest client)
 		{
-			throw new NotImplementedException();
+			return client.GetRequest($"api/Entrance/input?login={Login}&password={Password}");
 		}
 	}
 }

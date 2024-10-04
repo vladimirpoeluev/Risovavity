@@ -10,6 +10,8 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 		{
 		}
 
+		public ApiGet() : base() { }
+
 		protected override HttpResponseMessage ExecutingRequest(HttpClient client)
 		{
 			HttpResponseMessage message = client.GetAsync(Url).Result;
