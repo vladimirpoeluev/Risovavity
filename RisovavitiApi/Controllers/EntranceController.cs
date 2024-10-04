@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using RisovavitiApi.JwtBearerAuthentication;
+using DomainModel.ResultsRequest.Error;
 
 namespace RisovavitiApi.Controllers
 {
@@ -29,7 +30,7 @@ namespace RisovavitiApi.Controllers
             }
             catch(Exception ex)
             {
-                return NotFound(ex.Message);
+                return NotFound(new ErrorMessageRequest() { Message = ex.Message, NumberError = 40});
             }
         }
 

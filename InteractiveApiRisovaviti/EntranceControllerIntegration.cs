@@ -32,7 +32,7 @@ namespace InteractiveApiRisovaviti
 		{
 			if (message.StatusCode != HttpStatusCode.OK)
 			{
-				var result = message.Content.ReadAsStringAsync().Result;
+				var result = message.Content.ReadAsAsync<ErrorMessageRequest>().Result;
 				throw new Exception($"Code: {(int)message.StatusCode} Message: {result}");
 			}
 		}
