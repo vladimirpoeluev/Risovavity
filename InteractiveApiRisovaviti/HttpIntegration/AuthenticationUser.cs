@@ -13,9 +13,7 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 
 		public void SettingUpDataProvisioning(HttpClient client)
 		{
-			client.DefaultRequestHeaders.Add("Authorization", "Bearer " + Token);
+			client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", Token);
 		}
-
-		public override string ToString() => $"{Token}";
 	}
 }
