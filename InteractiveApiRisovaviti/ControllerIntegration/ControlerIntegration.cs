@@ -22,7 +22,7 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
             return StartRequest(SettingApiRequest());
         }
 
-		protected void CheckStatusCode(HttpResponseMessage message)
+		protected static void CheckStatusCode(HttpResponseMessage message)
 		{
 			if (message.StatusCode != HttpStatusCode.OK)
 			{

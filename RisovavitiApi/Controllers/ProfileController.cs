@@ -23,7 +23,7 @@ namespace RisovavitiApi.Controllers
 		[HttpGet()]
 		public ActionResult<UserResult> GetUser()
 		{
-			User user = _integrationUser.Get(new UserNameFilter(HttpContext.User.Identity.Name));
+			User user = _integrationUser.Get(new UserNameFilter(HttpContext.User.Identity?.Name ?? string.Empty));
 			var result = UserResult.CreateResultFromUser(user);
 			return Ok(result);
 		}
