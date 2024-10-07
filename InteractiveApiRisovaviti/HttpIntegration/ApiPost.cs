@@ -14,7 +14,7 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 		}
 		protected override HttpResponseMessage ExecutingRequest(HttpClient request)
 		{
-			return request.PutAsJsonAsync<T>(Url, SetterValue).Result;
+			return request.PostAsJsonAsync(Url, SetterValue).Result;
 		}
 	}
 }

@@ -1,20 +1,19 @@
-﻿
-using InteractiveApiRisovaviti.HttpIntegration;
+﻿using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti.ControllerIntegration
 {
 	internal abstract class PostControllerIntegration<T> : ControlerIntegration
 	{
-		private T _value;
+		public T Value { get; set; }
 		public PostControllerIntegration(IAuthenticationUser user, T value) : base(user) 
 		{
-			_value = value;
+			Value = value;
 		}
 
 		protected override IApiRequest SettingApiRequest()
 		{
-			return new ApiPost<T>(User, _value);
+			return new ApiPost<T>(User, Value);
 		}
 	}
 }

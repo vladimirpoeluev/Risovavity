@@ -20,21 +20,6 @@ namespace RisovavitiApi.Controllers
             this.entrance = entrance;
         }
 
-
-        [HttpGet("input")]
-        public async Task<ActionResult<string>> AuthorizationSystem(string login, string password)
-        {
-            try
-            {
-                string token = await entrance.EntranceInSystemAsync(login, password);
-				return Ok(token);
-            }
-            catch(Exception ex)
-            {
-                return NotFound(new ErrorMessageRequest() { Message = ex.Message, NumberError = 40});
-            }
-        }
-
 		[HttpPost("input")]
 		public async Task<ActionResult<string>> AuthorizationSystemPost([FromBody] AuthenticationForm form)
 		{

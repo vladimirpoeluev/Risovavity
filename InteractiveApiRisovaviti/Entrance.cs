@@ -10,7 +10,7 @@ namespace InteractiveApiRisovaviti
 		{
 			try
 			{
-				IEntranceControllerIntegration entranceController = new EntranceControllerIntegration(AuthenticationUser.NotAuthenticationUser);
+				IEntranceControllerIntegration entranceController = new EntranceControllerPost(AuthenticationUser.NotAuthenticationUser);
 				var code = entranceController.EntranceSystem(login, password);
 				
 				return new AuthenticationUser(code);
