@@ -31,7 +31,6 @@ namespace RisovavitiApi.Controllers
 		[HttpGet("getimage")]
 		public ActionResult<byte[]> GetImage()
 		{
-
 			return Ok();
 		}
 
@@ -46,7 +45,7 @@ namespace RisovavitiApi.Controllers
 		}
 
 		[HttpPost("setuser")]
-		public ActionResult<User> SetUser(UserResult user)
+		public ActionResult<User> SetUser([FromBody] UserResult user)
 		{
 			return Ok(user);
 		}

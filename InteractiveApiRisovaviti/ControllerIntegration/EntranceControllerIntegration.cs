@@ -1,10 +1,4 @@
-﻿
-using System.Net;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using DomainModel.ResultsRequest.Error;
-using InteractiveApiRisovaviti.HttpIntegration;
-using InteractiveApiRisovaviti.Interface;
+﻿using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti.ControllerIntegration
 {
