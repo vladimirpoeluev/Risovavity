@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using RisovavitiApi.JwtBearerAuthentication;
 using DomainModel.ResultsRequest.Error;
+using DomainModel.ResultsRequest;
 
 namespace RisovavitiApi.Controllers
 {
@@ -34,5 +35,18 @@ namespace RisovavitiApi.Controllers
             }
         }
 
+		[HttpPost("input")]
+		public async Task<ActionResult<string>> AuthorizationSystemPost([FromBody] AuthenticationForm form)
+		{
+			try
+			{
+				string token = await entrance.EntranceInSystemAsync(form.Login, form.Password);
+				return Ok(token);
+			}
+			catch (Exception ex)
+			{
+				return NotFound(new ErrorMessageRequest() { Message = ex.Message, NumberError = 40 });
+			}
+		}
 	}
 }
