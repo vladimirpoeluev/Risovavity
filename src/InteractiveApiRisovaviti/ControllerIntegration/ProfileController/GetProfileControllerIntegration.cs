@@ -1,7 +1,7 @@
 ﻿using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti.Interface;
 
-namespace InteractiveApiRisovaviti.ControllerIntegration
+namespace InteractiveApiRisovaviti.ControllerIntegration.ProfileController
 {
     internal class GetProfileControllerIntegration : GetControllerIntegration, IGetProfileControllerIntegration
     {
@@ -9,14 +9,14 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
         {
         }
 
-		public UserResult GetProfile()
-		{
+        public UserResult GetProfile()
+        {
             var message = GetResponseMessage();
             UserResult result = message.Content.ReadAsAsync<UserResult>().Result;
             return result;
-		}
+        }
 
-		protected override HttpResponseMessage StartRequest(IApiRequest client)
+        protected override HttpResponseMessage StartRequest(IApiRequest client)
         {
             var request = client.GetRequest("api/profile");
             CheckStatusCode(request);

@@ -44,10 +44,10 @@ namespace RisovavitiApi.Controllers
 			}
 		}
 
-		[HttpPost("setuser")]
-		public ActionResult<User> SetUser([FromBody] UserResult user)
+		[HttpPost("setprofile")]
+		public IActionResult SetUser([FromBody] UserResult user)
 		{
-			return Ok(user);
+			return Ok();
 		}
 	}
 }
