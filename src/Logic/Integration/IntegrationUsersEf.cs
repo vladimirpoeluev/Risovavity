@@ -53,8 +53,16 @@ namespace Logic.Integration
 		public bool Update(User user, User newUser)
 		{
 			var updatedUser = db.Users.First((item) => item.Id == user.Id);
-			updatedUser = newUser;
-			db.Update(updatedUser);
+
+			
+			updatedUser.Email = newUser.Email;
+			updatedUser.Password = newUser.Password;
+			updatedUser.IdRole = updatedUser.IdRole;
+			updatedUser.Name = newUser.Name;
+			updatedUser.Role = newUser.Role;
+			updatedUser.Name = newUser.Name;
+			db.Entry(updatedUser).State = EntityState.Modified;
+			db.SaveChanges();
 			return true;
 		}
 	}

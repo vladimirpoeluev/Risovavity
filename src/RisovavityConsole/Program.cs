@@ -8,8 +8,7 @@ Console.Write("Введите логин: ");
 string login = Console.ReadLine() ?? "";
 Console.Write("Введите пароль: ");
 string password = Console.ReadLine() ?? "";
-try
-{
+
 	IAuthenticationUser user = new Entrance().IputSystem(login, password);
 	Console.WriteLine("Вход был выполнен успешно");
 	UserResult userResult = new Profile(user).ProfileUser;
@@ -18,10 +17,19 @@ try
 	Console.WriteLine($"ID {userResult.Id}");
 	Console.WriteLine($"Почта {userResult.Email}");
 	Console.WriteLine($"Роль {userResult.IdRoleNavigation.Name}");
-}
-catch(Exception ex)
-{
-	Console.WriteLine(ex.Message);
-}
+
+	Console.WriteLine();
+
+	Console.WriteLine("Изменение пользовательских данных");
+	userResult.Email = "Кака муманя";
+	new Profile(user).ProfileUser = userResult;
+
+	UserResult userResult2 = new Profile(user).ProfileUser;
+	Console.WriteLine($"Профиль {userResult2.IdRoleNavigation.Name}a:");
+	Console.WriteLine($"Имя {userResult2.Name}");
+	Console.WriteLine($"ID {userResult2.Id}");
+	Console.WriteLine($"Почта {userResult2.Email}");
+	Console.WriteLine($"Роль {userResult2.IdRoleNavigation.Name}");
+
 
 Console.ReadLine();

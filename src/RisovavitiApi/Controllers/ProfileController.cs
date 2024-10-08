@@ -5,6 +5,7 @@ using DomainModel.ResultsRequest;
 using DomainModel.Model;
 using DomainModel.Integration;
 using Microsoft.AspNetCore.Authorization;
+using DomainModel.ResultsRequest.Error;
 
 namespace RisovavitiApi.Controllers
 {
@@ -23,9 +24,14 @@ namespace RisovavitiApi.Controllers
 		[HttpGet()]
 		public ActionResult<UserResult> GetUser()
 		{
-			User user = _integrationUser.Get(new UserNameFilter(HttpContext.User.Identity?.Name ?? string.Empty));
+			User user = GetUserIntegration();
 			var result = UserResult.CreateResultFromUser(user);
 			return Ok(result);
+		}
+
+		private User GetUserIntegration()
+		{
+			return _integrationUser.Get(new UserNameFilter(HttpContext.User.Identity?.Name ?? string.Empty));
 		}
 
 		[HttpGet("getimage")]
@@ -47,7 +53,30 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("setprofile")]
 		public IActionResult SetUser([FromBody] UserResult user)
 		{
-			return Ok();
+			try
+			{
+				User userOld = GetUserIntegration();
+				_integrationUser.Update(userOld, new User()
+				{
+					Password = userOld.Password,
+					Login = userOld.Login,
+					Email = user.Email,
+					Role = userOld.Role,
+					Id = user.Id,
+					IdRole = userOld.IdRole,
+					Name = user.Name,
+				});
+				return Ok();
+			}
+			catch (Exception ex) 
+			{
+				return BadRequest(new ErrorMessageRequest()
+				{
+					Message = ex.Message,
+					NumberError = 10
+				});
+			}
+			
 		}
 	}
 }
