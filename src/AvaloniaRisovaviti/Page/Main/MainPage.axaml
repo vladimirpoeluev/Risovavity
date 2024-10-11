@@ -4,21 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:local="using:AvaloniaRisovaviti"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaloniaRisovaviti.MainPage">
+             x:Class="AvaloniaRisovaviti.MainPage"
+			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel"
+			 x:DataType="vm:MainPageViewModel">
 	<UserControl.Styles>
 		<StyleInclude Source="avares://AvaloniaRisovaviti/Styles.axaml"/>
 	</UserControl.Styles>
+	<Design.DataContext>
+		<vm:MainPageViewModel/>
+	</Design.DataContext>
 	<Grid RowDefinitions="Auto,*">
 
 		<Grid	Grid.Row="0"
 				Background="LightGray"
 				ColumnDefinitions="Auto, *">
+			<Button Click="Profile_Click">
+				<StackPanel>
+					<Image Source="/Accets/icoUser.png"
+				   Height="50"/>
+					<TextBlock Text="{Binding UserResult.Name}"/>
+				</StackPanel>
+			</Button>
 			<StackPanel Margin="5"
 						Grid.Column="0">
-				<Image Source="/Accets/icoUser.png"
-				   Height="50"/>
-				<TextBlock Text="Вася"/>
-			</StackPanel>
+				</StackPanel>
 			
 			<UniformGrid Rows="1"
 						 Height="50"

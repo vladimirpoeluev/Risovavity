@@ -1,9 +1,6 @@
 ﻿using Logic.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Security.Claims;
-using RisovavitiApi.JwtBearerAuthentication;
 using DomainModel.ResultsRequest.Error;
 using DomainModel.ResultsRequest;
 

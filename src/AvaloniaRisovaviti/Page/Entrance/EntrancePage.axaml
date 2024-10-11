@@ -3,7 +3,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaloniaRisovaviti.EntrancePage">
+             xmlns:vm="using:AvaloniaRisovaviti.ViewModel"
+			 x:Class="AvaloniaRisovaviti.EntrancePage"
+			 x:DataType="vm:EntrancePageViewModel">
+	<Design.DataContext>
+		<vm:AuthorViewModel/>
+	</Design.DataContext>
 	<Grid>
 		<StackPanel HorizontalAlignment="Center"
 					VerticalAlignment="Center"
@@ -11,10 +16,10 @@
 			<Label Content="Вход"
 				   FontSize="35"/>
 			<Label Content="Логин"/>
-			<TextBox/>
+			<TextBox Text="{Binding Login}"/>
 			<Label Content="Пароль"/>
-			<TextBox PasswordChar="⚫"/>
-
+			<TextBox PasswordChar="⚫" Text="{Binding Password}"/>
+			<Label Foreground="Red" Content="{Binding Error}"/>
 			<Button HorizontalAlignment="Stretch"
 					Margin="5"
 					Click="Button_Click">

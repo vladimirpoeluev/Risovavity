@@ -18,8 +18,8 @@ namespace InteractiveApiRisovaviti
 			catch (Exception ex)
 			{
 				Console.WriteLine(ex.ToString());
+				throw new Exception(ex.Message);
 			}
-			throw new NotImplementedException();
 		}
 	}
 }

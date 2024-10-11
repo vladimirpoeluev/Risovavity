@@ -1,6 +1,4 @@
-﻿
-using DomainModel.Model;
-using DomainModel.ResultsRequest;
+﻿using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti;
 using InteractiveApiRisovaviti.Interface;
 
@@ -21,7 +19,7 @@ string password = Console.ReadLine() ?? "";
 	Console.WriteLine();
 
 	Console.WriteLine("Изменение пользовательских данных");
-	userResult.Email = "Кака муманя";
+	userResult.Email = "Кака isgrho";
 	new Profile(user).ProfileUser = userResult;
 
 	UserResult userResult2 = new Profile(user).ProfileUser;

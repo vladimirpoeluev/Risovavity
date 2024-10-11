@@ -2,7 +2,7 @@
 
 namespace InteractiveApiRisovaviti.HttpIntegration
 {
-	internal class AuthenticationUser : IAuthenticationUser
+	public class AuthenticationUser : IAuthenticationUser
 	{
 		public static AuthenticationUser NotAuthenticationUser { get; } = new AuthenticationUser(String.Empty); 
 		private string Token { get; set; }

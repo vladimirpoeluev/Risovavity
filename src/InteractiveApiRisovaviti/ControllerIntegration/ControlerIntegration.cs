@@ -41,7 +41,7 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
 			if (message.StatusCode != HttpStatusCode.OK)
 			{
 				var result = message.Content.ReadAsAsync<ErrorMessageRequest>().Result;
-				throw new Exception($"Code: {(int)message.StatusCode} Message: {result}");
+				throw new Exception($"Code: {result.NumberError} Message: {result.Message}");
 			}
 		}
 
