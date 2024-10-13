@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
 using DomainModel.ResultsRequest.Error;
 using DomainModel.ResultsRequest;
+using DomainModel.Model;
 
 namespace RisovavitiApi.Controllers
 {
@@ -11,10 +12,11 @@ namespace RisovavitiApi.Controllers
     public class EntranceController : ControllerBase
     {
         private IEntrance entrance;
-
-        public EntranceController(IEntrance entrance)
+		private IRegistationUser registation;
+        public EntranceController(IEntrance entrance, IRegistationUser registation)
         {
             this.entrance = entrance;
+			this.registation = registation;
         }
 
 		[HttpPost("input")]
@@ -29,6 +31,34 @@ namespace RisovavitiApi.Controllers
 			{
 				return NotFound(new ErrorMessageRequest() { Message = ex.Message, NumberError = 40 });
 			}
+		}
+
+		[HttpPost("regist")]
+		public IActionResult RegistrationSystem([FromBody] User user)
+		{
+			try
+			{
+				return TryRegistrationUser(user);
+			}
+			catch (Exception)
+			{
+				return ReturningRegistrationError();
+			}
+		}
+
+		IActionResult TryRegistrationUser(User user) 
+		{
+			registation.RegistrationUser(user);
+			return Ok();
+		}
+
+		IActionResult ReturningRegistrationError()
+		{
+			return BadRequest(new ErrorMessageRequest()
+			{
+				Message = "Не удалось зарегистрировать пользователя",
+				NumberError = 100
+			});
 		}
 	}
 }
