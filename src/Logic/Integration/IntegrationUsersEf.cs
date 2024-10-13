@@ -50,7 +50,7 @@ namespace Logic.Integration
 
 		public User Get(UserOfLoginFilter userOfLoginFilter)
 		{
-			throw new NotImplementedException();
+			return db.Users.Where((user) => user.Login == userOfLoginFilter.Login).First();
 		}
 
 		public bool Remove(User user)
