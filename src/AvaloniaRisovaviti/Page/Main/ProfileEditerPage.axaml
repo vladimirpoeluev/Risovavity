@@ -20,7 +20,7 @@
 			<TextBlock Text="{Binding UserResult.Email}"/>
 			<TextBlock Text="Роль"/>
 			<TextBlock Text="{Binding UserResult.IdRoleNavigation.Name}"/>
-			<Button Click="EditProfile"/>
+			<Button Click="EditProfile" Content="Сохранить изменения"/>
 		</StackPanel>
 	</Grid>
 </UserControl>

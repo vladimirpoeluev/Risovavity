@@ -1,7 +1,6 @@
 ﻿using DomainModel.ResultsRequest.Error;
 using InteractiveApiRisovaviti.Interface;
 using System.Net;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace InteractiveApiRisovaviti.ControllerIntegration
 {
