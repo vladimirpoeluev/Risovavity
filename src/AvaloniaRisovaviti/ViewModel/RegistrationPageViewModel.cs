@@ -6,11 +6,11 @@ using System.Runtime.CompilerServices;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
-    internal class RegistraionPageViewModel: INotifyPropertyChanged
+    internal class RegistrationPageViewModel: INotifyPropertyChanged
     {
         public RegistrationForm RegistrationForm { get; set; }
 
-        public RegistraionPageViewModel()
+        public RegistrationPageViewModel()
         {
             RegistrationForm = new RegistrationForm();
         }

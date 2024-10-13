@@ -2,17 +2,18 @@ using Avalonia.Controls;
 using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti.Interface;
 using InteractiveApiRisovaviti;
+using AvaloniaRisovaviti.ViewModel;
 
 namespace AvaloniaRisovaviti
 {
     public partial class RegistrationPage : UserControl
     {
-        RegistrationForm _viewModel;
+		RegistrationPageViewModel _viewModel;
         IRegistarion _registarion;
         public RegistrationPage()
         {   
             InitializeComponent();
-            _viewModel = new RegistrationForm();
+            _viewModel = new RegistrationPageViewModel();
             DataContext = _viewModel;
             _registarion = new Registration();
         }
@@ -33,7 +34,7 @@ namespace AvaloniaRisovaviti
 
         void TryRegistration()
         {
-            _registarion.RegistrionUser(_viewModel);
+            _registarion.RegistrionUser(_viewModel.RegistrationForm);
 			this.Content = new MainPage();
 		}
 
