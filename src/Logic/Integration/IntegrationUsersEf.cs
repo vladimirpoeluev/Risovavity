@@ -14,7 +14,9 @@ namespace Logic.Integration
 		}
 		public bool Add(User user)
 		{
-			throw new NotImplementedException();
+			db.Users.Add(user);
+			db.SaveChanges();
+			return true;
 		}
 
 		public User Get(int id)
