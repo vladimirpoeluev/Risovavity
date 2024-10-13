@@ -1,6 +1,7 @@
 ﻿using InteractiveApiRisovaviti.Interface;
 using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.ControllerIntegration;
+using InteractiveApiRisovaviti.ControllerIntegration.EntranceController;
 
 namespace InteractiveApiRisovaviti
 {

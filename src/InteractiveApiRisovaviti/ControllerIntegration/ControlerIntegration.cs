@@ -24,27 +24,27 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
 
 		protected static void CheckStatusCode(HttpResponseMessage message)
 		{
-            
-			try
-            {
-                TryCheckStatusCode(message);
-            }
-            catch 
-            {
-                AlternativeErrorDisplay(message);
-            }
-		}
-
-        private static void TryCheckStatusCode(HttpResponseMessage message) 
-        {
 			if (message.StatusCode != HttpStatusCode.OK)
 			{
-				var result = message.Content.ReadAsAsync<ErrorMessageRequest>().Result;
+				var result = TryCheckStatusCode(message);
 				throw new Exception($"Code: {result.NumberError} Message: {result.Message}");
+			}
+            
+		}
+
+        private static ErrorMessageRequest TryCheckStatusCode(HttpResponseMessage message) 
+        {
+            try
+            {
+				return message.Content.ReadAsAsync<ErrorMessageRequest>().Result;
+			}
+			catch
+			{
+				return AlternativeErrorDisplay(message);
 			}
 		}
 
-        private static void AlternativeErrorDisplay(HttpResponseMessage message)
+        private static ErrorMessageRequest AlternativeErrorDisplay(HttpResponseMessage message)
         {
 			var result = message.Content.ReadAsStringAsync().Result;
 			throw new Exception(result);

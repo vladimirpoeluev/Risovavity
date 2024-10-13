@@ -9,10 +9,12 @@ namespace AvaloniaRisovaviti.ViewModel
     internal class RegistrationPageViewModel: INotifyPropertyChanged
     {
         public RegistrationForm RegistrationForm { get; set; }
+        public string Error { get; set; }
 
         public RegistrationPageViewModel()
         {
             RegistrationForm = new RegistrationForm();
+            Error = string.Empty;
         }
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler? PropertyChanged;

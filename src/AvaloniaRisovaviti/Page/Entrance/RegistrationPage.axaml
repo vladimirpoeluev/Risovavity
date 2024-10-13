@@ -3,24 +3,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaloniaRisovaviti.RegistrationPage">
+             x:Class="AvaloniaRisovaviti.RegistrationPage"
+			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel"
+			 x:DataType="vm:RegistrationPageViewModel">
+	<Design.DataContext>
+		<vm:RegistrationPageViewModel/>
+	</Design.DataContext>
 	<Grid>
 		<StackPanel HorizontalAlignment="Center"
 					VerticalAlignment="Center">
 			<Label Content="Регистрация" 
 				   FontSize="25"/>
 			<Label Content="Имя"/>
-			<TextBox/>
+			<TextBox Text="{Binding RegistrationForm.Name}"/>
 			<Label Content="Email"/>
-			<TextBox/>
+			<TextBox Text="{Binding RegistrationForm.Email}"/>
 			<Label Content="Логин"/>
-			<TextBox/>
+			<TextBox Text="{Binding RegistrationForm.Login}"/>
 			<Label Content="Пароль"/>
-			<TextBox PasswordChar="⚫"/>
+			<TextBox PasswordChar="⚫" Text="{Binding RegistrationForm.Password}"/>
 			<Label Content="Повтор пароля"/>
 			<TextBox PasswordChar="⚫"/>
 			<Button HorizontalAlignment="Stretch"
-					Content="Зарегестрироваться"
+					Content="Зарегистрироваться"
 					Margin="5"
 					Click="Regist_Click"/>
 		</StackPanel>

@@ -15,7 +15,7 @@ namespace AvaloniaRisovaviti
             InitializeComponent();
             _viewModel = new RegistrationPageViewModel();
             DataContext = _viewModel;
-            _registarion = new Registration();
+            _registarion = new Registration(Authentication.AuthenticationUser.User);
         }
 
 
