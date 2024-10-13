@@ -24,9 +24,9 @@ public partial class EntrancePage : UserControl
 			Authentication.AuthenticationUser.User = entrance.IputSystem(viewModel.Login, viewModel.Password);
 			this.Content = new MainPage();
 		}
-        catch(Exception ex)
+        catch(Exception)
         {
-            viewModel.Error = ex.Message;
+            viewModel.Error = "Неправильный пароль или логин";
         }
         
     }

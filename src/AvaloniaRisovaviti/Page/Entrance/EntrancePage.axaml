@@ -12,14 +12,14 @@
 	<Grid>
 		<StackPanel HorizontalAlignment="Center"
 					VerticalAlignment="Center"
-					Width="200">
+					Width="300">
 			<Label Content="Вход"
 				   FontSize="35"/>
 			<Label Content="Логин"/>
 			<TextBox Text="{Binding Login}"/>
 			<Label Content="Пароль"/>
-			<TextBox PasswordChar="⚫" Text="{Binding Password}"/>
-			<Label Foreground="Red" Content="{Binding Error}"/>
+			<TextBox PasswordChar="⚫" Text="{Binding Password}" FontSize="10"/>
+			<TextBlock Foreground="Red" Text="{Binding Error}"/>
 			<Button HorizontalAlignment="Stretch"
 					Margin="5"
 					Click="Button_Click">

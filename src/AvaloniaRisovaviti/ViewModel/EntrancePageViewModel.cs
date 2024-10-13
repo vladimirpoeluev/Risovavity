@@ -7,15 +7,26 @@ namespace AvaloniaRisovaviti.ViewModel
 {
     internal class EntrancePageViewModel: INotifyPropertyChanged
     {
+		string _error = String.Empty;
         public string Login { get; set; }
         public string Password { get; set; }
-        public string Error { get; set; }
+        public string Error 
+        { 
+            get 
+            {
+                return _error;
+            } 
+            set 
+            {
+                _error = value;
+                OnPropertyChanged(nameof(Error));
+            } 
+        }
 
         public EntrancePageViewModel() 
         {
             Login = string.Empty;
             Password = string.Empty;
-            Error = string.Empty;
         }
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler? PropertyChanged;
