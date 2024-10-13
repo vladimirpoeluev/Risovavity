@@ -5,7 +5,6 @@ namespace DomainModel.ResultsRequest
 {
 	public class RegistrationForm
 	{
-		public int Id { get; set; }
 		public string Name { get; set; }
 		public string Email { get; set; }
 		public string Login { get; set; }
@@ -15,7 +14,6 @@ namespace DomainModel.ResultsRequest
 		{
 			return new User()
 			{
-				Id = Id,
 				Name = Name,
 				Email = Email,
 				Login = Login,

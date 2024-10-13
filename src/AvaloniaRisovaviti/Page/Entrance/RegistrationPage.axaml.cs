@@ -1,17 +1,45 @@
 using Avalonia.Controls;
+using DomainModel.ResultsRequest;
+using InteractiveApiRisovaviti.Interface;
+using InteractiveApiRisovaviti;
 
 namespace AvaloniaRisovaviti
 {
     public partial class RegistrationPage : UserControl
     {
+        RegistrationForm _viewModel;
+        IRegistarion _registarion;
         public RegistrationPage()
-        {
+        {   
             InitializeComponent();
+            _viewModel = new RegistrationForm();
+            DataContext = _viewModel;
+            _registarion = new Registration();
         }
+
 
         private void Regist_Click(object? obj, Avalonia.Interactivity.RoutedEventArgs routedEvent)
         {
-            this.Content = new MainPage();
+            try
+            {
+                TryRegistration();
+            }
+            catch
+            {
+                ErrorRegistration();
+            }
+            
+        }
+
+        void TryRegistration()
+        {
+            _registarion.RegistrionUser(_viewModel);
+			this.Content = new MainPage();
+		}
+
+        void ErrorRegistration()
+        {
+
         }
     }
 }

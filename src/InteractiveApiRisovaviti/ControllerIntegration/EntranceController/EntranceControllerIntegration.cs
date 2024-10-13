@@ -1,6 +1,6 @@
 ﻿using InteractiveApiRisovaviti.Interface;
 
-namespace InteractiveApiRisovaviti.ControllerIntegration
+namespace InteractiveApiRisovaviti.ControllerIntegration.EntranceController
 {
     internal class EntranceControllerIntegration : GetControllerIntegration, IEntranceControllerIntegration
     {
@@ -18,7 +18,7 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
             Password = password;
             HttpResponseMessage message = GetResponseMessage();
             CheckStatusCode(message);
-            var result = message.Content.ReadAsAsync<String>().Result;
+            var result = message.Content.ReadAsAsync<string>().Result;
             return result;
         }
 
