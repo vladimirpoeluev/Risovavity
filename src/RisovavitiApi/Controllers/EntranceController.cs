@@ -46,13 +46,13 @@ namespace RisovavitiApi.Controllers
 			}
 		}
 
-		IActionResult TryRegistrationUser(RegistrationForm user) 
+		OkResult TryRegistrationUser(RegistrationForm user) 
 		{
 			registation.RegistrationUser(user);
 			return Ok();
 		}
 
-		IActionResult ReturningRegistrationError()
+		BadRequestObjectResult ReturningRegistrationError()
 		{
 			return BadRequest(new ErrorMessageRequest()
 			{

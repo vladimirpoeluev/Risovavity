@@ -35,7 +35,7 @@ namespace AvaloniaRisovaviti
         void TryRegistration()
         {
             _registarion.RegistrionUser(_viewModel.RegistrationForm);
-			this.Content = new MainPage();
+			this.Content = new EntrancePage();
 		}
 
         void ErrorRegistration()
