@@ -7,16 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entrance\**" />
+    <EmbeddedResource Remove="Entrance\**" />
+    <None Remove="Entrance\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DomainModel\DomainModel.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Entrance\" />
   </ItemGroup>
 
 </Project>
