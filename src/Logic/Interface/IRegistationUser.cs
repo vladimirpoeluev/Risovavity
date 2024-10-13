@@ -1,10 +1,11 @@
 ﻿using DomainModel.Model;
+using DomainModel.ResultsRequest;
 
 namespace Logic.Interface
 {
 	public interface IRegistationUser
 	{
-		void RegistrationUser(User user);
+		void RegistrationUser(RegistrationForm user);
 		void CheckEmail(string code);
 	}
 }

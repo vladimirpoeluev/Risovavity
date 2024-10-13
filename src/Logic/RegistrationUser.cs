@@ -1,6 +1,7 @@
 ﻿using DomainModel.Filter;
 using DomainModel.Integration;
 using DomainModel.Model;
+using DomainModel.ResultsRequest;
 using Logic.Interface;
 
 namespace Logic
@@ -18,10 +19,10 @@ namespace Logic
 			throw new NotImplementedException();
 		}
 
-		void IRegistationUser.RegistrationUser(User user)
+		void IRegistationUser.RegistrationUser(RegistrationForm user)
 		{
-			if(!CheckForLogin(user))
-				User.Add(user);
+			if(!CheckForLogin(user.GetUser()))
+				User.Add(user.GetUser());
 			else
 				throw new Exception("Пользователь с таким логином существует");
 		}

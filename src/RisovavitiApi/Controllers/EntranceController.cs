@@ -34,7 +34,7 @@ namespace RisovavitiApi.Controllers
 		}
 
 		[HttpPost("regist")]
-		public IActionResult RegistrationSystem([FromBody] User user)
+		public IActionResult RegistrationSystem([FromBody] RegistrationForm user)
 		{
 			try
 			{
@@ -46,7 +46,7 @@ namespace RisovavitiApi.Controllers
 			}
 		}
 
-		IActionResult TryRegistrationUser(User user) 
+		IActionResult TryRegistrationUser(RegistrationForm user) 
 		{
 			registation.RegistrationUser(user);
 			return Ok();
