@@ -22,7 +22,8 @@
 				<StackPanel>
 					<Image Source="/Accets/icoUser.png"
 				   Height="50"/>
-					<TextBlock Text="{Binding UserResult.Name}"/>
+					<TextBlock HorizontalAlignment="Center" 
+							Text="{Binding UserResult.Name}"/>
 				</StackPanel>
 			</Button>
 			<StackPanel Margin="5"

@@ -6,6 +6,7 @@ using DomainModel.Model;
 using DomainModel.Integration;
 using Microsoft.AspNetCore.Authorization;
 using DomainModel.ResultsRequest.Error;
+using System.Security.Claims;
 
 namespace RisovavitiApi.Controllers
 {
@@ -31,7 +32,10 @@ namespace RisovavitiApi.Controllers
 
 		private User GetUserIntegration()
 		{
-			return _integrationUser.Get(new UserNameFilter(HttpContext.User.Identity?.Name ?? string.Empty));
+			int id = int.Parse(HttpContext.User.Claims
+							.Where((claim) => claim.Type == ClaimTypes.Sid)
+							.First().Value);
+			return _integrationUser.Get(id);
 		}
 
 		[HttpGet("getimage")]

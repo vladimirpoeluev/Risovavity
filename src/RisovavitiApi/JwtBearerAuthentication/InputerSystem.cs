@@ -1,6 +1,7 @@
 ﻿using DomainModel.Model;
 using System.Security.Claims;
 using Logic.Interface;
+using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
@@ -18,6 +19,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 			{
 				new Claim(ClaimTypes.Name, user.Name),
 				new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.Name ?? "Admin"),
+				new Claim(ClaimTypes.Sid, user.Id.ToString())
 			};
 			this.СreaterToken.Claims = claims;
 			return СreaterToken.GenerateToken();
