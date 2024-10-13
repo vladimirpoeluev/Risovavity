@@ -1,4 +1,5 @@
 ﻿
+using DomainModel.Filter;
 using DomainModel.Model;
 using Logic;
 
@@ -11,6 +12,7 @@ namespace DomainModel.Integration
         bool Update(User canvas, User newCanvas);
         User Get(int id);
         User Get(UserNameFilter userNameFilter);
+        User Get(UserOfLoginFilter userOfLoginFilter);
         User[] Get();
         User[] Get(string login, string password);
     }

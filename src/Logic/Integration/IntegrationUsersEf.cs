@@ -2,6 +2,7 @@
 using DataIntegration.Model;
 using DomainModel.Model;
 using Microsoft.EntityFrameworkCore;
+using DomainModel.Filter;
 
 namespace Logic.Integration
 {
@@ -45,6 +46,11 @@ namespace Logic.Integration
 		{
 			var result = db.Users.Include(user => user.Role).Where(user => user.Name == userNameFilter.Name).First();
 			return result;
+		}
+
+		public User Get(UserOfLoginFilter userOfLoginFilter)
+		{
+			throw new NotImplementedException();
 		}
 
 		public bool Remove(User user)
