@@ -45,13 +45,22 @@ namespace RisovavitiApi.Controllers
 		}
 
 		[HttpPost("setimage")]
-		public ActionResult<IFormFile> SetImage(IFormFile image)
+		public IActionResult SetImage([FromBody]UserAvatarResult avatarResult)
 		{
-			using (var reader = new StreamReader(image.OpenReadStream()))
-			{ 
-				string a = reader.ReadToEnd();
-				return Ok(a);
-			}
+			var user = GetUserIntegration();
+			var newUser = new User() 
+			{
+				Id = user.Id,
+				Name = user.Name,
+				Role = user.Role,
+				IdRole = user.IdRole,
+				Icon = avatarResult.AvatarResult,
+				Email = user.Email,
+			}; 
+
+			_integrationUser.Update(user, newUser);
+
+			return Ok();
 		}
 
 		[HttpPost("setprofile")]
