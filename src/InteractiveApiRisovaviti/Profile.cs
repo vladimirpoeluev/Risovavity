@@ -7,14 +7,20 @@ namespace InteractiveApiRisovaviti
 	public class Profile
 	{
 		public IAuthenticationUser User { get; set; }
-		IGetProfileControllerIntegration _getProfile;
-		ISetProfileControllerIntegration _setProfile;
+		private IGetProfileControllerIntegration _getProfile;
+		private ISetProfileControllerIntegration _setProfile;
+		private ISetImageControllerIntegration _setImage;
+		private IGetImageControllerIntegration _getImage;
+
+
 
 		public Profile(IAuthenticationUser user)
 		{
 			User = user;
 			_getProfile = new GetProfileControllerIntegration(User);
 			_setProfile = new SetProfileContrillerIntegration(User);
+			_setImage = new SetImageControllerIntegration(User);
+			_getImage = new GetImageControllerIntegration(User);
 		}
 
 		public UserResult ProfileUser 
@@ -27,6 +33,19 @@ namespace InteractiveApiRisovaviti
 			set
 			{
 				_setProfile.SetProfile(value);
+			}
+		}
+
+		public UserAvatarResult ProfileAvatar
+		{
+			get
+			{
+				return _getImage.GetUserAvatar();
+			}
+
+			set
+			{
+				_setImage.SetImage(value);
 			}
 		}
 

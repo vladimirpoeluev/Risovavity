@@ -3,7 +3,7 @@ using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti.ControllerIntegration.ProfileController
 {
-	internal class SetImageControllerIntegration : PostControllerIntegration<UserAvatarResult>
+	internal class SetImageControllerIntegration : PostControllerIntegration<UserAvatarResult>, ISetImageControllerIntegration
 	{
 		public SetImageControllerIntegration(IAuthenticationUser user) : base(user, new UserAvatarResult())
 		{
