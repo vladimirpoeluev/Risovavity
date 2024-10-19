@@ -1,39 +1,39 @@
-using Avalonia.Controls;
 using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Drawing;
-using System.IO;
 using Avalonia.Media;
-using System;
 using AvaloniaRisovaviti.ProfileShows;
+using System.Drawing;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
 	public class MainPageViewModel : INotifyPropertyChanged
 	{
+		IImage _image;
 		public UserResult UserResult { get; set; }
-		public IImage Image { get; set; }
+		public IImage Image 
+		{ 
+			get => _image; 
+			set 
+			{
+				_image = value;
+				OnPropertyChanged(nameof(Image));
+			} 
+		}
+		private ProfileSetterImage _setterImage;
 
 		public MainPageViewModel() 
 		{
 			Profile profile = new Profile(Authentication.AuthenticationUser.User);
-			InitUser(profile);	
+			_setterImage = new ProfileSetterImage(profile);
+			InitUser(profile);
 		}
 
 		private void InitUser(Profile profile)
 		{
 			UserResult = profile.ProfileUser;
-			try
-			{
-				var bytes = profile.ProfileAvatar.AvatarResult;
-				Image = ImageAvaloniaConverter.ConvertByteInImage(bytes);
-			}
-			catch (Exception)
-			{
-				Image = new Avalonia.Media.Imaging.Bitmap("Accets/icoUser.png");
-			}
+			Image = _setterImage.UpdateImage();
 		}
 
 		#region INotifyPropertyChanged Implementation
