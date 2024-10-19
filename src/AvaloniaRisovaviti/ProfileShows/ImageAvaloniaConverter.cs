@@ -7,8 +7,11 @@ namespace AvaloniaRisovaviti.ProfileShows
 	{
 		public static byte[] ConvertImageInByte(Stream stream)
 		{
-			var converter = new ImageConverter();
-			return (byte[])converter.ConvertTo(new Bitmap(stream), typeof(byte[]));
+			using (MemoryStream ms = new MemoryStream())
+			{
+				stream.CopyTo(ms);
+				return ms.ToArray();
+			}
 		}
 
 		public static Avalonia.Media.Imaging.Bitmap ConvertByteInImage(byte[] bytes)
