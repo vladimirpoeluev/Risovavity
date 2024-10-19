@@ -11,8 +11,7 @@
 	</Design.DataContext>
 	<WrapPanel Orientation="Horizontal">
 		<Image Width="50"
-			   Height="50"
-			   Source="/Accets/icoUser.png"/>
+			   Height="50"/>
 		<StackPanel Margin="10">
 			<TextBlock Text="{Binding UserOfCart.Name}"/>
 			<TextBlock Text="{Binding UserOfCart.Email}"/>

@@ -9,7 +9,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Accets\IconRisovaviti.ico" />
-    <None Remove="Accets\icoUser.png" />
     <None Remove="Accets\image.jpg" />
   </ItemGroup>
 
@@ -20,6 +19,7 @@
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.10" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.10" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,11 +29,16 @@
   <ItemGroup>
     <AvaloniaResource Include="Accets\IconRisovaviti.ico">
     </AvaloniaResource>
-    <AvaloniaResource Include="Accets\icoUser.png" />
     <AvaloniaResource Include="Accets\image.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <UpToDateCheckInput Remove="UserControls\CartOfImage.axaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Accets\icoUser.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

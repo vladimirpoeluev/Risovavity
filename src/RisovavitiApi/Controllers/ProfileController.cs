@@ -7,6 +7,7 @@ using DomainModel.Integration;
 using Microsoft.AspNetCore.Authorization;
 using DomainModel.ResultsRequest.Error;
 using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
 
 namespace RisovavitiApi.Controllers
 {
@@ -39,15 +40,30 @@ namespace RisovavitiApi.Controllers
 		}
 
 		[HttpGet("getimage")]
-		public ActionResult<byte[]> GetImage()
+		public ActionResult<UserAvatarResult> GetImage()
 		{
-			return Ok();
+			var user = GetUserIntegration();
+			try
+			{
+				Console.WriteLine(user.Icon.Length);
+				UserAvatarResult userAvatar = new()
+				{
+					UserName = user.Name,
+					AvatarResult = user.Icon ?? throw new Exception("Нету фотографии профиля")
+				};
+				return Ok(userAvatar);
+			}
+			catch (Exception ex) 
+			{
+				return NotFound(new ErrorMessageRequest() { Message = ex.Message, NumberError = 20 });
+			}
 		}
 
 		[HttpPost("setimage")]
 		public IActionResult SetImage([FromBody]UserAvatarResult avatarResult)
 		{
 			var user = GetUserIntegration();
+			Console.WriteLine(avatarResult.AvatarResult);
 			var newUser = new User() 
 			{
 				Id = user.Id,
@@ -56,6 +72,8 @@ namespace RisovavitiApi.Controllers
 				IdRole = user.IdRole,
 				Icon = avatarResult.AvatarResult,
 				Email = user.Email,
+				Password = user.Password,
+				Login = user.Login,
 			}; 
 
 			_integrationUser.Update(user, newUser);

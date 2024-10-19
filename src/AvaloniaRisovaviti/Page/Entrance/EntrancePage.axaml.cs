@@ -22,13 +22,16 @@ public partial class EntrancePage : UserControl
         {
 			Entrance entrance = new Entrance();
 			Authentication.AuthenticationUser.User = entrance.IputSystem(viewModel.Login, viewModel.Password);
-			this.Content = new MainPage();
+			
 		}
-        catch(Exception)
+        catch(Exception ex)
         {
-            viewModel.Error = "Неправильный пароль или логин";
+            viewModel.Error = ex.Message;
         }
-        
+        finally
+        {
+			this.Content = new MainPage();
+		}        
     }
 
     private void Reg_Click(object? sender, RoutedEventArgs e)

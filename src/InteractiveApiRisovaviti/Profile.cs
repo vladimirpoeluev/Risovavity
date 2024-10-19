@@ -40,11 +40,19 @@ namespace InteractiveApiRisovaviti
 		{
 			get
 			{
-				return _getImage.GetUserAvatar();
+				try
+				{
+					return _getImage.GetUserAvatar();
+				}
+				catch (Exception)
+				{
+					return new UserAvatarResult();
+				}
 			}
 
 			set
 			{
+				value.UserName = "lf";
 				_setImage.SetImage(value);
 			}
 		}

@@ -1,27 +1,41 @@
+using Avalonia.Controls;
 using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti;
-using SkiaSharp;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Drawing;
+using System.IO;
+using Avalonia.Media;
+using System;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
 	public class MainPageViewModel : INotifyPropertyChanged
 	{
 		public UserResult UserResult { get; set; }
+		public IImage Image { get; set; }
 
 		public MainPageViewModel() 
 		{
 			Profile profile = new Profile(Authentication.AuthenticationUser.User);
-			InitUser(profile);
+			InitUser(profile);	
 		}
 
 		private void InitUser(Profile profile)
 		{
 			UserResult = profile.ProfileUser;
+			try
+			{
+				var bytes = profile.ProfileAvatar.AvatarResult;
+				using (MemoryStream memory = new MemoryStream(bytes))
+				{
+					Image = new Avalonia.Media.Imaging.Bitmap(memory);
+				}
+			}
+			catch (Exception)
+			{
+				Image = new Avalonia.Media.Imaging.Bitmap("Accets/icoUser.png");
+			}
 		}
 
 		#region INotifyPropertyChanged Implementation

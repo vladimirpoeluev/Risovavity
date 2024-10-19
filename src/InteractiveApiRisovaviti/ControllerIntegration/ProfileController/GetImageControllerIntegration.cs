@@ -19,7 +19,7 @@ namespace InteractiveApiRisovaviti.ControllerIntegration.ProfileController
 
 		protected override HttpResponseMessage StartRequest(IApiRequest client)
 		{
-			return client.GetRequest("api/getimage/");
+			return client.GetRequest("api/profile/getimage/");
 		}
 	}
 }

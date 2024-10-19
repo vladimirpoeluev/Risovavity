@@ -20,7 +20,7 @@
 				ColumnDefinitions="Auto, *">
 			<Button Click="Profile_Click">
 				<StackPanel>
-					<Image Source="/Accets/icoUser.png"
+					<Image Source="{Binding Image}"
 				   Height="50"/>
 					<TextBlock HorizontalAlignment="Center" 
 							Text="{Binding UserResult.Name}"/>

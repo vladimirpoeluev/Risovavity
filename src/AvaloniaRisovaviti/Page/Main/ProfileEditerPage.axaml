@@ -21,6 +21,8 @@
 			<TextBlock Text="Роль"/>
 			<TextBlock Text="{Binding UserResult.IdRoleNavigation.Name}"/>
 			<Button Click="EditProfile" Content="Сохранить изменения"/>
+			<Button Margin="5" Content="Вставить изображение" Click="Click_MenuImage"/>
+			
 		</StackPanel>
 	</Grid>
 </UserControl>

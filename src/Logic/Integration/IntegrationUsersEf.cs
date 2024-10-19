@@ -62,13 +62,13 @@ namespace Logic.Integration
 		{
 			var updatedUser = db.Users.First((item) => item.Id == user.Id);
 
-			
+			updatedUser.Icon = newUser.Icon;
 			updatedUser.Email = newUser.Email;
 			updatedUser.Password = newUser.Password;
+			updatedUser.Login = newUser.Login;
 			updatedUser.IdRole = updatedUser.IdRole;
 			updatedUser.Name = newUser.Name;
 			updatedUser.Role = newUser.Role;
-			updatedUser.Name = newUser.Name;
 			db.Entry(updatedUser).State = EntityState.Modified;
 			db.SaveChanges();
 			return true;

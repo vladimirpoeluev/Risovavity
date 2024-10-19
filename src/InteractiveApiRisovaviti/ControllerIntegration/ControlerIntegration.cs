@@ -27,9 +27,8 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
 			if (message.StatusCode != HttpStatusCode.OK)
 			{
 				var result = TryCheckStatusCode(message);
-				throw new Exception($"Code: {result.NumberError} Message: {result.Message}");
+				throw new Exception($"Code: {result?.NumberError ?? 0} Message: {result?.Message ?? "Че то не то"}");
 			}
-            
 		}
 
         private static ErrorMessageRequest TryCheckStatusCode(HttpResponseMessage message) 
