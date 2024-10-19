@@ -45,7 +45,6 @@ namespace RisovavitiApi.Controllers
 			var user = GetUserIntegration();
 			try
 			{
-				Console.WriteLine(user.Icon.Length);
 				UserAvatarResult userAvatar = new()
 				{
 					UserName = user.Name,
@@ -63,7 +62,6 @@ namespace RisovavitiApi.Controllers
 		public IActionResult SetImage([FromBody]UserAvatarResult avatarResult)
 		{
 			var user = GetUserIntegration();
-			Console.WriteLine(avatarResult.AvatarResult);
 			var newUser = new User() 
 			{
 				Id = user.Id,
