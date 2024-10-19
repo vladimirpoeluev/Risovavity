@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Dialogs;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
+using AvaloniaRisovaviti.ProfileShows;
 using AvaloniaRisovaviti.ViewModel;
 using InteractiveApiRisovaviti;
 using System.ComponentModel.DataAnnotations;
@@ -30,8 +31,6 @@ public partial class ProfileEditerPage : UserControl
     public async void Click_MenuImage(object obj, RoutedEventArgs args) 
     {
 		var topLevel = TopLevel.GetTopLevel(this);
-
-		// Start async operation to open the dialog.
 		var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
 		{
 			Title = "Open Text File",
@@ -40,12 +39,9 @@ public partial class ProfileEditerPage : UserControl
 
 		if (files.Count >= 1)
 		{
-			// Open reading stream from the first file.
 			await using var stream = await files[0].OpenReadAsync();
 			var avatar = Profile.ProfileAvatar;
-			var converter = new ImageConverter();
-			avatar.AvatarResult = (byte[])converter.ConvertTo(new Bitmap(stream), typeof(byte[]));
-			// Reads all the content of file as a text.
+			avatar.AvatarResult = ImageAvaloniaConverter.ConvertImageInByte(stream);
 			Profile.ProfileAvatar = avatar;
 		}
 	}

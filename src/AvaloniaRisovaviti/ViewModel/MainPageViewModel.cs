@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using Avalonia.Media;
 using System;
+using AvaloniaRisovaviti.ProfileShows;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
@@ -27,10 +28,7 @@ namespace AvaloniaRisovaviti.ViewModel
 			try
 			{
 				var bytes = profile.ProfileAvatar.AvatarResult;
-				using (MemoryStream memory = new MemoryStream(bytes))
-				{
-					Image = new Avalonia.Media.Imaging.Bitmap(memory);
-				}
+				Image = ImageAvaloniaConverter.ConvertByteInImage(bytes);
 			}
 			catch (Exception)
 			{
