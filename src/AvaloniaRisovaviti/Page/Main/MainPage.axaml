@@ -46,6 +46,9 @@
 				<Button Content="Комьюнити"
 						Classes="navbar"
 						Click="Canvas_Click"/>
+				<Button Content="Выход"
+						Classes="navbar"
+						Click="ExitProfile_Click"/>
 			</UniformGrid>
 		</Grid>
 

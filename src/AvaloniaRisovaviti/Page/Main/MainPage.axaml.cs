@@ -35,4 +35,10 @@ public partial class MainPage : UserControl
     {
         frameMain.Content = new ProfileEditerPage();
     }
+
+    public void ExitProfile_Click(object ob, RoutedEventArgs e) 
+    {
+        this.Content = new EntrancePage();
+        Authentication.AuthenticationUser.ExitSystem();
+    }
 }
