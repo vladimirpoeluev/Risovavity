@@ -8,5 +8,11 @@ namespace AvaloniaRisovaviti.Authentication
 			.HttpIntegration
 			.AuthenticationUser.NotAuthenticationUser;
 
+		public static void ExitSystem()
+		{
+			User = InteractiveApiRisovaviti
+			.HttpIntegration
+			.AuthenticationUser.NotAuthenticationUser;
+		}
 	}
 }
