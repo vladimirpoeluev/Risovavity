@@ -15,7 +15,7 @@ namespace Logic.UsersData
 		}
 
 		Task<UserAvatarResult> IUserAvatarGetter.GetAvatarUserAsync(int id)
-			=> _db.Users.Select(u 
+			=> _db.Users.Where((user) => user.Id == id).Select(u 
 				=> new UserAvatarResult() 
 				{ 
 					UserName = u.Name, 

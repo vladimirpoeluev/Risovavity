@@ -8,14 +8,32 @@ namespace AvaloniaRisovaviti.Model
 {
 	internal class AuthorResultImgage
 	{
-		IImage Icon { get; set; }
-		AuthorResult AuthorResult { get; set; }
+		public IImage Icon { get; set; }
+		public AuthorResult AuthorResult { get; set; }
 		public AuthorResultImgage(AuthorResult authorResult) 
 		{
 			this.AuthorResult = authorResult;
 			AvatarGetter getter = new AvatarGetter(Authentication.AuthenticationUser.User);
+			try
+			{
+				TryGetterIcon(getter);
+			}
+			catch
+			{
+				SetDefaultIcon();
+			}
+			
+		}
+
+		void TryGetterIcon(AvatarGetter getter)
+		{
 			var bytes = getter.GetUserAvatar(AuthorResult.UserId).AvatarResult;
 			Icon = ProfileShows.ImageAvaloniaConverter.ConvertByteInImage(bytes);
+		}
+
+		void SetDefaultIcon()
+		{
+			Icon = new Avalonia.Media.Imaging.Bitmap("Accets/icoUser.png");
 		}
 
 		public static IEnumerable<AuthorResultImgage> ConvertAuthorResult(IEnumerable<AuthorResult> authorResult)

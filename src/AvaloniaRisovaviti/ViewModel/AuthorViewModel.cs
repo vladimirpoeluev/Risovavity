@@ -1,3 +1,4 @@
+using AvaloniaRisovaviti.Model;
 using DomainModel.Model;
 using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti;
@@ -11,11 +12,13 @@ namespace AvaloniaRisovaviti.ViewModel
     {
         public CartOfAuthor[] Users { get; set; }
         public IEnumerable<AuthorResult> AuthorResults { get; set; }
+        public IEnumerable<AuthorResultImgage> Authors { get; set; }
 
         public AuthorViewModel()
         {
             Authors authors = new Authors(Authentication.AuthenticationUser.User);
             AuthorResults = authors.GetAuthors();
+            Authors = AuthorResultImgage.ConvertAuthorResult(AuthorResults);
         }
 
         #region INotifyPropertyChanged Implementation
