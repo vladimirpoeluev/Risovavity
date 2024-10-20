@@ -87,6 +87,7 @@ namespace RisovavitiApi.Controllers
 				User userOld = GetUserIntegration();
 				_integrationUser.Update(userOld, new User()
 				{
+					Icon = userOld.Icon,
 					Password = userOld.Password,
 					Login = userOld.Login,
 					Email = user.Email,
