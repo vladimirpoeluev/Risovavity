@@ -1,4 +1,6 @@
 using DomainModel.Model;
+using DomainModel.ResultsRequest;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -7,15 +9,10 @@ namespace AvaloniaRisovaviti.ViewModel
     internal class AuthorViewModel : INotifyPropertyChanged
     {
         public CartOfAuthor[] Users { get; set; }
+        public IEnumerable<AuthorResult> AuthorResults { get; set; }
 
         public AuthorViewModel()
         {
-            Users = [
-                new (new User()),
-                new (new User()),
-                new (new User()),
-                new (new User()),
-                ];
 
         }
 

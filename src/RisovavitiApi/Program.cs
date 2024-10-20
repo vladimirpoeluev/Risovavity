@@ -9,12 +9,14 @@ using Logic.AuthorsIntegration;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 // Add services to the container.
 builder.Services.AddAuthorization();
-builder.Services.AddAuthentication((o => {
+builder.Services.AddAuthentication(o => {
 	o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
 	o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}))
+})
 	.AddJwtBearer((options) =>
 	{
 		options.TokenValidationParameters = new TokenValidationParameters
@@ -55,6 +57,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 
+
 app.MapControllers();
+
+if (app.Environment.IsDevelopment())
+{
+	app.UseSwagger();
+	app.UseSwaggerUI();
+}
 
 app.Run();
