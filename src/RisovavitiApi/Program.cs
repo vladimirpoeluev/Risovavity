@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using RisovavitiApi.JwtBearerAuthentication;
 using Logic.AuthorsIntegration;
+using Logic.UsersData;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +48,8 @@ builder.Services.AddTransient<IRegistationUser, RegistrationUser>(h
 	=> new RegistrationUser(new IntegrationUsersEf()));
 builder.Services.AddTransient<IAuthorResultGetter, AuthorGetter>(h 
 	=> new AuthorGetter(new DataIntegration.Model.DatabaseContext()));
+builder.Services.AddTransient<IUserAvatarGetter, UserAvatarGetter>((h)
+	=> new UserAvatarGetter(new DataIntegration.Model.DatabaseContext()));
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
