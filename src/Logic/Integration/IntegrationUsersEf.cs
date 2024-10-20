@@ -59,7 +59,7 @@ namespace Logic.Integration
 		}
 
 		public bool Update(User user, User newUser)
-		{
+		{ 
 			var updatedUser = db.Users.First((item) => item.Id == user.Id);
 
 			updatedUser.Icon = newUser.Icon;
