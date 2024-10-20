@@ -13,7 +13,7 @@
 	<Design.DataContext>
 		<vm:MainPageViewModel/>
 	</Design.DataContext>
-	<Grid RowDefinitions="Auto,*">
+	<Grid RowDefinitions="Auto,*, Auto">
 
 		<Grid	Grid.Row="0"
 				Background="LightGray"
@@ -56,6 +56,14 @@
 			<local:AuthorsPage x:Name="frameMain"/>
 		</Grid>
 
-
+		<Grid Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="auto"/>
+			</Grid.ColumnDefinitions>
+			<Button Grid.Column="1"
+					Content="Обновить даные"
+					Click="UpdateData_Click"/>
+		</Grid>
 	</Grid>
 </UserControl>

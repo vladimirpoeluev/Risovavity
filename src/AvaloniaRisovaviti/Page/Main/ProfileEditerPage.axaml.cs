@@ -5,9 +5,6 @@ using Avalonia.Platform.Storage;
 using AvaloniaRisovaviti.ProfileShows;
 using AvaloniaRisovaviti.ViewModel;
 using InteractiveApiRisovaviti;
-using System.ComponentModel.DataAnnotations;
-using System.Drawing;
-using System.IO;
 
 namespace AvaloniaRisovaviti;
 
@@ -44,5 +41,6 @@ public partial class ProfileEditerPage : UserControl
 			avatar.AvatarResult = ImageAvaloniaConverter.ConvertImageInByte(stream);
 			Profile.ProfileAvatar = avatar;
 		}
+		viewModel.InitUserProfile();
 	}
 }

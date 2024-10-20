@@ -17,28 +17,31 @@ namespace AvaloniaRisovaviti.ViewModel
 
         public ProfileEditerPageViewModel()
         {
-
 			Image = new Avalonia.Media.Imaging.Bitmap("Accets/icoUser.png");
+            InitUserProfile();
+        }
 
+        public void InitUserProfile()
+        {
 			try
-            {
+			{
 				Profile profile = new Profile(Authentication.AuthenticationUser.User);
 				ProfileSetterImage setterImage = new ProfileSetterImage(profile);
 				UserResult = profile.ProfileUser;
 				Image = setterImage.UpdateImage();
 			}
-            catch (Exception)
-            {
-                UserResult = new UserResult() 
-                { 
-                    Name = "Пользователь не опознан",
-                    Email = "Данные неопознаны",
-                    IdRoleNavigation = new RoleResult() {  Name = "Роль не опознана"}
-                };
+			catch (Exception)
+			{
+				UserResult = new UserResult()
+				{
+					Name = "Пользователь не опознан",
+					Email = "Данные неопознаны",
+					IdRoleNavigation = new RoleResult() { Name = "Роль не опознана" }
+				};
 
-            }
+			}
+		}
 
-        }
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler? PropertyChanged;
 

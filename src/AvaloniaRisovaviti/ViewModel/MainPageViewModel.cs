@@ -11,7 +11,16 @@ namespace AvaloniaRisovaviti.ViewModel
 	public class MainPageViewModel : INotifyPropertyChanged
 	{
 		IImage _image;
-		public UserResult UserResult { get; set; }
+		Profile _profile;
+		UserResult _userResult;
+		public UserResult UserResult { 
+			get => _userResult; 
+			set 
+			{ 
+				_userResult = value;
+				OnPropertyChanged(nameof(UserResult));
+			}
+		}
 		public IImage Image 
 		{ 
 			get => _image; 
@@ -25,14 +34,14 @@ namespace AvaloniaRisovaviti.ViewModel
 
 		public MainPageViewModel() 
 		{
-			Profile profile = new Profile(Authentication.AuthenticationUser.User);
-			_setterImage = new ProfileSetterImage(profile);
-			InitUser(profile);
+			_profile =  new Profile(Authentication.AuthenticationUser.User);
+			_setterImage = new ProfileSetterImage(_profile);
+			InitUser();
 		}
 
-		private void InitUser(Profile profile)
+		public void InitUser()
 		{
-			UserResult = profile.ProfileUser;
+			UserResult = _profile.ProfileUser;
 			Image = _setterImage.UpdateImage();
 		}
 

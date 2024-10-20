@@ -16,7 +16,7 @@ public partial class MainPage : UserControl
 
     public void MyCanvas_Click(object ob, RoutedEventArgs e)
     {
-       frameMain.Content = new MyCanvasPage();
+        frameMain.Content = new MyCanvasPage();
     }
     public void Authors_Click(object ob, RoutedEventArgs e)
     {
@@ -40,5 +40,10 @@ public partial class MainPage : UserControl
     {
         this.Content = new EntrancePage();
         Authentication.AuthenticationUser.ExitSystem();
+    }
+
+    public void UpdateData_Click(object ob, RoutedEventArgs e)
+    {
+        viewModel.InitUser();
     }
 }
