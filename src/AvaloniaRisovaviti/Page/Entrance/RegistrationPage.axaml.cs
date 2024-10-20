@@ -40,7 +40,7 @@ namespace AvaloniaRisovaviti
 
         void ErrorRegistration()
         {
-
+            _viewModel.Error = "ѕохоже пользователь с таки логином уже существует попробуйте создать новый логин";
         }
     }
 }

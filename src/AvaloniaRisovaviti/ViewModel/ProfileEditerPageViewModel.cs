@@ -12,8 +12,17 @@ namespace AvaloniaRisovaviti.ViewModel
 {
     internal class ProfileEditerPageViewModel: INotifyPropertyChanged
     {
+        IImage _image;
         public UserResult UserResult { get; set; } = new UserResult();
-        public IImage Image { get; set; }
+        public IImage Image 
+        {
+            get => _image;
+            set
+            {
+                _image = value;
+                OnPropertyChanged(nameof(Image));
+            }
+        }
 
         public ProfileEditerPageViewModel()
         {

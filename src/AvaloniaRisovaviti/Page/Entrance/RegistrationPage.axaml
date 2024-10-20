@@ -24,6 +24,7 @@
 			<TextBox PasswordChar="⚫" Text="{Binding RegistrationForm.Password}"/>
 			<Label Content="Повтор пароля"/>
 			<TextBox PasswordChar="⚫"/>
+			<TextBlock Text="{Binding Error}" Foreground="Red"/>
 			<Button HorizontalAlignment="Stretch"
 					Content="Зарегистрироваться"
 					Margin="5"
