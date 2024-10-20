@@ -10,8 +10,27 @@
 		<vm:ProfileEditerPageViewModel/>
 	</Design.DataContext>
 	<Grid>
-		<StackPanel HorizontalAlignment="Center" 
-					VerticalAlignment="Center">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<Grid Grid.Column="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="auto"/>
+			</Grid.RowDefinitions>
+			<Image Source="{Binding Image}"
+						MaxHeight="500"
+						Grid.Row="0"
+						Margin="5"/>
+			
+			<StackPanel Grid.Row="1">
+				<Button Margin="5"
+					Content="Вставить изображение"
+					Click="Click_MenuImage"/>
+			</StackPanel>
+		</Grid>
+		<StackPanel Grid.Column="1">
 			<TextBlock Text="Профиль"
 					   FontSize="20"/>
 			<TextBlock Text="Имя"/>
@@ -20,8 +39,9 @@
 			<TextBlock Text="{Binding UserResult.Email}"/>
 			<TextBlock Text="Роль"/>
 			<TextBlock Text="{Binding UserResult.IdRoleNavigation.Name}"/>
-			<Button Click="EditProfile" Content="Сохранить изменения"/>
-			<Button Margin="5" Content="Вставить изображение" Click="Click_MenuImage"/>
+			<Button Click="EditProfile" 
+					Content="Сохранить изменения"/>
+			
 			
 		</StackPanel>
 	</Grid>
