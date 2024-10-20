@@ -5,6 +5,7 @@ using DomainModel.Integration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using RisovavitiApi.JwtBearerAuthentication;
+using Logic.AuthorsIntegration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,14 +31,20 @@ builder.Services.AddAuthentication((o => {
 
 
 builder.Services.AddControllers();
-builder.Services.AddTransient<IEntrance, Entrance>(h => new Entrance(new InputerSystem(new CreaterToken())));
+builder.Services.AddTransient<IEntrance, Entrance>(h 
+	=> new Entrance(new InputerSystem(new CreaterToken())));
 builder.Services.AddTransient<IRuleIntegrationUser, IntegrationUsersEf>();
 builder.Services.AddTransient<ICreateSaverToken, SingleSaveUserToken>();
-builder.Services.AddTransient<IGetUser, GetUsers>((h) => new GetUsers(new IntegrationUsersEf()));
-builder.Services.AddTransient<IGetCanvasAsync, GetCanvas>(h => new GetCanvas(new IntegrationCanvasesEf()));
-builder.Services.AddTransient<IInputerSystem, InputerSystem>(h => new InputerSystem(new CreaterToken()));
-builder.Services.AddTransient<IRegistationUser, RegistrationUser>(h => new RegistrationUser(new IntegrationUsersEf()));
-
+builder.Services.AddTransient<IGetUser, GetUsers>((h) 
+	=> new GetUsers(new IntegrationUsersEf()));
+builder.Services.AddTransient<IGetCanvasAsync, GetCanvas>(h 
+	=> new GetCanvas(new IntegrationCanvasesEf()));
+builder.Services.AddTransient<IInputerSystem, InputerSystem>(h 
+	=> new InputerSystem(new CreaterToken()));
+builder.Services.AddTransient<IRegistationUser, RegistrationUser>(h 
+	=> new RegistrationUser(new IntegrationUsersEf()));
+builder.Services.AddTransient<IAuthorResultGetter, AuthorGetter>(h 
+	=> new AuthorGetter(new DataIntegration.Model.DatabaseContext()));
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
