@@ -1,18 +1,39 @@
-﻿using DomainModel.Integration;
+﻿using DataIntegration.Model;
+using DomainModel.Integration;
 using DomainModel.ResultsRequest;
+using Microsoft.EntityFrameworkCore;
 
 namespace Logic.AuthorsIntegration
 {
-	internal class AuthorGetter : IAuthorResultGetter
+	public class AuthorGetter : IAuthorResultGetter
 	{
-		public Task<IEnumerable<AuthorResult>> GetAuthors()
+		private DatabaseContext _db;
+
+		public AuthorGetter(DatabaseContext db)
 		{
-			throw new NotImplementedException();
+			_db = db;
 		}
 
-		public Task<IEnumerable<AuthorResult>> GetAuthorsByName(string Name)
-		{
-			throw new NotImplementedException();
-		}
+		public async Task<IEnumerable<AuthorResult>> GetAuthors() 
+			=> await _db.Users.Select((user) 
+				=> new AuthorResult() 
+				{ 
+					Name = user.Name, 
+					UserId = user.Id 
+				})
+			.ToListAsync();			
+	
+
+		public async Task<IEnumerable<AuthorResult>> GetAuthorsByName(string name)
+			=> await _db.Users
+			.Where((user) 
+				=> user.Name == name)
+			.Select((user) 
+				=> new AuthorResult() 
+				{ 
+					UserId = user.Id, 
+					Name = user.Name 
+				}).ToListAsync();
+
 	}
 }
