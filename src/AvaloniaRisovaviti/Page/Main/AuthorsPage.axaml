@@ -11,9 +11,15 @@
 	</Design.DataContext>
 	
 	<StackPanel Background="Aquamarine">
-		<ListBox ItemsSource="{Binding Users}" 
+		<ListBox ItemsSource="{Binding AuthorResults}" 
 				 Background="AliceBlue">
-			
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border>
+						<TextBlock Text="{Binding Name}"/>
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
 					<StackPanel />

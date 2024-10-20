@@ -19,7 +19,7 @@ namespace Logic.AuthorsIntegration
 				=> new AuthorResult() 
 				{ 
 					Name = user.Name, 
-					UserId = user.Id 
+					UserId = user.Id
 				})
 			.ToListAsync();			
 	
@@ -32,7 +32,7 @@ namespace Logic.AuthorsIntegration
 				=> new AuthorResult() 
 				{ 
 					UserId = user.Id, 
-					Name = user.Name 
+					Name = user.Name
 				}).ToListAsync();
 
 	}

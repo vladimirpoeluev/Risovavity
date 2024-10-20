@@ -1,5 +1,6 @@
 using DomainModel.Model;
 using DomainModel.ResultsRequest;
+using InteractiveApiRisovaviti;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -13,7 +14,8 @@ namespace AvaloniaRisovaviti.ViewModel
 
         public AuthorViewModel()
         {
-
+            Authors authors = new Authors(Authentication.AuthenticationUser.User);
+            AuthorResults = authors.GetAuthors();
         }
 
         #region INotifyPropertyChanged Implementation
