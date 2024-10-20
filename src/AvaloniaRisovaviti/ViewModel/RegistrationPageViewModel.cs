@@ -10,7 +10,8 @@ namespace AvaloniaRisovaviti.ViewModel
     {
         string _error;
         public RegistrationForm RegistrationForm { get; set; }
-        public string Error 
+        public string RepeatPassword { get; set; }
+		public string Error 
         {
             get => _error;
             set
@@ -24,6 +25,7 @@ namespace AvaloniaRisovaviti.ViewModel
         {
             RegistrationForm = new RegistrationForm();
             _error = string.Empty;
+            RepeatPassword = string.Empty;
         }
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler? PropertyChanged;

@@ -34,8 +34,16 @@ namespace AvaloniaRisovaviti
 
         void TryRegistration()
         {
-            _registarion.RegistrionUser(_viewModel.RegistrationForm);
-			this.Content = new EntrancePage();
+            if(_viewModel.RegistrationForm.Password == _viewModel.RepeatPassword)
+            {
+				_registarion.RegistrionUser(_viewModel.RegistrationForm);
+				this.Content = new EntrancePage();
+			}
+            else
+            {
+                _viewModel.Error = "Пароли не совпали";
+            }
+            
 		}
 
         void ErrorRegistration()
