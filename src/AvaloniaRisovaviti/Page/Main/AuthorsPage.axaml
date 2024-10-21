@@ -16,10 +16,13 @@
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Border>
-						<StackPanel>
-							<Image Source="{Binding Icon}"
-								   Height="50"/>
-							<TextBlock Text="{Binding AuthorResult.Name}"/>
+						<StackPanel Orientation="Horizontal">
+							<Grid ColumnDefinitions="100,*">
+								<Image Source="{Binding Icon}"
+										Height="50" />
+								<TextBlock Text="{Binding AuthorResult.Name}"
+										   Grid.Column="1"/>
+							</Grid>
 						</StackPanel>
 					</Border>
 				</DataTemplate>
