@@ -5,6 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.RegistrationPage"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel"
+			 xmlns:md="https://github.com/whistyun/Markdown.Avalonia"
 			 x:DataType="vm:RegistrationPageViewModel">
 	<Design.DataContext>
 		<vm:RegistrationPageViewModel/>
@@ -25,10 +26,17 @@
 			<Label Content="Повтор пароля"/>
 			<TextBox PasswordChar="⚫"/>
 			<TextBlock Text="{Binding Error}" Foreground="Red"/>
-			<Button HorizontalAlignment="Stretch"
+			<CheckBox Checked="CheckedConfidicialnosti" Unchecked="UnCheckedConfidicialnosti">
+					<md:MarkdownScrollViewer xml:space="preserve">
+						Вы соглашайтесь на [условия конфидициальности](https://tilda.cc/ru/privacy-generator/)
+					</md:MarkdownScrollViewer>
+			</CheckBox>
+			<Button x:Name="buttnReg"
+					HorizontalAlignment="Stretch"
 					Content="Зарегистрироваться"
 					Margin="5"
-					Click="Regist_Click"/>
+					Click="Regist_Click"
+					IsEnabled="False"/>
 		</StackPanel>
 	</Grid>
 </UserControl>

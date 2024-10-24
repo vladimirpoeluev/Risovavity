@@ -3,6 +3,7 @@ using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti.Interface;
 using InteractiveApiRisovaviti;
 using AvaloniaRisovaviti.ViewModel;
+using Avalonia.Interactivity;
 
 namespace AvaloniaRisovaviti
 {
@@ -50,5 +51,17 @@ namespace AvaloniaRisovaviti
         {
             _viewModel.Error = "ѕохоже пользователь с таки логином уже существует попробуйте создать новый логин";
         }
-    }
+
+        public  void CheckedConfidicialnosti(object? obj, RoutedEventArgs e)
+        {
+			buttnReg.IsEnabled = true;
+
+		}
+
+        public void UnCheckedConfidicialnosti(object? obj, RoutedEventArgs e)
+        {
+			buttnReg.IsEnabled = false;
+		}
+
+	}
 }
