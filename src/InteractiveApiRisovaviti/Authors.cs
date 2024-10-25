@@ -1,5 +1,5 @@
 ﻿using DomainModel.ResultsRequest;
-using InteractiveApiRisovaviti.ControllerIntegration;
+using InteractiveApiRisovaviti.ControllerIntegration.AuthorsController;
 using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti
@@ -12,6 +12,8 @@ namespace InteractiveApiRisovaviti
 		{
 			_authorsController = new AuthorControllerIntegration(user);
 		}
+
+		
 
 		public IEnumerable<AuthorResult> GetAuthors()
 		{
