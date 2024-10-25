@@ -25,8 +25,15 @@ namespace RisovavitiApi.Controllers
 			return Ok(authors);
 		}
 
-		[HttpPost("getbyname")]
-		public async Task<IActionResult> GetByName([FromBody] string name)
+		[HttpGet("getRange")]
+		public async Task<IActionResult> GetRange(int skip, int take)
+		{
+			IEnumerable<AuthorResult> authors = await AuthorResultGetter.GetAuthors();
+			return Ok(authors.Skip(skip).Take(take));
+		}
+
+		[HttpGet("getbyname")]
+		public async Task<IActionResult> GetByName(string name)
 		{
 			IEnumerable<AuthorResult> authors = await AuthorResultGetter.GetAuthorsByName(name);
 			return Ok(authors);
