@@ -7,7 +7,7 @@ namespace DomainModel.Integration
 		Task<IEnumerable<AuthorResult>> GetAuthors();
 		Task<IEnumerable<AuthorResult>> GetAuthorsByName(string name);
 		Task<IEnumerable<AuthorResult>> GetAuthorsById(int id);
-		void BuidTake(int count);
-		void BuidSkip(int count);
+		IAuthorResultGetter BuidTake(int count);
+		IAuthorResultGetter BuidSkip(int count);
 	}
 }

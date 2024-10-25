@@ -16,8 +16,16 @@ namespace Logic.AuthorsIntegration
 			_db = db;
 		}
 
-		public void BuidSkip(int count) => _skip = count;
-		public void BuidTake(int count) => _take = count;
+		public IAuthorResultGetter BuidSkip(int count) 
+		{
+			_skip = count;
+			return this;
+		}
+		public IAuthorResultGetter BuidTake(int count) 
+		{
+			_take = count; 
+			return this;
+		}
 
 		public async Task<IEnumerable<AuthorResult>> GetAuthors() 
 			=> await _db.Users
