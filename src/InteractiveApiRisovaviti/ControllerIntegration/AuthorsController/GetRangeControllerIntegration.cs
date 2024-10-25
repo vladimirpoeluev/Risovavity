@@ -4,7 +4,7 @@ using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti.ControllerIntegration.AuthorsController
 {
-	internal class GetRangeControllerIntegration : GetControllerIntegration
+	internal class GetRangeControllerIntegration : GetControllerIntegration, IGetRangeControllerIntegration
 	{
 		private int Skip { get; set; }
 		private int Take { get; set; }
