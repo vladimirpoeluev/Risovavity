@@ -37,6 +37,10 @@
 					Margin="5"
 					Click="Regist_Click"
 					IsEnabled="False"/>
+			<Button Content="Назад"
+					HorizontalAlignment="Stretch"
+					Margin="5"
+					Click="Back_Click"/>
 		</StackPanel>
 	</Grid>
 </UserControl>

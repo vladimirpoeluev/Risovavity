@@ -63,5 +63,10 @@ namespace AvaloniaRisovaviti
 			buttnReg.IsEnabled = false;
 		}
 
+        public void Back_Click(object? obj, RoutedEventArgs e)
+        {
+            Content = new EntrancePage();
+        }
+
 	}
 }
