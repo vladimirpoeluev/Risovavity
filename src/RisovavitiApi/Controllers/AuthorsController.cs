@@ -28,8 +28,10 @@ namespace RisovavitiApi.Controllers
 		[HttpGet("getRange")]
 		public async Task<IActionResult> GetRange(int skip, int take)
 		{
+			AuthorResultGetter.BuidSkip(skip);
+			AuthorResultGetter.BuidTake(take);
 			IEnumerable<AuthorResult> authors = await AuthorResultGetter.GetAuthors();
-			return Ok(authors.Skip(skip).Take(take));
+			return Ok(authors);
 		}
 
 		[HttpGet("getbyname")]
@@ -40,9 +42,9 @@ namespace RisovavitiApi.Controllers
 		}
 
 		[HttpGet("getById")]
-		public IActionResult Get(int id)
+		public async Task<IActionResult> Get(int id)
 		{
-			return NotFound();
+			return Ok(await AuthorResultGetter.GetAuthorsById(id));
 		}
 	}
 }
