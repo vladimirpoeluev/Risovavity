@@ -1,5 +1,4 @@
 using AvaloniaRisovaviti.Model;
-using DomainModel.Model;
 using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti;
 using System.Collections.Generic;
@@ -10,7 +9,6 @@ namespace AvaloniaRisovaviti.ViewModel
 {
     internal class AuthorViewModel : INotifyPropertyChanged
     {
-        public CartOfAuthor[] Users { get; set; }
         public IEnumerable<AuthorResult> AuthorResults { get; set; }
         public IEnumerable<AuthorResultImgage> Authors { get; set; }
 

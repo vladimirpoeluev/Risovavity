@@ -10,9 +10,10 @@
 		<vm:AuthorViewModel/>
 	</Design.DataContext>
 	
-	<StackPanel Background="Aquamarine">
-		<ListBox ItemsSource="{Binding Authors}" 
-				 Background="AliceBlue">
+	<Grid Background="Aquamarine">
+		<ListBox ItemsSource="{Binding Authors}"
+				 Background="AliceBlue"
+				 ScrollViewer.VerticalScrollBarVisibility="Visible">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Border>
@@ -33,5 +34,5 @@
 				</ItemsPanelTemplate>
 			</ListBox.ItemsPanel>
 		</ListBox>
-	</StackPanel>
+	</Grid>
 </UserControl>
