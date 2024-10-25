@@ -21,8 +21,8 @@ namespace Logic.AuthorsIntegration
 
 		public async Task<IEnumerable<AuthorResult>> GetAuthors() 
 			=> await _db.Users
-			.Take(_take)
 			.Skip(_skip)
+			.Take(_take)
 			.Select((user) 
 				=> new AuthorResult() 
 				{ 
