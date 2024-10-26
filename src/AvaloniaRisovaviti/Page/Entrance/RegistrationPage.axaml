@@ -28,7 +28,7 @@
 			<TextBlock Text="{Binding Error}" Foreground="Red"/>
 			<CheckBox Checked="CheckedConfidicialnosti" Unchecked="UnCheckedConfidicialnosti">
 					<md:MarkdownScrollViewer xml:space="preserve">
-						Вы соглашайтесь на [условия конфидициальности](https://tilda.cc/ru/privacy-generator/)
+						Вы соглашайтесь на [условия конфидициальности](https://localhost:7281/privacy.html)
 					</md:MarkdownScrollViewer>
 			</CheckBox>
 			<Button x:Name="buttnReg"
