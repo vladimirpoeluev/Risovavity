@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace AvaloniaRisovaviti.Model
 {
-	internal class AuthorResultImgage
+	internal class AuthorResultImage
 	{
 		public IImage Icon { get; set; }
 		public AuthorResult AuthorResult { get; set; }
-		public AuthorResultImgage(AuthorResult authorResult) 
+		public AuthorResultImage(AuthorResult authorResult) 
 		{
 			this.AuthorResult = authorResult;
 			AvatarGetter getter = new AvatarGetter(Authentication.AuthenticationUser.User);
@@ -36,7 +36,7 @@ namespace AvaloniaRisovaviti.Model
 			Icon = new Avalonia.Media.Imaging.Bitmap("Accets/icoUser.png");
 		}
 
-		public static IEnumerable<AuthorResultImgage> ConvertAuthorResult(IEnumerable<AuthorResult> authorResult)
-			=> authorResult.Select((author) => new AuthorResultImgage(author));
+		public static IEnumerable<AuthorResultImage> ConvertAuthorResult(IEnumerable<AuthorResult> authorResult)
+			=> authorResult.Select((author) => new AuthorResultImage(author));
 	}
 }
