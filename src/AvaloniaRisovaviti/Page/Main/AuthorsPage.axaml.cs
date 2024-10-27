@@ -1,4 +1,3 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using AvaloniaRisovaviti.ViewModel;
@@ -17,6 +16,6 @@ public partial class AuthorsPage : UserControl
 
     public void AddAuthorShow_Click(object obj, RoutedEventArgs args)
     {
-        AuthorViewModel.ContinueListAuthors();
+		btnNext.IsEnabled = AuthorViewModel.ContinueListAuthors();
     }
 }

@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:md="https://github.com/whistyun/Markdown.Avalonia"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 x:Class="AvaloniaRisovaviti.AuthorsPage"
@@ -35,8 +36,12 @@
 				</ItemsPanelTemplate>
 			</ListBox.ItemsPanel>
 		</ListBox>
-		<Button Click="AddAuthorShow_Click" 
-				Content="Åùå"
-				Grid.Row="1"/>
+		<Button x:Name="btnNext"
+				Click="AddAuthorShow_Click" 
+				Grid.Row="1">
+			<TextBlock>
+				Next...
+			</TextBlock>
+		</Button>
 	</Grid>
 </UserControl>
