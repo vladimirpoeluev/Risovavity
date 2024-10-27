@@ -1,4 +1,5 @@
 ﻿using Logic.Interface;
+using ;
 
 namespace Logic.HashPassword
 {
@@ -6,12 +7,12 @@ namespace Logic.HashPassword
 	{
 		public string Generate(string password)
 		{
-			throw new NotImplementedException();
+			return BCrypt.Net.BCrypt.EnhancedHashPassword(password);
 		}
 
-		public bool Verify(string password)
+		public bool Verify(string password, string hash)
 		{
-			throw new NotImplementedException();
+			return BCrypt.Net.BCrypt.EnhancedVerify(password, hash);
 		}
 	}
 }

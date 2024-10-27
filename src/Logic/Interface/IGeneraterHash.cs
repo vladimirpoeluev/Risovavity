@@ -9,6 +9,6 @@ namespace Logic.Interface
 	internal interface IGeneraterHash
 	{
 		string Generate(string password);
-		bool Verify(string password);
+		bool Verify(string password, string hash);
 	}
 }
