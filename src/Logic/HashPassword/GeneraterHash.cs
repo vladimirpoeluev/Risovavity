@@ -2,7 +2,7 @@
 
 namespace Logic.HashPassword
 {
-	internal class GeneraterHash : IGeneraterHash
+	public class GeneraterHash : IGeneraterHash
 	{
 		public string Generate(string password)
 		{
