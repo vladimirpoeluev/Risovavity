@@ -20,15 +20,18 @@ namespace AvaloniaRisovaviti.ViewModel
             ContinueListAuthors();
         }
 
-        public void ContinueListAuthors()
+        public bool ContinueListAuthors()
         {
             var listNewAuthors = GetAuthors();
+            if (listNewAuthors.Count() == 0)
+                return false;
             var listNewAuthorForShow = AuthorResultImage.ConvertAuthorResult(listNewAuthors);
             foreach (var authors in listNewAuthorForShow)
             {
                 Authors = Authors.Append(authors);
             }
             OnPropertyChanged(nameof(Authors));
+            return true;
         }
 
         private IEnumerable<AuthorResult> GetAuthors()
