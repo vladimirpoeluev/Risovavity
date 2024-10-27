@@ -20,7 +20,7 @@ namespace AvaloniaRisovaviti
         }
 
 
-        private void Regist_Click(object? obj, Avalonia.Interactivity.RoutedEventArgs routedEvent)
+        private void Regist_Click(object? obj, RoutedEventArgs routedEvent)
         {
             try
             {
@@ -30,7 +30,6 @@ namespace AvaloniaRisovaviti
             {
                 ErrorRegistration();
             }
-            
         }
 
         void TryRegistration()

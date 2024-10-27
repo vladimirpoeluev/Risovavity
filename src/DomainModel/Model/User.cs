@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace DomainModel.Model;
 
 public partial class User
@@ -11,7 +13,8 @@ public partial class User
 
     public string Login { get; set; } = null!;
 
-    public string Password { get; set; } = null!;
+	[Column(TypeName = "varchar(200)")]
+	public string Password { get; set; } = null!;
 
     public int IdRole { get; set; }
 
