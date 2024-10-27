@@ -52,7 +52,7 @@ namespace InteractiveApiRisovaviti
 
 			set
 			{
-				value.UserName = "lf";
+				value.UserName = String.Empty;
 				_setImage.SetImage(value);
 			}
 		}
