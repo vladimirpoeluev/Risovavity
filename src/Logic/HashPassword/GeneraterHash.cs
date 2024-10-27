@@ -1,5 +1,4 @@
 ﻿using Logic.Interface;
-using ;
 
 namespace Logic.HashPassword
 {
