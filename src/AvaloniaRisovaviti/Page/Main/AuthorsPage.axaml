@@ -10,7 +10,8 @@
 		<vm:AuthorViewModel/>
 	</Design.DataContext>
 	
-	<Grid Background="Aquamarine">
+	<Grid Background="Aquamarine"
+		  RowDefinitions="*, auto">
 		<ListBox ItemsSource="{Binding Authors}"
 				 Background="AliceBlue"
 				 ScrollViewer.VerticalScrollBarVisibility="Visible">
@@ -34,5 +35,8 @@
 				</ItemsPanelTemplate>
 			</ListBox.ItemsPanel>
 		</ListBox>
+		<Button Click="AddAuthorShow_Click" 
+				Content="Åùå"
+				Grid.Row="1"/>
 	</Grid>
 </UserControl>

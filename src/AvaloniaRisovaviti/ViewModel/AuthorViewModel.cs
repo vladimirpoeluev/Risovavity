@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
@@ -13,7 +12,8 @@ namespace AvaloniaRisovaviti.ViewModel
     {
         public IEnumerable<AuthorResult> AuthorResults { get; set; } = new List<AuthorResult>();
         public IEnumerable<AuthorResultImage> Authors { get; set; } = new List<AuthorResultImage>();
-        public int _countShowedUser = 0;
+        private int _countShowedUser = 0;
+        private const int stepAdd = 1;
 
         public AuthorViewModel()
         {
@@ -34,8 +34,8 @@ namespace AvaloniaRisovaviti.ViewModel
         private IEnumerable<AuthorResult> GetAuthors()
         {
 			Authors authorsGetter = new Authors(Authentication.AuthenticationUser.User); 
-            var authors = authorsGetter.GetAuthors(_countShowedUser, _countShowedUser + 50);
-            _countShowedUser += 50;
+            var authors = authorsGetter.GetAuthors(_countShowedUser, stepAdd);
+            _countShowedUser += stepAdd;
             return authors;
         }
 
