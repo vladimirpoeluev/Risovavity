@@ -1,21 +1,24 @@
 ﻿using Logic.Integration;
 using DomainModel.Model;
 using Logic.Interface;
+using Logic.HashPassword;
 
 namespace Logic
 {
     public class Entrance : IEntrance
     {
         IInputerSystem _inputerSystem;
+        IGeneraterHash _generaterHash;
         public Entrance(IInputerSystem inputer) 
         {
+            _generaterHash = new GeneraterHash();
             _inputerSystem = inputer;
         }
 
         public string EntranceInSystem(string login, string password)
         {
             var userInt = new IntegrationUsersEf();
-            var users = userInt.Get(login, password);
+            var users = userInt.Get(login, _generaterHash.Generate(password));
             if (users.Length == 1)
             {
                 User user = users[0];

@@ -2,6 +2,7 @@
 using DomainModel.Integration;
 using DomainModel.Model;
 using DomainModel.ResultsRequest;
+using Logic.HashPassword;
 using Logic.Interface;
 
 namespace Logic
@@ -9,9 +10,11 @@ namespace Logic
 	public class RegistrationUser : IRegistationUser
 	{
 		public IRuleIntegrationUser User { get; set; }
+		private IGeneraterHash _generaterHash;
 		public RegistrationUser(IRuleIntegrationUser user) 
 		{
 			User = user;
+			_generaterHash = new GeneraterHash();
 		}
 
 		public void CheckEmail(string code)
@@ -21,8 +24,12 @@ namespace Logic
 
 		void IRegistationUser.RegistrationUser(RegistrationForm user)
 		{
-			if(!CheckForLogin(user.GetUser()))
+			if (!CheckForLogin(user.GetUser()))
+			{
+				user.Password = _generaterHash.Generate(user.Password);
 				User.Add(user.GetUser());
+			}
+				
 			else
 				throw new Exception("Пользователь с таким логином существует");
 		}
