@@ -24,7 +24,8 @@
 			<Label Content="Пароль"/>
 			<TextBox PasswordChar="⚫" Text="{Binding RegistrationForm.Password}"/>
 			<Label Content="Повтор пароля"/>
-			<TextBox PasswordChar="⚫"/>
+			<TextBox PasswordChar="⚫"
+					 Text="{Binding RepeatPassword}"/>
 			<TextBlock Text="{Binding Error}" Foreground="Red"/>
 			<CheckBox Checked="CheckedConfidicialnosti" Unchecked="UnCheckedConfidicialnosti">
 					<md:MarkdownScrollViewer xml:space="preserve">
