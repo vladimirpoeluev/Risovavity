@@ -14,6 +14,6 @@ namespace DomainModel.Integration
         User Get(UserNameFilter userNameFilter);
         User Get(UserOfLoginFilter userOfLoginFilter);
         User[] Get();
-        User[] Get(string login, string password);
+        User[] Get(string login);
     }
 }

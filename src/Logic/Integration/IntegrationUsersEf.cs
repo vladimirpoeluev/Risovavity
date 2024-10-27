@@ -34,9 +34,9 @@ namespace Logic.Integration
 			return db.Users.ToArray();
 		}
 
-		public User[] Get(string login, string password)
+		public User[] Get(string login)
 		{
-			var result = db.Users.Where(user => user.Login == login && user.Password == password);
+			var result = db.Users.Where(user => user.Login == login);
 			result = result.Select(x => x)
 						.Include(u => u.Role);
 			return result.ToArray();
