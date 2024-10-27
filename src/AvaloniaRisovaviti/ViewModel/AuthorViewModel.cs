@@ -13,7 +13,7 @@ namespace AvaloniaRisovaviti.ViewModel
         public IEnumerable<AuthorResult> AuthorResults { get; set; } = new List<AuthorResult>();
         public IEnumerable<AuthorResultImage> Authors { get; set; } = new List<AuthorResultImage>();
         private int _countShowedUser = 0;
-        private const int stepAdd = 1;
+        private const int stepAdd = 50;
 
         public AuthorViewModel()
         {
