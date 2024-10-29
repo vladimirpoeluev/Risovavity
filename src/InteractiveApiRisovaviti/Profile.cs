@@ -4,7 +4,7 @@ using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti
 {
-	public class Profile
+	public class Profile : IPasswordEditer
 	{
 		public IAuthenticationUser User { get; set; }
 		private IGetProfileControllerIntegration _getProfile;
@@ -57,5 +57,9 @@ namespace InteractiveApiRisovaviti
 			}
 		}
 
+		public void PasswordUpdate(string oldPassword, string newPassword)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
