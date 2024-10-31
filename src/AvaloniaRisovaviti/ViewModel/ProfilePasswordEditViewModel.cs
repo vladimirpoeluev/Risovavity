@@ -4,6 +4,7 @@ using InteractiveApiRisovaviti.Interface;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Linq;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
@@ -34,7 +35,7 @@ namespace AvaloniaRisovaviti.ViewModel
             var valider = ValidaterPassword.CreateValidaterPassword(NewPassword);
             if(!valider.IsValid)
             {
-				ErrorMessage = $"Ошибка валидации пароля: {valider.Error}";
+				ErrorMessage = $"Ошибка валидации пароля: {valider.Error.FirstOrDefault()}";
 			}
 			return valider.IsValid;
         }
