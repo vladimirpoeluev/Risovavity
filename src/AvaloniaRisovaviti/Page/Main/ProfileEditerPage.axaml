@@ -28,6 +28,9 @@
 				<Button Margin="5"
 					Content="Вставить изображение"
 					Click="Click_MenuImage"/>
+				<Button Margin="5"
+						Content="Изменить пароль"
+						Click="NavEditPassword_Click"/>
 			</StackPanel>
 		</Grid>
 		<StackPanel Grid.Column="1">

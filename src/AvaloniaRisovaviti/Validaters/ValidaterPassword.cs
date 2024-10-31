@@ -21,11 +21,11 @@ namespace AvaloniaRisovaviti.Validaters
 
 		bool IsNotNull(string password)
 		{
-			if(password != null && password != string.Empty)
+			if(password != null && password.Trim() != string.Empty)
 				return true;
 			else
 			{
-				Error.Append("Пароль не заполнен");
+				Error = Error.Append("Пароль не заполнен");
 				return false;
 			}
 		}

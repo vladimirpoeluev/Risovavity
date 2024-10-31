@@ -43,4 +43,9 @@ public partial class ProfileEditerPage : UserControl
 		}
 		viewModel.InitUserProfile();
 	}
+
+	public void NavEditPassword_Click(object obj, RoutedEventArgs args)
+	{
+		Content = new ProfilePasswordEdit();
+	}
 }
