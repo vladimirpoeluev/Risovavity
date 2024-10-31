@@ -1,7 +1,5 @@
-﻿
-
-using Newtonsoft.Json.Serialization;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace AvaloniaRisovaviti.Validaters
 {
@@ -9,7 +7,7 @@ namespace AvaloniaRisovaviti.Validaters
 	{
 		public bool IsValid { get; private set; }
 
-		public string Error { get; private set; } = string.Empty;
+		public IEnumerable<string> Error { get; private set; } = new List<string>();
 
 		private ValidaterPassword(){}
 
@@ -17,13 +15,19 @@ namespace AvaloniaRisovaviti.Validaters
 		{
 			var result = new ValidaterPassword();
 			result.IsValid = true;
-			result.IsValid &= IsNotNull(password);
+			result.IsValid &= result.IsNotNull(password);
 			return result;
 		}
 
-		static bool IsNotNull(string password)
+		bool IsNotNull(string password)
 		{
-			return password != null && password != string.Empty;
+			if(password != null && password != string.Empty)
+				return true;
+			else
+			{
+				Error.Append("Пароль не заполнен");
+				return false;
+			}
 		}
 	}
 }
