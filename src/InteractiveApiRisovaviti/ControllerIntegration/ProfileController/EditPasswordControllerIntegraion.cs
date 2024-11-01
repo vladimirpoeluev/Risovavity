@@ -3,14 +3,20 @@ using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti.ControllerIntegration.ProfileController 
 {
-	class EditPasswordControllerIntegraion : PostControllerIntegration<EditPasswordResult>
+	class EditPasswordControllerIntegraion : PostControllerIntegration<EditPasswordResult>, IEditerPasswordControllerIntegration
 	{
-		public EditPasswordControllerIntegraion(IAuthenticationUser user, EditPasswordResult value) : base(user, value)
+		public EditPasswordControllerIntegraion(IAuthenticationUser user) : base(user, new EditPasswordResult())
 		{}
+
+		public void PasswordEdit(EditPasswordResult result)
+		{
+			Value = result;
+			CheckStatusCode(GetResponseMessage());
+		}
 
 		protected override HttpResponseMessage StartRequest(IApiRequest client)
 		{
-			return client.GetRequest("");
+			return client.GetRequest("api/Profile/passwordEdit");
 		}
 	}
 }

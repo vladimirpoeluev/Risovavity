@@ -11,7 +11,7 @@ namespace InteractiveApiRisovaviti
 		private ISetProfileControllerIntegration _setProfile;
 		private ISetImageControllerIntegration _setImage;
 		private IGetImageControllerIntegration _getImage;
-
+		private IEditerPasswordControllerIntegration _editerPassword;
 
 
 		public Profile(IAuthenticationUser user)
@@ -21,6 +21,7 @@ namespace InteractiveApiRisovaviti
 			_setProfile = new SetProfileContrillerIntegration(User);
 			_setImage = new SetImageControllerIntegration(User);
 			_getImage = new GetImageControllerIntegration(User);
+			_editerPassword = new EditPasswordControllerIntegraion(User);
 		}
 
 		public UserResult ProfileUser 
@@ -59,7 +60,11 @@ namespace InteractiveApiRisovaviti
 
 		public void PasswordUpdate(string oldPassword, string newPassword)
 		{
-			throw new NotImplementedException();
+			_editerPassword.PasswordEdit(new EditPasswordResult()
+			{
+				OldPassword = oldPassword,
+				NewPassword = newPassword
+			});
 		}
 	}
 }
