@@ -6,6 +6,6 @@ namespace DomainModel.Integration
 	public interface IPasswordEditer
 	{
 		User User { get; set; }
-		Task PasswordEditAsync(EditProfileResult editResult);
+		Task PasswordEditAsync(EditPasswordResult editResult);
 	}
 }

@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Authorization;
 using DomainModel.ResultsRequest.Error;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using DataIntegration.Migrations;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace RisovavitiApi.Controllers
 {
@@ -17,10 +20,12 @@ namespace RisovavitiApi.Controllers
 	public class ProfileController : Controller
 	{
 		private IRuleIntegrationUser _integrationUser;
+		private IPasswordEditer _passwordEditer;
 
-		public ProfileController(IRuleIntegrationUser integrationUser) 
+		public ProfileController(IRuleIntegrationUser integrationUser, IPasswordEditer passwordEditer) 
 		{
 			_integrationUser = integrationUser;
+			_passwordEditer = passwordEditer;
 		}
 
 		[HttpGet()]
@@ -107,6 +112,35 @@ namespace RisovavitiApi.Controllers
 				});
 			}
 			
+		}
+
+		[HttpPost("passwordEdit")]
+		public async Task<IActionResult> PasswordEdit(EditPasswordResult passwordEdit)
+		{
+			try
+			{
+				return await TryPasswordEdit(passwordEdit);
+			}
+			catch (Exception) 
+			{
+				return ErrorPasswordEdit();
+			}
+		}
+
+		async Task<OkResult> TryPasswordEdit(EditPasswordResult editPassword)
+		{
+			_passwordEditer.User = GetUserIntegration();
+			await _passwordEditer.PasswordEditAsync(editPassword);
+			return Ok();
+		}
+
+		BadRequestObjectResult ErrorPasswordEdit()
+		{
+			return BadRequest(new ErrorMessageRequest()
+			{
+				Message = "Ошибка изменения пароля",
+				NumberError = 10
+			});
 		}
 	}
 }

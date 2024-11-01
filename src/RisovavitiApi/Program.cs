@@ -8,6 +8,9 @@ using RisovavitiApi.JwtBearerAuthentication;
 using Logic.AuthorsIntegration;
 using Logic.UsersData;
 using Microsoft.OpenApi.Models;
+using DataIntegration.Migrations;
+using DataIntegration.Model;
+using Logic.HashPassword;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -76,6 +79,7 @@ builder.Services.AddTransient<IAuthorResultGetter, AuthorGetter>(h
 	=> new AuthorGetter(new DataIntegration.Model.DatabaseContext()));
 builder.Services.AddTransient<IUserAvatarGetter, UserAvatarGetter>((h)
 	=> new UserAvatarGetter(new DataIntegration.Model.DatabaseContext()));
+builder.Services.AddTransient<IPasswordEditer, PasswordEditer>((h) => new PasswordEditer(new DatabaseContext(), new GeneraterHash()));
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

@@ -6,7 +6,8 @@ using Logic.Interface;
 using Microsoft.EntityFrameworkCore;
 
 namespace Logic;
-class PasswordEditer : IPasswordEditer
+
+public class PasswordEditer : IPasswordEditer
 {
 	public User User { get; set; } = new();
 	DatabaseContext _db;
@@ -18,15 +19,18 @@ class PasswordEditer : IPasswordEditer
 		_hash = generater;
 	}
 
-	public async Task PasswordEditAsync(EditProfileResult editResult)
+	public async Task PasswordEditAsync(EditPasswordResult editResult)
 	{
 		await VerificationData(editResult);
-		User.Password = editResult.NewPassword;
-		_db.Users.Update(User);
+
+		User oldUser = await _db.Users.Where((user) => user.Id == User.Id).FirstAsync();
+
+		oldUser.Password = _hash.Generate(editResult.NewPassword);
+		_db.Entry(oldUser).State = EntityState.Modified;
 		await _db.SaveChangesAsync();
 	}
 
-	async Task VerificationData(EditProfileResult editResult)
+	async Task VerificationData(EditPasswordResult editResult)
 	{
 		await CheckUser();
 		VerifyPassword(editResult);
@@ -44,7 +48,7 @@ class PasswordEditer : IPasswordEditer
 		}
 	}
 
-	void VerifyPassword(EditProfileResult editProfileResult)
+	void VerifyPassword(EditPasswordResult editProfileResult)
 	{
 		if (!_hash.Verify(editProfileResult.OldPassword, User.Password))
 			throw new Exception("Пароль был введен неверно");
