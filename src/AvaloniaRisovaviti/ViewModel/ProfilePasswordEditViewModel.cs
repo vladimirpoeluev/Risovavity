@@ -52,6 +52,11 @@ namespace AvaloniaRisovaviti.ViewModel
             {
 				ErrorMessage = $"Ошибка валидации пароля: {valider.Error.FirstOrDefault() ?? "Ошибка поиска ошибки"}";
 			}
+            if(NewPassword != RepeatNewPassword)
+            {
+                ErrorMessage = $"Ошибка валидации: новый пароль и повтор нового пароля разные";
+                return false;
+            }
 			return valider.IsValid;
         }
 
