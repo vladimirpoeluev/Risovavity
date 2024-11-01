@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataIntegration", "DataInte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InteractiveApiRisovaviti", "InteractiveApiRisovaviti\InteractiveApiRisovaviti.csproj", "{DEA2B3DC-12B8-4B44-8D59-F7FD2B5915D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RisovavityConsole", "RisovavityConsole\RisovavityConsole.csproj", "{3FCACC1B-38BD-4225-B2F3-635789B64225}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,10 +55,6 @@ Global
 		{DEA2B3DC-12B8-4B44-8D59-F7FD2B5915D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEA2B3DC-12B8-4B44-8D59-F7FD2B5915D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEA2B3DC-12B8-4B44-8D59-F7FD2B5915D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FCACC1B-38BD-4225-B2F3-635789B64225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FCACC1B-38BD-4225-B2F3-635789B64225}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FCACC1B-38BD-4225-B2F3-635789B64225}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FCACC1B-38BD-4225-B2F3-635789B64225}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,7 +66,6 @@ Global
 		{48FDBF4F-E6B5-43AE-876A-D0942E0B9F18} = {1E16E15F-CC4F-4229-8CD2-07040D776569}
 		{B7FA56CD-89D8-4A26-B517-C5C9B280C764} = {D46723B9-A598-47F5-B899-BFF62D308EE6}
 		{DEA2B3DC-12B8-4B44-8D59-F7FD2B5915D1} = {1E16E15F-CC4F-4229-8CD2-07040D776569}
-		{3FCACC1B-38BD-4225-B2F3-635789B64225} = {1E16E15F-CC4F-4229-8CD2-07040D776569}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CF0FD3D-2E0E-428C-8C0D-EA4F872A0F57}
