@@ -8,12 +8,19 @@ using System.Linq;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
+    enum StateEditPassword 
+    {
+        Ok,
+        Error,
+        None
+    }
     internal class ProfilePasswordEditViewModel: INotifyPropertyChanged
     {
         string _errorMessage;
         public string OldPassword { get; set; } = string.Empty;
         public string NewPassword { get; set; } = string.Empty;
         public string RepeatNewPassword { get; set; } = string.Empty;
+        public StateEditPassword State {  get; set; } = StateEditPassword.None;
         public string ErrorMessage
         {
             get => _errorMessage;
@@ -53,6 +60,7 @@ namespace AvaloniaRisovaviti.ViewModel
             try
             {
 				_passwordEditer.PasswordUpdate(OldPassword, NewPassword);
+                State = StateEditPassword.Ok;
 			}
             catch (Exception)
             {

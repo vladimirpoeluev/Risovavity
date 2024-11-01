@@ -17,6 +17,8 @@ public partial class ProfilePasswordEdit : UserControl
     public void PasswordEdit_Click(object obj, RoutedEventArgs args)
     {
         _viewModel.PasswordEdit();
+        if (_viewModel.State == StateEditPassword.Ok)
+            Content = new ProfileEditerPage();
     }
 
 
