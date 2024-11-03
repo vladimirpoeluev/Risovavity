@@ -3,11 +3,11 @@ using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti.ControllerIntegration
 {
-	internal class GetAutoControllerIntegraion : GetControllerIntegration
+    internal class GetAutoControllerIntegraion : GetControllerIntegration, IGetAutoControllerIntegraion
 	{
 		string Url { get; set; } = string.Empty;
 
-		public GetAutoControllerIntegraion(IAuthenticationUser user) : base(user) {}
+		public GetAutoControllerIntegraion(IAuthenticationUser user) : base(user) { }
 
 		public T GetResult<T>(string url)
 		{
