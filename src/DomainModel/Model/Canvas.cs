@@ -11,13 +11,12 @@ public partial class Canvas
 
     public string? Description { get; set; }
 
-    public byte[]? Image { get; set; } = null!;
-
     public int IdStatus { get; set; }
 
-    public int IdAuthor { get; set; }
+    public int AuthorId { get; set; }
 
-    public virtual User IdAuthorNavigation { get; set; }
+    public virtual User Author { get; set; }
 
-    public virtual Status IdStatusNavigation { get; set; }
+    public virtual Status Status { get; set; }
+
 }
