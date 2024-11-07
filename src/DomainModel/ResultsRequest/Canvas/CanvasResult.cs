@@ -1,6 +1,4 @@
-﻿
-
-namespace DomainModel.ResultsRequest
+﻿namespace DomainModel.ResultsRequest.Canvas
 {
     public class CanvasResult
     {
