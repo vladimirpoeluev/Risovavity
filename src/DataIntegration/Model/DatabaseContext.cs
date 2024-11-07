@@ -38,12 +38,14 @@ public partial class DatabaseContext : DbContext
             entity.HasOne(e => e.ParentOfVersion)
             .WithMany(e => e.DescendantsVersionProject)
             .HasForeignKey(e => e.ParentOfVersionId)
-            .HasConstraintName("FK_VersionProject_VersionProject");
+			.OnDelete(DeleteBehavior.Restrict)
+			.HasConstraintName("FK_VersionProject_VersionProject");
 
             entity.HasOne(e => e.AuthorOfVersion)
                 .WithMany(e => e.VersionsProjects)
                 .HasForeignKey(e => e.AuthorOfVersionId)
-                .HasConstraintName("FK_VersionProject_User");
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("FK_VersionProject_User");
         });
         modelBuilder.Entity<Canvas>(entity =>
         {
@@ -62,7 +64,9 @@ public partial class DatabaseContext : DbContext
 
             entity.HasOne(d => d.MainVersion)
                 .WithOne(d => d.Canvas)
-                .HasConstraintName("FK_Canvas_VersionProject");
+				.HasForeignKey<Canvas>(d => d.MainVersionId)
+				.OnDelete(DeleteBehavior.ClientSetNull)
+				.HasConstraintName("FK_Canvas_VersionProject");
         });
 
         modelBuilder.Entity<InteractiveCanvas>(entity =>

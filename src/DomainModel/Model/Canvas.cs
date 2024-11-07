@@ -15,6 +15,8 @@ public partial class Canvas
 
     public int AuthorId { get; set; }
 
+    public int MainVersionId { get; set; }
+
     public virtual User Author { get; set; }
 
     public virtual Status Status { get; set; }
