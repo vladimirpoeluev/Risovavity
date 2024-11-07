@@ -11,12 +11,14 @@ public partial class Canvas
 
     public string? Description { get; set; }
 
-    public int IdStatus { get; set; }
+    public int StatusId { get; set; }
 
     public int AuthorId { get; set; }
 
     public virtual User Author { get; set; }
 
     public virtual Status Status { get; set; }
+
+    public virtual VersionProject MainVersion { get; set; }
 
 }

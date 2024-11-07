@@ -21,8 +21,7 @@ public partial class User
     public byte[]? Icon { get; set; }
 
     public virtual ICollection<Canvas> Canvas { get; set; }
-
     public virtual Role Role { get; set; }
-
     public virtual ICollection<InteractiveCanvas> InteractiveCanvas { get; set; }
+    public virtual ICollection<VersionProject> VersionsProjects { get; set; }
 }

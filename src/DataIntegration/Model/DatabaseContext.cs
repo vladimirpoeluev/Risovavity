@@ -10,9 +10,7 @@ public partial class DatabaseContext : DbContext
     }
 
     public DatabaseContext(DbContextOptions<DatabaseContext> options)
-        : base(options)
-    {
-    }
+        : base(options) {}
 
     public virtual DbSet<Canvas> Canvas { get; set; }
 
@@ -24,23 +22,41 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
+    public virtual DbSet<VersionProject> VersionsProjects { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         => optionsBuilder.UseSqlServer("Data Source=NIGHSVOLK\\SQLEXPRESS;Initial Catalog=Risovaviti;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<VersionProject>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Name).HasMaxLength(50);
+            entity.Property(e => e.Description).HasMaxLength(256);
+
+            entity.HasOne(e => e.ParentOfVersion)
+            .WithMany(e => e.DescendantsVersionProject)
+            .HasForeignKey(e => e.ParentOfVersionId)
+            .HasConstraintName("FK_VersionProject_VersionProject");
+
+            entity.HasOne(e => e.AuthorOfVersion)
+                .WithMany(e => e.VersionsProjects)
+                .HasForeignKey(e => e.AuthorOfVersionId)
+                .HasConstraintName("FK_VersionProhect_User");
+        });
         modelBuilder.Entity<Canvas>(entity =>
         {
 			entity.HasKey(u => u.Id);
 			entity.Property(e => e.Name).HasMaxLength(50);
 
-            entity.HasOne(d => d.IdAuthorNavigation).WithMany(p => p.Canvas)
-                .HasForeignKey(d => d.IdAuthor)
+            entity.HasOne(d => d.Author).WithMany(p => p.Canvas)
+                .HasForeignKey(d => d.AuthorId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Canvas_User");
 
-            entity.HasOne(d => d.IdStatusNavigation).WithMany(p => p.Canvas)
-                .HasForeignKey(d => d.IdStatus)
+            entity.HasOne(d => d.Status).WithMany(p => p.Canvas)
+                .HasForeignKey(d => d.StatusId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Canvas_Status");
         });
@@ -94,7 +110,7 @@ public partial class DatabaseContext : DbContext
                 .HasMaxLength(50);
 
             entity.Property(e => e.Password)
-                .HasMaxLength(50)
+                .HasMaxLength(250)
                 .IsUnicode(false);
 
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
