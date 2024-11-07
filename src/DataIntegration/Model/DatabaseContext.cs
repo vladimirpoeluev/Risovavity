@@ -43,7 +43,7 @@ public partial class DatabaseContext : DbContext
             entity.HasOne(e => e.AuthorOfVersion)
                 .WithMany(e => e.VersionsProjects)
                 .HasForeignKey(e => e.AuthorOfVersionId)
-                .HasConstraintName("FK_VersionProhect_User");
+                .HasConstraintName("FK_VersionProject_User");
         });
         modelBuilder.Entity<Canvas>(entity =>
         {
@@ -59,6 +59,10 @@ public partial class DatabaseContext : DbContext
                 .HasForeignKey(d => d.StatusId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Canvas_Status");
+
+            entity.HasOne(d => d.MainVersion)
+                .WithOne(d => d.Canvas)
+                .HasConstraintName("FK_Canvas_VersionProject");
         });
 
         modelBuilder.Entity<InteractiveCanvas>(entity =>

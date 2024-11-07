@@ -13,6 +13,7 @@ namespace DomainModel.Model
 		public VersionProject ParentOfVersion { get; set; } = null!;
 		public IEnumerable<VersionProject> DescendantsVersionProject { get; set; }
 		public User AuthorOfVersion { get; set; }
+		public Canvas Canvas { get; set; }
 
 	}
 }
