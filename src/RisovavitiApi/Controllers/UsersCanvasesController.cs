@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Logic.Interface;
 using RisovavitiApi.UserOperate;
+using DomainModel.ResultsRequest.Canvas;
 
 namespace RisovavitiApi.Controllers
 {
@@ -30,6 +31,14 @@ namespace RisovavitiApi.Controllers
 			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
 			var canvas = await getter.GetAsync(id);
 			return Ok(canvas);
+		}
+
+		[HttpPost("add")]
+		public async Task<IActionResult> Add(CanvasAddResult result)
+		{
+			var adder = _fabricCanvasOperation.CreateAdderCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+			await adder.AddCanvas(result);
+			return Ok();
 		}
 	}
 }
