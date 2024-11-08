@@ -34,7 +34,7 @@ namespace RisovavitiApi.Controllers
 		}
 
 		[HttpPost("add")]
-		public async Task<IActionResult> Add(CanvasAddResult result)
+		public async Task<IActionResult> Add([FromBody] CanvasAddResult result)
 		{
 			var adder = _fabricCanvasOperation.CreateAdderCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
 			await adder.AddCanvas(result);
