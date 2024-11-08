@@ -1,5 +1,4 @@
 ﻿using DomainModel.Integration;
-using DomainModel.Model;
 using DomainModel.ResultsRequest;
 using Logic.Integration;
 using System.Security.Claims;

@@ -1,16 +1,10 @@
-﻿using Logic.Interface;
-using Logic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using DomainModel.ResultsRequest;
 using DomainModel.Model;
 using DomainModel.Integration;
 using Microsoft.AspNetCore.Authorization;
 using DomainModel.ResultsRequest.Error;
 using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using DataIntegration.Migrations;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace RisovavitiApi.Controllers
 {
