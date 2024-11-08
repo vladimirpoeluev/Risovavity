@@ -11,6 +11,7 @@ using Microsoft.OpenApi.Models;
 using DataIntegration.Migrations;
 using DataIntegration.Model;
 using Logic.HashPassword;
+using Logic.CanvasLogic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -80,6 +81,7 @@ builder.Services.AddTransient<IAuthorResultGetter, AuthorGetter>(h
 builder.Services.AddTransient<IUserAvatarGetter, UserAvatarGetter>((h)
 	=> new UserAvatarGetter(new DataIntegration.Model.DatabaseContext()));
 builder.Services.AddTransient<IPasswordEditer, PasswordEditer>((h) => new PasswordEditer(new DatabaseContext(), new GeneraterHash()));
+builder.Services.AddTransient<IFabricCanvasOperation, FabricCanvasOperation>((h) => new FabricCanvasOperation(new DatabaseContext()));
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

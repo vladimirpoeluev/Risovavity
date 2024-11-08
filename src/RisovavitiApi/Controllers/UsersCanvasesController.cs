@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Logic.Interface;
-using DomainModel.Model;
-using DomainModel.InputRecords;
+using RisovavitiApi.UserOperate;
 
 namespace RisovavitiApi.Controllers
 {
@@ -9,52 +8,28 @@ namespace RisovavitiApi.Controllers
 	[Route("api/[controller]")]
 	public class UsersCanvasesController : Controller
 	{
-		private ICreateSaverToken _createToken;
-		private IGetCanvasAsync _getCanvas;
+		IFabricCanvasOperation _fabricCanvasOperation;
 
-		public UsersCanvasesController(ICreateSaverToken createSaver, IGetCanvasAsync getCanvas) 
+		public UsersCanvasesController(IFabricCanvasOperation fabricOperate) 
 		{
-			_createToken = createSaver;
-			_getCanvas = getCanvas;
+			_fabricCanvasOperation = fabricOperate;
 		}
 
-		private bool CheckAuthorization(Guid guid)
+		[HttpGet("get")]
+		public async Task<IActionResult> Get(int skip, int take)
 		{
-			try
-			{
-				_createToken.CreateSaver().Get(guid);
-				return true;
-			}
-			catch (Exception)
-			{
-				return false;
-			}
-			
+			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+
+			var canvases = await getter.GetAsync(skip, take);
+			return Ok(canvases);
 		}
 
-		[HttpGet]
-		public async Task<ActionResult<IEnumerable<CanvasTitle>>> Get(Guid guid) 
+		[HttpGet("get/[id]")]
+		public async Task<IActionResult> GetById(int id)
 		{
-			if(CheckAuthorization(guid))
-				return NotFound();
-			IEnumerable<Canvas> canvases = await _getCanvas.GetAsync();
-			List<CanvasTitle> result = new List<CanvasTitle>();
-
-			await Task.Run(() =>
-			{
-				foreach (var canvas in canvases)
-				{
-					result.Add(new CanvasTitle()
-					{
-						Name = canvas.Name,
-						IdAuthorNavigation = canvas.IdAuthorNavigation,
-						IdStatusNavigation = canvas.IdStatusNavigation,
-						Description = canvas.Description ?? String.Empty,
-					});
-				}
-			});
-			return Ok(result);
-
+			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+			var canvas = await getter.GetAsync(id);
+			return Ok(canvas);
 		}
 	}
 }
