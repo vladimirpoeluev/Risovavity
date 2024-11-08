@@ -5,7 +5,7 @@ using RisovavitiApi.UserOperate;
 namespace RisovavitiApi.Controllers
 {
     [ApiController]
-	[Route("api/[controller]")]
+	[Route("api/canvas")]
 	public class UsersCanvasesController : Controller
 	{
 		IFabricCanvasOperation _fabricCanvasOperation;
