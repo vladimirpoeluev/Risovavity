@@ -1,5 +1,5 @@
 ﻿
-using DomainModel.Integration.Canvas;
+using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest;
 
 namespace Logic.Interface

@@ -2,11 +2,13 @@
 using Logic.Interface;
 using RisovavitiApi.UserOperate;
 using DomainModel.ResultsRequest.Canvas;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RisovavitiApi.Controllers
 {
     [ApiController]
 	[Route("api/canvas")]
+	[Authorize]
 	public class UsersCanvasesController : Controller
 	{
 		IFabricCanvasOperation _fabricCanvasOperation;
@@ -25,7 +27,7 @@ namespace RisovavitiApi.Controllers
 			return Ok(canvases);
 		}
 
-		[HttpGet("get/[id]")]
+		[HttpGet("get/{id}")]
 		public async Task<IActionResult> GetById(int id)
 		{
 			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));

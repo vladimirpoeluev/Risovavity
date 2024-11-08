@@ -1,6 +1,6 @@
 ﻿using DomainModel.ResultsRequest.Canvas;
 
-namespace DomainModel.Integration.Canvas
+namespace DomainModel.Integration.CanvasOperation
 {
     public interface IAdderCanvas
     {
