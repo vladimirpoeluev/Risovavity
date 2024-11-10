@@ -3,7 +3,6 @@ using Logic.Interface;
 using RisovavitiApi.UserOperate;
 using DomainModel.ResultsRequest.Canvas;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 
 namespace RisovavitiApi.Controllers
 {
@@ -64,6 +63,27 @@ namespace RisovavitiApi.Controllers
 		public async Task<IActionResult> Delete(int id)
 		{
 			throw new NotImplementedException();
+		}
+
+		[HttpPost("edit/{id}")]
+		public async Task<IActionResult> EditCanvas(int id, [FromBody] CanvasEditerResult newCanvas)
+		{
+			try
+			{
+				return TryEditCanvas(id, newCanvas);
+			}
+			catch (Exception)
+			{
+				return BadRequest();
+			}
+		}
+
+		OkResult TryEditCanvas(int id, CanvasEditerResult newCanvas)
+		{
+			var editer = _fabricCanvasOperation.CreateEditerCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+			newCanvas.Id = id;
+			editer.UpdateCanvas(newCanvas);
+			return Ok();
 		}
 	}
 }
