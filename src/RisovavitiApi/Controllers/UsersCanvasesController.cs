@@ -3,6 +3,7 @@ using Logic.Interface;
 using RisovavitiApi.UserOperate;
 using DomainModel.ResultsRequest.Canvas;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace RisovavitiApi.Controllers
 {
@@ -57,6 +58,12 @@ namespace RisovavitiApi.Controllers
 			var adder = _fabricCanvasOperation.CreateAdderCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
 			await adder.AddCanvas(result);
 			return Ok();
+		}
+
+		[HttpPost("delete/{id}")]
+		public async Task<IActionResult> Delete(int id)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
