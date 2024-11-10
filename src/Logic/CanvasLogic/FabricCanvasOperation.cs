@@ -25,7 +25,7 @@ namespace Logic.CanvasLogic
 
 		public IGetterCanvas CreateGetterCanvas(UserResult user)
 		{
-			throw new NotImplementedException();
+			return new GetterCanvas(_db, user);
 		}
 	}
 }
