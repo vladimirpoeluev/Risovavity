@@ -25,6 +25,7 @@ namespace Logic.CanvasLogic
 					Title = canvas.Name,
 					Description = canvas.Description ?? String.Empty,
 					UserId = canvas.Author.Id,
+					VersionId = canvas.MainVersionId,
 				}).Where(entity => entity.Id == id).FirstAsync();
 		}
 
@@ -37,6 +38,7 @@ namespace Logic.CanvasLogic
 					Title = canvas.Name,
 					Description = canvas.Description ?? String.Empty,
 					UserId = canvas.Author.Id,
+					VersionId = canvas.MainVersionId,
 				}).Skip(skip).Take(take).ToListAsync();
 		}
 
@@ -49,6 +51,7 @@ namespace Logic.CanvasLogic
 					Title = canvas.Name,
 					Description = canvas.Description ?? String.Empty,
 					UserId = canvas.Author.Id,
+					VersionId = canvas.MainVersionId,
 				}).Where(entity => entity.Title == name).ToListAsync();
 		}
 	}
