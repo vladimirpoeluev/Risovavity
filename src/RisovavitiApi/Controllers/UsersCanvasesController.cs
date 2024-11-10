@@ -62,7 +62,27 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("delete/{id}")]
 		public async Task<IActionResult> Delete(int id)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+				var editer = _fabricCanvasOperation.CreateEditerCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+
+				var canvas = await getter.GetAsync(id);
+				editer.UpdateCanvas(new CanvasEditerResult()
+				{
+					Id = canvas.Id,
+					Title = canvas.Title,
+					Description = canvas.Description,
+					VersionProjectId = canvas.VersionId,
+					StatusId = 4
+				});
+
+				return Ok();
+			}
+			catch (Exception)
+			{
+				return BadRequest();
+			}
 		}
 
 		[HttpPost("edit/{id}")]
