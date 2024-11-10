@@ -27,17 +27,20 @@ namespace Logic.CanvasLogic
 				Image = canvasAddResult.VersionProject.Image,
 			};
 
+			
+
+			var result = (await _context.VersionsProjects.AddAsync(versionProject)).Entity;
 			var canvas = new Canvas()
 			{
 				Name = canvasAddResult.Title,
 				Description = canvasAddResult.Description,
 				AuthorId = _userResult.Id,
-				MainVersion = versionProject,
+				MainVersion = result,
 				StatusId = 1,
 			};
 
-			await _context.VersionsProjects.AddAsync(versionProject);
 			await _context.Canvas.AddAsync(canvas);
+			await _context.SaveChangesAsync();
 		}
 	}
 }
