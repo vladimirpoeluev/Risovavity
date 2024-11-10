@@ -19,7 +19,6 @@ namespace DomainModel.ResultsRequest
 				Login = Login,
 				Password = Password,
 				IdRole = 2,
-				Role = new Role() { Name = "Author" }
 			};
 		}
 	}
