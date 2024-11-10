@@ -30,6 +30,22 @@ namespace RisovavitiApi.Controllers
 		[HttpGet("get/{id}")]
 		public async Task<IActionResult> GetById(int id)
 		{
+			try
+			{
+				return await TryGetCanvasById(id);
+			}
+			catch (InvalidOperationException)
+			{
+				return NotFound(new CanvasResult());
+			}
+			catch (Exception ex) 
+			{
+				return BadRequest(ex.Message);
+			}
+		}
+
+		async Task<OkObjectResult> TryGetCanvasById(int id)
+		{
 			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
 			var canvas = await getter.GetAsync(id);
 			return Ok(canvas);
