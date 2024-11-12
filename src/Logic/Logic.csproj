@@ -15,4 +15,8 @@
     <ProjectReference Include="..\DomainModel\DomainModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CanvasLogic\VersionProject\" />
+  </ItemGroup>
+
 </Project>
