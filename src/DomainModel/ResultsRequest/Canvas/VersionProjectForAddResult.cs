@@ -3,9 +3,9 @@ namespace DomainModel.ResultsRequest.Canvas
 {
 	public class VersionProjectForAddResult
 	{
-		string Name { get; set; }
-		string Descriptoin { get; set; }
-		int ParentVertionProjectId { get; set; }
-		byte[] Image { get; set; }
+		public string Name { get; set; }
+		public string Descriptoin { get; set; }
+		public int ParentVertionProjectId { get; set; }
+		public byte[] Image { get; set; }
 	}
 }
