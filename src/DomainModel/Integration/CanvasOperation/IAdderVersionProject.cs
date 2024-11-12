@@ -2,7 +2,7 @@
 
 namespace DomainModel.Integration.CanvasOperation
 {
-	public interface IAdderVertionProject
+	public interface IAdderVersionProject
 	{
 		Task AddVertionProjectAsync(VersionProjectForAddResult result);
 		Task DeleteVertionProjectAsync(int id);
