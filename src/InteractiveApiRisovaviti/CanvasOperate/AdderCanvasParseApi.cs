@@ -8,7 +8,7 @@ namespace InteractiveApiRisovaviti.CanvasOperate
 	public class AdderCanvasParseApi : IAdderCanvas
 	{
 		IAuthenticationUser _user;
-		FabricAutoControllerIntegraion _operate;
+		private FabricAutoControllerIntegraion _operate;
 
 		public AdderCanvasParseApi(IAuthenticationUser user) 
 		{
