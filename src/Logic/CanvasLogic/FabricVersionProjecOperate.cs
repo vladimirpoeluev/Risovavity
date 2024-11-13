@@ -2,6 +2,7 @@
 using DataIntegration.Model;
 using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest;
+using Logic.CanvasLogic.VersionProjectOperate;
 using Logic.Interface;
 
 namespace Logic.CanvasLogic
@@ -16,12 +17,12 @@ namespace Logic.CanvasLogic
 
 		public IAdderVersionProject CreateAdder(UserResult user)
 		{
-			throw new NotImplementedException();
+			return new AdderVertionProject(_db, user);
 		}
 
 		public IGetterVersionProject CreateGetter(UserResult user)
 		{
-			throw new NotImplementedException();
+			return new GetterVersionCanvas(_db);
 		}
 	}
 }
