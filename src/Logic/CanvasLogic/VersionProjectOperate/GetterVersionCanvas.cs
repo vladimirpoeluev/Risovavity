@@ -36,7 +36,7 @@ namespace Logic.CanvasLogic.VersionProjectOperate
 				Name = entity.Name,
 				Description = entity.Description,
 				AuthorId = entity.AuthorOfVersionId,
-				ParentVertionProject = entity.ParentOfVersionId.Value,
+				ParentVertionProject = entity.ParentOfVersionId ?? -1,
 			});
 		}
 	}
