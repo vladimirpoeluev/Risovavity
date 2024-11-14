@@ -1,4 +1,7 @@
-using DomainModel.Model;
+using AvaloniaRisovaviti.Model;
+using DomainModel.Integration.CanvasOperation;
+using InteractiveApiRisovaviti.CanvasOperate;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -6,21 +9,23 @@ namespace AvaloniaRisovaviti.ViewModel
 {
     public class CanvasPageViewModel: INotifyPropertyChanged
     {
-        public CartOfImage[] Canvases { get; set; }
-
-        public CanvasPageViewModel() 
+        IEnumerable<CanvasResultWithImage> _canvases;
+        IGetterCanvas _getterCanvas;
+        public IEnumerable<CanvasResultWithImage> Canvases
         {
-            Canvases = [
-                new CartOfImage(new InteractiveCanvas()),
-                new CartOfImage(new InteractiveCanvas()),
-                new CartOfImage(new InteractiveCanvas()),
-                new CartOfImage(new InteractiveCanvas()),
-                new CartOfImage(new InteractiveCanvas()),
-                new CartOfImage(new InteractiveCanvas()),
-                new CartOfImage(new InteractiveCanvas()),
-                new CartOfImage(new InteractiveCanvas()),
-                ];
+            get
+            {
+                return _canvases;
+            }
         }
+
+        public CanvasPageViewModel()
+        {
+            _getterCanvas = new GetterCanvasParseApi(Authentication.AuthenticationUser.User);
+            var result = _getterCanvas.GetAsync(0, 3);
+            _canvases = CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result.Result);
+			OnPropertyChanged(nameof(Canvases));
+		}
 
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler? PropertyChanged;

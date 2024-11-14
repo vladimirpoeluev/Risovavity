@@ -71,7 +71,7 @@ namespace RisovavitiApi.Controllers
 				editer.UpdateCanvas(new CanvasEditerResult()
 				{
 					Id = canvas.Id,
-					Title = canvas.Title,
+					Title = canvas.Name,
 					Description = canvas.Description,
 					VersionProjectId = canvas.VersionId,
 					StatusId = 4

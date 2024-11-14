@@ -28,7 +28,15 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 			return ExecutingRequest(client);
 		}
 
+		public async Task<HttpResponseMessage> GetRequestAsync(string url)
+		{
+			Url = url;
+			var client = OptionRequst();
+			return await ExecutingRequestAsync(client);
+		}
+
 		protected abstract HttpResponseMessage ExecutingRequest(HttpClient request);
+		protected abstract Task<HttpResponseMessage> ExecutingRequestAsync(HttpClient request);
 
 		protected virtual HttpClient OptionRequst()
 		{

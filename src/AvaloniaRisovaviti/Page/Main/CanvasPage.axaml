@@ -12,6 +12,16 @@
 	
 	<Grid HorizontalAlignment="Center">
 		<ListBox ItemsSource="{Binding Canvases}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Border>
+						<StackPanel>
+							
+							<TextBlock Text="{Binding CanvasResult.Name}"/>
+						</StackPanel>
+					</Border>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
 			<ListBox.ItemsPanel>
 				<ItemsPanelTemplate>
 					<WrapPanel/>

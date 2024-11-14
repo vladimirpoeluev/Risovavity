@@ -39,6 +39,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Accets\8.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Accets\icoUser.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

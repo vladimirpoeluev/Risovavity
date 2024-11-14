@@ -22,7 +22,7 @@ namespace Logic.CanvasLogic
 				.Select(canvas => new CanvasResult() 
 				{ 
 					Id = canvas.Id,
-					Title = canvas.Name,
+					Name = canvas.Name,
 					Description = canvas.Description ?? String.Empty,
 					UserId = canvas.Author.Id,
 					VersionId = canvas.MainVersionId,
@@ -35,7 +35,7 @@ namespace Logic.CanvasLogic
 				.Select(canvas => new CanvasResult()
 				{
 					Id = canvas.Id,
-					Title = canvas.Name,
+					Name = canvas.Name,
 					Description = canvas.Description ?? String.Empty,
 					UserId = canvas.Author.Id,
 					VersionId = canvas.MainVersionId,
@@ -48,11 +48,11 @@ namespace Logic.CanvasLogic
 				.Select(canvas => new CanvasResult()
 				{
 					Id = canvas.Id,
-					Title = canvas.Name,
+					Name = canvas.Name,
 					Description = canvas.Description ?? String.Empty,
 					UserId = canvas.Author.Id,
 					VersionId = canvas.MainVersionId,
-				}).Where(entity => entity.Title == name).ToListAsync();
+				}).Where(entity => entity.Name == name).ToListAsync();
 		}
 	}
 }

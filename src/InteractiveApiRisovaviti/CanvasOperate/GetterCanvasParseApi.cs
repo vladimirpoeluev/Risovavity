@@ -25,7 +25,9 @@ namespace InteractiveApiRisovaviti.CanvasOperate
         public Task<IEnumerable<CanvasResult>> GetAsync(int skip, int take)
         {
             var getter = FabricAutoControllerIntegraion.CreateGetPatser<CanvasResult>(User);
-            return Task.FromResult(getter.GetResult<IEnumerable<CanvasResult>>($"api/VersionProject/get?skip={skip}&take={take}"));
+            var result = getter.GetResult<IEnumerable<CanvasResult>>($"api/VersionProject/get?skip={skip}&take={take}");
+
+			return Task.FromResult(result);
         }
 
         public Task<IEnumerable<CanvasResult>> GetAsync(string name)

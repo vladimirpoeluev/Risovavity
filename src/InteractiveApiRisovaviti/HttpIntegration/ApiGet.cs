@@ -1,6 +1,4 @@
 ﻿using InteractiveApiRisovaviti.Interface;
-using System;
-using System.Net.Http.Headers;
 
 namespace InteractiveApiRisovaviti.HttpIntegration
 {
@@ -15,6 +13,12 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 		protected override HttpResponseMessage ExecutingRequest(HttpClient client)
 		{
 			HttpResponseMessage message = client.GetAsync(Url).Result;
+			return message;
+		}
+
+		protected override async Task<HttpResponseMessage> ExecutingRequestAsync(HttpClient client)
+		{
+			var message = await client.GetAsync(Url);
 			return message;
 		}
 	}
