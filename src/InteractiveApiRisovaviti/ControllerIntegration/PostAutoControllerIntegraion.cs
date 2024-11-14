@@ -21,7 +21,7 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
 			CheckStatusCode(GetResponseMessage());
 		}
 
-		async Task IPostAutoControllerIntegraion.ExecuteRequest(string url)
+		async Task IPostAutoControllerIntegraion.ExecuteRequestAsync(string url)
 		{
 			Url = url;
 			CheckStatusCode(await GetResponseAsync());
