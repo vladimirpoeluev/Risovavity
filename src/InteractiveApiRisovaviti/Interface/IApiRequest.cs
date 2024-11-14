@@ -5,5 +5,6 @@ namespace InteractiveApiRisovaviti.Interface
 	{
 		IAuthenticationUser User { get; set; }
 		HttpResponseMessage GetRequest(string url);
+		Task<HttpResponseMessage> GetRequestAsync(string url);
 	}
 }

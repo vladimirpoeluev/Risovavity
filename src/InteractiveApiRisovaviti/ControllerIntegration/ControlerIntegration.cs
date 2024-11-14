@@ -16,10 +16,16 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
         protected abstract IApiRequest SettingApiRequest();
 
         protected abstract HttpResponseMessage StartRequest(IApiRequest client);
+        protected abstract Task<HttpResponseMessage> StartRequestAsync(IApiRequest client);
 
         protected HttpResponseMessage GetResponseMessage()
         {
             return StartRequest(SettingApiRequest());
+        }
+
+        protected async Task<HttpResponseMessage> GetResponseAsync()
+        {
+            return await StartRequestAsync(SettingApiRequest());
         }
 
 		protected static void CheckStatusCode(HttpResponseMessage message)

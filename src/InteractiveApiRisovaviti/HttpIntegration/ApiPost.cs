@@ -1,5 +1,4 @@
 ﻿
-
 using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti.HttpIntegration
@@ -17,7 +16,7 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 			return request.PostAsJsonAsync(Url, SetterValue).Result;
 		}
 
-		protected async Task<HttpResponseMessage> ExecutingRequestAsync(HttpClient request)
+		protected override async Task<HttpResponseMessage> ExecutingRequestAsync(HttpClient request)
 		{
 			return await request.PostAsJsonAsync(Url, SetterValue);
 		}
