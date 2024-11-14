@@ -2,7 +2,8 @@
 {
     internal interface IPostAutoControllerIntegraion
     {
-        void ExecuteReques(string url);
+        void ExecuteRequest(string url);
+        Task ExecuteRequest(string url);
         T2 GetResult<T2>(string url);
     }
 }

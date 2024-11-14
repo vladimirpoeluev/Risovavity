@@ -15,15 +15,26 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
 			return message.Content.ReadAsAsync<T2>().Result;
 		}
 
-		public void ExecuteReques(string url)
+		public void ExecuteRequest(string url)
 		{
 			Url = url;
 			CheckStatusCode(GetResponseMessage());
 		}
 
+		async Task IPostAutoControllerIntegraion.ExecuteRequest(string url)
+		{
+			Url = url;
+			CheckStatusCode(await GetResponseAsync());
+		}
+
 		protected override HttpResponseMessage StartRequest(IApiRequest client)
 		{
 			return client.GetRequest(Url);
+		}
+
+		protected override async Task<HttpResponseMessage> StartRequestAsync(IApiRequest client)
+		{
+			return await client.GetRequestAsync(Url);
 		}
 	}
 }
