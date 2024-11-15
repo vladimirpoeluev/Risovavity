@@ -25,10 +25,10 @@ namespace AvaloniaRisovaviti.ViewModel
         {
 			_getterCanvas = new GetterCanvasParseApi(Authentication.AuthenticationUser.User);
             _canvases = new List<CanvasResultWithImage>();
-			Task initCartTask = InitCart();
+			InitCart();
 		}
 
-        async Task InitCart()
+        async void InitCart()
         {
 		    IEnumerable<CanvasResult> result = await _getterCanvas.GetAsync(0, 3);
 			_canvases = CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result);
