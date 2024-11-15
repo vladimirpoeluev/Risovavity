@@ -18,19 +18,19 @@ namespace InteractiveApiRisovaviti.CanvasOperate
 
 		public Task<VersionProjectResult> GetVersionProjectByIdAsync(int id)
 		{
-			var getter = _operates.CreateGetPatser<VersionProjectResult>(_user);
+			var getter = _operates.CreateGetPatser(_user);
 			return Task.FromResult(getter.GetResult<VersionProjectResult>($"api/VersionProject/get/{id}"));
 		}
 
 		public Task<IEnumerable<VersionProjectResult>> GetVersionProjectsAsync(string projectName)
 		{
-			var getter = _operates.CreateGetPatser<VersionProjectResult>(_user);
+			var getter = _operates.CreateGetPatser(_user);
 			return Task.FromResult(getter.GetResult<IEnumerable<VersionProjectResult>>($"api/VersionProject/getByName/{projectName}"));
 		}
 
 		public Task<IEnumerable<VersionProjectResult>> GetVersionProjectsAsync(int skip, int take)
 		{
-			var getter = _operates.CreateGetPatser<VersionProjectResult>(_user);
+			var getter = _operates.CreateGetPatser(_user);
 			return Task.FromResult(getter.GetResult<IEnumerable<VersionProjectResult>>($"api/VersionProject/get?skip={take}&take={take}"));
 		}
 	}
