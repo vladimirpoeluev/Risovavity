@@ -18,13 +18,13 @@ namespace InteractiveApiRisovaviti.CanvasOperate
 
         public Task<CanvasResult> GetAsync(int id)
         {
-            var getter = FabricAutoControllerIntegraion.CreateGetPatser<CanvasResult>(User);
+            var getter = FabricAutoControllerIntegraion.CreateGetPatser(User);
             return Task.FromResult(getter.GetResult<CanvasResult>($"api/canvas/get/{id}"));
         }
 
         public Task<IEnumerable<CanvasResult>> GetAsync(int skip, int take)
         {
-            var getter = FabricAutoControllerIntegraion.CreateGetPatser<CanvasResult>(User);
+            var getter = FabricAutoControllerIntegraion.CreateGetPatser(User);
             var result = getter.GetResult<IEnumerable<CanvasResult>>($"api/VersionProject/get?skip={skip}&take={take}");
 
 			return Task.FromResult(result);
@@ -32,7 +32,7 @@ namespace InteractiveApiRisovaviti.CanvasOperate
 
         public Task<IEnumerable<CanvasResult>> GetAsync(string name)
         {
-            var getter = FabricAutoControllerIntegraion.CreateGetPatser<CanvasResult>(User);
+            var getter = FabricAutoControllerIntegraion.CreateGetPatser(User);
             return Task.FromResult(getter.GetResult<IEnumerable<CanvasResult>>($"api/VersionProject/getByName/{name}"));
         }
     }
