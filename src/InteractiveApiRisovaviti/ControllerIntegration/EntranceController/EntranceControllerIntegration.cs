@@ -26,5 +26,10 @@ namespace InteractiveApiRisovaviti.ControllerIntegration.EntranceController
         {
             return client.GetRequest($"api/Entrance/input?login={Login}&password={Password}");
         }
-    }
+
+		protected override Task<HttpResponseMessage> StartRequestAsync(IApiRequest client)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

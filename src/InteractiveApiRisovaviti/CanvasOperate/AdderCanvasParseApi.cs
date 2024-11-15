@@ -16,11 +16,10 @@ namespace InteractiveApiRisovaviti.CanvasOperate
 			_operate = new CreaterAuthoControllersIntegraion();
 		}
 
-		public Task AddCanvas(CanvasAddResult canvasAddResult)
+		public async Task AddCanvas(CanvasAddResult canvasAddResult)
 		{
 			var operate = _operate.CreatePostPatser(_user, canvasAddResult);
-			operate.ExecuteReques("api/canvas/add");
-			return Task.CompletedTask;
+			await operate.ExecuteRequestAsync("api/canvas/add");
 		}
 	}
 }

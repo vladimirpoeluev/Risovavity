@@ -19,5 +19,10 @@ namespace InteractiveApiRisovaviti.ControllerIntegration.AuthorsController
         {
             return client.GetRequest("api/authors/get");
         }
-    }
+
+		protected override Task<HttpResponseMessage> StartRequestAsync(IApiRequest client)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

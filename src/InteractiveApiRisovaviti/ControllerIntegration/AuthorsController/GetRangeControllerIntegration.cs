@@ -26,5 +26,10 @@ namespace InteractiveApiRisovaviti.ControllerIntegration.AuthorsController
 		{
 			return client.GetRequest($"/api/Authors/getRange?skip={Skip}&take={Take}");
 		}
+
+		protected override Task<HttpResponseMessage> StartRequestAsync(IApiRequest client)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

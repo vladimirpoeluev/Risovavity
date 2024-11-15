@@ -19,5 +19,10 @@ namespace InteractiveApiRisovaviti.ControllerIntegration.ProfileController
 		{
 			return client.GetRequest("api/profile/setprofile");
 		}
+
+		protected override Task<HttpResponseMessage> StartRequestAsync(IApiRequest client)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

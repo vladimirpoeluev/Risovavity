@@ -21,5 +21,10 @@ namespace InteractiveApiRisovaviti.ControllerIntegration.ProfileController
 		{
 			return client.GetRequest("api/profile/getimage/");
 		}
+
+		protected override Task<HttpResponseMessage> StartRequestAsync(IApiRequest client)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

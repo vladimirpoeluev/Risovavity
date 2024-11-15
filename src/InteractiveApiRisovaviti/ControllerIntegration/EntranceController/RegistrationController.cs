@@ -14,6 +14,11 @@ namespace InteractiveApiRisovaviti.ControllerIntegration.EntranceController
 			return client.GetRequest("api/Entrance/regist");
 		}
 
+		protected override Task<HttpResponseMessage> StartRequestAsync(IApiRequest client)
+		{
+			throw new NotImplementedException();
+		}
+
 		void IRegistraionController.RegistrationSystem(RegistrationForm form)
 		{
 			Value = form;

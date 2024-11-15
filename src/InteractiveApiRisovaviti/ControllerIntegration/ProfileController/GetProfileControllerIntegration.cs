@@ -23,6 +23,9 @@ namespace InteractiveApiRisovaviti.ControllerIntegration.ProfileController
             return request;
         }
 
-
-    }
+		protected override Task<HttpResponseMessage> StartRequestAsync(IApiRequest client)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

@@ -21,5 +21,10 @@ namespace InteractiveApiRisovaviti.ControllerIntegration.AvatarUsers
 		{
 			return client.GetRequest($"api/AvatarUsers?id={Id}");
 		}
+
+		protected override Task<HttpResponseMessage> StartRequestAsync(IApiRequest client)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
