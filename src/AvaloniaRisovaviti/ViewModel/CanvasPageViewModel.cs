@@ -1,9 +1,11 @@
 using AvaloniaRisovaviti.Model;
 using DomainModel.Integration.CanvasOperation;
+using DomainModel.ResultsRequest.Canvas;
 using InteractiveApiRisovaviti.CanvasOperate;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
@@ -21,9 +23,15 @@ namespace AvaloniaRisovaviti.ViewModel
 
         public CanvasPageViewModel()
         {
-            _getterCanvas = new GetterCanvasParseApi(Authentication.AuthenticationUser.User);
-            var result = _getterCanvas.GetAsync(0, 3);
-            _canvases = CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result.Result);
+			_getterCanvas = new GetterCanvasParseApi(Authentication.AuthenticationUser.User);
+            _canvases = new List<CanvasResultWithImage>();
+			Task initCartTask = InitCart();
+		}
+
+        async Task InitCart()
+        {
+		    IEnumerable<CanvasResult> result = await _getterCanvas.GetAsync(0, 3);
+			_canvases = CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result);
 			OnPropertyChanged(nameof(Canvases));
 		}
 
