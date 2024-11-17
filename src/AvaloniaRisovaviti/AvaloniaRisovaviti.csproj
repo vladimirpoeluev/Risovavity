@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Accets\IconRisovaviti.ico" />
     <None Remove="Accets\image.jpg" />
+    <None Remove="Accets\placeholder.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +37,10 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="UserControls\CartOfImage.axaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaXaml Include="Accets\placeholder.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,10 +2,11 @@ using AvaloniaRisovaviti.Model;
 using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest.Canvas;
 using InteractiveApiRisovaviti.CanvasOperate;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Dto;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
@@ -27,6 +28,25 @@ namespace AvaloniaRisovaviti.ViewModel
             _canvases = new List<CanvasResultWithImage>();
 			InitCart();
 		}
+
+        void TryInitCart()
+        {
+            try
+            {
+                InitCart();
+				
+			}
+            catch
+            {
+                MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams() 
+                {
+                    ContentMessage = "Что то пошло не так",
+                    ContentTitle = "Error",
+                    Icon = MsBox.Avalonia.Enums.Icon.Error,
+                }).ShowAsync();
+
+            }
+        }
 
         async void InitCart()
         {
