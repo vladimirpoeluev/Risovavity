@@ -3,17 +3,66 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 xmlns:b="using:AvaloniaRisovaviti.ViewModel"
-             x:Class="AvaloniaRisovaviti.FormAddNewCanvas">
+			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel"
+             x:Class="AvaloniaRisovaviti.FormAddNewCanvas"
+			 x:DataType="vm:FormAddNewCanvasViewModel">
+	<Design.DataContext>
+		<vm:FormAddNewCanvasViewModel/>
+	</Design.DataContext>
+	
 	<Grid ColumnDefinitions="*,*">
-		<Grid Grid.Column="0" RowDefinitions="*,auto">
+		<Grid Grid.Column="0" RowDefinitions="*,*">
 			<Image Source="avares://AvaloniaRisovaviti/Accets/placeholder.png"
 				   VerticalAlignment="Top"
 				   Margin="5"/>
+			<StackPanel Grid.Row="1"
+						VerticalAlignment="Top">
+				<TextBlock Text="Загрузите свой проект"
+						   FontSize="20"/>
+				<Button Content="Загрузить изображение"
+						Margin="5"
+						Click="AddNewImage_Click"/>
+				
+			</StackPanel>
+			
 		</Grid>
 		<StackPanel Grid.Column="1">
-			<TextBlock Text="Заполните форму"/>
-			<TextBlock/>
+			<TextBlock Text="Заполните форму"
+					   FontSize="15"/>
+			<TextBlock Text="Холст"
+					   FontSize="20"/>
+			<Border Margin="5"
+					Padding="2"
+					BorderBrush="LightGray"
+					BorderThickness="5">
+				<StackPanel>
+					<TextBlock Text="Наименование"/>
+					<TextBox Text="{Binding CanvasResult.Title}"/>
+					<TextBlock Text="Описание"/>
+					<TextBox Text="{Binding CanvasResult.Description}"
+							 ScrollViewer.VerticalScrollBarVisibility="Visible"
+							 TextWrapping="Wrap"/>
+
+					
+				</StackPanel>
+			</Border>
+			<TextBlock Text="Проект"
+					   FontSize="20"/>
+			<Border Margin="5"
+					Padding="2"
+					BorderBrush="LightGray"
+					BorderThickness="5">
+				<StackPanel>
+					<TextBlock Text="Наименование"/>
+					<TextBox Text="{Binding CanvasResult.VersionProject.Name}"/>
+					<TextBlock Text="Описание"/>
+					<TextBox Text="{Binding CanvasResult.VersionProject.Description}"
+							 ScrollViewer.VerticalScrollBarVisibility="Visible"
+							 TextWrapping="Wrap"/>
+
+				</StackPanel>
+			</Border>
+			
 		</StackPanel>
 	</Grid>
 </UserControl>

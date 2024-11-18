@@ -10,8 +10,13 @@
 		<vm:CanvasPageViewModel/>
 	</Design.DataContext>
 	
-	<Grid HorizontalAlignment="Center">
-		<ListBox ItemsSource="{Binding Canvases}">
+	<Grid HorizontalAlignment="Center" 
+		  ColumnDefinitions="auto,*">
+		<Button Grid.Column="0"
+				Click=""/>
+		
+		<ListBox ItemsSource="{Binding Canvases}"
+				 Grid.Column="1">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Border>
