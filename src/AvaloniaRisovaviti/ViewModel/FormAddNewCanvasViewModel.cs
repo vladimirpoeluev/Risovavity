@@ -1,8 +1,13 @@
+using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest.Canvas;
 using InteractiveApiRisovaviti.CanvasOperate;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using System.IO;
+using Avalonia.Platform;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
@@ -10,22 +15,34 @@ namespace AvaloniaRisovaviti.ViewModel
     {
         public CanvasAddResult CanvasResult { get; set; }
         private IAdderCanvas _adderCanvas;
+        private IImage _image = new Bitmap(AssetLoader.Open(new System.Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
+        public IImage ImageData { 
+            get
+            {
+                return _image;
+            }
+        }
 
         public FormAddNewCanvasViewModel()
         {
-            CanvasResult = new CanvasAddResult();
+            CanvasResult = new CanvasAddResult()
+            {
+                VersionProject = new VersionProjectForCanvasResult()
+            };
             _adderCanvas = new AdderCanvasParseApi(Authentication.AuthenticationUser.User);
+            OnPropertyChanged(nameof(ImageData));
         }
 
         public void SetImage(byte[] bytes)
         {
-            CanvasResult.VersionProject.Image = bytes;
-            OnPropertyChanged(nameof(CanvasResult));
-        }
+			CanvasResult.VersionProject.Image = bytes;
+            _image = new Bitmap(new MemoryStream(CanvasResult.VersionProject.Image));
+            OnPropertyChanged(nameof(ImageData));
+		}
 
-        public void AddCanvas()
+        public async Task AddCanvas()
         {
-            _adderCanvas.AddCanvas(CanvasResult);
+            await _adderCanvas.AddCanvas(CanvasResult);
         }
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler? PropertyChanged;

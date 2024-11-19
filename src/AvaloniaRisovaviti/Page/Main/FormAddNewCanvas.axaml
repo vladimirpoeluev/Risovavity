@@ -11,20 +11,20 @@
 	</Design.DataContext>
 	
 	<Grid ColumnDefinitions="*,*">
+		
 		<Grid Grid.Column="0" RowDefinitions="*,*">
-			<Image Source="avares://AvaloniaRisovaviti/Accets/placeholder.png"
+			<Image Source="{Binding ImageData}"
 				   VerticalAlignment="Top"
 				   Margin="5"/>
 			<StackPanel Grid.Row="1"
 						VerticalAlignment="Top">
+				
 				<TextBlock Text="Загрузите свой проект"
 						   FontSize="20"/>
 				<Button Content="Загрузить изображение"
 						Margin="5"
 						Click="AddNewImage_Click"/>
-				
 			</StackPanel>
-			
 		</Grid>
 		<StackPanel Grid.Column="1">
 			<TextBlock Text="Заполните форму"
@@ -62,6 +62,12 @@
 
 				</StackPanel>
 			</Border>
+			
+			<Button HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Content="Добавить новый холст"
+					Background="LightGreen"
+					Click="AddNewCanvas_Click"/>
 			
 		</StackPanel>
 	</Grid>

@@ -12,6 +12,7 @@ public partial class FormAddNewCanvas : UserControl
     {
 		InitializeComponent();
         viewModel = new FormAddNewCanvasViewModel();
+        DataContext = viewModel;
     }
 
     public async void AddNewImage_Click(object obj, RoutedEventArgs e)
@@ -26,7 +27,15 @@ public partial class FormAddNewCanvas : UserControl
         if(files.Count >= 1)
         {
             await using var stream = await files[0].OpenReadAsync();
+            var buffer = new byte[stream.Length];
+            stream.Read(buffer, 0, buffer.Length);
+            viewModel.SetImage(buffer);
         }
 
+    }
+
+    public async void AddNewCanvas_Click(object obj, RoutedEventArgs args)
+    {
+        await viewModel.AddCanvas();
     }
 }

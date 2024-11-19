@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AvaloniaXaml Include="Accets\placeholder.png" />
+    <AvaloniaResource Include="Accets\placeholder.png" />
   </ItemGroup>
 
   <ItemGroup>

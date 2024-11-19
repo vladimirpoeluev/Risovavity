@@ -13,7 +13,11 @@
 	<Grid HorizontalAlignment="Center" 
 		  ColumnDefinitions="auto,*">
 		<Button Grid.Column="0"
-				Click=""/>
+				Click="NavAddCanvas_Click"
+				Content="Добавить холст"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Background="LightGreen"/>
 		
 		<ListBox ItemsSource="{Binding Canvases}"
 				 Grid.Column="1">
