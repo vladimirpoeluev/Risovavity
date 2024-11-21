@@ -5,12 +5,12 @@ using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti.CanvasOperate
 {
-	public class GetterVersionProfile : IGetterVersionProject
+	public class GetterVersionProject : IGetterVersionProject
 	{
 		FabricAutoControllerIntegraion _operates;
 		IAuthenticationUser _user;
 
-		public GetterVersionProfile(IAuthenticationUser user)
+		public GetterVersionProject(IAuthenticationUser user)
 		{
 			_operates = new CreaterAuthoControllersIntegraion();
 			_user = user;
