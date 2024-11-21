@@ -26,7 +26,7 @@
 					<Border>
 						<StackPanel>
 							<Image Source="{Binding ImageData}"
-								   Width="150"/>
+								   Width="250"/>
 							<TextBlock Text="{Binding CanvasResult.Name}"/>
 						</StackPanel>
 					</Border>

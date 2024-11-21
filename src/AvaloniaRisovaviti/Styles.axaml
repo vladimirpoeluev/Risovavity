@@ -11,6 +11,11 @@
 
 	<Style Selector="Label">
 	</Style>
+	
+	<Style Selector="TextBlock.h1">
+		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+	</Style>
 	<Style Selector="Button">
 		<Setter Property="Margin" Value="0"/>
 		<Setter Property="HorizontalAlignment" Value="Stretch"/>
