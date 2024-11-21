@@ -5,6 +5,7 @@ using InteractiveApiRisovaviti.CanvasOperate;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
