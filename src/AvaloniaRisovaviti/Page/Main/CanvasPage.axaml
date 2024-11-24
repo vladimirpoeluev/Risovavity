@@ -38,5 +38,7 @@
 				</ItemsPanelTemplate>
 			</ListBox.ItemsPanel>
 		</ListBox>
+		<Button Content="Ещё"
+				Command="{Binding TryInitCart}"/>
 	</Grid>
 </UserControl>

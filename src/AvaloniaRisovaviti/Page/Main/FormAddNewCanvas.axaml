@@ -67,7 +67,7 @@
 					VerticalAlignment="Center"
 					Content="Добавить новый холст"
 					Background="LightGreen"
-					Click="AddNewCanvas_Click"/>
+					Command="{Binding AddCanvas}"/>
 			
 		</StackPanel>
 	</Grid>

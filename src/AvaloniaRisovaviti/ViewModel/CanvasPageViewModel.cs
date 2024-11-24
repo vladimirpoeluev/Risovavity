@@ -6,7 +6,9 @@ using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace AvaloniaRisovaviti.ViewModel
@@ -15,6 +17,9 @@ namespace AvaloniaRisovaviti.ViewModel
     {
         IEnumerable<CanvasResultWithImage> _canvases;
         IGetterCanvas _getterCanvas;
+        int countCart;
+        const int stepLoad = 5;
+
         public IEnumerable<CanvasResultWithImage> Canvases
         {
             get
@@ -27,10 +32,11 @@ namespace AvaloniaRisovaviti.ViewModel
         {
 			_getterCanvas = new GetterCanvasParseApi(Authentication.AuthenticationUser.User);
             _canvases = new List<CanvasResultWithImage>();
+            countCart = 0;
 			InitCart();
 		}
 
-        void TryInitCart()
+        public void TryInitCart()
         {
             try
             {
@@ -51,10 +57,12 @@ namespace AvaloniaRisovaviti.ViewModel
 
         async void InitCart()
         {
-		    IEnumerable<CanvasResult> result = await _getterCanvas.GetAsync(0, 3);
-			_canvases = CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result);
+		    IEnumerable<CanvasResult> result = await _getterCanvas.GetAsync(countCart, stepLoad);
+            _canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result));
 			OnPropertyChanged(nameof(Canvases));
+            countCart += stepLoad;
 		}
+
 
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler? PropertyChanged;
