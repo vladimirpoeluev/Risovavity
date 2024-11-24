@@ -1,19 +1,23 @@
 ﻿using Avalonia.Media;
+using DomainModel.Integration;
 using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace AvaloniaRisovaviti.Model
 {
-	internal class AuthorResultImage
+	internal class AuthorResultImage : INotifyPropertyChanged
 	{
 		public IImage Icon { get; set; }
 		public AuthorResult AuthorResult { get; set; }
 		public AuthorResultImage(AuthorResult authorResult) 
 		{
 			this.AuthorResult = authorResult;
-			AvatarGetter getter = new AvatarGetter(Authentication.AuthenticationUser.User);
+			Icon = new Avalonia.Media.Imaging.Bitmap("Accets/icoUser.png");
+			IUserAvatarGetter getter = new AvatarGetter(Authentication.AuthenticationUser.User);
 			try
 			{
 				TryGetterIcon(getter);
@@ -25,10 +29,13 @@ namespace AvaloniaRisovaviti.Model
 			
 		}
 
-		void TryGetterIcon(AvatarGetter getter)
+		async void TryGetterIcon(IUserAvatarGetter getter)
 		{
-			var bytes = getter.GetUserAvatar(AuthorResult.UserId).AvatarResult;
-			Icon = ProfileShows.ImageAvaloniaConverter.ConvertByteInImage(bytes);
+			UserAvatarResult result = await getter.GetAvatarUserAsync(AuthorResult.UserId);
+			byte[] bytes = result.AvatarResult;
+			if(bytes != null)
+				Icon = ProfileShows.ImageAvaloniaConverter.ConvertByteInImage(bytes);
+			OnPropertyChanged(nameof(Icon));
 		}
 
 		void SetDefaultIcon()
@@ -38,5 +45,18 @@ namespace AvaloniaRisovaviti.Model
 
 		public static IEnumerable<AuthorResultImage> ConvertAuthorResult(IEnumerable<AuthorResult> authorResult)
 			=> authorResult.Select((author) => new AuthorResultImage(author));
+
+		#region INotifyPropertyChanged Implementation
+		public event PropertyChangedEventHandler? PropertyChanged;
+
+		public void OnPropertyChanged([CallerMemberName] string? name = null)
+		{
+			if (name != null)
+			{
+				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+			}
+		}
+		#endregion
+
 	}
 }
