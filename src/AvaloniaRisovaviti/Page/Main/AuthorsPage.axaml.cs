@@ -16,6 +16,9 @@ public partial class AuthorsPage : UserControl
 
     public void AddAuthorShow_Click(object obj, RoutedEventArgs args)
     {
-		btnNext.IsEnabled = AuthorViewModel.ContinueListAuthors();
     }
+
+	private void Binding(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+	{
+	}
 }

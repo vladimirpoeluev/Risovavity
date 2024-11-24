@@ -1,10 +1,12 @@
 using AvaloniaRisovaviti.Model;
 using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti;
+using InteractiveApiRisovaviti.Interface;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
@@ -14,30 +16,34 @@ namespace AvaloniaRisovaviti.ViewModel
         public IEnumerable<AuthorResultImage> Authors { get; set; } = new List<AuthorResultImage>();
         private int _countShowedUser = 0;
         private const int stepAdd = 50;
+        public bool IsCart { get; private set; } = true;
+        IAuthorGetter _authorsGetter;
 
         public AuthorViewModel()
         {
+            _authorsGetter = new AuthorGetter(Authentication.AuthenticationUser.User);
             ContinueListAuthors();
         }
 
-        public bool ContinueListAuthors()
+        public async void ContinueListAuthors()
         {
-            var listNewAuthors = GetAuthors();
+            var listNewAuthors = await GetAuthors();
             if (listNewAuthors.Count() == 0)
-                return false;
-            var listNewAuthorForShow = AuthorResultImage.ConvertAuthorResult(listNewAuthors);
-            foreach (var authors in listNewAuthorForShow)
             {
-                Authors = Authors.Append(authors);
+                IsCart = false;
+                OnPropertyChanged(nameof(IsCart));
+                return;
             }
+                
+            var listNewAuthorForShow = AuthorResultImage.ConvertAuthorResult(listNewAuthors);
+            Authors = Authors.Concat(listNewAuthorForShow);
             OnPropertyChanged(nameof(Authors));
-            return true;
-        }
+			IsCart = true;
+		}
 
-        private IEnumerable<AuthorResult> GetAuthors()
+        private async Task<IEnumerable<AuthorResult>> GetAuthors()
         {
-			Authors authorsGetter = new Authors(Authentication.AuthenticationUser.User); 
-            var authors = authorsGetter.GetAuthors(_countShowedUser, stepAdd);
+            IEnumerable<AuthorResult> authors = await _authorsGetter.GetAuthorsRange(_countShowedUser, stepAdd);
             _countShowedUser += stepAdd;
             return authors;
         }

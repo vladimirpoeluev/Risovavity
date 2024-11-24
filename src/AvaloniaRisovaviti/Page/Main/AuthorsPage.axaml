@@ -37,8 +37,9 @@
 			</ListBox.ItemsPanel>
 		</ListBox>
 		<Button x:Name="btnNext"
-				Click="AddAuthorShow_Click" 
-				Grid.Row="1">
+				Command="{Binding ContinueListAuthors}" 
+				Grid.Row="1"
+				IsEnabled="{Binding IsCart}">
 			<TextBlock>
 				Next...
 			</TextBlock>
