@@ -1,0 +1,34 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaRisovaviti.CanvasInfoPage">
+	<Grid ColumnDefinitions="*,*">
+		<Grid Grid.Column="0"
+			  RowDefinitions="2.5*,*">
+			
+			<Image Source="resm:Avalonia.Skia.Assets.NoiseAsset_256X256_PNG.png?assembly=Avalonia.Skia"
+				   Grid.Row="0"/>
+			<StackPanel Grid.Row="1">
+				<TextBlock Text="Текст"/>
+				<TextBlock Text="Описание текста"
+						   ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+				<Button Content="Добавить версию"
+						Click="ButtonAddVersion_Click"/>
+			</StackPanel>
+		</Grid>
+		<ListBox Grid.Column="1">
+			<ListBoxItem Height="150">
+				<Grid>
+					<Image Source="avares://MsBox.Avalonia/Assets/database.png"/>
+				</Grid>
+			</ListBoxItem>
+			<ListBoxItem>
+				<Grid Height="150">
+					<Image Source="avares://MsBox.Avalonia/Assets/database.png"/>
+				</Grid>
+			</ListBoxItem>
+		</ListBox>
+	</Grid>
+</UserControl>
