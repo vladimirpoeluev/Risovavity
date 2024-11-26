@@ -4,7 +4,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.FormAddVersionPage">
-	<Grid>
-		
+	<Grid ColumnDefinitions="*,*"
+		  RowDefinitions="auto,*">
+		<StackPanel>
+			<TextBlock Text="Текущая версия"/>
+		</StackPanel>
+		<StackPanel Grid.Column="1">
+			<TextBlock Text="Новая версия"/>
+		</StackPanel>
+		<Grid Grid.Row="1"
+			  RowDefinitions="2*,*">
+			<Image Source="avares://AvaloniaRisovaviti/Accets/placeholder.png"/>
+			<StackPanel Grid.Row="1">
+				<TextBlock Text="Название"/>
+				<TextBlock Text="Описание"/>
+			</StackPanel>
+		</Grid>
+		<Grid Grid.Column="1"
+			  Grid.Row="1"
+			  RowDefinitions="2*,*">
+			<Image Source="avares://AvaloniaRisovaviti/Accets/placeholder.png"/>
+			<StackPanel Grid.Row="1">
+				<TextBlock Text="Название"/>
+				<TextBox/>
+				<TextBlock Text="Описание"/>
+				<TextBox TextWrapping="Wrap"
+						 ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+				<Button Content="Добавить версию"
+						HorizontalAlignment="Center"
+						Click="AddVersionClick_Click"/>
+			</StackPanel>
+		</Grid>
 	</Grid>
 </UserControl>

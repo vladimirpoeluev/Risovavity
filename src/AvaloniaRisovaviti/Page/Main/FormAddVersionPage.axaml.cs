@@ -1,6 +1,5 @@
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+using DomainModel.ResultsRequest.Canvas;
 
 namespace AvaloniaRisovaviti;
 
@@ -10,4 +9,14 @@ public partial class FormAddVersionPage : UserControl
     {
         InitializeComponent();
     }
+
+    public FormAddVersionPage(VersionProjectResult version) : base()
+    {
+
+    }
+
+	private void AddVersionClick_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+	{
+        
+	}
 }
