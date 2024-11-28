@@ -20,17 +20,18 @@
 				Background="LightGreen"/>
 		
 		<ListBox ItemsSource="{Binding Canvases}"
-				 Grid.Column="1">
+				 Grid.Column="1"
+				 SelectionChanged="ListBox_SelectionChanged"
+				 SelectedValue="{Binding SelectedCanvas}"
+				 SelectedValueBinding="{Binding .}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Border>
-						<Button>
-							<StackPanel>
-								<Image Source="{Binding ImageData}"
-									   Width="250"/>
-								<TextBlock Text="{Binding CanvasResult.Name}"/>
-							</StackPanel>
-						</Button>
+						<StackPanel>
+							<Image Source="{Binding ImageData}"
+								   Width="250"/>
+							<TextBlock Text="{Binding CanvasResult.Name}"/>
+						</StackPanel>
 					</Border>
 				</DataTemplate>
 			</ListBox.ItemTemplate>

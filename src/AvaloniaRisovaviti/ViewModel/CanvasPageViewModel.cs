@@ -4,9 +4,8 @@ using DomainModel.ResultsRequest.Canvas;
 using InteractiveApiRisovaviti.CanvasOperate;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -27,6 +26,8 @@ namespace AvaloniaRisovaviti.ViewModel
                 return _canvases;
             }
         }
+
+        public CanvasResultWithImage SelectedCanvas { get; set; } = new CanvasResultWithImage(new CanvasResult());
 
         public CanvasPageViewModel()
         {

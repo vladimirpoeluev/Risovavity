@@ -53,7 +53,7 @@
 		</Grid>
 
 		<Grid Grid.Row="1">
-			<local:AuthorsPage x:Name="frameMain"/>
+			<local:CanvasPage x:Name="frameMain"/>
 		</Grid>
 
 		<Grid Grid.Row="2">

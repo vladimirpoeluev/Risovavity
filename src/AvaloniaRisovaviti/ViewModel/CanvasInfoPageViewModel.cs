@@ -7,6 +7,7 @@ using InteractiveApiRisovaviti.Interface;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.IO;
+using Avalonia.Platform;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
@@ -24,6 +25,7 @@ namespace AvaloniaRisovaviti.ViewModel
 		{
 			Canvas = new CanvasResult();
 			VersionProject = new VersionProjectResult();
+			Image = new Bitmap(AssetLoader.Open(new System.Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
 
 			IAuthenticationUser user = Authentication.AuthenticationUser.User;
 			_getterVersion = new GetterVersionProject(user);

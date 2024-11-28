@@ -2,17 +2,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaloniaRisovaviti.CanvasInfoPage">
+             xmlns:vm="using:AvaloniaRisovaviti.ViewModel"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaRisovaviti.CanvasInfoPage"
+			 x:DataType="vm:CanvasInfoPageViewModel">
+	<Design.DataContext>
+		<vm:CanvasInfoPageViewModel/>
+	</Design.DataContext>
 	<Grid ColumnDefinitions="*,*">
 		<Grid Grid.Column="0"
 			  RowDefinitions="2.5*,*">
 			
-			<Image Source="resm:Avalonia.Skia.Assets.NoiseAsset_256X256_PNG.png?assembly=Avalonia.Skia"
+			<Image Source="{Binding Image}"
 				   Grid.Row="0"/>
 			<StackPanel Grid.Row="1">
-				<TextBlock Text="Текст"/>
-				<TextBlock Text="Описание текста"
+				<TextBlock Text="{Binding Canvas.Name}"/>
+				<TextBlock Text="{Binding Canvas.Description}"
 						   ScrollViewer.VerticalScrollBarVisibility="Visible"/>
 				<Button Content="Добавить версию"
 						Click="ButtonAddVersion_Click"/>
