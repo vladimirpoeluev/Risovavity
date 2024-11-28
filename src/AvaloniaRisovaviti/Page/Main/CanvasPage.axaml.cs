@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using AvaloniaRisovaviti.ViewModel;
+using MsBox.Avalonia;
 
 namespace AvaloniaRisovaviti;
 
@@ -19,18 +20,22 @@ public partial class CanvasPage : UserControl
         Content = new FormAddNewCanvas();
     }
 
-	private void ListBox_ContainerIndexChanged(object? sender, Avalonia.Controls.ContainerIndexChangedEventArgs e)
+	private void ListBox_ContainerIndexChanged(object? sender, ContainerIndexChangedEventArgs e)
     {
 		
 	}
 
-	private void ListBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+	private void ListBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
 	{
-		
+        try
+        {
+			Content = new CanvasInfoPage(_viewModel.SelectedCanvas.CanvasResult);
+		}
+        catch{}
 	}
 
-	private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+	private void Button_Click(object? sender, RoutedEventArgs e)
 	{
-		Content = new CanvasInfoPage(_viewModel.SelectedCanvas.CanvasResult);
+		
 	}
 }

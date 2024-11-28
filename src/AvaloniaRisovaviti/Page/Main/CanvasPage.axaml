@@ -22,8 +22,7 @@
 		<ListBox ItemsSource="{Binding Canvases}"
 				 Grid.Column="1"
 				 SelectionChanged="ListBox_SelectionChanged"
-				 SelectedValue="{Binding SelectedCanvas}"
-				 SelectedValueBinding="{Binding .}">
+				 SelectedValue="{Binding SelectedCanvas}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Button Click="Button_Click">
