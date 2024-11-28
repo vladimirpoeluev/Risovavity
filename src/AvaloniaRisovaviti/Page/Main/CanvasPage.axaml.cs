@@ -1,10 +1,6 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using AvaloniaRisovaviti.ViewModel;
-using DomainModel.ResultsRequest.Canvas;
-using MsBox.Avalonia;
-using System.Linq;
 
 namespace AvaloniaRisovaviti;
 
@@ -28,7 +24,12 @@ public partial class CanvasPage : UserControl
 		
 	}
 
-	private async void ListBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+	private void ListBox_SelectionChanged(object? sender, Avalonia.Controls.SelectionChangedEventArgs e)
+	{
+		
+	}
+
+	private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
 	{
 		Content = new CanvasInfoPage(_viewModel.SelectedCanvas.CanvasResult);
 	}

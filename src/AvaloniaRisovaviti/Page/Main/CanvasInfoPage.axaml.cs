@@ -14,7 +14,7 @@ public partial class CanvasInfoPage : UserControl
        
     }
 
-    public CanvasInfoPage(CanvasResult canvas) : base()
+    public CanvasInfoPage(CanvasResult canvas) : this()
     {
 		_viewModel = new CanvasInfoPageViewModel(canvas);
 	}

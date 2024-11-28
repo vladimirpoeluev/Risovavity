@@ -4,7 +4,6 @@ using DomainModel.ResultsRequest.Canvas;
 using InteractiveApiRisovaviti.CanvasOperate;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
