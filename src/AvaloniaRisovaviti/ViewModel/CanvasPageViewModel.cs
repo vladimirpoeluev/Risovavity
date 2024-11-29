@@ -1,3 +1,4 @@
+using Avalonia.Controls;
 using AvaloniaRisovaviti.Model;
 using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest.Canvas;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
@@ -51,9 +53,11 @@ namespace AvaloniaRisovaviti.ViewModel
                     ContentTitle = "Error",
                     Icon = MsBox.Avalonia.Enums.Icon.Error,
                 }).ShowAsync();
-
+               
             }
         }
+
+       
 
         async void InitCart()
         {

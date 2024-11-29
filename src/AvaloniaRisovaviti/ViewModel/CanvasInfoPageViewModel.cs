@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.IO;
 using Avalonia.Platform;
+using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel
 {
@@ -36,22 +37,23 @@ namespace AvaloniaRisovaviti.ViewModel
 		public CanvasInfoPageViewModel(CanvasResult canvasResult) : this()
 		{
 			Canvas = canvasResult;
+			OnPropertyChanged(nameof(Canvas));
 			LoadInfo();
 		}
 
-		void LoadInfo()
+		async void LoadInfo()
 		{
-			LoadCanvas();
-			LoadVersionProject();
+			await LoadCanvas();
+			await LoadVersionProject();
+			LoadImage();
 		}
 
-		async void LoadCanvas()
+		async Task LoadCanvas()
 		{
 			Canvas = await _getterCanvas.GetAsync(Canvas.Id);
-			OnPropertyChanged(nameof(Canvas));
 		}
 
-		async void LoadVersionProject()
+		async Task LoadVersionProject()
 		{
 			VersionProject = await _getterVersion.GetVersionProjectByIdAsync(Canvas.VersionId);
 			OnPropertyChanged(nameof(VersionProject));
@@ -61,6 +63,7 @@ namespace AvaloniaRisovaviti.ViewModel
 		{
 			ImageResult result = await _getterImage.GetImageResult(VersionProject.Id);
 			Image = new Bitmap(new MemoryStream(result.Image));
+			OnPropertyChanged(nameof(Image));
 		}
 
 		#region INotifyPropertyChanged Implementation

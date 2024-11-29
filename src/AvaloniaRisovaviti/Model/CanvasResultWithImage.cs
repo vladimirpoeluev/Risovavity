@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using InteractiveApiRisovaviti.CanvasOperate;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Avalonia.Controls;
 
 namespace AvaloniaRisovaviti.Model
 {
@@ -55,6 +56,15 @@ namespace AvaloniaRisovaviti.Model
             }
             return result;
         }
+
+		public void SelectCanvas(object? window)
+		{
+			if (window != null)
+			{
+                UserControl userControl = (UserControl) window;
+				userControl.Content = new CanvasInfoPage(CanvasResult);
+			}
+		}
 
 		#region INotifyPropertyChanged Implementation
 		public event PropertyChangedEventHandler? PropertyChanged;
