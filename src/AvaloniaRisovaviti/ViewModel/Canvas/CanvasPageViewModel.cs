@@ -12,9 +12,9 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace AvaloniaRisovaviti.ViewModel
+namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
-    public class CanvasPageViewModel: INotifyPropertyChanged
+    public class CanvasPageViewModel : INotifyPropertyChanged
     {
         IEnumerable<CanvasResultWithImage> _canvases;
         IGetterCanvas _getterCanvas;
@@ -33,22 +33,22 @@ namespace AvaloniaRisovaviti.ViewModel
 
         public CanvasPageViewModel()
         {
-			_getterCanvas = new GetterCanvasParseApi(Authentication.AuthenticationUser.User);
+            _getterCanvas = new GetterCanvasParseApi(Authentication.AuthenticationUser.User);
             _canvases = new List<CanvasResultWithImage>();
             countCart = 0;
             OnPropertyChanged(nameof(Canvases));
-			TryInitCart();
-		}
+            TryInitCart();
+        }
 
         public async void TryInitCart()
         {
             try
             {
                 await InitCart();
-			}
+            }
             catch
             {
-                await MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams() 
+                await MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams()
                 {
                     ContentMessage = "Что то пошло не так",
                     ContentTitle = "Error",
@@ -57,15 +57,15 @@ namespace AvaloniaRisovaviti.ViewModel
             }
         }
 
-       
+
 
         async Task InitCart()
         {
-		    IEnumerable<CanvasResult> result = await _getterCanvas.GetAsync(countCart, stepLoad);
+            IEnumerable<CanvasResult> result = await _getterCanvas.GetAsync(countCart, stepLoad);
             _canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result));
             countCart += stepLoad;
-			OnPropertyChanged(nameof(Canvases));
-		}
+            OnPropertyChanged(nameof(Canvases));
+        }
 
 
         #region INotifyPropertyChanged Implementation

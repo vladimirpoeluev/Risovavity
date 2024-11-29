@@ -1,8 +1,8 @@
 using Avalonia.Interactivity;
 using Avalonia.Controls;
-using AvaloniaRisovaviti.ViewModel;
 using InteractiveApiRisovaviti;
 using System;
+using AvaloniaRisovaviti.ViewModel.Main;
 
 namespace AvaloniaRisovaviti;
 

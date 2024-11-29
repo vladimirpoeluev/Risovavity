@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.RegistrationPage"
-			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel"
+			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Main"
 			 xmlns:md="https://github.com/whistyun/Markdown.Avalonia"
 			 x:DataType="vm:RegistrationPageViewModel">
 	<Design.DataContext>

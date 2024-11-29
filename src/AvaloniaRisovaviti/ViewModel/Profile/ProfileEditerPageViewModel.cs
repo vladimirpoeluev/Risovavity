@@ -8,13 +8,13 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Security.Principal;
 
-namespace AvaloniaRisovaviti.ViewModel
+namespace AvaloniaRisovaviti.ViewModel.Profile
 {
-    internal class ProfileEditerPageViewModel: INotifyPropertyChanged
+    internal class ProfileEditerPageViewModel : INotifyPropertyChanged
     {
         IImage _image;
         public UserResult UserResult { get; set; } = new UserResult();
-        public IImage Image 
+        public IImage Image
         {
             get => _image;
             set
@@ -26,30 +26,30 @@ namespace AvaloniaRisovaviti.ViewModel
 
         public ProfileEditerPageViewModel()
         {
-			Image = new Avalonia.Media.Imaging.Bitmap("Accets/icoUser.png");
+            Image = new Avalonia.Media.Imaging.Bitmap("Accets/icoUser.png");
             InitUserProfile();
         }
 
         public void InitUserProfile()
         {
-			try
-			{
-				Profile profile = new Profile(Authentication.AuthenticationUser.User);
-				ProfileSetterImage setterImage = new ProfileSetterImage(profile);
-				UserResult = profile.ProfileUser;
-				Image = setterImage.UpdateImage();
-			}
-			catch (Exception)
-			{
-				UserResult = new UserResult()
-				{
-					Name = "Пользователь не опознан",
-					Email = "Данные неопознаны",
-					IdRoleNavigation = new RoleResult() { Name = "Роль не опознана" }
-				};
+            try
+            {
+				InteractiveApiRisovaviti.Profile profile = new(Authentication.AuthenticationUser.User);
+                ProfileSetterImage setterImage = new ProfileSetterImage(profile);
+                UserResult = profile.ProfileUser;
+                Image = setterImage.UpdateImage();
+            }
+            catch (Exception)
+            {
+                UserResult = new UserResult()
+                {
+                    Name = "Пользователь не опознан",
+                    Email = "Данные неопознаны",
+                    IdRoleNavigation = new RoleResult() { Name = "Роль не опознана" }
+                };
 
-			}
-		}
+            }
+        }
 
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler? PropertyChanged;

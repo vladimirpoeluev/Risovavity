@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace AvaloniaRisovaviti.ViewModel
+namespace AvaloniaRisovaviti.ViewModel.Main
 {
-    internal class EntrancePageViewModel: INotifyPropertyChanged
+    internal class EntrancePageViewModel : INotifyPropertyChanged
     {
-		string _error = String.Empty;
+        string _error = string.Empty;
         public string Login { get; set; }
         public string Password { get; set; }
-        public string Error 
-        { 
-            get 
+        public string Error
+        {
+            get
             {
                 return _error;
-            } 
-            set 
+            }
+            set
             {
                 _error = value;
                 OnPropertyChanged(nameof(Error));
-            } 
+            }
         }
 
-        public EntrancePageViewModel() 
+        public EntrancePageViewModel()
         {
             Login = string.Empty;
             Password = string.Empty;

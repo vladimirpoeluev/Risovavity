@@ -3,7 +3,7 @@ using Avalonia.Dialogs;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
 using AvaloniaRisovaviti.ProfileShows;
-using AvaloniaRisovaviti.ViewModel;
+using AvaloniaRisovaviti.ViewModel.Profile;
 using InteractiveApiRisovaviti;
 
 namespace AvaloniaRisovaviti;

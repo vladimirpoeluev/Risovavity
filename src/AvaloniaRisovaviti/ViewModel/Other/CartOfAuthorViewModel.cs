@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace AvaloniaRisovaviti.ViewModel
+namespace AvaloniaRisovaviti.ViewModel.Other
 {
     public class CartOfAuthorViewModel : INotifyPropertyChanged
     {

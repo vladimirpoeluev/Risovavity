@@ -4,21 +4,21 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace AvaloniaRisovaviti.ViewModel
+namespace AvaloniaRisovaviti.ViewModel.Main
 {
-    internal class RegistrationPageViewModel: INotifyPropertyChanged
+    internal class RegistrationPageViewModel : INotifyPropertyChanged
     {
         string _error;
         public RegistrationForm RegistrationForm { get; set; }
         public string RepeatPassword { get; set; }
-		public string Error 
+        public string Error
         {
             get => _error;
             set
             {
                 _error = value;
                 OnPropertyChanged(nameof(Error));
-            } 
+            }
         }
 
         public RegistrationPageViewModel()

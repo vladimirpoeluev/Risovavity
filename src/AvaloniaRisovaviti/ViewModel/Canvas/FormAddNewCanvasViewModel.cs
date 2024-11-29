@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 using System.IO;
 using Avalonia.Platform;
 
-namespace AvaloniaRisovaviti.ViewModel
+namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
-    internal class FormAddNewCanvasViewModel: INotifyPropertyChanged
+    internal class FormAddNewCanvasViewModel : INotifyPropertyChanged
     {
         public CanvasAddResult CanvasResult { get; set; }
         private IAdderCanvas _adderCanvas;
         private IImage _image = new Bitmap(AssetLoader.Open(new System.Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
-        public IImage ImageData { 
+        public IImage ImageData
+        {
             get
             {
                 return _image;
@@ -35,10 +36,10 @@ namespace AvaloniaRisovaviti.ViewModel
 
         public void SetImage(byte[] bytes)
         {
-			CanvasResult.VersionProject.Image = bytes;
+            CanvasResult.VersionProject.Image = bytes;
             _image = new Bitmap(new MemoryStream(CanvasResult.VersionProject.Image));
             OnPropertyChanged(nameof(ImageData));
-		}
+        }
 
         public async Task AddCanvas()
         {

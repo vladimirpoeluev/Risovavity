@@ -8,7 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
-namespace AvaloniaRisovaviti.ViewModel
+namespace AvaloniaRisovaviti.ViewModel.Author
 {
     internal class AuthorViewModel : INotifyPropertyChanged
     {
@@ -34,12 +34,12 @@ namespace AvaloniaRisovaviti.ViewModel
                 OnPropertyChanged(nameof(IsCart));
                 return;
             }
-                
+
             var listNewAuthorForShow = AuthorResultImage.ConvertAuthorResult(listNewAuthors);
             Authors = Authors.Concat(listNewAuthorForShow);
             OnPropertyChanged(nameof(Authors));
-			IsCart = true;
-		}
+            IsCart = true;
+        }
 
         private async Task<IEnumerable<AuthorResult>> GetAuthors()
         {

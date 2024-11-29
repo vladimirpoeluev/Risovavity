@@ -1,7 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Platform;
 using Avalonia.Interactivity;
-using AvaloniaRisovaviti.ViewModel;
+using AvaloniaRisovaviti.ViewModel.Canvas;
 
 namespace AvaloniaRisovaviti;
 

@@ -2,8 +2,8 @@ using Avalonia.Controls;
 using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti.Interface;
 using InteractiveApiRisovaviti;
-using AvaloniaRisovaviti.ViewModel;
 using Avalonia.Interactivity;
+using AvaloniaRisovaviti.ViewModel.Main;
 
 namespace AvaloniaRisovaviti
 {

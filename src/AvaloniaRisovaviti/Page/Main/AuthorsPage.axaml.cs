@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using AvaloniaRisovaviti.ViewModel;
+using AvaloniaRisovaviti.ViewModel.Author;
 
 namespace AvaloniaRisovaviti;
 

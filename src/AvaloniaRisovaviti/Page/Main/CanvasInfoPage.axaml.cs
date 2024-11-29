@@ -1,5 +1,5 @@
 using Avalonia.Controls;
-using AvaloniaRisovaviti.ViewModel;
+using AvaloniaRisovaviti.ViewModel.Canvas;
 using DomainModel.ResultsRequest.Canvas;
 
 namespace AvaloniaRisovaviti;

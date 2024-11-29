@@ -5,7 +5,7 @@
 			 xmlns:local="using:AvaloniaRisovaviti"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.MainPage"
-			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel"
+			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Main"
 			 x:DataType="vm:MainPageViewModel">
 	<UserControl.Styles>
 		<StyleInclude Source="avares://AvaloniaRisovaviti/Styles.axaml"/>

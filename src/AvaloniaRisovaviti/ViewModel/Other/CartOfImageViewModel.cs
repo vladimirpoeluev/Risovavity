@@ -2,13 +2,13 @@ using DomainModel.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace AvaloniaRisovaviti.ViewModel
+namespace AvaloniaRisovaviti.ViewModel.Other
 {
-    internal class CartOfImageViewModel: INotifyPropertyChanged
+    internal class CartOfImageViewModel : INotifyPropertyChanged
     {
         public InteractiveCanvas InteractiveCanvas { get; set; }
 
-        public CartOfImageViewModel(InteractiveCanvas canvas) 
+        public CartOfImageViewModel(InteractiveCanvas canvas)
         {
             InteractiveCanvas = canvas;
         }
