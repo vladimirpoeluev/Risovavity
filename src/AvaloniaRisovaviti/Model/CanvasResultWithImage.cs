@@ -9,6 +9,7 @@ using InteractiveApiRisovaviti.CanvasOperate;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Avalonia.Controls;
+using System.Linq;
 
 namespace AvaloniaRisovaviti.Model
 {
@@ -49,12 +50,7 @@ namespace AvaloniaRisovaviti.Model
 
         public static IEnumerable<CanvasResultWithImage> CanvasResultWithImageFromCanvasResult(IEnumerable<CanvasResult> objects)
         {
-            var result = new List<CanvasResultWithImage>();
-            foreach (var obj in objects) 
-            {
-                result.Add(new CanvasResultWithImage(obj));
-            }
-            return result;
+            return objects.Select(entity => new CanvasResultWithImage(entity));
         }
 
 		public void SelectCanvas(object? window)

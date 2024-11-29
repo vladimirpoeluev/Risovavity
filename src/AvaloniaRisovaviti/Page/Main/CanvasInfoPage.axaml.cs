@@ -11,6 +11,7 @@ public partial class CanvasInfoPage : UserControl
     {
         InitializeComponent();
         _viewModel = new CanvasInfoPageViewModel();
+        DataContext = _viewModel;
     }
 
     public CanvasInfoPage(CanvasResult canvas) : this()

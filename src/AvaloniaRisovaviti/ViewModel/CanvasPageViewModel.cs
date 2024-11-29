@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace AvaloniaRisovaviti.ViewModel
@@ -35,36 +36,35 @@ namespace AvaloniaRisovaviti.ViewModel
 			_getterCanvas = new GetterCanvasParseApi(Authentication.AuthenticationUser.User);
             _canvases = new List<CanvasResultWithImage>();
             countCart = 0;
-			InitCart();
+            OnPropertyChanged(nameof(Canvases));
+			TryInitCart();
 		}
 
-        public void TryInitCart()
+        public async void TryInitCart()
         {
             try
             {
-                InitCart();
-				
+                await InitCart();
 			}
             catch
             {
-                MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams() 
+                await MessageBoxManager.GetMessageBoxStandard(new MessageBoxStandardParams() 
                 {
                     ContentMessage = "Что то пошло не так",
                     ContentTitle = "Error",
                     Icon = MsBox.Avalonia.Enums.Icon.Error,
                 }).ShowAsync();
-               
             }
         }
 
        
 
-        async void InitCart()
+        async Task InitCart()
         {
 		    IEnumerable<CanvasResult> result = await _getterCanvas.GetAsync(countCart, stepLoad);
             _canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result));
-			OnPropertyChanged(nameof(Canvases));
             countCart += stepLoad;
+			OnPropertyChanged(nameof(Canvases));
 		}
 
 
