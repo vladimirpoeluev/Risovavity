@@ -7,7 +7,7 @@ namespace AvaloniaRisovaviti.ViewModel.Fake
 {
 	internal class FakeCanvasInfoPageViewModel : CanvasInfoPageViewModel
 	{
-		public FakeCanvasInfoPageViewModel()
+		public FakeCanvasInfoPageViewModel() : base()
 		{
 			this.Canvas = new CanvasResult() 
 			{

@@ -8,9 +8,6 @@ using System.IO;
 using Avalonia.Platform;
 using System.Threading.Tasks;
 using ReactiveUI.Fody.Helpers;
-using System.Threading;
-using System.Globalization;
-using ReactiveUI;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
@@ -57,7 +54,6 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         async Task LoadVersionProject()
         {
             VersionProject = await _getterVersion.GetVersionProjectByIdAsync(Canvas.VersionId);
-            Title = VersionProject.Description;
         }
 
         async Task LoadImage()

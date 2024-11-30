@@ -15,7 +15,6 @@
 	<Grid ColumnDefinitions="*,*">
 		<Grid Grid.Column="0"
 			  RowDefinitions="2.5*,*">
-			<TextBlock Text="{Binding Title}"/>
 			<Image Source="{Binding Image}"
 				   Grid.Row="0"/>
 			<StackPanel Grid.Row="1">
