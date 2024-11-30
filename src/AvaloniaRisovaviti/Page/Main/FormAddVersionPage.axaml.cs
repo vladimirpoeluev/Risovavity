@@ -10,9 +10,9 @@ public partial class FormAddVersionPage : UserControl
         InitializeComponent();
     }
 
-    public FormAddVersionPage(VersionProjectResult version) : base()
+    public FormAddVersionPage(VersionProjectResult version) : this()
     {
-
+        
     }
 
 	private void AddVersionClick_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
