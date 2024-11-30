@@ -23,6 +23,7 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.2.2" />
     <PackageReference Include="Markdown.Avalonia" Version="11.0.2" />
     <PackageReference Include="Markdown.Avalonia.Tight" Version="11.0.2" />
+    <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
   </ItemGroup>
 
   <ItemGroup>
@@ -50,9 +51,5 @@
     <None Update="Accets\icoUser.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ViewModel\Fake\" />
   </ItemGroup>
 </Project>

@@ -17,6 +17,7 @@ public partial class CanvasInfoPage : UserControl
     public CanvasInfoPage(CanvasResult canvas) : this()
     {
 		_viewModel = new CanvasInfoPageViewModel(canvas);
+		DataContext = _viewModel;
 	}
 
 	private void ButtonAddVersion_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

@@ -10,7 +10,7 @@
 		<vm:CanvasPageViewModel/>
 	</Design.DataContext>
 	
-	<Grid HorizontalAlignment="Center" 
+	<Grid HorizontalAlignment="Stretch" 
 		  ColumnDefinitions="auto,*">
 		<Button Grid.Column="0"
 				Click="NavAddCanvas_Click"
