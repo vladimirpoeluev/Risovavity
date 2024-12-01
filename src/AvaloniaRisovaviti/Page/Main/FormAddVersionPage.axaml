@@ -2,12 +2,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaloniaRisovaviti.FormAddVersionPage">
+             xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
+			 xmlns:fvm="using:AvaloniaRisovaviti.ViewModel.Fake"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaRisovaviti.FormAddVersionPage"
+			 x:DataType="vm:FormAddVersionViewModel">
+	<Design.DataContext>
+		<fvm:FakeCanvasInfoPageViewModel/>
+	</Design.DataContext>
 	<Grid ColumnDefinitions="*,*"
 		  RowDefinitions="auto,*">
 		<StackPanel>
-			<TextBlock Text="Текущая версия"/>
+			<TextBlock Text="Старая версия"/>
 		</StackPanel>
 		<StackPanel Grid.Column="1">
 			<TextBlock Text="Новая версия"/>
@@ -16,8 +22,8 @@
 			  RowDefinitions="2*,*">
 			<Image Source="avares://AvaloniaRisovaviti/Accets/placeholder.png"/>
 			<StackPanel Grid.Row="1">
-				<TextBlock Text="Название"/>
-				<TextBlock Text="Описание"/>
+				<TextBlock Text="{Binding ProjectResult.Name}"/>
+				<TextBlock Text="{Binding ProjectResult.Description}"/>
 			</StackPanel>
 		</Grid>
 		<Grid Grid.Column="1"
