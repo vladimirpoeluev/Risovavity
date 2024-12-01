@@ -1,18 +1,23 @@
-using Avalonia.Controls;
+using Avalonia.ReactiveUI;
+using AvaloniaRisovaviti.ViewModel.Canvas;
 using DomainModel.ResultsRequest.Canvas;
 
 namespace AvaloniaRisovaviti;
 
-public partial class FormAddVersionPage : UserControl
+internal partial class FormAddVersionPage : ReactiveUserControl<FormAddVersionViewModel>
 {
+    private FormAddVersionViewModel _viewModel;
+
     public FormAddVersionPage()
     {
         InitializeComponent();
+        _viewModel = new FormAddVersionViewModel();
+        DataContext = _viewModel;
     }
 
     public FormAddVersionPage(VersionProjectResult version) : this()
     {
-        
+        _viewModel = new FormAddVersionViewModel(version);
     }
 
 	private void AddVersionClick_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
