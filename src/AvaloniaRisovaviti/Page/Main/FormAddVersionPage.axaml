@@ -20,7 +20,7 @@
 		</StackPanel>
 		<Grid Grid.Row="1"
 			  RowDefinitions="2*,*">
-			<Image Source="avares://AvaloniaRisovaviti/Accets/placeholder.png"/>
+			<Image Source="{Binding ImageOldProjectReasult}"/>
 			<StackPanel Grid.Row="1">
 				<TextBlock Text="{Binding ProjectResult.Name}"/>
 				<TextBlock Text="{Binding ProjectResult.Description}"/>
@@ -29,13 +29,16 @@
 		<Grid Grid.Column="1"
 			  Grid.Row="1"
 			  RowDefinitions="2*,*">
-			<Image Source="avares://AvaloniaRisovaviti/Accets/placeholder.png"/>
+			<Image Source="{Binding NewImageProjectResult}"/>
 			<StackPanel Grid.Row="1">
-				<TextBlock Text="Название"/>
-				<TextBox/>
+				<TextBlock Text="Наименование"/>
+				<TextBox Watermark="Коротко об ващем улучшении..."
+						 Text="{Binding NewProjectResult.Name}"/>
 				<TextBlock Text="Описание"/>
 				<TextBox TextWrapping="Wrap"
-						 ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+						 Text="{Binding NewProjectResult.Description}"
+						 ScrollViewer.VerticalScrollBarVisibility="Visible"
+						 Watermark="Опишите подробнее ваще изменение..."/>
 				<Button Content="Добавить версию"
 						HorizontalAlignment="Center"
 						Click="AddVersionClick_Click"/>

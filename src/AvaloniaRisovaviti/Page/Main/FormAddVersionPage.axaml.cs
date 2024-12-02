@@ -18,6 +18,7 @@ internal partial class FormAddVersionPage : ReactiveUserControl<FormAddVersionVi
     public FormAddVersionPage(VersionProjectResult version) : this()
     {
         _viewModel = new FormAddVersionViewModel(version);
+        DataContext = _viewModel;
     }
 
 	private void AddVersionClick_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
