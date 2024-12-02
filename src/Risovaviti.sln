@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaRisovaviti", "AvaloniaRisovaviti\AvaloniaRisovaviti.csproj", "{48FDBF4F-E6B5-43AE-876A-D0942E0B9F18}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{1E16E15F-CC4F-4229-8CD2-07040D776569}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{1E16E15F-CC4F-4229-8CD2-07040D776569}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{D46723B9-A598-47F5-B899-BFF62D308EE6}"
 EndProject

@@ -1,6 +1,5 @@
 ﻿using InteractiveApiRisovaviti.Interface;
 using InteractiveApiRisovaviti.HttpIntegration;
-using InteractiveApiRisovaviti.ControllerIntegration;
 using InteractiveApiRisovaviti.ControllerIntegration.EntranceController;
 
 namespace InteractiveApiRisovaviti
@@ -13,7 +12,6 @@ namespace InteractiveApiRisovaviti
 			{
 				IEntranceControllerIntegration entranceController = new EntranceControllerPost(AuthenticationUser.NotAuthenticationUser);
 				var code = entranceController.EntranceSystem(login, password);
-				
 				return new AuthenticationUser(code);
 			}
 			catch (Exception ex)
