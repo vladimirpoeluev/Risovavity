@@ -2,6 +2,8 @@ using Avalonia.Controls;
 using Avalonia.ReactiveUI;
 using AvaloniaRisovaviti.ViewModel.Canvas;
 using DomainModel.ResultsRequest.Canvas;
+using System;
+using System.IO;
 
 namespace AvaloniaRisovaviti;
 
@@ -39,8 +41,10 @@ internal partial class FormAddVersionPage : ReactiveUserControl<FormAddVersionVi
 
         if (files.Count > 0)
         {
-            var stream = await files[0].OpenReadAsync();
-            _viewModel.SetImage(stream);
+            string path = files[0].Path.ToString();
+            path = path.Substring(8);
+           
+			_viewModel.SetImage(path);
         }
     }
 }

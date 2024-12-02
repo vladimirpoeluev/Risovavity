@@ -28,7 +28,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		[Reactive] public string Error { get; set; } = string.Empty;
 
-		private Stream Stream { get; set; }
+		private string Path { get; set; }
 
 		IGetterVersionProject _getterVersion;
 		IGetterImageProject _getterImageProject;
@@ -63,17 +63,17 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			ImageOldProjectReasult = ImageAvaloniaConverter.ConvertByteInImage(result.Image);
 		}
 
-		public void SetImage(Stream stream)
+		public void SetImage(string path)
 		{
-			NewImageProjectResult = new Bitmap(stream);
-			Stream = stream;
+			NewImageProjectResult = new Bitmap(path);
+			Path = path;
 		}
 
 		public async Task AddVersion()
 		{
 			try
 			{
-				byte[] image = ImageAvaloniaConverter.ConvertImageInByte(Stream);
+				byte[] image = ImageAvaloniaConverter.ConvertImageInByte(new StreamReader(Path).BaseStream);
 				await _adderVersion.AddVertionProjectAsync(new VersionProjectForAddResult()
 				{
 					Image = image,
