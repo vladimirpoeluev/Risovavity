@@ -1,3 +1,4 @@
+using Avalonia.Controls;
 using Avalonia.ReactiveUI;
 using AvaloniaRisovaviti.ViewModel.Canvas;
 using DomainModel.ResultsRequest.Canvas;
@@ -25,4 +26,21 @@ internal partial class FormAddVersionPage : ReactiveUserControl<FormAddVersionVi
 	{
         
 	}
+
+    private async void SelectImage_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        TopLevel top = TopLevel.GetTopLevel(this);
+
+        var files = await top.StorageProvider.OpenFilePickerAsync(new Avalonia.Platform.Storage.FilePickerOpenOptions
+        {
+            Title = "Выберите графический проект",
+            AllowMultiple = false
+        });
+
+        if (files.Count > 0)
+        {
+            var stream = await files[0].OpenReadAsync();
+            _viewModel.SetImage(stream);
+        }
+    }
 }

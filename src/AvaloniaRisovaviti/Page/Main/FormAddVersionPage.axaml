@@ -31,6 +31,8 @@
 			  RowDefinitions="2*,*">
 			<Image Source="{Binding NewImageProjectResult}"/>
 			<StackPanel Grid.Row="1">
+				<Button Content="Выбрать изображение"
+						Click="SelectImage_Click"/>
 				<TextBlock Text="Наименование"/>
 				<TextBox Watermark="Коротко об ващем улучшении..."
 						 Text="{Binding NewProjectResult.Name}"/>
@@ -41,7 +43,8 @@
 						 Watermark="Опишите подробнее ваще изменение..."/>
 				<Button Content="Добавить версию"
 						HorizontalAlignment="Center"
-						Click="AddVersionClick_Click"/>
+						Click="AddVersionClick_Click"
+						Command="{Binding AddVersion}"/>
 			</StackPanel>
 		</Grid>
 	</Grid>
