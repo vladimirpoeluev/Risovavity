@@ -2,13 +2,14 @@
 using DataIntegration.Model;
 using DomainModel.Integration.CanvasOperation;
 using Logic.CanvasLogic.VersionProjectOperate;
+using Logic.Interface;
 
 namespace Logic.CanvasLogic
 {
-	public class BuilderGetterVerionsByParent
+    public class BuilderGetterVerionsByParent : IBuilderGetterVerionsByParent
 	{
 		private GetterVersionsByParent _getterVesionsByParent;
-		public BuilderGetterVerionsByParent(DatabaseContext databaseContext) 
+		public BuilderGetterVerionsByParent(DatabaseContext databaseContext)
 		{
 			_getterVesionsByParent = new GetterVersionsByParent(databaseContext);
 		}
