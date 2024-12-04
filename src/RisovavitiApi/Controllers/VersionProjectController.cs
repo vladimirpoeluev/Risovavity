@@ -45,6 +45,13 @@ namespace RisovavitiApi.Controllers
 			return Ok(versions);
 		}
 
+		[HttpGet("get/versions/{id}")]
+		public async Task<IActionResult> GetVersion(int id)
+		{
+			var result = await Task.FromResult((IActionResult)NotFound());
+			return result;
+		}
+
 		[HttpPost("add")]
 		public async Task<IActionResult> Add([FromBody] VersionProjectForAddResult result)
 		{
@@ -60,5 +67,7 @@ namespace RisovavitiApi.Controllers
 			await adder.DeleteVertionProjectAsync(id);
 			return Ok();
 		}
+
+		
 	}
 }
