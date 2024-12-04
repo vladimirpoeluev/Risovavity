@@ -20,9 +20,9 @@ namespace Logic.CanvasLogic
 		}
 		public async Task<IEnumerable<VersionProjectResult>> GetVersionsByParent(VersionProjectResult parent)
 		{
-			IEnumerable<VersionProjectResult> result = await DatabaseContext.VersionsProjects
+			return await DatabaseContext.VersionsProjects
 					.Where(x => x.ParentOfVersion.Id == parent.Id)
-					.Select(x => new VersionProjectResult(x))
+					.Select(x => x.ToResult())
 					.Skip(Skip).Take(Take)
 					.ToListAsync();
 		}
