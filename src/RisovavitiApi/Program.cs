@@ -84,6 +84,7 @@ builder.Services.AddTransient<IPasswordEditer, PasswordEditer>((h) => new Passwo
 builder.Services.AddTransient<IFabricCanvasOperation, FabricCanvasOperation>((h) => new FabricCanvasOperation(new DatabaseContext()));
 builder.Services.AddTransient<IFabricOperateVersionProject, FabricVersionProjecOperate>(h => new FabricVersionProjecOperate(new DatabaseContext()));
 builder.Services.AddTransient<IGetterImageProject, GetterImageProject>(h => new GetterImageProject(new DatabaseContext()));
+builder.Services.AddTransient<IBuilderGetterVerionsByParent, BuilderGetterVerionsByParent>(h => new BuilderGetterVerionsByParent(new DatabaseContext()));
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 

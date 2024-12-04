@@ -11,10 +11,12 @@ namespace RisovavitiApi.Controllers
 	public class VersionProjectController : Controller
 	{
 		IFabricOperateVersionProject _operate;
+		IBuilderGetterVerionsByParent _builder;
 
-		public VersionProjectController(IFabricOperateVersionProject operate) 
+		public VersionProjectController(IFabricOperateVersionProject operate, IBuilderGetterVerionsByParent getterVerionsByParent) 
 		{
 			_operate = operate;
+			_builder = getterVerionsByParent;
 		}
 
 		[HttpGet("get/{id}")]
@@ -46,10 +48,15 @@ namespace RisovavitiApi.Controllers
 		}
 
 		[HttpGet("get/versions/{id}")]
-		public async Task<IActionResult> GetVersion(int id)
+		public async Task<IActionResult> GetVersion(int id, int skip, int take)
 		{
-			var result = await Task.FromResult((IActionResult)NotFound());
-			return result;
+			VersionProjectResult project = await _operate
+				.CreateGetter(UserGetterByContext.GetUserIntegration(HttpContext))
+				.GetVersionProjectByIdAsync(id);
+			IEnumerable<VersionProjectResult> result = await _builder.Skip(skip)
+				.Take(take).ToGetter()
+				.GetVersionsByParent(project);
+			return Ok(result);
 		}
 
 		[HttpPost("add")]
