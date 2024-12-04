@@ -5,6 +5,6 @@ namespace DomainModel.Integration.CanvasOperation
 {
 	public interface IGetterVersionByParentVersion
 	{
-		IEnumerable<VersionProjectResult> GetVersionsByParent(int idParent);
+		Task<IEnumerable<VersionProjectResult>> GetVersionsByParent(VersionProjectResult parent);
 	}
 }
