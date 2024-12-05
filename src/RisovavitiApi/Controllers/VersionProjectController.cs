@@ -1,5 +1,4 @@
-﻿using DomainModel.Integration.CanvasOperation;
-using DomainModel.ResultsRequest.Canvas;
+﻿using DomainModel.ResultsRequest.Canvas;
 using Logic.Interface;
 using Microsoft.AspNetCore.Mvc;
 using RisovavitiApi.UserOperate;
