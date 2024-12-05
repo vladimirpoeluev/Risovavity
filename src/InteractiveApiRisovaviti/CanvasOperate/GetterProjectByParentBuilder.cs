@@ -3,7 +3,7 @@ using InteractiveApiRisovaviti.Interface;
 
 namespace InteractiveApiRisovaviti.CanvasOperate
 {
-	public class GetterProjectByParentBuilder
+    public class GetterProjectByParentBuilder : IGetterProjectByParentBuilder
 	{
 		GetterVersionProjectByParent _getterVersionsProjectByParent;
 		public GetterProjectByParentBuilder(IAuthenticationUser user)
