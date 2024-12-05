@@ -24,17 +24,10 @@
 						Click="ButtonAddVersion_Click"/>
 			</StackPanel>
 		</Grid>
-		<ListBox Grid.Column="1">
-			<ListBoxItem Height="150">
-				<Grid>
-					<Image Source="avares://MsBox.Avalonia/Assets/database.png"/>
-				</Grid>
-			</ListBoxItem>
-			<ListBoxItem>
-				<Grid Height="150">
-					<Image Source="avares://MsBox.Avalonia/Assets/database.png"/>
-				</Grid>
-			</ListBoxItem>
+		<ListBox Grid.Column="1"
+				 ItemsSource="{Binding Descendants}">
+			
+			
 		</ListBox>
 	</Grid>
 </UserControl>

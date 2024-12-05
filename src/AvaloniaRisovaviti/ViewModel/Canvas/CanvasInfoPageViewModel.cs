@@ -8,6 +8,13 @@ using System.IO;
 using Avalonia.Platform;
 using System.Threading.Tasks;
 using ReactiveUI.Fody.Helpers;
+using System.Collections.Generic;
+using AvaloniaRisovaviti.Model;
+using System.Collections.ObjectModel;
+using System.Linq;
+using DynamicData.Binding;
+using ReactiveUI;
+using System;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
@@ -19,10 +26,16 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         public VersionProjectResult VersionProject { get; set; } = new VersionProjectResult();
 		[Reactive]
         public IImage Image { get; set; }
+        [Reactive]
+        public IEnumerable<VersionProjectResultWithImage> Descendants { get; set; }
 
         IGetterVersionProject _getterVersion;
         IGetterCanvas _getterCanvas;
         IGetterImageProject _getterImage;
+        IGetterProjectByParentBuilder _getterDescendants;
+
+        int _skip = 0;
+        const int _take = 50;
 
         public CanvasInfoPageViewModel()
         {
@@ -31,6 +44,14 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             _getterVersion = new GetterVersionProject(user);
             _getterCanvas = new GetterCanvasParseApi(user);
             _getterImage = new GetterImageProject(user);
+            _getterDescendants = new GetterProjectByParentBuilder(user);
+            Descendants = new ObservableCollection<VersionProjectResultWithImage>();
+
+            this.WhenAnyValue(x => x.VersionProject).Subscribe(x =>
+            {
+                _skip = 0;
+                LoadInfo();
+            });
         }
 
         public CanvasInfoPageViewModel(CanvasResult canvasResult) : this()
@@ -60,6 +81,15 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         {
             ImageResult result = await _getterImage.GetImageResult(VersionProject.Id);
             Image = new Bitmap(new MemoryStream(result.Image));
+        }
+
+        public async Task LoadDescendans()
+        {
+            IEnumerable<VersionProjectResult> result = await _getterDescendants.SetSkip(_skip)
+                .SetTake(_take).Build().GetVersionsByParent(VersionProject);
+            IEnumerable<VersionProjectResultWithImage> parentsWithImage = result.Select(x => new VersionProjectResultWithImage(x));
+            _skip += _take;
+            Descendants = new ObservableCollection<VersionProjectResultWithImage>(parentsWithImage);
         }
 
     }
