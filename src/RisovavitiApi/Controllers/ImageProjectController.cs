@@ -1,11 +1,13 @@
 ﻿using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest.Canvas;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RisovavitiApi.Controllers
 {
 	[ApiController]
 	[Route("api/[controller]")]
+	[Authorize]
 	public class ImageProjectController : Controller
 	{
 		IGetterImageProject _getterImage;

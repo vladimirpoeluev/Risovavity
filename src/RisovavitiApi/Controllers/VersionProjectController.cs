@@ -1,5 +1,6 @@
 ﻿using DomainModel.ResultsRequest.Canvas;
 using Logic.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RisovavitiApi.UserOperate;
 
@@ -7,6 +8,7 @@ namespace RisovavitiApi.Controllers
 {
 	[ApiController]
 	[Route("api/[controller]")]
+	[Authorize]
 	public class VersionProjectController : Controller
 	{
 		IFabricOperateVersionProject _operate;

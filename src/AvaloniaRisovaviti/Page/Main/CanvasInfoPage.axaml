@@ -26,7 +26,15 @@
 		</Grid>
 		<ListBox Grid.Column="1"
 				 ItemsSource="{Binding Descendants}">
-			
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid>
+						<Image Source="{Binding Image}"
+							   Width="100"/>
+						<TextBlock Text="{Binding VersionProjectResult.Name}"/>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
 			
 		</ListBox>
 	</Grid>
