@@ -5,14 +5,16 @@
 	using System.IO;
 
 	/// <summary>
-	/// Defines the <see cref="ImageAvaloniaConverter" />
+	/// Преобразование изображений Avalonia<see cref="ImageAvaloniaConverter" />
 	/// </summary>
 	internal static class ImageAvaloniaConverter
 	{
+		public static Bitmap BreakImage { get; set; } = new Bitmap(AssetLoader.Open(new System.Uri("avares://AvaloniaRisovaviti/Accets/breakImage.png")));
+
 		/// <summary>
-		/// The ConvertImageInByte
+		/// Преобразование изображения в байты
 		/// </summary>
-		/// <param name="stream">The stream<see cref="Stream"/></param>
+		/// <param name="stream">Поток данных<see cref="Stream"/></param>
 		/// <returns>The <see cref="byte[]"/></returns>
 		public static byte[] ConvertImageInByte(Stream stream)
 		{
@@ -24,22 +26,22 @@
 		}
 
 		/// <summary>
-		/// The ConvertByteInImage
+		/// Преобразование байт в изображение Avalonia
 		/// </summary>
 		/// <param name="bytes">The bytes<see cref="byte[]"/></param>
 		/// <returns>The <see cref="Avalonia.Media.Imaging.Bitmap"/></returns>
-		public static Avalonia.Media.Imaging.Bitmap ConvertByteInImage(byte[] bytes)
+		public static Bitmap ConvertByteInImage(byte[] bytes)
 		{
 			try
 			{
 				using (MemoryStream memory = new MemoryStream(bytes))
 				{
-					return new Avalonia.Media.Imaging.Bitmap(memory);
+					return new Bitmap(memory);
 				}
 			}
 			catch
 			{
-				return new Bitmap(AssetLoader.Open(new System.Uri("avares://AvaloniaRisovaviti/Accets/breakImage.png")));
+				return BreakImage;
 			}
 		}
 	}
