@@ -23,12 +23,20 @@ public class VersionProjectResultWithImage : ReactiveObject
 	{
 		VersionProjectResult = versionProject;
 		_getterImage = new GetterImageProject(Authentication.AuthenticationUser.User);
-		Image = new Bitmap(AssetLoader.Open(new System.Uri("avares:\\AvaloniaRisovaviti\\Accets\\placeholder.png")));
+		Image = new Bitmap(AssetLoader.Open(new System.Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
+		LoadImage();
 	}
 
 	async void LoadImage()
 	{
-		ImageResult result = await _getterImage.GetImageResult(VersionProjectResult.Id);
-		Image = ImageAvaloniaConverter.ConvertByteInImage(result.Image);
+		try
+		{
+			ImageResult result = await _getterImage.GetImageResult(VersionProjectResult.Id);
+			Image = ImageAvaloniaConverter.ConvertByteInImage(result.Image);
+		}
+		catch
+		{
+			Image = new Bitmap(AssetLoader.Open(new System.Uri("avares://AvaloniaRisovaviti/Accets/breakImage.png")));
+		}
 	}
 }

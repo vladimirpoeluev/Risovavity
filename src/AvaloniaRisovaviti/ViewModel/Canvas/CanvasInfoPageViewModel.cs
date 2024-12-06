@@ -22,9 +22,9 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
     {
         [Reactive]
         public CanvasResult Canvas { get; set; } = new CanvasResult();
-		[Reactive]
+        [Reactive]
         public VersionProjectResult VersionProject { get; set; } = new VersionProjectResult();
-		[Reactive]
+        [Reactive]
         public IImage Image { get; set; }
         [Reactive]
         public IEnumerable<VersionProjectResultWithImage> Descendants { get; set; }
@@ -39,19 +39,13 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
         public CanvasInfoPageViewModel()
         {
-            Image = new Bitmap(AssetLoader.Open(new System.Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
+            Image = new Bitmap(AssetLoader.Open(new Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
             IAuthenticationUser user = Authentication.AuthenticationUser.User;
             _getterVersion = new GetterVersionProject(user);
             _getterCanvas = new GetterCanvasParseApi(user);
             _getterImage = new GetterImageProject(user);
             _getterDescendants = new GetterProjectByParentBuilder(user);
             Descendants = new ObservableCollection<VersionProjectResultWithImage>();
-
-            this.WhenAnyValue(x => x.VersionProject).Subscribe(x =>
-            {
-                _skip = 0;
-                LoadInfo();
-            });
         }
 
         public CanvasInfoPageViewModel(CanvasResult canvasResult) : this()
@@ -60,11 +54,21 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             LoadInfo();
         }
 
+        public async void SetVersion(VersionProjectResult value)
+        {
+            _skip = 0;
+            VersionProject = value;
+            await LoadVersionProject();
+            await LoadImage();
+            await LoadDescendans();
+        }
+
         async void LoadInfo()
         {
             await LoadCanvas();
             await LoadVersionProject();
             await LoadImage();
+            await LoadDescendans();
         }
 
         async Task LoadCanvas()
@@ -74,7 +78,12 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
         async Task LoadVersionProject()
         {
-            VersionProject = await _getterVersion.GetVersionProjectByIdAsync(Canvas.VersionId);
+            await LoadVersionProject(Canvas.VersionId);
+        }
+
+        async Task LoadVersionProject(int idVerionsProject)
+        {
+            VersionProject = await _getterVersion.GetVersionProjectByIdAsync(idVerionsProject);
         }
 
         async Task LoadImage()
