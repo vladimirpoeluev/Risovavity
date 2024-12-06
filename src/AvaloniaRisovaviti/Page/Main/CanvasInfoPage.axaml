@@ -28,11 +28,14 @@
 				 ItemsSource="{Binding Descendants}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Grid>
-						<Image Source="{Binding Image}"
-							   Width="100"/>
-						<TextBlock Text="{Binding VersionProjectResult.Name}"/>
-					</Grid>
+					<Button CommandParameter="{Binding VersionProjectResult}"
+							Command="{Binding Path=$parent[UserControl].((vm:CanvasInfoPageViewModel)DataContext).SetVersion}">
+						<Grid>
+							<Image Source="{Binding Image}"
+								   Width="100"/>
+							<TextBlock Text="{Binding VersionProjectResult.Name}"/>
+						</Grid>
+					</Button>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 			

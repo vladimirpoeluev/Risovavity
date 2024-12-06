@@ -24,4 +24,8 @@ public partial class CanvasInfoPage : UserControl
 	{
         Content = new FormAddVersionPage(_viewModel.VersionProject);
 	}
+
+	private void Button_Click_1(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+	{
+	}
 }

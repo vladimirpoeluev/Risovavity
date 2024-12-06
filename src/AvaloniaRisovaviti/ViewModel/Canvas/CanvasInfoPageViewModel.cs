@@ -56,9 +56,11 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
         public async void SetVersion(VersionProjectResult value)
         {
+            if (value == null)
+                return;
             _skip = 0;
             VersionProject = value;
-            await LoadVersionProject();
+            await LoadVersionProject(value.Id);
             await LoadImage();
             await LoadDescendans();
         }
