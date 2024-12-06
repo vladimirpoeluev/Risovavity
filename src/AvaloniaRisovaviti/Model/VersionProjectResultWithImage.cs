@@ -29,14 +29,9 @@ public class VersionProjectResultWithImage : ReactiveObject
 
 	async void LoadImage()
 	{
-		try
-		{
-			ImageResult result = await _getterImage.GetImageResult(VersionProjectResult.Id);
-			Image = ImageAvaloniaConverter.ConvertByteInImage(result.Image);
-		}
-		catch
-		{
-			Image = new Bitmap(AssetLoader.Open(new System.Uri("avares://AvaloniaRisovaviti/Accets/breakImage.png")));
-		}
+		
+		ImageResult result = await _getterImage.GetImageResult(VersionProjectResult.Id);
+		Image = ImageAvaloniaConverter.ConvertByteInImage(result.Image);
+		
 	}
 }
