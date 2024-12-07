@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using InteractiveApiRisovaviti;
 using System;
 using AvaloniaRisovaviti.ViewModel.Main;
+using System.Net.Http;
 
 namespace AvaloniaRisovaviti;
 
@@ -22,6 +23,7 @@ public partial class EntrancePage : UserControl
         {
 			Entrance entrance = new Entrance();
 			Authentication.AuthenticationUser.User = entrance.IputSystem(viewModel.Login, viewModel.Password);
+            
 			this.Content = new MainPage();
 		}
         catch(Exception)

@@ -24,11 +24,21 @@ namespace AvaloniaRisovaviti.Cript
 			return Encoding.ASCII.GetString(stringEn);
 		}
 
+		public string Cryted(byte value)
+		{
+			throw new System.NotImplementedException();
+		}
+
 		public string Decryted(string value)
 		{
 			RSA rSA = RSA.Create();
 			rSA.KeySize = 32;
 			return Encoding.UTF8.GetString(rSA.Decrypt(Encoding.UTF8.GetBytes(value), RSAEncryptionPadding.Pkcs1));
+		}
+
+		public string Decryted(byte value)
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }

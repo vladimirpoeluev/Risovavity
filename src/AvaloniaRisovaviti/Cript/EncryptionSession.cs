@@ -5,6 +5,7 @@
 	using InteractiveApiRisovaviti.Interface;
 	using System;
 	using System.IO;
+	using System.Net.Http;
 	using System.Security.Cryptography;
 	using System.Threading.Tasks;
 
@@ -99,7 +100,7 @@
 		/// </summary>
 		/// <param name="sessionName">The sessionName<see cref="string"/></param>
 		/// <returns>The <see cref="Task"/></returns>
-		public async Task SetSessionAsync(string sessionName)
+		public async Task SetSessionAsync(IAuthenticationUser sessionName)
 		{
 			using (FileStream fileStream = new(path, FileMode.OpenOrCreate))
 			{
@@ -119,14 +120,23 @@
 						fileStream,
 						aes.CreateEncryptor(),
 						CryptoStreamMode.Write))
-					{
+					{ 
 						using (StreamWriter encryptWriter = new(cryptoStream))
 						{
-							await encryptWriter.WriteLineAsync(sessionName);
+							await encryptWriter.WriteLineAsync(GetToken(sessionName));
 						}
 					}
 				}
 			}
 		}
+
+		public string GetToken(IAuthenticationUser user)
+		{
+			var client = new HttpClient();
+			user.SettingUpDataProvisioning(client);
+			return client.DefaultRequestHeaders.Authorization?.Parameter ?? string.Empty;
+		}
+
+
 	}
 }

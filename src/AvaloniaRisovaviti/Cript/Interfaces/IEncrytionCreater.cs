@@ -4,7 +4,7 @@ namespace AvaloniaRisovaviti.Cript.Interfaces
 {
 	public interface IEncrytionCreater
 	{
-		string Cryted(string value);
-		string Decryted(string value);
+		string Cryted(byte value);
+		string Decryted(byte value);
 	}
 }
