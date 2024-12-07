@@ -6,7 +6,7 @@ namespace AvaloniaRisovaviti.Cript.Interfaces
     internal interface IEncryptionSession
     {
         Task<IAuthenticationUser> GetSessionAsync();
-        Task SetSessionAsync(string sessionName);
+        Task SetSessionAsync(IAuthenticationUser session);
         bool TryGetSession(out IAuthenticationUser session);
     }
 }
