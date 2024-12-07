@@ -1,23 +1,42 @@
-﻿
-
-using AvaloniaRisovaviti.Cript.Interfaces;
-using InteractiveApiRisovaviti.HttpIntegration;
-using InteractiveApiRisovaviti.Interface;
-using System.IO;
-using System.Threading.Tasks;
-using System;
-
-namespace AvaloniaRisovaviti.Cript
+﻿namespace AvaloniaRisovaviti.Cript
 {
-    internal class EncryptionSession : IEncryptionSession
+	using AvaloniaRisovaviti.Cript.Interfaces;
+	using InteractiveApiRisovaviti.HttpIntegration;
+	using InteractiveApiRisovaviti.Interface;
+	using System;
+	using System.IO;
+	using System.Security.Cryptography;
+	using System.Threading.Tasks;
+
+	/// <summary>
+	/// Defines the <see cref="EncryptionSession" />
+	/// </summary>
+	internal class EncryptionSession : IEncryptionSession
 	{
-		const string path = "/sesions/.cr";
-		IEncrytionCreater _encrytionCreater;
+		/// <summary>
+		/// Defines the path
+		/// </summary>
+		internal const string path = "/sesions/.cr";
+
+		/// <summary>
+		/// Defines the _encrytionCreater
+		/// </summary>
+		internal IEncrytionCreater _encrytionCreater;
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="EncryptionSession"/> class.
+		/// </summary>
+		/// <param name="encrytionCreater">The encrytionCreater<see cref="IEncrytionCreater"/></param>
 		public EncryptionSession(IEncrytionCreater encrytionCreater)
 		{
 			_encrytionCreater = encrytionCreater;
 		}
 
+		/// <summary>
+		/// The TryGetSession
+		/// </summary>
+		/// <param name="session">The session<see cref="IAuthenticationUser"/></param>
+		/// <returns>The <see cref="bool"/></returns>
 		public bool TryGetSession(out IAuthenticationUser session)
 		{
 			try
@@ -32,17 +51,82 @@ namespace AvaloniaRisovaviti.Cript
 			}
 		}
 
+		/// <summary>
+		/// The GetSessionAsync
+		/// </summary>
+		/// <returns>The <see cref="Task{IAuthenticationUser}"/></returns>
 		public async Task<IAuthenticationUser> GetSessionAsync()
 		{
-			using StreamReader reader = new StreamReader(path);
-			string token = await reader.ReadLineAsync() ?? throw new Exception("There have not token");
-			return new AuthenticationUser(token);
+			using (FileStream fileStream = new(path, FileMode.Open))
+			{
+				using (Aes aes = Aes.Create())
+				{
+					byte[] iv = new byte[aes.IV.Length];
+					int numBytesToRead = aes.IV.Length;
+					int numBytesRead = 0;
+					while (numBytesToRead > 0)
+					{
+						int n = fileStream.Read(iv, numBytesRead, numBytesToRead);
+						if (n == 0) break;
+
+						numBytesRead += n;
+						numBytesToRead -= n;
+					}
+
+					byte[] key =
+					{
+				0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
+				0x09, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16
+			};
+
+					using (CryptoStream cryptoStream = new(
+					   fileStream,
+					   aes.CreateDecryptor(key, iv),
+					   CryptoStreamMode.Read))
+					{
+						using (StreamReader decryptReader = new(cryptoStream))
+						{
+							string decryptedMessage = await decryptReader.ReadToEndAsync();
+							return new AuthenticationUser(decryptedMessage);
+						}
+					}
+				}
+			}
 		}
 
+		/// <summary>
+		/// The SetSessionAsync
+		/// </summary>
+		/// <param name="sessionName">The sessionName<see cref="string"/></param>
+		/// <returns>The <see cref="Task"/></returns>
 		public async Task SetSessionAsync(string sessionName)
 		{
-			using StreamWriter writer = new StreamWriter(path);
-			await writer.WriteLineAsync(_encrytionCreater.Cryted(sessionName));
+			using (FileStream fileStream = new(path, FileMode.OpenOrCreate))
+			{
+				using (Aes aes = Aes.Create())
+				{
+					byte[] key =
+					{
+						0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
+						0x09, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16
+					};
+					aes.Key = key;
+
+					byte[] iv = aes.IV;
+					fileStream.Write(iv, 0, iv.Length);
+
+					using (CryptoStream cryptoStream = new(
+						fileStream,
+						aes.CreateEncryptor(),
+						CryptoStreamMode.Write))
+					{
+						using (StreamWriter encryptWriter = new(cryptoStream))
+						{
+							await encryptWriter.WriteLineAsync(sessionName);
+						}
+					}
+				}
+			}
 		}
 	}
 }
