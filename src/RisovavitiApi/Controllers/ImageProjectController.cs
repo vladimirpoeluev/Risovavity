@@ -2,6 +2,8 @@
 using DomainModel.ResultsRequest.Canvas;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Diagnostics;
+using System.ComponentModel;
 
 namespace RisovavitiApi.Controllers
 {
@@ -19,8 +21,21 @@ namespace RisovavitiApi.Controllers
 		[HttpGet("get/{id}")]
 		public async Task<IActionResult> Get(int id) 
 		{
-			ImageResult result = await _getterImage.GetImageResult(id);
-			return Ok(result);
+			return await TryGetImage(id);
+		}
+
+		async Task<IActionResult> TryGetImage(int id)
+		{
+			try
+			{
+				ImageResult result = await _getterImage.GetImageResult(id);
+				return Ok(result);
+			}
+			catch
+			{
+				return NotFound();
+			}
+			
 		}
 
 	}

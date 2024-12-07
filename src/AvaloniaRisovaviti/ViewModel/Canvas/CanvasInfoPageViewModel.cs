@@ -15,6 +15,7 @@ using System.Linq;
 using DynamicData.Binding;
 using ReactiveUI;
 using System;
+using AvaloniaRisovaviti.ProfileShows;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
@@ -91,7 +92,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         async Task LoadImage()
         {
             ImageResult result = await _getterImage.GetImageResult(VersionProject.Id);
-            Image = new Bitmap(new MemoryStream(result.Image));
+            Image = ImageAvaloniaConverter.ConvertByteInImage(result.Image);
         }
 
         public async Task LoadDescendans()
