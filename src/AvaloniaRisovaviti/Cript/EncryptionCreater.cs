@@ -10,7 +10,6 @@ namespace AvaloniaRisovaviti.Cript
 		{
 			RSA rsa = RSA.Create();
 			return Encoding.UTF8.GetString(rsa.Encrypt(Encoding.ASCII.GetBytes(value), RSAEncryptionPadding.Pkcs1));
-
 		}
 
 		public string Decryted(string value)

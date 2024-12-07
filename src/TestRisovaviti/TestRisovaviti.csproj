@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AvaloniaRisovaviti\AvaloniaRisovaviti.csproj" />
     <ProjectReference Include="..\Logic\Logic.csproj" />
     <ProjectReference Include="..\RisovavitiApi\RisovavitiApi.csproj" />
   </ItemGroup>
