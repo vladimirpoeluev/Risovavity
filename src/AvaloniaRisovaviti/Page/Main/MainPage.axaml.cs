@@ -38,8 +38,8 @@ public partial class MainPage : UserControl
 
     public void ExitProfile_Click(object ob, RoutedEventArgs e) 
     {
-        this.Content = new EntrancePage();
         Authentication.AuthenticationUser.ExitSystem();
+        this.Content = new EntrancePage();
     }
 
     public void UpdateData_Click(object ob, RoutedEventArgs e)
