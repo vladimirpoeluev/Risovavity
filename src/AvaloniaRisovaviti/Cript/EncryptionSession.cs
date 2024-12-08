@@ -17,7 +17,7 @@
 		/// <summary>
 		/// Defines the path
 		/// </summary>
-		internal const string path = "/sesions/.cr";
+		internal const string path = "x.txt";
 
 		/// <summary>
 		/// Defines the _encrytionCreater
@@ -47,7 +47,7 @@
 			}
 			catch (Exception)
 			{
-				session = GetSessionAsync().Result;
+				session = null;
 				return false;
 			}
 		}
@@ -87,7 +87,9 @@
 					{
 						using (StreamReader decryptReader = new(cryptoStream))
 						{
-							string decryptedMessage = await decryptReader.ReadToEndAsync();
+							string decryptedMessage = decryptReader.ReadToEnd().Trim();
+							if (decryptedMessage == string.Empty)
+								throw new Exception();
 							return new AuthenticationUser(decryptedMessage);
 						}
 					}
@@ -102,7 +104,7 @@
 		/// <returns>The <see cref="Task"/></returns>
 		public async Task SetSessionAsync(IAuthenticationUser sessionName)
 		{
-			using (FileStream fileStream = new(path, FileMode.OpenOrCreate))
+			using (FileStream fileStream = new(path, FileMode.Create))
 			{
 				using (Aes aes = Aes.Create())
 				{
@@ -120,7 +122,7 @@
 						fileStream,
 						aes.CreateEncryptor(),
 						CryptoStreamMode.Write))
-					{ 
+					{
 						using (StreamWriter encryptWriter = new(cryptoStream))
 						{
 							await encryptWriter.WriteLineAsync(GetToken(sessionName));
@@ -130,7 +132,7 @@
 			}
 		}
 
-		public string GetToken(IAuthenticationUser user)
+		private string GetToken(IAuthenticationUser user)
 		{
 			var client = new HttpClient();
 			user.SettingUpDataProvisioning(client);

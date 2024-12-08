@@ -33,14 +33,10 @@ namespace AvaloniaRisovaviti.Authentication
 
 		static AuthenticationUser()
 		{
-			if (Session.TryGetSession(out IAuthenticationUser user)) 
-			{
+			if (Session.TryGetSession(out IAuthenticationUser user))
 				_user = user;
-			}
-			else
-			{
+			else			
 				_user = InteractiveApiRisovaviti.HttpIntegration.AuthenticationUser.NotAuthenticationUser;
-			}
 		}
 	}
 }
