@@ -5,6 +5,7 @@ using DomainModel.Integration;
 using Microsoft.AspNetCore.Authorization;
 using DomainModel.ResultsRequest.Error;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 namespace RisovavitiApi.Controllers
 {
