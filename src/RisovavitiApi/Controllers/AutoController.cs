@@ -7,7 +7,7 @@ namespace RisovavitiApi.Controllers
     [Route("api/[contiroller]")]
     public class AutoController : Controller
     {
-        [HttpGet("accert/{tokenRefresh}")]
+        [HttpGet("access/{tokenRefresh}")]
         public IActionResult Accert(string tokenRefresh)
         {
             return Ok(new TokensRefreshAndAccess("", ""));

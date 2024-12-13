@@ -2,10 +2,11 @@
 using System.Security.Claims;
 using Logic.Interface;
 using Microsoft.AspNetCore.Authentication.OAuth.Claims;
+using RisovavitiApi.JwtBearerAuthentication.Interface;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
-	public class InputerSystem : IInputerSystem
+    public class InputerSystem : IInputerSystem
 	{
 		ICreaterToken СreaterToken { get; set; }
 		public InputerSystem(ICreaterToken createrToken) 

@@ -1,10 +1,11 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using RisovavitiApi.JwtBearerAuthentication.Interface;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
-	public class CreaterToken : ICreaterToken
+    public class CreaterToken : ICreaterToken
 	{
 		public List<Claim> Claims { get; set; }
 
