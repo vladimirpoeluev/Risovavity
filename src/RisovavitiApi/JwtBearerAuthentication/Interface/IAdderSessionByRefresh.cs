@@ -1,7 +1,9 @@
-﻿namespace RisovavitiApi.JwtBearerAuthentication.Interface
+﻿using DomainModel.ResultsRequest;
+
+namespace RisovavitiApi.JwtBearerAuthentication.Interface
 {
     public interface IAdderSessionByRefresh
     {
-        string AddSession(int UserId, string Descrition);
+        string AddSession(UserResult user, string descrition);
     }
 }

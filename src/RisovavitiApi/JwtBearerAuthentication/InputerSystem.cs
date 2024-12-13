@@ -1,7 +1,6 @@
 ﻿using DomainModel.Model;
 using System.Security.Claims;
 using Logic.Interface;
-using Microsoft.AspNetCore.Authentication.OAuth.Claims;
 using RisovavitiApi.JwtBearerAuthentication.Interface;
 
 namespace RisovavitiApi.JwtBearerAuthentication
