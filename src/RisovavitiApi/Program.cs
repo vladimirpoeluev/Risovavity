@@ -61,6 +61,19 @@ builder.Services.AddAuthentication(o => {
 			IssuerSigningKey = OptionsJwtTokens.GetSecurityKey(),
 			ValidateIssuerSigningKey = true,
 		};
+	})
+	.AddJwtBearer("refresh", (options) =>
+	{
+		options.TokenValidationParameters = new TokenValidationParameters
+		{
+			ValidateIssuer = true,
+			ValidIssuer = OptionsJwtTokens.ISSUER,
+			ValidateAudience = true,
+			ValidAudience = OptionsJwtTokens.AUDIENCE,
+			ValidateLifetime = true,
+			IssuerSigningKey = OptionsJwtTokens.GetSecurityKeyRefresh(),
+			ValidateIssuerSigningKey = true,
+		};
 	});
 
 builder.Services.AddControllers();
