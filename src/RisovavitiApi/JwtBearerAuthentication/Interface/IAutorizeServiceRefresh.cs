@@ -5,7 +5,7 @@ namespace RisovavitiApi.JwtBearerAuthentication.Interface
 {
 	public interface IAutorizeServiceRefresh 
 	{
-		TokensRefreshAndAccess ExtendSession(string refresh);
-		TokensRefreshAndAccess RegistSession(UserResult user);
+		Task<TokensRefreshAndAccess> ExtendSession(string refresh);
+		Task<TokensRefreshAndAccess> RegistSession(UserResult user);
 	}
 }
