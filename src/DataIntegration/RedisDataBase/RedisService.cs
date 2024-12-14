@@ -28,7 +28,7 @@ namespace DataIntegration.RedisDataBase
 			string result = await _connection.GetDataBase().StringGetAsync(key);
 			if (string.IsNullOrEmpty(result))
 			{
-				return default(T);
+				return default;
 			}
 			return JsonSerializer.Deserialize<T>(result);
 
