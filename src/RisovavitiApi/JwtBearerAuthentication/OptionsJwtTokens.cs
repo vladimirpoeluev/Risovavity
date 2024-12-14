@@ -10,6 +10,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 		private static string KEY { get; } = "mysupersecret_secretsecretsecretkey!123";
 		public static DateTime Expires { get; } = DateTime.UtcNow.Add(TimeSpan.FromMinutes(10));
 		public static DateTime ExpiresRefresh { get; } = DateTime.UtcNow.AddMonths(1);
+		public static TimeSpan ExpiresRefreshTimeSpan { get; } = TimeSpan.FromDays(31);
 
 		public static SymmetricSecurityKey GetSecurityKey() => new SymmetricSecurityKey(Encoding.UTF8.GetBytes(KEY));
 	}
