@@ -23,5 +23,13 @@ namespace RisovavitiApi.JwtBearerAuthentication
 				UserId = user.Id,
 			}).Result;
 		}
+
+		public async Task<string> InputUserAsync(User user)
+		{
+			return await AdderSession.AddSession(new SessionAuthorizeObject()
+			{
+				UserId = user.Id,
+			});
+		}
 	}
 }
