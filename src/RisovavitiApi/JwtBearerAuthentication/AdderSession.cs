@@ -16,8 +16,18 @@ namespace RisovavitiApi.JwtBearerAuthentication
 
 		public (string token, string refreshToken) GenerateSession(UserResult user)
 		{
-			string token = string.Empty;	
-			string refreshToken = string.Empty;
+			string token = GenerateAccertToken.InputUser(new DomainModel.Model.User()
+			{
+				Id = user.Id,
+				Name = user.Name,
+				IdRole = user.IdRoleNavigation.Id
+			});	
+			string refreshToken = GenerateRefreshToken.InputUser(new DomainModel.Model.User()
+			{
+				Id = user.Id,
+				Name = user.Name,
+				IdRole = user.IdRoleNavigation.Id
+			});
 
 			return (token, refreshToken);
 		}

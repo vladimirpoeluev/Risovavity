@@ -2,6 +2,7 @@
 {
     public interface IGetterSessionByRefresh
     {
-        (int, string) GetSession(string refresh);
+        Task<SessionAuthorizeObject> GetSessionAsync(string refresh);
+        SessionAuthorizeObject GetSession(string refresh);
     }
 }
