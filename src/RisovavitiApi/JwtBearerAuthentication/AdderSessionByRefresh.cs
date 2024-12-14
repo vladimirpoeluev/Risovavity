@@ -1,6 +1,4 @@
 ﻿using DataIntegration.Interface;
-using DomainModel.Model;
-using DomainModel.ResultsRequest;
 using RisovavitiApi.JwtBearerAuthentication.Interface;
 using System.Security.Claims;
 
