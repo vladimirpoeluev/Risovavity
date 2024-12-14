@@ -18,7 +18,10 @@ namespace RisovavitiApi.JwtBearerAuthentication
 
 		public string InputUser(User user)
 		{
-			return AdderSession.AddSession(UserResult.CreateResultFromUser(user), "Да");
+			return AdderSession.AddSession(new SessionAuthorizeObject()
+			{
+				UserId = user.Id,
+			}).Result;
 		}
 	}
 }
