@@ -1,10 +1,7 @@
 ﻿
 namespace DataIntegration.Interface
 {
-	public interface IRedisService
+	public interface IRedisService : IDeleterObjectRedis, IAdderObjectRedis, IGetterObjectRedis
 	{
-		Task AddObject<T>(string key, T obj);
-		Task AddObject<T>(string key, T obj, TimeSpan expire);
-		Task<T> GetObject<T>(string key);
 	}
 }

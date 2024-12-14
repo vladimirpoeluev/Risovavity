@@ -33,5 +33,10 @@ namespace DataIntegration.RedisDataBase
 			return JsonSerializer.Deserialize<T>(result);
 
 		}
+
+		public async Task DeleteObject(string key)
+		{
+			await _connection.GetDataBase().KeyDeleteAsync(key);
+		}
 	}
 }
