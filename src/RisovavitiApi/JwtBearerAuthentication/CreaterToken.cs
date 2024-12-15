@@ -20,7 +20,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 			return new JwtSecurityTokenHandler().WriteToken(jwt);
 		}
 
-		private JwtSecurityToken CreateJwt()
+		protected virtual JwtSecurityToken CreateJwt()
 		{
 			return new JwtSecurityToken(
 				issuer: OptionsJwtTokens.ISSUER,
