@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RisovavitiApi.JwtBearerAuthentication.Interface;
 using RisovavitiApi.Model;
+using System.Security.Claims;
 
 namespace RisovavitiApi.Controllers
 {
@@ -14,21 +15,23 @@ namespace RisovavitiApi.Controllers
     public class AutoController : Controller
     {
         IAutorizeServiceRefresh _autorizeServiceRefresh;
-        IEntrance _entrance;
+        IEntranceUser _entrance;
 
-        public AutoController(IAutorizeServiceRefresh authorize, IEntrance entrance)
+        public AutoController(IAutorizeServiceRefresh authorize, IEntranceUser entrance)
         {
             _autorizeServiceRefresh = authorize;
             _entrance = entrance;
         }
 
         [HttpGet("regist")]
-        public async IActionResult Regist([FromBody] AuthenticationForm form) 
+        public async Task<IActionResult> Regist([FromBody] AuthenticationForm form) 
         {
 			try
 			{
-				await _entrance.EntranceInSystemAsync(form.Login, form.Password);
-				return Ok();
+                TokensRefreshAndAccess tokens = await _autorizeServiceRefresh.RegistSession(
+                    await _entrance.Login(form));
+
+				return Ok(tokens);
 			}
 			catch (Exception ex)
 			{
@@ -39,7 +42,10 @@ namespace RisovavitiApi.Controllers
         [HttpGet("access")]
         public IActionResult Accert()
         {
-            return Ok(new TokensRefreshAndAccess("", ""));
+            string refresh = HttpContext.User.Claims
+                .Where((e) => e.Type == ClaimTypes.AuthenticationInstant)
+                .First().Value;
+            return Ok(_autorizeServiceRefresh.ExtendSession(refresh));
         }
     }
 }
