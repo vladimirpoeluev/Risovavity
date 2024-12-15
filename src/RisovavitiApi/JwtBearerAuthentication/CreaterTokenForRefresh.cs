@@ -5,7 +5,7 @@ using System.Security.Claims;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
-	public class CreaterToketForRefresh : CreaterToken
+	public class CreaterTokenForRefresh : CreaterToken
 	{
 		protected override JwtSecurityToken CreateJwt()
 		{

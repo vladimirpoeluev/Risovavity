@@ -40,12 +40,20 @@ namespace RisovavitiApi.Controllers
 
         [HttpGet("access")]
 		[Authorize(AuthenticationSchemes = "refresh")]
-		public IActionResult Accert()
+		public async Task<IActionResult> Accert()
         {
-            string refresh = HttpContext.User.Claims
+            try
+            {
+                string refresh = HttpContext.User.Claims
                 .Where((e) => e.Type == ClaimTypes.AuthenticationInstant)
                 .First().Value;
-            return Ok(_autorizeServiceRefresh.ExtendSession(refresh));
+                return Ok(await _autorizeServiceRefresh.ExtendSession(refresh));
+            }
+            catch (Exception) 
+            {
+                return BadRequest();
+            }
+            
         }
     }
 }

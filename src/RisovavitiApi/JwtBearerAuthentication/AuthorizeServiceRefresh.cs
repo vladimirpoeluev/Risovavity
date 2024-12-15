@@ -39,7 +39,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 					Name = user.UserId.ToString(),
 					Role = new DomainModel.Model.Role() { Name = "User" }
 				});
-				return new TokensRefreshAndAccess(accessToken, refresh);
+				return new TokensRefreshAndAccess(accessToken, refreshToken);
 			}
 			throw new Exception("Not session");
 		}

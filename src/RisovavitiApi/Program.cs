@@ -103,7 +103,7 @@ builder.Services.AddTransient<IGetterImageProject, GetterImageProject>(h => new 
 builder.Services.AddTransient<IBuilderGetterVerionsByParent, BuilderGetterVerionsByParent>(h => new BuilderGetterVerionsByParent(new DatabaseContext()));
 builder.Services.AddTransient<IAutorizeServiceRefresh, AuthorizeServiceRefresh>(h => 
 new AuthorizeServiceRefresh(
-	new AdderSessionByRefresh(new RedisService("localhost:6379"), new CreaterToken()), 
+	new AdderSessionByRefresh(new RedisService("localhost:6379"), new CreaterTokenForRefresh()), 
 	new InputerSystem(new CreaterToken()),
 	new GetterSessionByRefresh(new RedisService("localhost:6379")),
 	new DeleterSession(new RedisService("localhost:6379"))));
