@@ -11,7 +11,6 @@ namespace RisovavitiApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = "refresh")]
     public class AutoController : Controller
     {
         IAutorizeServiceRefresh _autorizeServiceRefresh;
@@ -23,7 +22,7 @@ namespace RisovavitiApi.Controllers
             _entrance = entrance;
         }
 
-        [HttpGet("regist")]
+        [HttpPost("regist")]
         public async Task<IActionResult> Regist([FromBody] AuthenticationForm form) 
         {
 			try
@@ -40,7 +39,8 @@ namespace RisovavitiApi.Controllers
 		}
 
         [HttpGet("access")]
-        public IActionResult Accert()
+		[Authorize(AuthenticationSchemes = "refresh")]
+		public IActionResult Accert()
         {
             string refresh = HttpContext.User.Claims
                 .Where((e) => e.Type == ClaimTypes.AuthenticationInstant)

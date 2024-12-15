@@ -23,9 +23,12 @@ namespace Logic
 		public async Task<UserResult> Login(AuthenticationForm form)
 		{
 			User user = await _db.Users.Where((entity)
-				=> entity.Login == form.Login
-				&& _generater.Verify(form.Password, entity.Password))
+				=> entity.Login == form.Login)
 				.FirstAsync();
+			if(!_generater.Verify(form.Password, user.Password))
+			{
+				throw new Exception();
+			}
 			UserResult userResult = UserResult.CreateResultFromUser(user);
 			return userResult;
 		}

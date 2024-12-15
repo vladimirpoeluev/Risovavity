@@ -13,6 +13,9 @@ using DataIntegration.Model;
 using Logic.HashPassword;
 using Logic.CanvasLogic;
 using DomainModel.Integration.CanvasOperation;
+using RisovavitiApi.JwtBearerAuthentication.Interface;
+using DataIntegration.RedisDataBase;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -98,6 +101,14 @@ builder.Services.AddTransient<IFabricCanvasOperation, FabricCanvasOperation>((h)
 builder.Services.AddTransient<IFabricOperateVersionProject, FabricVersionProjecOperate>(h => new FabricVersionProjecOperate(new DatabaseContext()));
 builder.Services.AddTransient<IGetterImageProject, GetterImageProject>(h => new GetterImageProject(new DatabaseContext()));
 builder.Services.AddTransient<IBuilderGetterVerionsByParent, BuilderGetterVerionsByParent>(h => new BuilderGetterVerionsByParent(new DatabaseContext()));
+builder.Services.AddTransient<IAutorizeServiceRefresh, AuthorizeServiceRefresh>(h => 
+new AuthorizeServiceRefresh(
+	new AdderSessionByRefresh(new RedisService("localhost:6379"), new CreaterToken()), 
+	new InputerSystem(new CreaterToken()),
+	new GetterSessionByRefresh(new RedisService("localhost:6379")),
+	new DeleterSession(new RedisService("localhost:6379"))));
+builder.Services.AddTransient<IEntranceUser, EntranceUser>(h => new EntranceUser(new DatabaseContext(), new GeneraterHash()));
+
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 
