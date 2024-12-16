@@ -1,8 +1,8 @@
-﻿using DomainModel.Model;
+﻿
 
 namespace InteractiveApiRisovaviti.Interface
 {
-    internal interface IEntrance
+    public interface IEntrance
     {
         IAuthenticationUser IputSystem(string login, string password);
     }

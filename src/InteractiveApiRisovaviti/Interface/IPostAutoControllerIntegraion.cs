@@ -1,6 +1,6 @@
 ﻿namespace InteractiveApiRisovaviti.Interface
 {
-    internal interface IPostAutoControllerIntegraion
+    public interface IPostAutoControllerIntegraion
     {
         void ExecuteRequest(string url);
         Task ExecuteRequestAsync(string url);

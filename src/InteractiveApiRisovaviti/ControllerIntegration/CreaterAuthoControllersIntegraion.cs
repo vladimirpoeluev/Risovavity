@@ -2,7 +2,7 @@
 
 namespace InteractiveApiRisovaviti.ControllerIntegration
 {
-	internal class CreaterAuthoControllersIntegraion : FabricAutoControllerIntegraion
+	public class CreaterAuthoControllersIntegraion : FabricAutoControllerIntegraion
 	{
 		public override IGetAutoControllerIntegraion CreateGetPatser(IAuthenticationUser user)
 		{
