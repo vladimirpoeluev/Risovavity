@@ -80,34 +80,39 @@ builder.Services.AddAuthentication(o => {
 	});
 
 builder.Services.AddControllers();
+builder.Services.AddTransient<DatabaseContext, DatabaseContext>();
 builder.Services.AddTransient<IEntrance, Entrance>(h 
 	=> new Entrance(new InputerSystem(new CreaterToken())));
 builder.Services.AddTransient<IRuleIntegrationUser, IntegrationUsersEf>();
 builder.Services.AddTransient<ICreateSaverToken, SingleSaveUserToken>();
-builder.Services.AddTransient<IGetUser, GetUsers>((h) 
-	=> new GetUsers(new IntegrationUsersEf()));
-builder.Services.AddTransient<IGetCanvasAsync, GetCanvas>(h 
-	=> new GetCanvas(new IntegrationCanvasesEf()));
-builder.Services.AddTransient<IInputerSystem, InputerSystem>(h 
-	=> new InputerSystem(new CreaterToken()));
-builder.Services.AddTransient<IRegistationUser, RegistrationUser>(h 
-	=> new RegistrationUser(new IntegrationUsersEf()));
-builder.Services.AddTransient<IAuthorResultGetter, AuthorGetter>(h 
-	=> new AuthorGetter(new DataIntegration.Model.DatabaseContext()));
-builder.Services.AddTransient<IUserAvatarGetter, UserAvatarGetter>((h)
-	=> new UserAvatarGetter(new DataIntegration.Model.DatabaseContext()));
-builder.Services.AddTransient<IPasswordEditer, PasswordEditer>((h) => new PasswordEditer(new DatabaseContext(), new GeneraterHash()));
-builder.Services.AddTransient<IFabricCanvasOperation, FabricCanvasOperation>((h) => new FabricCanvasOperation(new DatabaseContext()));
-builder.Services.AddTransient<IFabricOperateVersionProject, FabricVersionProjecOperate>(h => new FabricVersionProjecOperate(new DatabaseContext()));
-builder.Services.AddTransient<IGetterImageProject, GetterImageProject>(h => new GetterImageProject(new DatabaseContext()));
-builder.Services.AddTransient<IBuilderGetterVerionsByParent, BuilderGetterVerionsByParent>(h => new BuilderGetterVerionsByParent(new DatabaseContext()));
+builder.Services.AddTransient<IGeneraterHash, GeneraterHash>();
+builder.Services.AddTransient<IRuleIntegrationUser, IntegrationUsersEf>();
+
+builder.Services.AddTransient<IRuleIntegrationCanvas, IntegrationCanvasesEf>();
+
+builder.Services.AddTransient<IGetUser, GetUsers>();
+builder.Services.AddTransient<IGetCanvasAsync, GetCanvas>();
+builder.Services.AddTransient<IInputerSystem, InputerSystem>();
+builder.Services.AddTransient<IRegistationUser, RegistrationUser>();
+
+builder.Services.AddTransient<IAuthorResultGetter, AuthorGetter>();
+builder.Services.AddTransient<IUserAvatarGetter, UserAvatarGetter>();
+builder.Services.AddTransient<IPasswordEditer, PasswordEditer>();
+builder.Services.AddTransient<IFabricCanvasOperation, FabricCanvasOperation>();
+builder.Services.AddTransient<IFabricOperateVersionProject, FabricVersionProjecOperate>();
+builder.Services.AddTransient<IGetterImageProject, GetterImageProject>();
+builder.Services.AddTransient<IBuilderGetterVerionsByParent, BuilderGetterVerionsByParent>();
+
+builder.Services.AddTransient<ICreaterToken, CreaterToken>();
+builder.Services.AddTransient<ICreaterToken, CreaterTokenForRefresh>();
 builder.Services.AddTransient<IAutorizeServiceRefresh, AuthorizeServiceRefresh>(h => 
 new AuthorizeServiceRefresh(
 	new AdderSessionByRefresh(new RedisService("localhost:6379"), new CreaterTokenForRefresh()), 
 	new InputerSystem(new CreaterToken()),
 	new GetterSessionByRefresh(new RedisService("localhost:6379")),
 	new DeleterSession(new RedisService("localhost:6379"))));
-builder.Services.AddTransient<IEntranceUser, EntranceUser>(h => new EntranceUser(new DatabaseContext(), new GeneraterHash()));
+
+builder.Services.AddTransient<IEntranceUser, EntranceUser>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
