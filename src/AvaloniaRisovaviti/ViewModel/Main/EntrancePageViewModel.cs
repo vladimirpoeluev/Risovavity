@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace AvaloniaRisovaviti.ViewModel.Main
 {
-    internal class EntrancePageViewModel : INotifyPropertyChanged
+    public class EntrancePageViewModel : INotifyPropertyChanged
     {
         string _error = string.Empty;
         public string Login { get; set; }

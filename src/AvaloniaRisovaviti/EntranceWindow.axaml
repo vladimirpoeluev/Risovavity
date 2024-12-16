@@ -10,5 +10,5 @@
 	    MinHeight="250"
 		MinWidth="780">
 	
-		<local:EntrancePage/>
+		
 </Window>

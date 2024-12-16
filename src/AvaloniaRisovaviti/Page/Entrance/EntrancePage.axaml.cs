@@ -5,20 +5,29 @@ using System;
 using AvaloniaRisovaviti.ViewModel.Main;
 using System.Net.Http;
 using InteractiveApiRisovaviti.HttpIntegration;
+using InteractiveApiRisovaviti.Interface;
 
 namespace AvaloniaRisovaviti;
 
 public partial class EntrancePage : UserControl
 {
     EntrancePageViewModel viewModel;
-    public EntrancePage()
+    IEntrance entrance;
+
+	public EntrancePage(EntrancePageViewModel viewModel, IEntrance entrance)
     {
         InitializeComponent();
-        if(Authentication.AuthenticationUser.User != AuthenticationUser.NotAuthenticationUser)
+        try
         {
-            Content = new MainPage();
-        }
-        viewModel = new EntrancePageViewModel();
+			if (Authentication.AuthenticationUser.User != AuthenticationUser.NotAuthenticationUser)
+			{
+				Content = new MainPage();
+			}
+		}
+        catch{}
+        
+        this.viewModel = viewModel;
+        this.entrance = entrance;
         DataContext = viewModel;
     }
 
@@ -32,7 +41,6 @@ public partial class EntrancePage : UserControl
 		}
         try
         {
-			Entrance entrance = new Entrance();
 			Authentication.AuthenticationUser.User = entrance.IputSystem(viewModel.Login, viewModel.Password);
             
 			this.Content = new MainPage();

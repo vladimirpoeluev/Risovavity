@@ -1,6 +1,8 @@
+using Autofac;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using AvaloniaRisovaviti.ViewModel.Main;
+using InteractiveApiRisovaviti.Interface;
 
 namespace AvaloniaRisovaviti;
 
@@ -39,7 +41,7 @@ public partial class MainPage : UserControl
     public void ExitProfile_Click(object ob, RoutedEventArgs e) 
     {
         Authentication.AuthenticationUser.ExitSystem();
-        this.Content = new EntrancePage();
+        this.Content = App.Container.Resolve<IEntrance>();
     }
 
     public void UpdateData_Click(object ob, RoutedEventArgs e)

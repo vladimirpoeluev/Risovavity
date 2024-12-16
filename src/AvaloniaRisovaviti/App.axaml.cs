@@ -3,6 +3,7 @@ using Autofac.Core;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using AvaloniaRisovaviti.ViewModel.Main;
 using InteractiveApiRisovaviti;
 using InteractiveApiRisovaviti.ControllerIntegration;
 using InteractiveApiRisovaviti.Interface;
@@ -11,11 +12,12 @@ namespace AvaloniaRisovaviti
 {
     public partial class App : Application
     {
-        public IContainer Container { get; private set; }
+        public static IContainer Container { get; private set; }
+
         public override void Initialize()
         {
-			var builder = new ContainerBuilder();
-			ConfiguredContaner(builder);
+            var builder = new ContainerBuilder();
+            ConfiguredContaner(builder);
             Container = builder.Build();
 
             AvaloniaXamlLoader.Load(this);
@@ -23,9 +25,11 @@ namespace AvaloniaRisovaviti
 
         void ConfiguredContaner(ContainerBuilder builder)
         {
-            builder.RegisterType<FabricAutoControllerIntegraion>()
-                .As<CreaterAuthoControllersIntegraion>();
-            builder.RegisterType<IEntrance>().As<Entrance>();
+            builder.RegisterType<CreaterAuthoControllersIntegraion>()
+                .As<FabricAutoControllerIntegraion>();
+            builder.RegisterType<Entrance>().As<IEntrance>();
+            builder.RegisterType<EntrancePageViewModel>();
+            builder.RegisterType<EntrancePage>();
         }
 
         public override void OnFrameworkInitializationCompleted()

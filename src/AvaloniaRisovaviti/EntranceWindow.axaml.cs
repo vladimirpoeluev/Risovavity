@@ -1,7 +1,5 @@
-using Avalonia;
+using Autofac;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
-using Tmds.DBus.Protocol;
 
 namespace AvaloniaRisovaviti;
 
@@ -10,6 +8,7 @@ public partial class EntranceWindow : Window
     public EntranceWindow()
     {
         InitializeComponent();
+        Content = App.Container.Resolve<EntrancePage>();
     }
 
     private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

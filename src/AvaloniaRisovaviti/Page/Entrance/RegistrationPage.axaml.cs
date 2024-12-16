@@ -1,9 +1,9 @@
 using Avalonia.Controls;
-using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti.Interface;
 using InteractiveApiRisovaviti;
 using Avalonia.Interactivity;
 using AvaloniaRisovaviti.ViewModel.Main;
+using Autofac;
 
 namespace AvaloniaRisovaviti
 {
@@ -37,7 +37,7 @@ namespace AvaloniaRisovaviti
             if(_viewModel.RegistrationForm.Password == _viewModel.RepeatPassword)
             {
 				_registarion.RegistrionUser(_viewModel.RegistrationForm);
-				this.Content = new EntrancePage();
+				this.Content = App.Container.Resolve<IEntrance>();
 			}
             else
             {
@@ -64,7 +64,7 @@ namespace AvaloniaRisovaviti
 
         public void Back_Click(object? obj, RoutedEventArgs e)
         {
-            Content = new EntrancePage();
+            Content = App.Container.Resolve<IEntrance>();
         }
 
 	}
