@@ -36,5 +36,13 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
 		{
 			return await client.GetRequestAsync(Url);
 		}
+
+		async Task<T2> IPostAutoControllerIntegraion.GetResultAsync<T2>(string url)
+		{
+			Url = url;
+			var message = GetResponseMessage();
+			CheckStatusCode(message);
+			return await message.Content.ReadAsAsync<T2>();
+		}
 	}
 }

@@ -6,6 +6,11 @@ namespace InteractiveApiRisovaviti
 {
     public class Entrance : IEntrance
 	{
+		public Task<IAuthenticationUser> InputSystemAsync(string login, string password)
+		{
+			throw new NotImplementedException();
+		}
+
 		public IAuthenticationUser IputSystem(string login, string password)
 		{
 			try
