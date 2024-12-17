@@ -25,10 +25,27 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
 
         protected async Task<HttpResponseMessage> GetResponseAsync()
         {
-            return await StartRequestAsync(SettingApiRequest());
+            HttpResponseMessage message = await StartRequestAsync(SettingApiRequest());
+            try
+            {
+                CheckStatusCode(message);
+                return message;
+            }
+            catch (Exception ex) 
+            {
+				if (message.StatusCode == HttpStatusCode.Unauthorized &&
+					User is IAuthenticationUserByRefresh)
+				{
+					if (await ((IAuthenticationUserByRefresh)User).TryUpdateToken())
+					{
+				        return await StartRequestAsync(SettingApiRequest());
+					}
+				}
+            }
+            return message;
         }
 
-		protected static void CheckStatusCode(HttpResponseMessage message)
+		protected void CheckStatusCode(HttpResponseMessage message)
 		{
 			if (message.StatusCode != HttpStatusCode.OK)
 			{
