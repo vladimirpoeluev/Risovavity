@@ -7,6 +7,7 @@
 	using System.IO;
 	using System.Net.Http;
 	using System.Security.Cryptography;
+	using System.Text;
 	using System.Threading.Tasks;
 
 	/// <summary>
@@ -134,6 +135,14 @@
 
 		private string GetToken(IAuthenticationUser user)
 		{
+			if(user is IAuthenticationUserForSave)
+			{
+				var userForSave = (IAuthenticationUserForSave)user;
+				Stream stream = userForSave.Stream;
+				byte[] bytes = new byte[stream.Length];
+				stream.Read(bytes, 0, (int)stream.Length);
+				return Encoding.ASCII.GetString(bytes);
+			}
 			var client = new HttpClient();
 			user.SettingUpDataProvisioning(client);
 			return client.DefaultRequestHeaders.Authorization?.Parameter ?? string.Empty;
