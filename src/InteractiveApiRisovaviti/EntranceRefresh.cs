@@ -17,21 +17,23 @@ namespace InteractiveApiRisovaviti
 
 		public async Task<IAuthenticationUser> InputSystemAsync(string login, string password)
 		{
-			IPostAutoControllerIntegraion postrequst = _integration.CreatePostPatser<AuthenticationForm>(
+			IPostAutoControllerIntegraion postrequst = 
+				_integration.CreatePostPatser(
 				AuthenticationUser.NotAuthenticationUser, 
 				new AuthenticationForm()
 			{
 				Login = login,
 				Password = password
 			});
-			postrequst.ExecuteRequestAsync<>()
+			TokensRefreshAndAccess result = 
+				await postrequst.GetResultAsync<TokensRefreshAndAccess>("api/Auto/regist");
 
-			throw new NotImplementedException();
+			return new AuthenticationUserByRefresh(result, _integration);
 		}
 
 		IAuthenticationUser IEntrance.IputSystem(string login, string password)
 		{
-			throw new NotImplementedException();
+			return InputSystemAsync(login, password).Result;
 		}
 	}
 }

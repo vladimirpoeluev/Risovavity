@@ -27,7 +27,7 @@ namespace AvaloniaRisovaviti
         {
             builder.RegisterType<CreaterAuthoControllersIntegraion>()
                 .As<FabricAutoControllerIntegraion>();
-            builder.RegisterType<Entrance>().As<IEntrance>();
+            builder.RegisterType<EntranceRefresh>().As<IEntrance>();
             builder.RegisterType<EntrancePageViewModel>();
             builder.RegisterType<EntrancePage>();
         }
