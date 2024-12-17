@@ -41,7 +41,7 @@ public partial class MainPage : UserControl
     public void ExitProfile_Click(object ob, RoutedEventArgs e) 
     {
         Authentication.AuthenticationUser.ExitSystem();
-        this.Content = App.Container.Resolve<IEntrance>();
+        this.Content = App.Container.Resolve<EntrancePage>();
     }
 
     public void UpdateData_Click(object ob, RoutedEventArgs e)

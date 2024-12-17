@@ -1,5 +1,7 @@
 ﻿using DomainModel.ResultsRequest;
 using InteractiveApiRisovaviti.Interface;
+using System.Net.Http.Headers;
+using System.Xml.XPath;
 
 namespace InteractiveApiRisovaviti.ControllerIntegration.EntranceController
 {
@@ -15,7 +17,8 @@ namespace InteractiveApiRisovaviti.ControllerIntegration.EntranceController
             Value.Password = password;
             var message = GetResponseMessage();
             CheckStatusCode(message);
-            return message.Content.ReadAsAsync<string>().Result;
+            var result = message.Content.ReadAsAsync<string>().Result;
+            return result;
         }
 
         protected override HttpResponseMessage StartRequest(IApiRequest client)

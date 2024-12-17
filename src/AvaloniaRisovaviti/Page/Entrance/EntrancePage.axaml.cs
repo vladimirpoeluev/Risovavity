@@ -33,12 +33,6 @@ public partial class EntrancePage : UserControl
 
     private void Button_Click(object? obj, RoutedEventArgs e)
     {
-        var user = Authentication.AuthenticationUser.User;
-        if(Authentication.AuthenticationUser.User != AuthenticationUser.NotAuthenticationUser)
-        {
-			this.Content = new MainPage();
-            return;
-		}
         try
         {
 			Authentication.AuthenticationUser.User = entrance.IputSystem(viewModel.Login, viewModel.Password);
