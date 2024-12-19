@@ -31,12 +31,16 @@ namespace DataIntegration.RedisDataBase
 				return default;
 			}
 			return JsonSerializer.Deserialize<T>(result);
-
 		}
 
 		public async Task DeleteObject(string key)
 		{
 			await _connection.GetDataBase().KeyDeleteAsync(key);
+		}
+
+		public async Task<IEnumerable<string>> GetKeys(string pattern)
+		{
+			var  result = await _connection.GetDataBase().HashKeysAsync(pattern);
 		}
 	}
 }

@@ -23,7 +23,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 				new Claim(ClaimTypes.AuthenticationInstant, key.ToString())
 			};
 			_createrToken.Claims = claims;
-			await _redis.AddObject(key.ToString(), obj, OptionsJwtTokens.ExpiresRefreshTimeSpan);
+			await _redis.AddObject($"session:{obj.UserId}:{key}", obj, OptionsJwtTokens.ExpiresRefreshTimeSpan);
 			return _createrToken.GenerateToken();
 		}
 	}
