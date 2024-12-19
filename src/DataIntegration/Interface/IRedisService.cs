@@ -1,5 +1,9 @@
 ﻿
 namespace DataIntegration.Interface
 {
-	public interface IRedisService : IDeleterObjectRedis, IAdderObjectRedis, IGetterObjectRedis;
+	public interface IRedisService : 
+		IDeleterObjectRedis, 
+		IAdderObjectRedis, 
+		IGetterObjectRedis, 
+		IGetterKeys;
 }

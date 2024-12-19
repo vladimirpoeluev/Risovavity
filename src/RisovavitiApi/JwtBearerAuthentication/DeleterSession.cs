@@ -13,7 +13,8 @@ namespace RisovavitiApi.JwtBearerAuthentication
 
 		async Task IDeleterSession.DeleteSession(string refresh)
 		{
-			await _redis.DeleteObject(refresh);
+			IEnumerable<string> keys = await _redis.GetKeys($"session:*:{refresh}");
+			await _redis.DeleteObject(keys.First());
 		}
 	}
 }

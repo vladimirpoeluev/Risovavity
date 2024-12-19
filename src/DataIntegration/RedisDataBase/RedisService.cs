@@ -45,9 +45,7 @@ namespace DataIntegration.RedisDataBase
 			IAsyncEnumerable<RedisKey> keysAsync = result.KeysAsync(pattern:pattern);
 			List<string> keys = new List<string>();
 			await foreach (RedisKey key in keysAsync)
-			{
 				keys.Add(key.ToString());
-			}
 			return keys;
 		}
 	}

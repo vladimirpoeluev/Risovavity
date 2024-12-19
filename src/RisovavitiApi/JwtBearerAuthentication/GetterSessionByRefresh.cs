@@ -19,7 +19,8 @@ namespace RisovavitiApi.JwtBearerAuthentication
 
 		public async Task<SessionAuthorizeObject> GetSessionAsync(string refresh)
 		{
-			return await _redis.GetObject<SessionAuthorizeObject>(refresh);
+			IEnumerable<string> keys = await _redis.GetKeys($"session:*:{refresh}");
+			return await _redis.GetObject<SessionAuthorizeObject>(keys.First());
 		}
 	}
 }
