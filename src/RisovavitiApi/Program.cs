@@ -78,10 +78,16 @@ builder.Services.AddAuthentication(o => {
 			ValidateIssuerSigningKey = true,
 		};
 	});
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+	options.ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor
+								| Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto;
+});
 
+#region Contaner
 builder.Services.AddControllers();
 builder.Services.AddTransient<DatabaseContext, DatabaseContext>();
-builder.Services.AddTransient<IEntrance, Entrance>(h 
+builder.Services.AddTransient<IEntrance, Entrance>(h
 	=> new Entrance(new InputerSystem(new CreaterToken())));
 builder.Services.AddTransient<IRuleIntegrationUser, IntegrationUsersEf>();
 builder.Services.AddTransient<ICreateSaverToken, SingleSaveUserToken>();
@@ -105,14 +111,16 @@ builder.Services.AddTransient<IBuilderGetterVerionsByParent, BuilderGetterVerion
 
 builder.Services.AddTransient<ICreaterToken, CreaterToken>();
 builder.Services.AddTransient<ICreaterToken, CreaterTokenForRefresh>();
-builder.Services.AddTransient<IAutorizeServiceRefresh, AuthorizeServiceRefresh>(h => 
+builder.Services.AddTransient<IAutorizeServiceRefresh, AuthorizeServiceRefresh>(h =>
 new AuthorizeServiceRefresh(
-	new AdderSessionByRefresh(new RedisService("localhost:6379"), new CreaterTokenForRefresh()), 
+	new AdderSessionByRefresh(new RedisService("localhost:6379"), new CreaterTokenForRefresh()),
 	new InputerSystem(new CreaterToken()),
 	new GetterSessionByRefresh(new RedisService("localhost:6379")),
 	new DeleterSession(new RedisService("localhost:6379"))));
 
 builder.Services.AddTransient<IEntranceUser, EntranceUser>();
+#endregion
+
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -123,7 +131,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseStaticFiles();
-
+app.UseForwardedHeaders();
 app.MapControllers();
 
 if (app.Environment.IsDevelopment())

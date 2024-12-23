@@ -1,9 +1,7 @@
-﻿using DataIntegration.RedisDataBase;
-using DomainModel.ResultsRequest;
+﻿using DomainModel.ResultsRequest;
 using Logic.Interface;
 using RisovavitiApi.JwtBearerAuthentication.Interface;
 using RisovavitiApi.Model;
-using System.Diagnostics;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
