@@ -4,7 +4,7 @@ using RisovavitiApi.JwtBearerAuthentication.Interface;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
-	public class SessionService
+    public class SessionService : ISessionService
 	{
 		IDeleterSession _deleter;
 		IRedisService _redisService;
@@ -18,6 +18,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 		public async Task<IEnumerable<SessionAuthorizeObject>> SessionAuthorizeObjectAsync(UserResult user)
 		{
 			//TODO: Сделать реализацию получения сессий
+			
 			return null;
 		}
 
@@ -28,11 +29,11 @@ namespace RisovavitiApi.JwtBearerAuthentication
 
 		public async Task DeleteAllSesstionByUserAsync(string userId)
 		{
-			IEnumerable<string> keys = await _redisService.GetKeys($"session:*:{userId}");
+			IEnumerable<string> keys = await _redisService.GetKeys($"session:{userId}:*");
 			foreach(var key in keys)
 			{
 				await _redisService.DeleteObject(key);
 			}
 		}
-	}
+    }
 }
