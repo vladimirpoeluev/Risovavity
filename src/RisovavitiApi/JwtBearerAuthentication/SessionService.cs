@@ -1,21 +1,38 @@
-﻿using DomainModel.ResultsRequest;
+﻿using DataIntegration.Interface;
+using DomainModel.ResultsRequest;
+using RisovavitiApi.JwtBearerAuthentication.Interface;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
 	public class SessionService
 	{
-		public SessionService() { }
+		IDeleterSession _deleter;
+		IRedisService _redisService;
 
-		public SessionAuthorizeObject SessionAuthorizeObject(UserResult user)
+		public SessionService(IDeleterSession deleterSession, IRedisService redis) 
 		{
-
-			return new SessionAuthorizeObject();
+			_deleter = deleterSession;
+			_redisService = redis;
 		}
 
-		public void DeleteSession(string refresh)
+		public async Task<IEnumerable<SessionAuthorizeObject>> SessionAuthorizeObjectAsync(UserResult user)
 		{
-
+			//TODO: Сделать реализацию получения сессий
+			return null;
 		}
 
+		public async Task DeleteSessionAsync(string refresh)
+		{
+			await _deleter.DeleteSession(refresh);
+		}
+
+		public async Task DeleteAllSesstionByUserAsync(string userId)
+		{
+			IEnumerable<string> keys = await _redisService.GetKeys($"session:*:{userId}");
+			foreach(var key in keys)
+			{
+				await _redisService.DeleteObject(key);
+			}
+		}
 	}
 }

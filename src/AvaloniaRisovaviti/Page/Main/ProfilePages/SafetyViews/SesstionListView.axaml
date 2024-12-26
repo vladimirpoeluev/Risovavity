@@ -5,6 +5,13 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.SesstionListView">
 	<Grid>
-		
+		<WrapPanel>
+			<Grid ColumnDefinitions="*,auto">
+				<StackPanel>
+					<TextBlock Text="Описание устнойства"/>
+					<TextBlock Text="Город"/>
+				</StackPanel>
+			</Grid>
+		</WrapPanel>
 	</Grid>
 </UserControl>
