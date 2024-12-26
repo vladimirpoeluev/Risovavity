@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using DomainModel.ResultsRequest.Error;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using RisovavitiApi.JwtBearerAuthentication.Interface;
+using RisovavitiApi.UserOperate;
 
 namespace RisovavitiApi.Controllers
 {
@@ -16,11 +18,15 @@ namespace RisovavitiApi.Controllers
 	{
 		private IRuleIntegrationUser _integrationUser;
 		private IPasswordEditer _passwordEditer;
+		private ISessionService _sessionService;
 
-		public ProfileController(IRuleIntegrationUser integrationUser, IPasswordEditer passwordEditer) 
+		public ProfileController(	IRuleIntegrationUser integrationUser, 
+									IPasswordEditer passwordEditer,
+									ISessionService session) 
 		{
 			_integrationUser = integrationUser;
 			_passwordEditer = passwordEditer;
+			_sessionService = session;
 		}
 
 		[HttpGet()]
@@ -126,6 +132,8 @@ namespace RisovavitiApi.Controllers
 		{
 			_passwordEditer.User = GetUserIntegration();
 			await _passwordEditer.PasswordEditAsync(editPassword);
+			await _sessionService.DeleteAllSesstionByUserAsync(
+				UserGetterByContext.GetUserIntegration(HttpContext).Id.ToString());
 			return Ok();
 		}
 

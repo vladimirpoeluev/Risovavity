@@ -119,6 +119,7 @@ new AuthorizeServiceRefresh(
 	new DeleterSession(new RedisService("localhost:6379"))));
 
 builder.Services.AddTransient<IEntranceUser, EntranceUser>();
+builder.Services.AddTransient<ISessionService, SessionService>();
 #endregion
 
 
