@@ -8,6 +8,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 	{
 		IRedisService _redis;
 		ICreaterToken _createrToken;
+		public Guid Refresh { get; set; }
 
 		public AdderSessionByRefresh(IRedisService redis, ICreaterToken createrToken)
 		{
@@ -18,6 +19,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 		public async Task<string> AddSession(SessionAuthorizeObject obj)
 		{
 			Guid key = Guid.NewGuid();
+			Refresh = key;
 			List<Claim> claims = new List<Claim>
 			{
 				new Claim(ClaimTypes.AuthenticationInstant, key.ToString())

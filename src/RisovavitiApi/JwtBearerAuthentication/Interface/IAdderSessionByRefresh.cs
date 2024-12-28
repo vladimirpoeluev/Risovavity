@@ -4,6 +4,7 @@ namespace RisovavitiApi.JwtBearerAuthentication.Interface
 {
     public interface IAdderSessionByRefresh
     {
-        Task<string> AddSession(SessionAuthorizeObject obj);
+		Guid Refresh { get; set; }
+		Task<string> AddSession(SessionAuthorizeObject obj);
     }
 }

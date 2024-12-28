@@ -1,5 +1,6 @@
 ﻿using DomainModel.ResultsRequest;
 using Logic.Interface;
+using RisovavitiApi.JwtBearerAuthentication.Interface;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
@@ -22,6 +23,11 @@ namespace RisovavitiApi.JwtBearerAuthentication
 				Name = user.Name,
 				IdRole = user.IdRoleNavigation.Id
 			});
+			if(GenerateRefreshToken is IGeneraterAccessByRefresh)
+			{
+				var generater = (IGeneraterAccessByRefresh)GenerateRefreshToken;
+				generater.GetAccessToken(GenerateAccertToken);
+			}
 
 			string token = GenerateAccertToken.InputUser(new DomainModel.Model.User()
 			{

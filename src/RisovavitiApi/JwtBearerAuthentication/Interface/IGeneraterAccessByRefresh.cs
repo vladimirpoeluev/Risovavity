@@ -1,7 +1,9 @@
-﻿namespace RisovavitiApi.JwtBearerAuthentication.Interface
+﻿using Logic.Interface;
+
+namespace RisovavitiApi.JwtBearerAuthentication.Interface
 {
 	public interface IGeneraterAccessByRefresh
 	{
-		string GetAccessToken();
+		IInputerSystem GetAccessToken(IInputerSystem inputer);
 	}
 }

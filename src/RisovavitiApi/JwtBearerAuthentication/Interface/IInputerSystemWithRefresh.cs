@@ -1,6 +1,8 @@
-﻿namespace RisovavitiApi.JwtBearerAuthentication.Interface
+﻿using Logic.Interface;
+
+namespace RisovavitiApi.JwtBearerAuthentication.Interface
 {
-	public interface IInputerSystemWithRefresh
+	public interface IInputerSystemWithRefresh : IInputerSystem
 	{
 		string RefreshToken { get; set; }
 	}

@@ -1,5 +1,4 @@
 ﻿using DomainModel.Model;
-using DomainModel.ResultsRequest;
 using Logic.Interface;
 using RisovavitiApi.JwtBearerAuthentication.Interface;
 
@@ -9,11 +8,13 @@ namespace RisovavitiApi.JwtBearerAuthentication
 	{
 		IAdderSessionByRefresh AdderSession { get; set; }
 		IGetterSessionByRefresh GetterSession { get; set; }
+		string RefreshToken { get; set; }
 
 		public InputSystemRefresh(IAdderSessionByRefresh adder, IGetterSessionByRefresh getter) 
 		{
 			AdderSession = adder;
 			GetterSession = getter;
+			string RefreshToken = string.Empty;
 		}
 
 		public string InputUser(User user)
@@ -32,9 +33,14 @@ namespace RisovavitiApi.JwtBearerAuthentication
 			});
 		}
 
-		public string GetAccessToken()
+		public IInputerSystem GetAccessToken(IInputerSystem inputer)
 		{
-			throw new NotImplementedException();
+			if(inputer is IInputerSystemWithRefresh)
+			{
+				var inputerWithRefresh = (IInputerSystemWithRefresh)inputer;
+				inputerWithRefresh.RefreshToken = RefreshToken;
+			}
+			return inputer;
 		}
 	}
 }
