@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RisovavitiApi.JwtBearerAuthentication.Interface;
 
 namespace RisovavitiApi.Controllers
 {
@@ -8,6 +9,12 @@ namespace RisovavitiApi.Controllers
 	[Route("api/[controller]")]
 	public class SessionController : Controller
 	{
+		private ISessionService _sessionService;
+
+		public SessionController(ISessionService sessionService)
+		{
+			_sessionService = sessionService;
+		}
 		[HttpGet("get")]
 		public IActionResult GetSessions()
 		{
@@ -15,7 +22,7 @@ namespace RisovavitiApi.Controllers
 		}
 
 		[HttpPost("delete")]
-		public IActionResult DeleteSession([FromBody]Guid refresh)
+		public IActionResult DeleteSession()
 		{
 			return NotFound();
 		}
