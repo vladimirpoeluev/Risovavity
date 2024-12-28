@@ -14,7 +14,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 		{
 			AdderSession = adder;
 			GetterSession = getter;
-			string RefreshToken = string.Empty;
+			RefreshToken = string.Empty;
 		}
 
 		public string InputUser(User user)
