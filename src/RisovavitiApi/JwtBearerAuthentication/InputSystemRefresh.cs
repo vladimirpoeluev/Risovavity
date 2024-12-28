@@ -5,7 +5,7 @@ using RisovavitiApi.JwtBearerAuthentication.Interface;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
-	public class InputSystemRefresh : IInputerSystem
+	public class InputSystemRefresh : IInputerSystem, IGeneraterAccessByRefresh
 	{
 		IAdderSessionByRefresh AdderSession { get; set; }
 		IGetterSessionByRefresh GetterSession { get; set; }
@@ -30,6 +30,11 @@ namespace RisovavitiApi.JwtBearerAuthentication
 			{
 				UserId = user.Id,
 			});
+		}
+
+		public string GetAccessToken()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
