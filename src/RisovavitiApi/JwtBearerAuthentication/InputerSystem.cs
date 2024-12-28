@@ -5,7 +5,7 @@ using RisovavitiApi.JwtBearerAuthentication.Interface;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
-    public class InputerSystem : IInputerSystem
+    public class InputerSystem : IInputerSystem, IInputerSystemWithRefresh
 	{
 		ICreaterToken СreaterToken { get; set; }
 
