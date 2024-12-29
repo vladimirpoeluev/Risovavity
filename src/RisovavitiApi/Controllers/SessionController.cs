@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DomainModel.ResultsRequest;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RisovavitiApi.JwtBearerAuthentication.Interface;
+using RisovavitiApi.UserOperate;
+using System.Security.Claims;
 
 namespace RisovavitiApi.Controllers
 {
@@ -16,21 +19,41 @@ namespace RisovavitiApi.Controllers
 			_sessionService = sessionService;
 		}
 		[HttpGet("get")]
-		public IActionResult GetSessions()
+		public async Task<IActionResult> GetSessions()
 		{
-			return Ok(HttpContext.Request.Headers["User-Agent"].ToString());
+			return Ok(await _sessionService.SessionAuthorizeObjectAsync(GetUser()));
 		}
 
 		[HttpPost("delete")]
-		public IActionResult DeleteSession()
+		public async Task<IActionResult> DeleteSession()
 		{
-			return NotFound();
+			await _sessionService.DeleteSessionAsync(GetRefresh());
+			return Ok();
+		}
+
+		[HttpPost("delete-by-refresh")]
+		public async Task<IActionResult> DeleteSession([FromBody] string refresh)
+		{
+			await _sessionService.DeleteSessionAsync(refresh);
+			return Ok();
 		}
 
 		[HttpPost("delete/all-except-current")]
-		public IActionResult DeleteSesstionAll()
+		public async Task<IActionResult> DeleteSesstionAll()
 		{
-			return NotFound();
+			await _sessionService.DeleteAllSesstionByUserAsync(GetUser().Id.ToString());
+			return Ok();
+		}
+
+		private string GetRefresh()
+		{
+			return HttpContext.User.Claims
+				.Where((item) => item.Type == ClaimTypes.Authentication).First().Value;
+		}
+
+		private UserResult GetUser()
+		{
+			return UserGetterByContext.GetUserIntegration(HttpContext);
 		}
 	}
 }
