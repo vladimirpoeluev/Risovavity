@@ -1,9 +1,10 @@
-﻿using DomainModel.Model;
+﻿using DataIntegration.Interface.InterfaceOfModel;
+using DomainModel.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataIntegration.Model;
 
-public partial class DatabaseContext : DbContext
+public partial class DatabaseContext : DbContext, IDataBaseModel
 {
     public DatabaseContext()
     {

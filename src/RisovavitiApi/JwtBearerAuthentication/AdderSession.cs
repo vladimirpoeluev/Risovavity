@@ -4,7 +4,7 @@ using RisovavitiApi.JwtBearerAuthentication.Interface;
 
 namespace RisovavitiApi.JwtBearerAuthentication
 {
-	public class AdderSession
+    public class AdderSession : IAdderSession
 	{
 		IInputerSystem GenerateAccertToken { get; set; }
 		IInputerSystem GenerateRefreshToken { get; set; }
@@ -23,7 +23,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 				Name = user.Name,
 				IdRole = user.IdRoleNavigation.Id
 			});
-			if(GenerateRefreshToken is IGeneraterAccessByRefresh)
+			if (GenerateRefreshToken is IGeneraterAccessByRefresh)
 			{
 				var generater = (IGeneraterAccessByRefresh)GenerateRefreshToken;
 				generater.GetAccessToken(GenerateAccertToken);
@@ -34,7 +34,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 				Id = user.Id,
 				Name = user.Name,
 				IdRole = user.IdRoleNavigation.Id
-			});	
+			});
 
 			return (token, refreshToken);
 		}

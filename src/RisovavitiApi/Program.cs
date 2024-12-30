@@ -16,6 +16,8 @@ using DomainModel.Integration.CanvasOperation;
 using RisovavitiApi.JwtBearerAuthentication.Interface;
 using DataIntegration.RedisDataBase;
 using Microsoft.Extensions.DependencyInjection;
+using DataIntegration.Interface;
+using System.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -110,15 +112,17 @@ builder.Services.AddTransient<IGetterImageProject, GetterImageProject>();
 builder.Services.AddTransient<IBuilderGetterVerionsByParent, BuilderGetterVerionsByParent>();
 
 builder.Services.AddTransient<ICreaterToken, CreaterToken>();
-builder.Services.AddTransient<ICreaterToken, CreaterTokenForRefresh>();
 builder.Services.AddTransient<IAutorizeServiceRefresh, AuthorizeServiceRefresh>(h =>
 new AuthorizeServiceRefresh(
-	new AdderSessionByRefresh(new RedisService("localhost:6379"), new CreaterTokenForRefresh()),
-	new InputerSystem(new CreaterToken()),
-	new GetterSessionByRefresh(new RedisService("localhost:6379")),
-	new DeleterSession(new RedisService("localhost:6379"))));
+	new AdderSessionByRefresh(h.GetRequiredService<IRedisService>(), new CreaterTokenForRefresh()),
+	new InputerSystem(h.GetRequiredService<ICreaterToken>()),
+	new GetterSessionByRefresh(h.GetRequiredService<IRedisService>()),
+	new DeleterSession(h.GetRequiredService<IRedisService>()),
+	h.GetRequiredService<IAdderSession>()));
 
+builder.Services.AddTransient<IRedisService, RedisService>(h => new RedisService("localhost:6379"));
 builder.Services.AddTransient<IEntranceUser, EntranceUser>();
+builder.Services.AddTransient<IDeleterSession, DeleterSession>();
 builder.Services.AddTransient<ISessionService, SessionService>();
 #endregion
 

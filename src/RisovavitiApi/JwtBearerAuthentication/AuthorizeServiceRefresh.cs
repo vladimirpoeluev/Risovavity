@@ -1,4 +1,5 @@
-﻿using DomainModel.ResultsRequest;
+﻿using Azure.Core;
+using DomainModel.ResultsRequest;
 using Logic.Interface;
 using RisovavitiApi.JwtBearerAuthentication.Interface;
 using RisovavitiApi.Model;
@@ -11,17 +12,20 @@ namespace RisovavitiApi.JwtBearerAuthentication
 		IInputerSystem _inputerSystem;
 		IGetterSessionByRefresh _getterSession;
 		IDeleterSession _deleterSession;
+		IAdderSession _adder;
 		string _desctition = string.Empty;
 
 		public AuthorizeServiceRefresh(	IAdderSessionByRefresh adderSession, 
 										IInputerSystem inputer, 
 										IGetterSessionByRefresh getterSesstion, 
-										IDeleterSession deleterSession)
+										IDeleterSession deleterSession, 
+										IAdderSession adder)
 		{
 			_adderSession = adderSession;
 			_inputerSystem = inputer;
 			_getterSession = getterSesstion;
 			_deleterSession = deleterSession;
+			_adder = adder;
 		}
 
 		public async Task<TokensRefreshAndAccess> ExtendSession(string refresh)
@@ -30,13 +34,8 @@ namespace RisovavitiApi.JwtBearerAuthentication
 			if (user != null)
 			{
 				await _deleterSession.DeleteSession(refresh);
-				string refreshToken = await _adderSession.AddSession(user);
-				string accessToken = _inputerSystem.InputUser(new DomainModel.Model.User()
-				{
-					Id = user.UserId,
-					Name = user.UserId.ToString(),
-					Role = new DomainModel.Model.Role() { Name = "User" }
-				});
+				
+				(string accessToken, string refreshToken) = await _adder.GenerateSession();
 				return new TokensRefreshAndAccess(accessToken, refreshToken);
 			}
 			throw new Exception("Not session");
@@ -44,21 +43,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 
 		public async Task<TokensRefreshAndAccess> RegistSession(UserResult user)
 		{
-			string refresh = await _adderSession.AddSession(new SessionAuthorizeObject()
-			{
-				UserId = user.Id,
-				Descrition =_desctition
-			});
-
-			string access = _inputerSystem.InputUser(new DomainModel.Model.User()
-			{
-				Id = user.Id,
-				Name = user.Name,
-				Role = new DomainModel.Model.Role()
-				{
-					Name = "User"
-				},
-			});
+			(string access, string refresh) = _adder.GenerateSession(user);
 			return new TokensRefreshAndAccess(access, refresh);
 		}
 	}
