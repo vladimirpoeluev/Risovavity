@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Linq;
 
-namespace AvaloniaRisovaviti.ViewModel.Profile
+namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
 {
     enum StateEditPassword
     {

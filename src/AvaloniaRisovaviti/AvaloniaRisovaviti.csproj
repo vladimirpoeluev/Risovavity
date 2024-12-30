@@ -7,6 +7,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="ViewModel\Profile\ProfileEditerPageViewModel.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Accets\breakImage.png" />

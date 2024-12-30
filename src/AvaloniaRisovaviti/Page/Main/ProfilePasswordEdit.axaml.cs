@@ -1,6 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using AvaloniaRisovaviti.ViewModel.Profile;
+using AvaloniaRisovaviti.ViewModel.Profile.SafetyModels;
 
 namespace AvaloniaRisovaviti;
 
