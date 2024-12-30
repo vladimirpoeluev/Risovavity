@@ -26,7 +26,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 		{
 			string result = await AdderSession.AddSession(new SessionAuthorizeObject()
 			{
-				UserId = user.Id,
+				UserId = user.Id
 			});
 			RefreshToken = AdderSession.Refresh.ToString();
 			return result;
