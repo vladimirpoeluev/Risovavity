@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaRisovaviti.SettingsView">
+	<UniformGrid>
+		<Button HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				Click="NavSafety_Click">
+			Безопасность
+		</Button>
+		<Button HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch">
+			Настройки профиля
+		</Button>
+		<Button HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				Content="Что то еще"/>
+		<Button HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				Content="Что то чтотное"/>
+	</UniformGrid>
+</UserControl>

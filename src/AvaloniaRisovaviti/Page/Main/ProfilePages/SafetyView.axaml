@@ -8,14 +8,15 @@
 	<Grid ColumnDefinitions="auto,*">
 		<WrapPanel Orientation="Vertical">
 			<Button Content="Подклченные устройсва"
-					HorizontalAlignment="Stretch"/>
+					HorizontalAlignment="Stretch"
+					Click="NavSession_Click"/>
 			<Button HorizontalAlignment="Stretch"
 					Content="Пароли и настройки аутентификации"/>
 			<Button Content="Способы восстановления"
 					HorizontalAlignment="Stretch"/>
 		</WrapPanel>
 		<Grid>
-			<v:SesstionListView/>
+			<UserControl x:Name="page"/>
 		</Grid>
 	</Grid>
 </UserControl>

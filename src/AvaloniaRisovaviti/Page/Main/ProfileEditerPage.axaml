@@ -6,9 +6,7 @@
              x:Class="AvaloniaRisovaviti.ProfileEditerPage"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Profile"
 			 x:DataType="vm:ProfileEditerPageViewModel">
-	<Design.DataContext>
-		<vm:ProfileEditerPageViewModel/>
-	</Design.DataContext>
+
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition/>
@@ -29,7 +27,7 @@
 					Content="Вставить изображение"
 					Click="Click_MenuImage"/>
 				<Button Margin="5"
-						Content="Изменить пароль"
+						Content="Настройки"
 						Click="NavEditPassword_Click"/>
 			</StackPanel>
 		</Grid>

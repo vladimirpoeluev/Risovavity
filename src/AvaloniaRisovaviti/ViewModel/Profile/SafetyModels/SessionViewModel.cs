@@ -3,7 +3,7 @@ using InteractiveApiRisovaviti.Models;
 
 namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
 {
-	internal class SessionViewModel : SessionAuthorizeObject
+	public class SessionViewModel : SessionAuthorizeObject
 	{
 		ISessionService _sesstion;
 		public SessionViewModel(ISessionService sesstion, SessionAuthorizeObject viewModel)

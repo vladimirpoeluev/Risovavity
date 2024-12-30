@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
 {
-	internal class SessionListViewModel : BaseViewModel
+	public class SessionListViewModel : BaseViewModel
 	{
 		[Reactive]
 		public IEnumerable<SessionViewModel> SessionList { get; set; }

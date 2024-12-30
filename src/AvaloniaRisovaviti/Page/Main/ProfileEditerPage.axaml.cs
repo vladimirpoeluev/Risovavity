@@ -1,3 +1,4 @@
+using Autofac;
 using Avalonia.Controls;
 using Avalonia.Dialogs;
 using Avalonia.Interactivity;
@@ -46,6 +47,6 @@ public partial class ProfileEditerPage : UserControl
 
 	public void NavEditPassword_Click(object obj, RoutedEventArgs args)
 	{
-		Content = new ProfilePasswordEdit();
+		Content = App.Container.Resolve<SettingsView>();
 	}
 }
