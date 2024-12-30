@@ -8,13 +8,13 @@ namespace AvaloniaRisovaviti.ViewModel.Fake
 	{
 		public FakeSesstionListViewModel() 
 		{
-			SessionList = new List<SessionAuthorizeObject>() 
+			SessionList = new List<SessionViewModel>() 
 			{
-				new SessionAuthorizeObject(){UserId = 1, Descrition = "Inpontent info 1"},
-				new SessionAuthorizeObject(){UserId = 1, Descrition = "Inpontent info 2"},
-				new SessionAuthorizeObject(){UserId = 1, Descrition = "Inpontent info 3"},
-				new SessionAuthorizeObject(){UserId = 1, Descrition = "Inpontent info 4"},
-				new SessionAuthorizeObject(){UserId = 1, Descrition = "Inpontent info 5"},
+				new SessionViewModel(){UserId = 1, Descrition = "Inpontent info 1"},
+				new SessionViewModel(){UserId = 1, Descrition = "Inpontent info 2"},
+				new SessionViewModel(){UserId = 1, Descrition = "Inpontent info 3"},
+				new SessionViewModel(){UserId = 1, Descrition = "Inpontent info 4"},
+				new SessionViewModel(){UserId = 1, Descrition = "Inpontent info 5"},
 			};
 
 			CurrentSession = new SessionAuthorizeObject()

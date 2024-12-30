@@ -13,6 +13,7 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
 			base.Refresh = viewModel.Refresh;
 			base.UserId = viewModel.UserId;
 		}
+		public SessionViewModel() { }
 
 		public async void DeleteSession()
 		{

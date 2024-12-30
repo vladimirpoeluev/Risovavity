@@ -10,11 +10,12 @@
 	<Design.DataContext>
 		<fvm:FakeSesstionListViewModel/>
 	</Design.DataContext>
-	<Grid Tag="main">
+	<Grid RowDefinitions="*,auto">
 		<ListBox ItemsSource="{Binding SessionList}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<Grid ColumnDefinitions="*,auto">
+					<Grid ColumnDefinitions="*,auto"
+						  VerticalAlignment="Stretch">
 						<Button Content="{Binding Descrition}"
 							HorizontalAlignment="Stretch"
 							VerticalAlignment="Stretch"/>
@@ -25,5 +26,14 @@
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
+		<UniformGrid Rows="1"
+					 Grid.Row="1">
+			<Button Content="Delete all"
+					HorizontalAlignment="Stretch"
+					Command="{Binding DeleteAllSession}"/>
+			<Button Content="Update"
+					HorizontalAlignment="Stretch"
+					Command="{Binding LoadInfo}"/>
+		</UniformGrid>
 	</Grid>
 </UserControl>
