@@ -16,6 +16,7 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
 
 		private ISessionService _sessionServierService;
 
+		public SessionListViewModel(){}
 		public SessionListViewModel(ISessionService sessionService) 
 		{
 			_sessionServierService = sessionService;
