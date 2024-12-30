@@ -2,18 +2,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Profile.SafetyModels"
+             xmlns:fvm="using:AvaloniaRisovaviti.ViewModel.Fake"
+			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Profile.SafetyModels"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.SesstionListView"
 			 x:DataType="vm:SessionListViewModel">
-	<Grid>
-		<WrapPanel>
-			<Grid ColumnDefinitions="*,auto">
-				<StackPanel>
-					<TextBlock Text="Описание устнойства"/>
-					<TextBlock Text="Город"/>
-				</StackPanel>
-			</Grid>
-		</WrapPanel>
+	<Design.DataContext>
+		<fvm:FakeSesstionListViewModel/>
+	</Design.DataContext>
+	<Grid Tag="main">
+		<ListBox ItemsSource="{Binding SessionList}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid ColumnDefinitions="*,auto">
+						<Button Content="{Binding Descrition}"
+							HorizontalAlignment="Stretch"
+							VerticalAlignment="Stretch"/>
+						<Button Grid.Column="1"
+								Content="D"
+								Command="{Binding DeleteSession}"/>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
 	</Grid>
 </UserControl>
