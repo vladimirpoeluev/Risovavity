@@ -18,6 +18,7 @@ using DataIntegration.RedisDataBase;
 using Microsoft.Extensions.DependencyInjection;
 using DataIntegration.Interface;
 using System.Linq;
+using DataIntegration.Interface.InterfaceOfModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -96,6 +97,14 @@ builder.Services.AddTransient<ICreateSaverToken, SingleSaveUserToken>();
 builder.Services.AddTransient<IGeneraterHash, GeneraterHash>();
 builder.Services.AddTransient<IRuleIntegrationUser, IntegrationUsersEf>();
 
+builder.Services.AddTransient<IDataBaseModel, DatabaseContext>();
+
+builder.Services.AddTransient<IUserDataBase, DatabaseContext>();
+builder.Services.AddTransient<ICanvasDataBase, DatabaseContext>();
+builder.Services.AddTransient<IInteractiveCanvasDataBase, DatabaseContext>();
+builder.Services.AddTransient<IRoleDataBase, DatabaseContext>();
+builder.Services.AddTransient<IStatusesDataBase, DatabaseContext>();
+
 builder.Services.AddTransient<IRuleIntegrationCanvas, IntegrationCanvasesEf>();
 
 builder.Services.AddTransient<IGetUser, GetUsers>();
@@ -111,6 +120,17 @@ builder.Services.AddTransient<IFabricOperateVersionProject, FabricVersionProjecO
 builder.Services.AddTransient<IGetterImageProject, GetterImageProject>();
 builder.Services.AddTransient<IBuilderGetterVerionsByParent, BuilderGetterVerionsByParent>();
 
+builder.Services.AddTransient<IAdderSessionByRefresh, AdderSessionByRefresh>(h => 
+new AdderSessionByRefresh(h.GetRequiredService<IRedisService>(),
+new CreaterTokenForRefresh()));
+builder.Services.AddTransient<IGetterSessionByRefresh, GetterSessionByRefresh>();
+
+builder.Services.AddTransient<IAdderSession, AdderSession>(h =>
+	new AdderSession(h.GetRequiredService<IInputerSystem>(), 
+	new InputSystemRefresh(	h.GetRequiredService<IAdderSessionByRefresh>(), 
+							h.GetRequiredService<IGetterSessionByRefresh>()))
+	);
+
 builder.Services.AddTransient<ICreaterToken, CreaterToken>();
 builder.Services.AddTransient<IAutorizeServiceRefresh, AuthorizeServiceRefresh>(h =>
 new AuthorizeServiceRefresh(
@@ -118,7 +138,8 @@ new AuthorizeServiceRefresh(
 	new InputerSystem(h.GetRequiredService<ICreaterToken>()),
 	new GetterSessionByRefresh(h.GetRequiredService<IRedisService>()),
 	new DeleterSession(h.GetRequiredService<IRedisService>()),
-	h.GetRequiredService<IAdderSession>()));
+	h.GetRequiredService<IAdderSession>(),
+	h.GetRequiredService<IUserDataBase>()));
 
 builder.Services.AddTransient<IRedisService, RedisService>(h => new RedisService("localhost:6379"));
 builder.Services.AddTransient<IEntranceUser, EntranceUser>();

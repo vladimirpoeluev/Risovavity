@@ -1,6 +1,8 @@
-﻿using Azure.Core;
+﻿using DataIntegration.Interface.InterfaceOfModel;
+using DomainModel.Model;
 using DomainModel.ResultsRequest;
 using Logic.Interface;
+using Microsoft.EntityFrameworkCore;
 using RisovavitiApi.JwtBearerAuthentication.Interface;
 using RisovavitiApi.Model;
 
@@ -13,19 +15,22 @@ namespace RisovavitiApi.JwtBearerAuthentication
 		IGetterSessionByRefresh _getterSession;
 		IDeleterSession _deleterSession;
 		IAdderSession _adder;
+		IUserDataBase _userData;
 		string _desctition = string.Empty;
 
 		public AuthorizeServiceRefresh(	IAdderSessionByRefresh adderSession, 
 										IInputerSystem inputer, 
 										IGetterSessionByRefresh getterSesstion, 
 										IDeleterSession deleterSession, 
-										IAdderSession adder)
+										IAdderSession adder,
+										IUserDataBase getterUser)
 		{
 			_adderSession = adderSession;
 			_inputerSystem = inputer;
 			_getterSession = getterSesstion;
 			_deleterSession = deleterSession;
 			_adder = adder;
+			_userData = getterUser;
 		}
 
 		public async Task<TokensRefreshAndAccess> ExtendSession(string refresh)
@@ -34,8 +39,8 @@ namespace RisovavitiApi.JwtBearerAuthentication
 			if (user != null)
 			{
 				await _deleterSession.DeleteSession(refresh);
-				
-				(string accessToken, string refreshToken) = await _adder.GenerateSession();
+				User userresult = await _userData.Users.Where(entity => entity.Id == user.UserId).FirstAsync();
+				(string accessToken, string refreshToken) = _adder.GenerateSession(UserResult.CreateResultFromUser(userresult));
 				return new TokensRefreshAndAccess(accessToken, refreshToken);
 			}
 			throw new Exception("Not session");

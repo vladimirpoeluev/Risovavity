@@ -22,7 +22,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 			List<Claim> claims = new List<Claim>
 			{
 				new Claim(ClaimTypes.Name, user.Name),
-				new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.Name ?? "User"),
+				new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name ?? "User"),
 				new Claim(ClaimTypes.Sid, user.Id.ToString()),
 				new Claim(ClaimTypes.Authentication, RefreshToken),
 			};

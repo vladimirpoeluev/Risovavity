@@ -17,7 +17,6 @@ namespace RisovavitiApi.JwtBearerAuthentication
 
 		public async Task<IEnumerable<SessionAuthorizeObject>> SessionAuthorizeObjectAsync(UserResult user)
 		{
-			//TODO: Сделать реализацию получения сессий
 			IEnumerable<string> keys = await _redisService.GetKeys($"session:{user.Id}:*");
 			List<SessionAuthorizeObject> result = new List<SessionAuthorizeObject>();
 			foreach (string key in keys)

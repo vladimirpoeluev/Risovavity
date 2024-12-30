@@ -19,18 +19,17 @@ namespace RisovavitiApi.JwtBearerAuthentication
 
 		public string InputUser(User user)
 		{
-			return AdderSession.AddSession(new SessionAuthorizeObject()
-			{
-				UserId = user.Id,
-			}).Result;
+			return InputUserAsync(user).Result;
 		}
 
 		public async Task<string> InputUserAsync(User user)
 		{
-			return await AdderSession.AddSession(new SessionAuthorizeObject()
+			string result = await AdderSession.AddSession(new SessionAuthorizeObject()
 			{
 				UserId = user.Id,
 			});
+			RefreshToken = AdderSession.Refresh.ToString();
+			return result;
 		}
 
 		public IInputerSystem GetAccessToken(IInputerSystem inputer)
