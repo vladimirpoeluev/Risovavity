@@ -31,7 +31,7 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
                 CheckStatusCode(message);
                 return message;
             }
-            catch (Exception ex) 
+            catch (Exception) 
             {
 				if (message.StatusCode == HttpStatusCode.Unauthorized &&
 					User is IAuthenticationUserByRefresh)

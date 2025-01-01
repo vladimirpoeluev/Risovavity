@@ -18,7 +18,7 @@ namespace InteractiveApiRisovaviti
 		public async Task DeleteAllSessionAsync()
 		{
 			IPostAutoControllerIntegraion post = _fabricOperate.CreatePostPatser<object>(_user, null);
-			await post.ExecuteRequestAsync("api/Session/delete");
+			await post.ExecuteRequestAsync("api/Session/delete/all-except-current");
 		}
 
 		public async Task DeleteSessionAsync(string refresh)
@@ -30,7 +30,7 @@ namespace InteractiveApiRisovaviti
 		public async Task DeleteSesstionAsync()
 		{
 			IPostAutoControllerIntegraion post = _fabricOperate.CreatePostPatser<object>(_user, null);
-			await post.ExecuteRequestAsync("api/Session/delete/all-except-current");
+			await post.ExecuteRequestAsync("api/Session/delete");
 		}
 
 		public async Task<IEnumerable<SessionAuthorizeObject>> GetSessionAsync()
