@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using DataIntegration.Interface;
 using System.Linq;
 using DataIntegration.Interface.InterfaceOfModel;
+using RisovavitiApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -144,6 +145,7 @@ new AuthorizeServiceRefresh(
 builder.Services.AddTransient<IRedisService, RedisService>(h => new RedisService("localhost:6379"));
 builder.Services.AddTransient<IEntranceUser, EntranceUser>();
 builder.Services.AddTransient<IDeleterSession, DeleterSession>();
+builder.Services.AddTransient<IGetterKeys, RedisService>(h => new RedisService("localhost:6379"));
 builder.Services.AddTransient<ISessionService, SessionService>();
 #endregion
 
@@ -155,7 +157,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseMiddleware<AuthorizeAccessToken>();
 app.UseStaticFiles();
 app.UseForwardedHeaders();
 app.MapControllers();
