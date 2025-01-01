@@ -38,9 +38,9 @@ public partial class MainPage : UserControl
         frameMain.Content = new ProfileEditerPage();
     }
 
-    public void ExitProfile_Click(object ob, RoutedEventArgs e) 
+    public async void ExitProfile_Click(object ob, RoutedEventArgs e) 
     {
-        Authentication.AuthenticationUser.ExitSystem();
+        await Authentication.AuthenticationUser.ExitSystem();
         this.Content = App.Container.Resolve<EntrancePage>();
     }
 

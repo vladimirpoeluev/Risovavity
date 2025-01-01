@@ -1,6 +1,9 @@
-﻿using AvaloniaRisovaviti.Cript;
+﻿using Autofac;
+using AvaloniaRisovaviti.Cript;
 using AvaloniaRisovaviti.Cript.Interfaces;
+using InteractiveApiRisovaviti;
 using InteractiveApiRisovaviti.Interface;
+using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.Authentication
 {
@@ -24,8 +27,11 @@ namespace AvaloniaRisovaviti.Authentication
 			} 
 		} 
 
-		public static void ExitSystem()
+		public static async Task ExitSystem()
 		{
+			var sessionService = App.Container.Resolve<ISessionService>();
+			await sessionService.DeleteSesstionAsync();
+
 			User = InteractiveApiRisovaviti
 			.HttpIntegration
 			.AuthenticationUser.NotAuthenticationUser;
