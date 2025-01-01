@@ -7,8 +7,10 @@ using AvaloniaRisovaviti.ViewModel.Main;
 using AvaloniaRisovaviti.ViewModel.Profile.SafetyModels;
 using InteractiveApiRisovaviti;
 using InteractiveApiRisovaviti.ControllerIntegration;
+using InteractiveApiRisovaviti.Exceptions;
 using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.Interface;
+using System;
 
 namespace AvaloniaRisovaviti
 {
@@ -21,6 +23,7 @@ namespace AvaloniaRisovaviti
             var builder = new ContainerBuilder();
             ConfiguredContaner(builder);
             Container = builder.Build();
+            
 
             AvaloniaXamlLoader.Load(this);
         }
@@ -55,5 +58,14 @@ namespace AvaloniaRisovaviti
 
             base.OnFrameworkInitializationCompleted();
         }
+
+        void TryException(Exception ex)
+        {
+            if(ex is AuthorizeException)
+            {
+                OnFrameworkInitializationCompleted();
+            }
+        }
+
     }
 }

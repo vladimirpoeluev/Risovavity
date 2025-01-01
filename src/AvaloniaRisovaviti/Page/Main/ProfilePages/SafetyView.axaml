@@ -11,11 +11,12 @@
 					HorizontalAlignment="Stretch"
 					Click="NavSession_Click"/>
 			<Button HorizontalAlignment="Stretch"
-					Content="Пароли и настройки аутентификации"/>
+					Content="Пароли и настройки аутентификации"
+					Click="NavPasswordEdid_Click"/>
 			<Button Content="Способы восстановления"
 					HorizontalAlignment="Stretch"/>
 		</WrapPanel>
-		<Grid>
+		<Grid Grid.Column="1">
 			<UserControl x:Name="page"/>
 		</Grid>
 	</Grid>

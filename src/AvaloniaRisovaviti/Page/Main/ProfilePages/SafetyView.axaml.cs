@@ -16,4 +16,9 @@ public partial class SafetyView : UserControl
 	{
         page.Content = App.Container.Resolve<SesstionListView>();
 	}
+
+    private void NavPasswordEdid_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        page.Content = new ProfilePasswordEdit();
+    }
 }

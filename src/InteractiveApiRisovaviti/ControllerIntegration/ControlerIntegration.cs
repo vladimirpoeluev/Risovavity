@@ -1,4 +1,5 @@
 ﻿using DomainModel.ResultsRequest.Error;
+using InteractiveApiRisovaviti.Exceptions;
 using InteractiveApiRisovaviti.Interface;
 using System.Net;
 
@@ -47,6 +48,10 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
 
 		protected void CheckStatusCode(HttpResponseMessage message)
 		{
+            if(message.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                throw new AuthorizeException();
+            }
 			if (message.StatusCode != HttpStatusCode.OK)
 			{
 				var result = TryCheckStatusCode(message);
