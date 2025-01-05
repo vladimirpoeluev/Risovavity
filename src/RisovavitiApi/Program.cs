@@ -90,6 +90,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 
 #region Contaner
 builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<DatabaseContext, DatabaseContext>();
 builder.Services.AddTransient<IEntrance, Entrance>(h
 	=> new Entrance(new InputerSystem(new CreaterToken())));
@@ -129,7 +130,8 @@ builder.Services.AddTransient<IGetterSessionByRefresh, GetterSessionByRefresh>()
 builder.Services.AddTransient<IAdderSession, AdderSession>(h =>
 	new AdderSession(h.GetRequiredService<IInputerSystem>(), 
 	new InputSystemRefresh(	h.GetRequiredService<IAdderSessionByRefresh>(), 
-							h.GetRequiredService<IGetterSessionByRefresh>()))
+							h.GetRequiredService<IGetterSessionByRefresh>(),
+							h.GetRequiredService<IHttpContextAccessor>()))
 	);
 
 builder.Services.AddTransient<ICreaterToken, CreaterToken>();

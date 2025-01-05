@@ -10,17 +10,20 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 	{
 		FabricAutoControllerIntegraion _fabricAuto;
 		TokensRefreshAndAccess _tokens;
+		protected virtual string NameOfApp { get; set; } = "AvaloniaAppRef";
+		protected virtual string VersionOfApp { get; set; } = "0.3.3";
 
 		public AuthenticationUserByRefresh(TokensRefreshAndAccess tokens, FabricAutoControllerIntegraion fabricAuto)
 		{
 			_tokens = tokens;
-			_fabricAuto = fabricAuto;
+				_fabricAuto = fabricAuto;
 		}
 
 		Stream IAuthenticationUserForSave.Stream => new MemoryStream(Encoding.UTF8.GetBytes(_tokens.Access));
 
 		void IAuthenticationUser.SettingUpDataProvisioning(HttpClient client)
 		{
+			client.DefaultRequestHeaders.UserAgent.Add(new System.Net.Http.Headers.ProductInfoHeaderValue(NameOfApp, VersionOfApp));
 			client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _tokens.Access);
 		}
 

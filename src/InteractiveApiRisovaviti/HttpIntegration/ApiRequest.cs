@@ -12,7 +12,6 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 		public ApiRequest(IAuthenticationUser user) : this()
 		{
 			User = user;
-			
 		}
 
 		public ApiRequest() 

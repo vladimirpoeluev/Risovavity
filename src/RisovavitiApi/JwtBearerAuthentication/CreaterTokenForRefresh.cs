@@ -13,7 +13,7 @@ namespace RisovavitiApi.JwtBearerAuthentication
 				issuer: OptionsJwtTokens.ISSUER,
 				audience: OptionsJwtTokens.AUDIENCE,
 				claims: Claims,
-				expires: OptionsJwtTokens.Expires,
+				expires: OptionsJwtTokens.ExpiresRefresh,
 				signingCredentials: new SigningCredentials(OptionsJwtTokens.GetSecurityKeyRefresh(), SecurityAlgorithms.HmacSha256)
 				);
 		}

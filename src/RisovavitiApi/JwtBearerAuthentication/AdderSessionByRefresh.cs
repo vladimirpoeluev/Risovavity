@@ -26,7 +26,6 @@ namespace RisovavitiApi.JwtBearerAuthentication
 			};
 			_createrToken.Claims = claims;
 			obj.Refresh = Refresh.ToString();
-			obj.Descrition = "Время обновления: " + DateTime.Now.ToString();
 			await _redis.AddObject($"session:{obj.UserId}:{key}", obj, OptionsJwtTokens.ExpiresRefreshTimeSpan);
 			return _createrToken.GenerateToken();
 		}

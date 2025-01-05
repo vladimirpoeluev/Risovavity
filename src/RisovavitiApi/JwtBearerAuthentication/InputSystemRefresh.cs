@@ -8,13 +8,15 @@ namespace RisovavitiApi.JwtBearerAuthentication
 	{
 		IAdderSessionByRefresh AdderSession { get; set; }
 		IGetterSessionByRefresh GetterSession { get; set; }
+		IHttpContextAccessor _context;
 		string RefreshToken { get; set; }
 
-		public InputSystemRefresh(IAdderSessionByRefresh adder, IGetterSessionByRefresh getter) 
+		public InputSystemRefresh(IAdderSessionByRefresh adder, IGetterSessionByRefresh getter, IHttpContextAccessor context) 
 		{
 			AdderSession = adder;
 			GetterSession = getter;
 			RefreshToken = string.Empty;
+			_context = context;
 		}
 
 		public string InputUser(User user)
@@ -26,7 +28,8 @@ namespace RisovavitiApi.JwtBearerAuthentication
 		{
 			string result = await AdderSession.AddSession(new SessionAuthorizeObject()
 			{
-				UserId = user.Id
+				UserId = user.Id,
+				Descrition = _context.HttpContext?.Request.Headers["User-Agent"].ToString() ?? "Неопознаный объект"
 			});
 			RefreshToken = AdderSession.Refresh.ToString();
 			return result;
