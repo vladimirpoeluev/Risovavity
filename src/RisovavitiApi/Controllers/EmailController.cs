@@ -1,5 +1,6 @@
 ﻿using DomainModel.ResultsRequest.EmailResult;
 using Logic.EmailIntegration;
+using Logic.EmailIntegration.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RisovavitiApi.Controllers
@@ -9,8 +10,8 @@ namespace RisovavitiApi.Controllers
 	public class EmailController : Controller
 	{
 
-		EmailConfirmaion _emailConfirmaion;
-		public EmailController(EmailConfirmaion emailConfirmaion)
+		IEmailConfirmaion _emailConfirmaion;
+		public EmailController(IEmailConfirmaion emailConfirmaion)
 		{
 			_emailConfirmaion = emailConfirmaion;
 		}

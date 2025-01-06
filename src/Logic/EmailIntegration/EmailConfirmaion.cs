@@ -36,11 +36,20 @@ namespace Logic.EmailIntegration
 
 		public async Task AddToPendingConfirmation(RegistrationForm registrationForm)
 		{
+			await DeleteOldRecordWait(registrationForm);
 			string code = CodeGenerate();
 			await _emailService.SendMessageAsync(registrationForm.Email, code);
-			await _redis.AddObject($"emailWait:{registrationForm.Email}:{code}", registrationForm);
+			await _redis.AddObject($"emailWait:{registrationForm.Email}:{code}", registrationForm, TimeSpan.FromMinutes(10));
 
-			
+		}
+
+		private async Task DeleteOldRecordWait(RegistrationForm registrationForm)
+		{
+			IEnumerable<string> keys = await _redis.GetKeys($"emailWait:{registrationForm.Email}:*");
+			foreach (string key in keys)
+			{
+				await _redis.DeleteObject(key);
+			}
 		}
 
 		private string CodeGenerate()
