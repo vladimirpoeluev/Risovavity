@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using DomainModel.ResultsRequest.Error;
 using DomainModel.ResultsRequest;
 using DomainModel.Model;
+using Logic.EmailIntegration.Interface;
 
 namespace RisovavitiApi.Controllers
 {
@@ -12,11 +13,11 @@ namespace RisovavitiApi.Controllers
     public class EntranceController : ControllerBase
     {
         private IEntrance entrance;
-		private IRegistationUser registation;
-        public EntranceController(IEntrance entrance, IRegistationUser registation)
+		private IEmailConfirmaion _emailConfirmaion;
+        public EntranceController(IEntrance entrance, IEmailConfirmaion emailConfirmaion)
         {
             this.entrance = entrance;
-			this.registation = registation;
+			_emailConfirmaion = emailConfirmaion;
         }
 
 		[HttpPost("input")]
@@ -48,7 +49,7 @@ namespace RisovavitiApi.Controllers
 
 		OkResult TryRegistrationUser(RegistrationForm user) 
 		{
-			registation.RegistrationUser(user);
+			_emailConfirmaion.AddToPendingConfirmation(user);
 			return Ok();
 		}
 

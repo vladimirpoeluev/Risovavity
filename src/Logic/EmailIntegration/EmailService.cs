@@ -17,7 +17,7 @@ namespace Logic.EmailIntegration
 		public async Task SendMessageAsync(string email, string message)
 		{
 			using MimeMessage messageEntity = new();
-			messageEntity.From.Add(new MailboxAddress("Администрация", Configuration["emailAdmin:email"]));
+			messageEntity.From.Add(new MailboxAddress("Администрация", "nighsvolk@yandex.ru"));
 			messageEntity.To.Add(new MailboxAddress(string.Empty, email));
 
 			messageEntity.Body = new TextPart(MimeKit.Text.TextFormat.Html)
@@ -29,12 +29,22 @@ namespace Logic.EmailIntegration
 
 		public async Task SendMessageAsync(MimeMessage message)
 		{
-			using SmtpClient smtpClient = new();
-			await smtpClient.ConnectAsync("smtp.yandex.ru", 25, false);
-			await smtpClient.AuthenticateAsync(Configuration["emailAdmin:email"], Configuration["emailAdmin:password"]);
-			await smtpClient.SendAsync(message);
+			try
+			{
+				using SmtpClient smtpClient = new();
+				await smtpClient.ConnectAsync("smtp.yandex.ru", 465, true);
+				var login = Configuration["emailAdmin:email"];
+				var password = Configuration["emailAdmin:password"];
+				smtpClient.Authenticate(login, password);
+				await smtpClient.SendAsync(message);
 
-			await smtpClient.DisconnectAsync(true);
+				await smtpClient.DisconnectAsync(true);
+			}
+			catch (Exception ex) 
+			{
+
+			}
+			
 		}
 	}
 }

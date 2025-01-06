@@ -20,6 +20,8 @@ using DataIntegration.Interface;
 using System.Linq;
 using DataIntegration.Interface.InterfaceOfModel;
 using RisovavitiApi.Middleware;
+using Logic.EmailIntegration.Interface;
+using Logic.EmailIntegration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -150,6 +152,9 @@ builder.Services.AddTransient<IEntranceUser, EntranceUser>();
 builder.Services.AddTransient<IDeleterSession, DeleterSession>();
 builder.Services.AddTransient<IGetterKeys, RedisService>(h => new RedisService("localhost:6379"));
 builder.Services.AddTransient<ISessionService, SessionService>();
+
+builder.Services.AddTransient<IEmailService, EmailService>();
+builder.Services.AddTransient<IEmailConfirmaion, EmailConfirmaion>();
 #endregion
 
 
