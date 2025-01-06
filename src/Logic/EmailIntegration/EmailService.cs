@@ -1,15 +1,16 @@
 ﻿
+using Logic.EmailIntegration.Interface;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 
 namespace Logic.EmailIntegration
 {
-	public class EmailService
+    public class EmailService : IEmailService
 	{
 		IConfiguration Configuration { get; set; }
 
-		public EmailService(IConfiguration config) 
+		public EmailService(IConfiguration config)
 		{
 			Configuration = config;
 		}
