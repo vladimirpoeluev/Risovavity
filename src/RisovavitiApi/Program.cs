@@ -87,6 +87,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 	options.ForwardedHeaders = Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedFor
 								| Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders.XForwardedProto;
 });
+builder.Configuration.AddJsonFile("Configure\\appConfig.json");
 
 #region Contaner
 builder.Services.AddControllers();
