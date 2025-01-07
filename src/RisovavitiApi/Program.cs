@@ -156,6 +156,7 @@ builder.Services.AddTransient<ISessionService, SessionService>();
 
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<IEmailConfirmaion, EmailConfirmaion>();
+builder.Services.AddTransient<IUserConfirmation, UserConfirmation>();
 #endregion
 
 

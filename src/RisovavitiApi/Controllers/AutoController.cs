@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Logic.JwtBearerAuthentication.Interface;
 using DomainModel.JwtModels;
 using System.Security.Claims;
-using Logic.EmailIntegration;
+using Logic.EmailIntegration.Interface;
 
 namespace RisovavitiApi.Controllers
 {

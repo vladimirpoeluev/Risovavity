@@ -3,10 +3,11 @@ using DataIntegration.Interface.InterfaceOfModel;
 using DomainModel.JwtModels;
 using DomainModel.ResultsRequest;
 using DomainModel.ResultsRequest.EmailResult;
+using Logic.EmailIntegration.Interface;
 using Logic.Interface;
 using Logic.JwtBearerAuthentication.Interface;
 
-namespace Logic.EmailIntegration.Interface
+namespace Logic.EmailIntegration
 {
     public class UserConfirmation : IUserConfirmation
     {
@@ -36,7 +37,7 @@ namespace Logic.EmailIntegration.Interface
             string code = CodeGenerater.Generate();
             string email = _userDataBase.Users.First(entity => entity.Id == user.Id).Email;
             await _emailService.SendMessageAsync(email, code);
-            await _redisService.AddObject($"userAwait:{form.Login}:{code}", tokens);
+            await _redisService.AddObject($"userAwait:{form.Login}:{code}", tokens, TimeSpan.FromMinutes(10));
         }
 
         public async Task<TokensRefreshAndAccess> Verify(UserConfirmationResult userConfirmation)

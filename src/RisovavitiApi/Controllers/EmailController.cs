@@ -1,19 +1,19 @@
 ﻿using DomainModel.JwtModels;
 using DomainModel.ResultsRequest.EmailResult;
-using Logic.EmailIntegration;
 using Logic.EmailIntegration.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RisovavitiApi.Controllers
 {
-	[ApiController]
+    [ApiController]
 	[Route("api/[controller]")]
 	public class EmailController : Controller
 	{
 
 		IEmailConfirmaion _emailConfirmaion;
 		IUserConfirmation _userConfirmation;
-		public EmailController(IEmailConfirmaion emailConfirmaion, IUserConfirmation userConfirmation)
+		public EmailController(	IEmailConfirmaion emailConfirmaion, 
+								IUserConfirmation userConfirmation)
 		{
 			_emailConfirmaion = emailConfirmaion;
 			_userConfirmation = userConfirmation;
@@ -26,7 +26,7 @@ namespace RisovavitiApi.Controllers
 			return Ok();
 		}
 
-		[HttpGet("userconfimation")]
+		[HttpPost("userconfimation")]
 		public async Task<IActionResult> UserConfirmation([FromBody]UserConfirmationResult confirmation)
 		{
 			TokensRefreshAndAccess tokens = await _userConfirmation.Verify(confirmation);
