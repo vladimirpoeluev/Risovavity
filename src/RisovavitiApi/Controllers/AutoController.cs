@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Logic.JwtBearerAuthentication.Interface;
 using DomainModel.JwtModels;
 using System.Security.Claims;
+using Logic.EmailIntegration;
 
 namespace RisovavitiApi.Controllers
 {
@@ -14,12 +15,14 @@ namespace RisovavitiApi.Controllers
     public class AutoController : Controller
     {
         IAutorizeServiceRefresh _autorizeServiceRefresh;
+        IUserConfirmation _userConfirmation;
         IEntranceUser _entrance;
 
-        public AutoController(IAutorizeServiceRefresh authorize, IEntranceUser entrance)
+        public AutoController(IAutorizeServiceRefresh authorize, IEntranceUser entrance, IUserConfirmation userConfirmation)
         {
             _autorizeServiceRefresh = authorize;
             _entrance = entrance;
+            _userConfirmation = userConfirmation;
         }
 
         [HttpPost("regist")]
@@ -27,10 +30,8 @@ namespace RisovavitiApi.Controllers
         {
 			try
 			{
-                TokensRefreshAndAccess tokens = await _autorizeServiceRefresh.RegistSession(
-                    await _entrance.Login(form));
-
-				return Ok(tokens);
+                await _userConfirmation.AddToPendingConfirmation(form);
+				return Ok();
 			}
 			catch (Exception ex)
 			{

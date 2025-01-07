@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using DomainModel.ResultsRequest.Error;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
-using RisovavitiApi.JwtBearerAuthentication.Interface;
+using Logic.JwtBearerAuthentication.Interface;
 using RisovavitiApi.UserOperate;
 
 namespace RisovavitiApi.Controllers

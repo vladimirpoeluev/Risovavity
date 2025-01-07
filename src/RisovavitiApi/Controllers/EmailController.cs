@@ -1,4 +1,5 @@
-﻿using DomainModel.ResultsRequest.EmailResult;
+﻿using DomainModel.JwtModels;
+using DomainModel.ResultsRequest.EmailResult;
 using Logic.EmailIntegration;
 using Logic.EmailIntegration.Interface;
 using Microsoft.AspNetCore.Mvc;
@@ -11,9 +12,11 @@ namespace RisovavitiApi.Controllers
 	{
 
 		IEmailConfirmaion _emailConfirmaion;
-		public EmailController(IEmailConfirmaion emailConfirmaion)
+		IUserConfirmation _userConfirmation;
+		public EmailController(IEmailConfirmaion emailConfirmaion, IUserConfirmation userConfirmation)
 		{
 			_emailConfirmaion = emailConfirmaion;
+			_userConfirmation = userConfirmation;
 		}
 
 		[HttpPost("confirmation")]
@@ -24,9 +27,10 @@ namespace RisovavitiApi.Controllers
 		}
 
 		[HttpGet("userconfimation")]
-		public IActionResult UserConfirmation([FromBody]string code)
+		public async Task<IActionResult> UserConfirmation([FromBody]UserConfirmationResult confirmation)
 		{
-			return View();
+			TokensRefreshAndAccess tokens = await _userConfirmation.Verify(confirmation);
+			return Ok(tokens);
 		}
 	}
 }
