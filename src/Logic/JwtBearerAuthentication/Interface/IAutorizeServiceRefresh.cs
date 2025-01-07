@@ -1,7 +1,7 @@
 ﻿using DomainModel.ResultsRequest;
-using RisovavitiApi.Model;
+using DomainModel.JwtModels;
 
-namespace RisovavitiApi.JwtBearerAuthentication.Interface
+namespace Logic.JwtBearerAuthentication.Interface
 {
 	public interface IAutorizeServiceRefresh 
 	{

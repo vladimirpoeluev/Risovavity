@@ -3,8 +3,8 @@ using DomainModel.ResultsRequest.Error;
 using Logic.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RisovavitiApi.JwtBearerAuthentication.Interface;
-using RisovavitiApi.Model;
+using Logic.JwtBearerAuthentication.Interface;
+using DomainModel.JwtModels;
 using System.Security.Claims;
 
 namespace RisovavitiApi.Controllers

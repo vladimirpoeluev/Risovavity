@@ -1,7 +1,8 @@
 
 using DomainModel.ResultsRequest;
+using Logic.JwtBearerAuthentication;
 
-namespace RisovavitiApi.JwtBearerAuthentication.Interface;
+namespace Logic.JwtBearerAuthentication.Interface;
 
 public interface ISessionService
 {

@@ -1,6 +1,6 @@
 ﻿using DomainModel.ResultsRequest;
 
-namespace RisovavitiApi.JwtBearerAuthentication.Interface
+namespace Logic.JwtBearerAuthentication.Interface
 {
     public interface IAdderSessionByRefresh
     {

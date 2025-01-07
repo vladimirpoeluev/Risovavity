@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace RisovavitiApi.JwtBearerAuthentication.Interface
+namespace Logic.JwtBearerAuthentication.Interface
 {
     public interface ICreaterToken
     {

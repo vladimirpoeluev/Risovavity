@@ -1,9 +1,9 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using RisovavitiApi.JwtBearerAuthentication.Interface;
+using Logic.JwtBearerAuthentication.Interface;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace RisovavitiApi.JwtBearerAuthentication
+namespace Logic.JwtBearerAuthentication
 {
     public class CreaterToken : ICreaterToken
 	{

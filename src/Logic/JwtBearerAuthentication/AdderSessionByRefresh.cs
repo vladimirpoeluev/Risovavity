@@ -1,8 +1,8 @@
 ﻿using DataIntegration.Interface;
-using RisovavitiApi.JwtBearerAuthentication.Interface;
+using Logic.JwtBearerAuthentication.Interface;
 using System.Security.Claims;
 
-namespace RisovavitiApi.JwtBearerAuthentication
+namespace Logic.JwtBearerAuthentication
 {
 	public class AdderSessionByRefresh : IAdderSessionByRefresh
 	{

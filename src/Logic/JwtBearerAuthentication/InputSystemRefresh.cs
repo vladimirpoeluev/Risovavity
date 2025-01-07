@@ -1,8 +1,9 @@
 ﻿using DomainModel.Model;
 using Logic.Interface;
-using RisovavitiApi.JwtBearerAuthentication.Interface;
+using Logic.JwtBearerAuthentication.Interface;
+using Microsoft.AspNetCore.Http;
 
-namespace RisovavitiApi.JwtBearerAuthentication
+namespace Logic.JwtBearerAuthentication
 {
 	public class InputSystemRefresh : IInputerSystem, IGeneraterAccessByRefresh
 	{

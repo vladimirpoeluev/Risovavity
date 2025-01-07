@@ -1,6 +1,6 @@
 ﻿using Logic.Interface;
 
-namespace RisovavitiApi.JwtBearerAuthentication.Interface
+namespace Logic.JwtBearerAuthentication.Interface
 {
 	public interface IInputerSystemWithRefresh : IInputerSystem
 	{

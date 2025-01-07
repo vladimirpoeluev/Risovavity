@@ -3,10 +3,10 @@ using DomainModel.Model;
 using DomainModel.ResultsRequest;
 using Logic.Interface;
 using Microsoft.EntityFrameworkCore;
-using RisovavitiApi.JwtBearerAuthentication.Interface;
-using RisovavitiApi.Model;
+using Logic.JwtBearerAuthentication.Interface;
+using DomainModel.JwtModels;
 
-namespace RisovavitiApi.JwtBearerAuthentication
+namespace Logic.JwtBearerAuthentication
 {
 	public class AuthorizeServiceRefresh : IAutorizeServiceRefresh
 	{

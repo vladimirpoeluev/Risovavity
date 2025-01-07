@@ -1,7 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace RisovavitiApi.JwtBearerAuthentication
+namespace Logic.JwtBearerAuthentication
 {
 	public class OptionsJwtTokens
 	{

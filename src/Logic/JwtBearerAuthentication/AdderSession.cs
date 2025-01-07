@@ -1,8 +1,8 @@
 ﻿using DomainModel.ResultsRequest;
 using Logic.Interface;
-using RisovavitiApi.JwtBearerAuthentication.Interface;
+using Logic.JwtBearerAuthentication.Interface;
 
-namespace RisovavitiApi.JwtBearerAuthentication
+namespace Logic.JwtBearerAuthentication
 {
     public class AdderSession : IAdderSession
 	{

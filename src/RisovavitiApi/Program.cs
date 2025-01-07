@@ -13,7 +13,7 @@ using DataIntegration.Model;
 using Logic.HashPassword;
 using Logic.CanvasLogic;
 using DomainModel.Integration.CanvasOperation;
-using RisovavitiApi.JwtBearerAuthentication.Interface;
+using Logic.JwtBearerAuthentication.Interface;
 using DataIntegration.RedisDataBase;
 using Microsoft.Extensions.DependencyInjection;
 using DataIntegration.Interface;
@@ -22,6 +22,7 @@ using DataIntegration.Interface.InterfaceOfModel;
 using RisovavitiApi.Middleware;
 using Logic.EmailIntegration.Interface;
 using Logic.EmailIntegration;
+using Logic.JwtBearerAuthentication;
 
 var builder = WebApplication.CreateBuilder(args);
 

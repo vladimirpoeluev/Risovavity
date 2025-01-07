@@ -1,4 +1,4 @@
-﻿namespace RisovavitiApi.JwtBearerAuthentication
+﻿namespace Logic.JwtBearerAuthentication
 {
     public class SessionAuthorizeObject
     {
