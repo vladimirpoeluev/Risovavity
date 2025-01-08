@@ -1,9 +1,9 @@
 ﻿
 using DomainModel.ResultsRequest.EmailResult;
 using InteractiveApiRisovaviti.ControllerIntegration;
+using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.Interface;
 using InteractiveApiRisovaviti.Models;
-using System.Security.AccessControl;
 
 namespace InteractiveApiRisovaviti
 {
@@ -17,9 +17,10 @@ namespace InteractiveApiRisovaviti
 			_user = user;
 		}
 
-		public async Task<TokensRefreshAndAccess> UserConfimationAsync(UserConfirmationResult confirmation)
+		public async Task<IAuthenticationUser> UserConfimationAsync(UserConfirmationResult confirmation)
 		{
-			return await _operateHttp.CreatePostPatser(_user, confirmation).GetResultAsync<TokensRefreshAndAccess>("api/Email/userconfimation");
+			var tokent = await _operateHttp.CreatePostPatser(_user, confirmation).GetResultAsync<TokensRefreshAndAccess>("api/Email/userconfimation");
+			return new AuthenticationUserByRefresh(tokent, _operateHttp);
 		}
 
 		public async Task EmailConfimationAsync(EmailConfirmaionResult confirmaion)
