@@ -3,6 +3,7 @@ using Logic.Interface;
 using RisovavitiApi.UserOperate;
 using DomainModel.ResultsRequest.Canvas;
 using Microsoft.AspNetCore.Authorization;
+using DomainModel.Integration.CanvasOperation;
 
 namespace RisovavitiApi.Controllers
 {
@@ -12,10 +13,13 @@ namespace RisovavitiApi.Controllers
 	public class UsersCanvasesController : Controller
 	{
 		IFabricCanvasOperation _fabricCanvasOperation;
+		IEditMainVerstionInCanvas _editMainVersiton;
 
-		public UsersCanvasesController(IFabricCanvasOperation fabricOperate) 
+		public UsersCanvasesController(	IFabricCanvasOperation fabricOperate, 
+										IEditMainVerstionInCanvas editMain) 
 		{
 			_fabricCanvasOperation = fabricOperate;
+			_editMainVersiton = editMain;	
 		}
 
 		[HttpGet("get")]
@@ -83,6 +87,13 @@ namespace RisovavitiApi.Controllers
 			{
 				return BadRequest();
 			}
+		}
+
+		[HttpPost("edit/mainVersion")]
+		public async Task<IActionResult> EditMainVerstion([FromBody] MainVersionInCanvasResutl editResult)
+		{
+			await _editMainVersiton.SelectMainVerstion(editResult);
+			return Ok();
 		}
 
 		[HttpPost("edit/{id}")]

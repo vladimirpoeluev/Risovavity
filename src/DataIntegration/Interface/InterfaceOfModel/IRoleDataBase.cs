@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataIntegration.Interface.InterfaceOfModel
 {
-	public interface IRoleDataBase
+	public interface IRoleDataBase : IBaseDataModel
 	{
 		DbSet<Role> Roles { get; set; }
 	}

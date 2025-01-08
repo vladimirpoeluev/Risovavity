@@ -8,6 +8,7 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
 {
     public DatabaseContext()
     {
+        
     }
 
     public DatabaseContext(DbContextOptions<DatabaseContext> options)
@@ -25,9 +26,10 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
 
     public virtual DbSet<VersionProject> VersionsProjects { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
-        => optionsBuilder.UseSqlServer("Data Source=NIGHSVOLK\\SQLEXPRESS;Initial Catalog=Risovaviti;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
-
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer("Data Source=NIGHSVOLK\\SQLEXPRESS;Initial Catalog=Risovaviti;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<VersionProject>(entity =>

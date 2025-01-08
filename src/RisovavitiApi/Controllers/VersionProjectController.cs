@@ -72,6 +72,7 @@ namespace RisovavitiApi.Controllers
 			return Ok();
 		}
 
+		[HttpPost("edit")]
 		public async Task<IActionResult> Edit([FromBody] VerstionProjectEditResutl newVerstion)
 		{
 			await _editVersionProject.Edit(newVerstion);

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataIntegration.Interface.InterfaceOfModel
 {
-	public interface IInteractiveCanvasDataBase
+	public interface IInteractiveCanvasDataBase : IBaseDataModel
 	{
 		DbSet<InteractiveCanvas> InteractiveCanvas { get; set; }
 	}
