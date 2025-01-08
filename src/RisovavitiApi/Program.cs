@@ -109,6 +109,7 @@ builder.Services.AddTransient<IDataBaseModel, DatabaseContext>();
 builder.Services.AddTransient<IUserDataBase, DatabaseContext>();
 builder.Services.AddTransient<ICanvasDataBase, DatabaseContext>();
 builder.Services.AddTransient<IInteractiveCanvasDataBase, DatabaseContext>();
+builder.Services.AddTransient<IVersionsProjectsDataBase, DatabaseContext>();
 builder.Services.AddTransient<IRoleDataBase, DatabaseContext>();
 builder.Services.AddTransient<IStatusesDataBase, DatabaseContext>();
 

@@ -22,6 +22,7 @@ namespace RisovavitiApi.Controllers
 		{
 			_operate = operate;
 			_builder = getterVerionsByParent;
+			_editVersionProject = editVersion;
 		}
 
 		[HttpGet("get/{id}")]

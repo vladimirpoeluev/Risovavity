@@ -7,6 +7,10 @@ using Logic.JwtBearerAuthentication.Interface;
 using DomainModel.JwtModels;
 using System.Security.Claims;
 using Logic.EmailIntegration.Interface;
+using DataIntegration.Interface.InterfaceOfModel;
+using RisovavitiApi.UserOperate;
+using DomainModel.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace RisovavitiApi.Controllers
 {
@@ -17,12 +21,17 @@ namespace RisovavitiApi.Controllers
         IAutorizeServiceRefresh _autorizeServiceRefresh;
         IUserConfirmation _userConfirmation;
         IEntranceUser _entrance;
+        IUserDataBase _userDataBase;
 
-        public AutoController(IAutorizeServiceRefresh authorize, IEntranceUser entrance, IUserConfirmation userConfirmation)
+        public AutoController(  IAutorizeServiceRefresh authorize, 
+                                IEntranceUser entrance, 
+                                IUserConfirmation userConfirmation, 
+                                IUserDataBase userData)
         {
             _autorizeServiceRefresh = authorize;
             _entrance = entrance;
             _userConfirmation = userConfirmation;
+            _userDataBase = userData;
         }
 
         [HttpPost("regist")]
@@ -30,6 +39,11 @@ namespace RisovavitiApi.Controllers
         {
 			try
 			{
+                User user = await _userDataBase.Users.FirstAsync(e => e.Login == form.Login);
+                if(!user.UseTwoFactorAuthentication ?? true)
+                {
+                    return Ok(await _autorizeServiceRefresh.RegistSession(await _entrance.Login(form)));
+                }
                 await _userConfirmation.AddToPendingConfirmation(form);
 				return Ok();
 			}
