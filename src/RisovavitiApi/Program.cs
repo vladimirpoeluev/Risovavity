@@ -8,22 +8,21 @@ using RisovavitiApi.JwtBearerAuthentication;
 using Logic.AuthorsIntegration;
 using Logic.UsersData;
 using Microsoft.OpenApi.Models;
-using DataIntegration.Migrations;
 using DataIntegration.Model;
 using Logic.HashPassword;
 using Logic.CanvasLogic;
 using DomainModel.Integration.CanvasOperation;
 using Logic.JwtBearerAuthentication.Interface;
 using DataIntegration.RedisDataBase;
-using Microsoft.Extensions.DependencyInjection;
 using DataIntegration.Interface;
-using System.Linq;
 using DataIntegration.Interface.InterfaceOfModel;
 using RisovavitiApi.Middleware;
 using Logic.EmailIntegration.Interface;
 using Logic.EmailIntegration;
 using Logic.JwtBearerAuthentication;
 using Logic.CanvasLogic.VersionProjectOperate;
+using RisovavitiApi.Model.Interfaces;
+using RisovavitiApi.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -161,6 +160,9 @@ builder.Services.AddTransient<IEmailConfirmaion, EmailConfirmaion>();
 builder.Services.AddTransient<IUserConfirmation, UserConfirmation>();
 builder.Services.AddTransient<IEditVersionProject, EditerVersitonProject>();
 builder.Services.AddTransient<IEditMainVerstionInCanvas, EditMainVersionInCanvas>();
+
+builder.Services.AddTransient<IDefinitionerOfPermission, DefinitionerOfPermission>();
+builder.Services.AddTransient<IDefinitionerOfPermissionByHttpContext, DefinitionerOfPermissionByHttpContext>();
 #endregion
 
 

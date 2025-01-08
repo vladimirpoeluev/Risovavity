@@ -20,8 +20,8 @@ namespace Logic.CanvasLogic
 				var canvas = await _data.Canvas.FirstAsync(e => e.Id == mainVersion.CanvasId);
 				if (_data.VersionsProjects.FirstOrDefaultAsync(e => e.Id == mainVersion.VersitonId) == null)
 					return;
-				canvas.MainVersionId = mainVersion.CanvasId;
-				_data.SaveChanges();
+				canvas.MainVersionId = mainVersion.VersitonId;
+				await _data.SaveChangesAsync();
 			}
 			catch (Exception) 
 			{
