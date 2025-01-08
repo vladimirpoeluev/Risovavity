@@ -7,7 +7,7 @@ using InteractiveApiRisovaviti.Models;
 
 namespace InteractiveApiRisovaviti
 {
-	public class ConfirmationViaEmail
+    public class ConfirmationViaEmail : IConfirmationViaEmail
 	{
 		FabricAutoControllerIntegraion _operateHttp;
 		IAuthenticationUser _user;
