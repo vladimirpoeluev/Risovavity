@@ -4,6 +4,11 @@ using RisovavitiApi.UserOperate;
 using DomainModel.ResultsRequest.Canvas;
 using Microsoft.AspNetCore.Authorization;
 using DomainModel.Integration.CanvasOperation;
+using RisovavitiApi.Model.Interfaces;
+using DomainModel.Exceptions;
+using DomainModel.ResultsRequest;
+using DomainModel.Model;
+using StackExchange.Redis;
 
 namespace RisovavitiApi.Controllers
 {
@@ -14,12 +19,15 @@ namespace RisovavitiApi.Controllers
 	{
 		IFabricCanvasOperation _fabricCanvasOperation;
 		IEditMainVerstionInCanvas _editMainVersiton;
+		IDefinitionerOfPermissionByHttpContext _definitionerOfPermission;
 
 		public UsersCanvasesController(	IFabricCanvasOperation fabricOperate, 
-										IEditMainVerstionInCanvas editMain) 
+										IEditMainVerstionInCanvas editMain,
+										IDefinitionerOfPermissionByHttpContext definitionerOfPermission) 
 		{
 			_fabricCanvasOperation = fabricOperate;
 			_editMainVersiton = editMain;	
+			_definitionerOfPermission = definitionerOfPermission;
 		}
 
 		[HttpGet("get")]
@@ -38,6 +46,10 @@ namespace RisovavitiApi.Controllers
 			{
 				return await TryGetCanvasById(id);
 			}
+			catch (NotPermissionExeption)
+			{
+				return Unauthorized();
+			}
 			catch (InvalidOperationException)
 			{
 				return NotFound(new CanvasResult());
@@ -52,7 +64,16 @@ namespace RisovavitiApi.Controllers
 		{
 			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
 			var canvas = await getter.GetAsync(id);
-			return Ok(canvas);
+			PermissionResult permission = await _definitionerOfPermission.GetPermissionResult(canvas);
+			if (!permission.Read ?? false)
+			{
+				return Ok(canvas);
+			}
+			else
+			{
+				throw new NotPermissionExeption();
+			}
+			
 		}
 
 		[HttpPost("add")]
@@ -66,12 +87,18 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("delete/{id}")]
 		public async Task<IActionResult> Delete(int id)
 		{
+			
 			try
 			{
 				var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
 				var editer = _fabricCanvasOperation.CreateEditerCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
 
 				var canvas = await getter.GetAsync(id);
+				PermissionResult permissions = await _definitionerOfPermission.GetPermissionResult(canvas);
+				if (!permissions.Edit ?? false)
+				{
+					return Unauthorized();
+				}
 				editer.UpdateCanvas(new CanvasEditerResult()
 				{
 					Id = canvas.Id,
@@ -92,6 +119,13 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("edit/mainVersion")]
 		public async Task<IActionResult> EditMainVerstion([FromBody] MainVersionInCanvasResutl editResult)
 		{
+			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+			var canvas = await getter.GetAsync(editResult.CanvasId);
+			PermissionResult permissions = await _definitionerOfPermission.GetPermissionResult(canvas);
+			if (!permissions.Edit ?? false)
+			{
+				return Unauthorized();
+			}
 			await _editMainVersiton.SelectMainVerstion(editResult);
 			return Ok();
 		}
@@ -99,6 +133,13 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("edit/{id}")]
 		public async Task<IActionResult> EditCanvas(int id, [FromBody] CanvasEditerResult newCanvas)
 		{
+			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+			var canvas = await getter.GetAsync(id);
+			PermissionResult permissions = await _definitionerOfPermission.GetPermissionResult(canvas);
+			if (!permissions.Edit ?? false)
+			{
+				return Unauthorized();
+			}
 			try
 			{
 				return TryEditCanvas(id, newCanvas);
