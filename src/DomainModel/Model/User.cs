@@ -1,5 +1,6 @@
 ﻿
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Numerics;
 
 namespace DomainModel.Model;
 
@@ -19,8 +20,10 @@ public partial class User
     public int IdRole { get; set; }
 
     public byte[]? Icon { get; set; }
+    public bool? UseTwoFactorAuthentication { get; set; }
 
-    public virtual ICollection<Canvas> Canvas { get; set; }
+
+	public virtual ICollection<Canvas> Canvas { get; set; }
     public virtual Role Role { get; set; }
     public virtual ICollection<InteractiveCanvas> InteractiveCanvas { get; set; }
     public virtual ICollection<VersionProject> VersionsProjects { get; set; }

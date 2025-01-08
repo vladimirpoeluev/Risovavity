@@ -1,4 +1,5 @@
-﻿using DomainModel.ResultsRequest.Canvas;
+﻿using DomainModel.Integration.CanvasOperation;
+using DomainModel.ResultsRequest.Canvas;
 using Logic.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,8 +14,11 @@ namespace RisovavitiApi.Controllers
 	{
 		IFabricOperateVersionProject _operate;
 		IBuilderGetterVerionsByParent _builder;
+		IEditVersionProject _editVersionProject;
 
-		public VersionProjectController(IFabricOperateVersionProject operate, IBuilderGetterVerionsByParent getterVerionsByParent) 
+		public VersionProjectController(IFabricOperateVersionProject operate, 
+										IBuilderGetterVerionsByParent getterVerionsByParent,
+										IEditVersionProject editVersion) 
 		{
 			_operate = operate;
 			_builder = getterVerionsByParent;
@@ -65,6 +69,12 @@ namespace RisovavitiApi.Controllers
 		{
 			var adder = _operate.CreateAdder(UserGetterByContext.GetUserIntegration(HttpContext));
 			await adder.AddVertionProjectAsync(result);
+			return Ok();
+		}
+
+		public async Task<IActionResult> Edit([FromBody] VerstionProjectEditResutl newVerstion)
+		{
+			await _editVersionProject.Edit(newVerstion);
 			return Ok();
 		}
 

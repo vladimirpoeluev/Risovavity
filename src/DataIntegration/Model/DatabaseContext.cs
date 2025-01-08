@@ -122,6 +122,8 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
                 .HasMaxLength(250)
                 .IsUnicode(false);
 
+            entity.Property(e => e.UseTwoFactorAuthentication);
+
             entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.IdRole)
                 .OnDelete(DeleteBehavior.ClientSetNull)
