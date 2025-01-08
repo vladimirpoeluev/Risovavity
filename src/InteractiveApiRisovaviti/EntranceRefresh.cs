@@ -27,6 +27,10 @@ namespace InteractiveApiRisovaviti
 			});
 			TokensRefreshAndAccess result = 
 				await postrequst.GetResultAsync<TokensRefreshAndAccess>("api/Auto/regist");
+			if(result == null)
+			{
+				return AuthenticationUser.NotAuthenticationUser;
+			}
 
 			return new AuthenticationUserByRefresh(result, _integration);
 		}
