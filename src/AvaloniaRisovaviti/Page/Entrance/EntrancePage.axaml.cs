@@ -36,7 +36,11 @@ public partial class EntrancePage : UserControl
         try
         {
 			Authentication.AuthenticationUser.User = entrance.IputSystem(viewModel.Login, viewModel.Password);
-            
+            if(Authentication.AuthenticationUser.User == AuthenticationUser.NotAuthenticationUser)
+            {
+
+                return;
+            }
 			this.Content = new MainPage();
 		}
         catch(Exception)
