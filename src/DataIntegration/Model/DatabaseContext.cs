@@ -8,7 +8,6 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
 {
     public DatabaseContext()
     {
-        
     }
 
     public DatabaseContext(DbContextOptions<DatabaseContext> options)

@@ -159,7 +159,7 @@ builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<IEmailConfirmaion, EmailConfirmaion>();
 builder.Services.AddTransient<IUserConfirmation, UserConfirmation>();
 builder.Services.AddTransient<IEditVersionProject, EditerVersitonProject>();
-builder.Services.AddTransient<IEditMainVerstionInCanvas>();
+builder.Services.AddTransient<IEditMainVerstionInCanvas, EditMainVersionInCanvas>();
 #endregion
 
 
