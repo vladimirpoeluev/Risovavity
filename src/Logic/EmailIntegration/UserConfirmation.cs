@@ -37,7 +37,17 @@ namespace Logic.EmailIntegration
             string code = CodeGenerater.Generate();
             string email = _userDataBase.Users.First(entity => entity.Id == user.Id).Email;
             await _emailService.SendMessageAsync(email, code);
+            await ClearAwaiter(form);
             await _redisService.AddObject($"userAwait:{form.Login}:{code}", tokens, TimeSpan.FromMinutes(10));
+        }
+
+        async Task ClearAwaiter(AuthenticationForm form)
+        {
+            IEnumerable<string> keys = await _redisService.GetKeys($"userAwait:{form.Login}:*");
+            foreach (var item in keys)
+            {
+                await _redisService.DeleteObject(item);
+            }
         }
 
         public async Task<TokensRefreshAndAccess> Verify(UserConfirmationResult userConfirmation)

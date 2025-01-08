@@ -2,17 +2,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaloniaRisovaviti.ConfimationUserView">
+             xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Main"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaRisovaviti.ConfimationUserView"
+			 x:DataType="vm:ConfimationUserViewModel">
 	<Grid>
 		<StackPanel HorizontalAlignment="Center"
 					VerticalAlignment="Center">
 			<TextBlock Text="Подтверждение пользователя"/>
 			<TextBlock Text="Код подтверждения"/>
-			<TextBox/>
+			<TextBox Text="{Binding Code.Code}"/>
 			<TextBlock Text="На почту, которую вы указали при регистрации должен прийти код подтвеждения"/>
 			<Button Content="Подтвердить"
-					HorizontalAlignment="Center"/>
+					HorizontalAlignment="Center"
+					Click="Button_Click"/>
 		</StackPanel>
 	</Grid>
 </UserControl>

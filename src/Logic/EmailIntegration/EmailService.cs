@@ -20,6 +20,7 @@ namespace Logic.EmailIntegration
 			messageEntity.From.Add(new MailboxAddress("Техническая служба \"Рисовавити\"", Configuration["emailAdmin:email"]));
 			messageEntity.To.Add(new MailboxAddress(string.Empty, email));
 
+			messageEntity.Subject = "Подтверждение почты";
 			messageEntity.Body = new TextPart(MimeKit.Text.TextFormat.Html)
 			{
 				Text = message
@@ -32,7 +33,9 @@ namespace Logic.EmailIntegration
 			try
 			{
 				using SmtpClient smtpClient = new();
-				await smtpClient.ConnectAsync("smtp.yandex.ru", 465, true);
+				await smtpClient.ConnectAsync(	Configuration["emailAdmin:service:address"], 
+												int.Parse(Configuration["emailAdmin:service:port"] ?? "465"),
+												bool.Parse(Configuration["emailAdmin:service:usessl"] ?? "true"));
 				var login = Configuration["emailAdmin:login"];
 				var password = Configuration["emailAdmin:password"];
 				smtpClient.Authenticate(login, password);

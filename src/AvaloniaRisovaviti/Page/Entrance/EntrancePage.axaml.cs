@@ -6,6 +6,7 @@ using AvaloniaRisovaviti.ViewModel.Main;
 using System.Net.Http;
 using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.Interface;
+using Autofac;
 
 namespace AvaloniaRisovaviti;
 
@@ -38,7 +39,9 @@ public partial class EntrancePage : UserControl
 			Authentication.AuthenticationUser.User = entrance.IputSystem(viewModel.Login, viewModel.Password);
             if(Authentication.AuthenticationUser.User == AuthenticationUser.NotAuthenticationUser)
             {
-
+                var view = App.Container.Resolve<ConfimationUserView>();
+                view.ViewModel.Code.Login = viewModel.Login;
+                Content = view;
                 return;
             }
 			this.Content = new MainPage();
