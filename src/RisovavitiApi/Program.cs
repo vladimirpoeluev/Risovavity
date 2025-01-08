@@ -23,6 +23,7 @@ using RisovavitiApi.Middleware;
 using Logic.EmailIntegration.Interface;
 using Logic.EmailIntegration;
 using Logic.JwtBearerAuthentication;
+using Logic.CanvasLogic.VersionProjectOperate;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -157,6 +158,8 @@ builder.Services.AddTransient<ISessionService, SessionService>();
 builder.Services.AddTransient<IEmailService, EmailService>();
 builder.Services.AddTransient<IEmailConfirmaion, EmailConfirmaion>();
 builder.Services.AddTransient<IUserConfirmation, UserConfirmation>();
+builder.Services.AddTransient<IEditVersionProject, EditerVersitonProject>();
+builder.Services.AddTransient<IEditMainVerstionInCanvas>();
 #endregion
 
 

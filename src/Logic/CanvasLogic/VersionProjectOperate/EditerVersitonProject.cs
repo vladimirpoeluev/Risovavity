@@ -19,6 +19,7 @@ namespace Logic.CanvasLogic.VersionProjectOperate
 			VersionProject version = await _versionProjectData.VersionsProjects.FirstAsync(entity => entity.Id == newVersionProject.VerstionId);
 			version.Description = newVersionProject.DescriptionEdit;
 			version.Name = newVersionProject.NameEdit;
+			await _versionProjectData.SaveChangesAsync();
 		}
 	}
 }
