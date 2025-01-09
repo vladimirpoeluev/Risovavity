@@ -65,7 +65,7 @@ namespace RisovavitiApi.Controllers
 			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
 			var canvas = await getter.GetAsync(id);
 			PermissionResult permission = await _definitionerOfPermission.GetPermissionResult(canvas);
-			if (!permission.Read ?? false)
+			if (permission.Read ?? false)
 			{
 				return Ok(canvas);
 			}
