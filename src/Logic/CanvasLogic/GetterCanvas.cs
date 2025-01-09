@@ -1,4 +1,5 @@
-﻿using DataIntegration.Model;
+﻿using DataIntegration.Interface.InterfaceOfModel;
+using DataIntegration.Model;
 using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest;
 using DomainModel.ResultsRequest.Canvas;
@@ -8,13 +9,20 @@ namespace Logic.CanvasLogic
 {
 	public class GetterCanvas : IGetterCanvas
 	{
-		DatabaseContext _db { get; set; }
+		ICanvasDataBase _db { get; set; }
 		UserResult _userResult;
 
 		public GetterCanvas(DatabaseContext db, UserResult user) 
 		{
 			_db = db;
 			_userResult = user;
+		}
+
+		public GetterCanvas(ICanvasDataBase db)
+		{
+			_db = db;
+			_userResult = new UserResult();
+
 		}
 		public async Task<CanvasResult> GetAsync(int id)
 		{

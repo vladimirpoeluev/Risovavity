@@ -1,4 +1,4 @@
-﻿using DataIntegration.Model;
+﻿using DataIntegration.Interface.InterfaceOfModel;
 using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest.Canvas;
 using Microsoft.EntityFrameworkCore;
@@ -7,8 +7,8 @@ namespace Logic.CanvasLogic.VersionProjectOperate
 {
 	public class GetterVersionCanvas : IGetterVersionProject
 	{
-		DatabaseContext _db;
-		public GetterVersionCanvas(DatabaseContext context) 
+		IDataBaseModel _db;
+		public GetterVersionCanvas(IDataBaseModel context) 
 		{
 			_db = context;
 		}

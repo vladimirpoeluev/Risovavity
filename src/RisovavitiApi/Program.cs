@@ -116,6 +116,8 @@ builder.Services.AddTransient<IRuleIntegrationCanvas, IntegrationCanvasesEf>();
 
 builder.Services.AddTransient<IGetUser, GetUsers>();
 builder.Services.AddTransient<IGetCanvasAsync, GetCanvas>();
+builder.Services.AddTransient<IGetterCanvas, GetterCanvas>();
+builder.Services.AddTransient<IGetterVersionProject, GetterVersionCanvas>();
 builder.Services.AddTransient<IInputerSystem, InputerSystem>();
 builder.Services.AddTransient<IRegistationUser, RegistrationUser>();
 

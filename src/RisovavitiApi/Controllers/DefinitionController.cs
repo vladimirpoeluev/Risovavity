@@ -28,14 +28,14 @@ namespace RisovavitiApi.Controllers
 		public async Task<IActionResult> GetPermissionCanvas(int canvasId)
 		{
 			CanvasResult canvasResult = await _getterCanvas.GetAsync(canvasId);
-			return Ok(_definitionerOfPermission.GetPermissionResult(canvasResult));
+			return Ok(await _definitionerOfPermission.GetPermissionResult(canvasResult));
 		}
 
 		[HttpGet("version-project/{versionId}")]
 		public async Task<IActionResult> GetPermissionVersionProject(int versionId)
 		{
 			VersionProjectResult versionProject = await _getterVersion.GetVersionProjectByIdAsync(versionId);
-			return Ok(_definitionerOfPermission.GetPermissionResult(versionProject));
+			return Ok(await _definitionerOfPermission.GetPermissionResult(versionProject));
 		}
 	}
 }
