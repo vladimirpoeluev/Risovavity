@@ -20,7 +20,7 @@ namespace Logic.CanvasLogic
 
 		public IEditerCanvas CreateEditerCanvas(UserResult user)
 		{
-			throw new NotImplementedException();
+			return new EditerCanvas(_db);
 		}
 
 		public IGetterCanvas CreateGetterCanvas(UserResult user)
