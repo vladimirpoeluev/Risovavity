@@ -6,5 +6,7 @@ namespace DomainModel.Integration.CanvasOperation
     {
         void UpdateCanvas(CanvasEditerResult canvas);
         Task UpdateCanvasAsync(CanvasEditerResult canvas);
-    }
+        Task DeleteCanvasAsync(int id);
+
+	}
 }

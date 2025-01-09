@@ -87,7 +87,6 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("delete/{id}")]
 		public async Task<IActionResult> Delete(int id)
 		{
-			
 			try
 			{
 				var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
@@ -95,18 +94,11 @@ namespace RisovavitiApi.Controllers
 
 				var canvas = await getter.GetAsync(id);
 				PermissionResult permissions = await _definitionerOfPermission.GetPermissionResult(canvas);
-				if (!permissions.Edit ?? false)
+				if (!(permissions.Edit ?? false))
 				{
 					return Unauthorized();
 				}
-				editer.UpdateCanvas(new CanvasEditerResult()
-				{
-					Id = canvas.Id,
-					Title = canvas.Name,
-					Description = canvas.Description,
-					VersionProjectId = canvas.VersionId,
-					StatusId = 4
-				});
+				await editer.DeleteCanvasAsync(id);
 
 				return Ok();
 			}
@@ -122,7 +114,7 @@ namespace RisovavitiApi.Controllers
 			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
 			var canvas = await getter.GetAsync(editResult.CanvasId);
 			PermissionResult permissions = await _definitionerOfPermission.GetPermissionResult(canvas);
-			if (!permissions.Edit ?? false)
+			if (!(permissions.Edit ?? false))
 			{
 				return Unauthorized();
 			}
@@ -136,7 +128,7 @@ namespace RisovavitiApi.Controllers
 			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
 			var canvas = await getter.GetAsync(id);
 			PermissionResult permissions = await _definitionerOfPermission.GetPermissionResult(canvas);
-			if (!permissions.Edit ?? false)
+			if (!(permissions.Edit ?? false))
 			{
 				return Unauthorized();
 			}
