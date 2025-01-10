@@ -33,13 +33,23 @@ namespace Logic.CanvasLogic
 
 		public async Task Like(int canvasId)
 		{
-			await _data.LikeOfCanvas.AddAsync(GetLike(canvasId));
+			try
+			{
+				await _data.LikeOfCanvas.AddAsync(GetLike(canvasId));
+				await _data.SaveChangesAsync();
+			}
+			catch { }
 		}
 
 		public async Task UnLike(int canvasId)
 		{
-			_data.LikeOfCanvas.Remove(GetLike(canvasId));
-			await _data.SaveChangesAsync();
+			try
+			{
+				_data.LikeOfCanvas.Remove(GetLike(canvasId));
+				await _data.SaveChangesAsync();
+			}
+			catch { }
+			
 		}
 
 		private LikeOfCanvas GetLike(int canvasId)
