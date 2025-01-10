@@ -27,4 +27,5 @@ public partial class User
     public virtual Role Role { get; set; }
     public virtual ICollection<InteractiveCanvas> InteractiveCanvas { get; set; }
     public virtual ICollection<VersionProject> VersionsProjects { get; set; }
+    public virtual ICollection<LikeOfCanvas> LikeOfCanvas { get; set; }
 }

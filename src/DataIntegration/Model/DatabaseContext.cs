@@ -13,6 +13,7 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
     public DatabaseContext(DbContextOptions<DatabaseContext> options)
         : base(options) {}
 
+    public virtual DbSet<LikeOfCanvas> LikeOfCanvas { get; set; }
     public virtual DbSet<Canvas> Canvas { get; set; }
 
     public virtual DbSet<InteractiveCanvas> InteractiveCanvas { get; set; }
@@ -129,6 +130,19 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
                 .HasForeignKey(d => d.IdRole)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_User_Role");
+        });
+
+        modelBuilder.Entity<LikeOfCanvas>(entity =>
+        {
+            entity.HasKey(e => new { e.UserId, e.CanvasId });
+
+            entity.HasOne(e => e.User)
+            .WithMany(e => e.LikeOfCanvas)
+            .HasForeignKey(e => e.UserId);
+
+            entity.HasOne(e => e.Canvas)
+            .WithMany(e => e.LikeOfCanvas)
+            .HasForeignKey(e => e.CanvasId);
         });
 
         OnModelCreatingPartial(modelBuilder);

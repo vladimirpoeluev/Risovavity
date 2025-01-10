@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainModel.Model;
 
@@ -22,5 +23,7 @@ public partial class Canvas
     public virtual Status Status { get; set; }
 
     public virtual VersionProject MainVersion { get; set; }
+
+    public virtual Collection<LikeOfCanvas> LikeOfCanvas { get; set; }
 
 }
