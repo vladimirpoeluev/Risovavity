@@ -9,6 +9,8 @@ using DomainModel.Exceptions;
 using DomainModel.ResultsRequest;
 using DomainModel.Model;
 using StackExchange.Redis;
+using DomainModel.Integration;
+using Microsoft.AspNetCore.SignalR.Protocol;
 
 namespace RisovavitiApi.Controllers
 {
@@ -20,14 +22,23 @@ namespace RisovavitiApi.Controllers
 		IFabricCanvasOperation _fabricCanvasOperation;
 		IEditMainVerstionInCanvas _editMainVersiton;
 		IDefinitionerOfPermissionByHttpContext _definitionerOfPermission;
+		ISearcherCanvas _searcherCanvas;
 
 		public UsersCanvasesController(	IFabricCanvasOperation fabricOperate, 
 										IEditMainVerstionInCanvas editMain,
-										IDefinitionerOfPermissionByHttpContext definitionerOfPermission) 
+										IDefinitionerOfPermissionByHttpContext definitionerOfPermission,
+										ISearcherCanvas searcher) 
 		{
 			_fabricCanvasOperation = fabricOperate;
 			_editMainVersiton = editMain;	
 			_definitionerOfPermission = definitionerOfPermission;
+			_searcherCanvas = searcher;
+		}
+
+		[HttpGet("search/{keyword}")]
+		public async Task<IActionResult> Search(string keyword)
+		{
+			return Ok(await _searcherCanvas.Search(keyword));
 		}
 
 		[HttpGet("get")]

@@ -8,6 +8,7 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
 {
     public DatabaseContext()
     {
+        Entry();
     }
 
     public DatabaseContext(DbContextOptions<DatabaseContext> options)

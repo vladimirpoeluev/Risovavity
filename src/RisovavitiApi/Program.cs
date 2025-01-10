@@ -113,6 +113,8 @@ builder.Services.AddTransient<IRoleDataBase, DatabaseContext>();
 builder.Services.AddTransient<IStatusesDataBase, DatabaseContext>();
 
 builder.Services.AddTransient<IRuleIntegrationCanvas, IntegrationCanvasesEf>();
+builder.Services.AddTransient<ISearcherCanvas, SearcherCanvas>();
+builder.Services.AddTransient<ITwoFactorAuthService, TwoFactorAuthService>();
 
 builder.Services.AddTransient<IGetUser, GetUsers>();
 builder.Services.AddTransient<IGetCanvasAsync, GetCanvas>();
