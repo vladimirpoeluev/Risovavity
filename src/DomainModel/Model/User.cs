@@ -28,4 +28,5 @@ public partial class User
     public virtual ICollection<InteractiveCanvas> InteractiveCanvas { get; set; }
     public virtual ICollection<VersionProject> VersionsProjects { get; set; }
     public virtual ICollection<LikeOfCanvas> LikeOfCanvas { get; set; }
+    public virtual ICollection<LikeOfVersionProject> LikeOfVersionProject{ get; set; }
 }

@@ -1,6 +1,7 @@
 ﻿using DataIntegration.Interface.InterfaceOfModel;
 using DomainModel.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DataIntegration.Model;
 
@@ -25,6 +26,7 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<VersionProject> VersionsProjects { get; set; }
+    public virtual DbSet<LikeOfVersionProject> LikeOfVersionProjects { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -143,6 +145,19 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
             entity.HasOne(e => e.Canvas)
             .WithMany(e => e.LikeOfCanvas)
             .HasForeignKey(e => e.CanvasId);
+        });
+
+        modelBuilder.Entity<LikeOfVersionProject>(entity =>
+        {
+            entity.HasKey(e => new {e.VersionProjectId, e.UserId});
+
+            entity.HasOne(e => e.User)
+            .WithMany(e => e.LikeOfVersionProject)
+            .HasForeignKey(e => e.UserId);
+
+            entity.HasOne(e => e.VersionProject)
+            .WithMany(e => e.LikeOfVersions)
+            .HasForeignKey(e => e.VersionProjectId);
         });
 
         OnModelCreatingPartial(modelBuilder);

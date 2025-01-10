@@ -19,16 +19,45 @@ namespace RisovavitiApi.Controllers
 		IBuilderGetterVerionsByParent _builder;
 		IEditVersionProject _editVersionProject;
 		IDefinitionerOfPermissionByHttpContext _definitionerOfPermission;
+		ILikesOfVersitonService _likesService;
 
 		public VersionProjectController(IFabricOperateVersionProject operate, 
 										IBuilderGetterVerionsByParent getterVerionsByParent,
 										IEditVersionProject editVersion,
-										IDefinitionerOfPermissionByHttpContext definitionerOfPermission) 
+										IDefinitionerOfPermissionByHttpContext definitionerOfPermission,
+										ILikesOfVersitonService likes) 
 		{
 			_operate = operate;
 			_builder = getterVerionsByParent;
 			_editVersionProject = editVersion;
 			_definitionerOfPermission = definitionerOfPermission;
+			_likesService = likes;
+		}
+
+		[HttpGet("islike/{idVersion}")]
+		public async Task<IActionResult> IsLike(int idVersion)
+		{
+			return Ok(await _likesService.IsLike(idVersion));
+		}
+
+		[HttpGet("couint-likes/{idVersion}")]
+		public async Task<IActionResult> GetCointLikes(int idVersion)
+		{
+			return Ok(await _likesService.CouintLikes(idVersion));
+		}
+
+		[HttpPost("like/{idVersion}")]
+		public async Task<IActionResult> GiveLike(int idVersion)
+		{
+			await _likesService.Like(idVersion);
+			return Ok();
+		}
+
+		[HttpPost("unlike/{idVersion}")]
+		public async Task<IActionResult> TakeAwatALike(int idVersion)
+		{
+			await _likesService.UnLike(idVersion);
+			return Ok();
 		}
 
 		[HttpGet("get/{id}")]

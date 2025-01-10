@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.ObjectModel;
+
 namespace DomainModel.Model
 {
 	public class VersionProject
@@ -14,6 +16,7 @@ namespace DomainModel.Model
 		public IEnumerable<VersionProject> DescendantsVersionProject { get; set; }
 		public User AuthorOfVersion { get; set; }
 		public Canvas Canvas { get; set; }
+		public Collection<LikeOfVersionProject> LikeOfVersions { get; set; }
 
 	}
 }
