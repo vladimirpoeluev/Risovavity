@@ -23,16 +23,19 @@ namespace RisovavitiApi.Controllers
 		IEditMainVerstionInCanvas _editMainVersiton;
 		IDefinitionerOfPermissionByHttpContext _definitionerOfPermission;
 		ISearcherCanvas _searcherCanvas;
+		ILikesOfCanvasService _likesService;
 
 		public UsersCanvasesController(	IFabricCanvasOperation fabricOperate, 
 										IEditMainVerstionInCanvas editMain,
 										IDefinitionerOfPermissionByHttpContext definitionerOfPermission,
-										ISearcherCanvas searcher) 
+										ISearcherCanvas searcher,
+										ILikesOfCanvasService likes) 
 		{
 			_fabricCanvasOperation = fabricOperate;
 			_editMainVersiton = editMain;	
 			_definitionerOfPermission = definitionerOfPermission;
 			_searcherCanvas = searcher;
+			_likesService = likes;
 		}
 
 		[HttpGet("search/{keyword}")]
@@ -44,25 +47,27 @@ namespace RisovavitiApi.Controllers
 		[HttpGet("islike/{idCanvas}")]
 		public async Task<IActionResult> IsLike(int idCanvas)
 		{
-			throw new NotImplementedException();
+			return Ok(await _likesService.IsLike(idCanvas));
 		}
 
 		[HttpGet("couint-likes/{idCanvas}")]
 		public async Task<IActionResult> GetCointLikes(int idCanvas)
 		{
-			throw new NotImplementedException();
+			return Ok(await _likesService.CouintLikes(idCanvas));
 		}
 
 		[HttpPost("like/{idCanvas}")]
 		public async Task<IActionResult> GiveLike(int idCanvas)
 		{
-			throw new NotImplementedException();
+			await _likesService.Like(idCanvas);
+			return Ok();
 		}
 
 		[HttpPost("unlike/{idCanvas}")]
 		public async Task<IActionResult> TakeAwatALike(int idCanvas)
 		{
-			throw new NotImplementedException();
+			await _likesService.UnLike(idCanvas);
+			return Ok();
 		}
 
 		[HttpGet("get")]
