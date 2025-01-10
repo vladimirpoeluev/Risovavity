@@ -41,6 +41,30 @@ namespace RisovavitiApi.Controllers
 			return Ok(await _searcherCanvas.Search(keyword));
 		}
 
+		[HttpGet("islike/{idCanvas}")]
+		public async Task<IActionResult> IsLike(int idCanvas)
+		{
+			throw new NotImplementedException();
+		}
+
+		[HttpGet("couint-likes/{idCanvas}")]
+		public async Task<IActionResult> GetCointLikes(int idCanvas)
+		{
+			throw new NotImplementedException();
+		}
+
+		[HttpPost("like/{idCanvas}")]
+		public async Task<IActionResult> GiveLike(int idCanvas)
+		{
+			throw new NotImplementedException();
+		}
+
+		[HttpPost("unlike/{idCanvas}")]
+		public async Task<IActionResult> TakeAwatALike(int idCanvas)
+		{
+			throw new NotImplementedException();
+		}
+
 		[HttpGet("get")]
 		public async Task<IActionResult> Get(int skip, int take)
 		{
