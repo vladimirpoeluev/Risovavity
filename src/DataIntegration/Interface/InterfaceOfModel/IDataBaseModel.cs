@@ -8,5 +8,6 @@ namespace DataIntegration.Interface.InterfaceOfModel
 		IInteractiveCanvasDataBase,
 		IRoleDataBase,
 		IStatusesDataBase,
-		IUserDataBase; 
+		IUserDataBase,
+		ILikesOfCanvasDataBase; 
 }
