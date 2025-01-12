@@ -17,6 +17,7 @@ namespace AvaloniaRisovaviti
             _viewModel = new RegistrationPageViewModel();
             DataContext = _viewModel;
             _registarion = new Registration(Authentication.AuthenticationUser.User);
+            
         }
 
 
@@ -37,7 +38,7 @@ namespace AvaloniaRisovaviti
             if(_viewModel.RegistrationForm.Password == _viewModel.RepeatPassword)
             {
 				_registarion.RegistrionUser(_viewModel.RegistrationForm);
-				this.Content = App.Container.Resolve<IEntrance>();
+				this.Content = App.Container.Resolve<EntrancePage>();
 			}
             else
             {

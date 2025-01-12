@@ -3,9 +3,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaloniaRisovaviti.RegistrationPage"
+			 xmlns:assets="clr-namespace:AvaloniaRisovaviti.Assets"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Main"
 			 xmlns:md="https://github.com/whistyun/Markdown.Avalonia"
+             x:Class="AvaloniaRisovaviti.RegistrationPage"
 			 x:DataType="vm:RegistrationPageViewModel">
 	<Design.DataContext>
 		<vm:RegistrationPageViewModel/>
@@ -15,30 +16,31 @@
 					VerticalAlignment="Center">
 			<Label Content="Регистрация" 
 				   FontSize="25"/>
-			<Label Content="Имя"/>
+			<Label Content="{x:Static assets:Resource.NameOfUser}"/>
 			<TextBox Text="{Binding RegistrationForm.Name}"/>
-			<Label Content="Email"/>
+			<Label Content="{x:Static assets:Resource.Email}"/>
 			<TextBox Text="{Binding RegistrationForm.Email}"/>
-			<Label Content="Логин"/>
+			<Label Content="{x:Static assets:Resource.Login}"/>
 			<TextBox Text="{Binding RegistrationForm.Login}"/>
-			<Label Content="Пароль"/>
+			<Label Content="{x:Static assets:Resource.Password}"/>
 			<TextBox PasswordChar="⚫" Text="{Binding RegistrationForm.Password}"/>
-			<Label Content="Повтор пароля"/>
+			<Label Content="{x:Static assets:Resource.RepeatPassword}"/>
 			<TextBox PasswordChar="⚫"
 					 Text="{Binding RepeatPassword}"/>
 			<TextBlock Text="{Binding Error}" Foreground="Red"/>
 			<CheckBox Checked="CheckedConfidicialnosti" Unchecked="UnCheckedConfidicialnosti">
-					<md:MarkdownScrollViewer xml:space="preserve">
-						Вы соглашайтесь на [условия конфидициальности](https://localhost:7281/privacy.html)
-					</md:MarkdownScrollViewer>
+				<TextBlock>
+					<md:MarkdownScrollViewer xml:space="preserve" Markdown="{x:Static assets:Resource.MDAgreement}"/>
+				</TextBlock>
 			</CheckBox>
 			<Button x:Name="buttnReg"
 					HorizontalAlignment="Stretch"
-					Content="Зарегистрироваться"
 					Margin="5"
+					Content="{x:Static assets:Resource.Input}"
 					Click="Regist_Click"
-					IsEnabled="False"/>
-			<Button Content="Назад"
+					IsEnabled="False">
+			</Button>
+			<Button Content="{x:Static assets:Resource.Back}"
 					HorizontalAlignment="Stretch"
 					Margin="5"
 					Click="Back_Click"/>
