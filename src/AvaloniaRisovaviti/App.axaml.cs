@@ -51,7 +51,7 @@ namespace AvaloniaRisovaviti
 
         public override void OnFrameworkInitializationCompleted()
         {
-            Assets.Resource.Culture = new System.Globalization.CultureInfo("kor-KOR");
+            Assets.Resource.Culture = new System.Globalization.CultureInfo("ru-RU");
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 desktop.MainWindow = new EntranceWindow();
