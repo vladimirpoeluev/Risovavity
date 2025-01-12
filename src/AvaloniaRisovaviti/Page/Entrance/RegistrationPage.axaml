@@ -14,7 +14,7 @@
 	<Grid>
 		<StackPanel HorizontalAlignment="Center"
 					VerticalAlignment="Center">
-			<Label Content="Регистрация" 
+			<Label Content="{x:Static assets:Resource.Registration}" 
 				   FontSize="25"/>
 			<Label Content="{x:Static assets:Resource.NameOfUser}"/>
 			<TextBox Text="{Binding RegistrationForm.Name}"/>
@@ -36,7 +36,7 @@
 			<Button x:Name="buttnReg"
 					HorizontalAlignment="Stretch"
 					Margin="5"
-					Content="{x:Static assets:Resource.Input}"
+					Content="{x:Static assets:Resource.Register}"
 					Click="Regist_Click"
 					IsEnabled="False">
 			</Button>

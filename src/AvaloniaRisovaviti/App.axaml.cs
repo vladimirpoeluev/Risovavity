@@ -8,9 +8,7 @@ using AvaloniaRisovaviti.ViewModel.Profile.SafetyModels;
 using InteractiveApiRisovaviti;
 using InteractiveApiRisovaviti.ControllerIntegration;
 using InteractiveApiRisovaviti.Exceptions;
-using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.Interface;
-using AvaloniaRisovaviti;
 using System;
 
 namespace AvaloniaRisovaviti
@@ -53,7 +51,7 @@ namespace AvaloniaRisovaviti
 
         public override void OnFrameworkInitializationCompleted()
         {
-            Assets.Resource.Culture = new System.Globalization.CultureInfo("ru-RU");
+            Assets.Resource.Culture = new System.Globalization.CultureInfo("kor-KOR");
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 desktop.MainWindow = new EntranceWindow();

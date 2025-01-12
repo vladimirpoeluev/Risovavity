@@ -118,48 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NameApp" xml:space="preserve">
-    <value>Рисовавити авалония</value>
+    <value>리소바비티 아발로니아</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Логин</value>
+    <value>로그인</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Пароль</value>
+    <value>비밀번호</value>
   </data>
   <data name="Input" xml:space="preserve">
-    <value>Войти</value>
+    <value>로그인</value>
   </data>
   <data name="Registration" xml:space="preserve">
-    <value>Регистрация</value>
+    <value>등록</value>
   </data>
   <data name="RepeatPassword" xml:space="preserve">
-    <value>Повтор пароля</value>
+    <value>비밀번호 재입력</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>Эл.почта</value>
+    <value>이메일</value>
   </data>
   <data name="TextConfid" xml:space="preserve">
-    <value>Вы соглашайтесь на условия конфидициальности</value>
+    <value>귀하는 기밀 유지 조건에 동의합니다</value>
   </data>
   <data name="EmailUser" xml:space="preserve">
-    <value>Пользовательская почта</value>
+    <value>사용자 정의 메일</value>
   </data>
   <data name="Profile" xml:space="preserve">
-    <value>Профиль</value>
+    <value>윤곽</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Настройки</value>
+    <value>설정</value>
   </data>
   <data name="NameOfUser" xml:space="preserve">
-    <value>Имя пользователя</value>
+    <value>사용자 이름</value>
   </data>
   <data name="MDAgreement" xml:space="preserve">
-    <value>Вы соглашайтесь на [условия конфидициальности](https://localhost:7281/privacy.html)</value>
+    <value>[개인정보취급방침](https://localhost:7281/privacy.html)에 동의합니다.</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Назад</value>
+    <value>뒤쪽에</value>
   </data>
   <data name="Registrating" xml:space="preserve">
-    <value>Загегистрироваться</value>
+    <value>등록하다</value>
   </data>
 </root>

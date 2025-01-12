@@ -65,7 +65,7 @@ namespace AvaloniaRisovaviti
 
         public void Back_Click(object? obj, RoutedEventArgs e)
         {
-            Content = App.Container.Resolve<IEntrance>();
+            Content = App.Container.Resolve<EntrancePage>();
         }
 
 	}
