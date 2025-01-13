@@ -24,18 +24,21 @@ namespace RisovavitiApi.Controllers
 		IDefinitionerOfPermissionByHttpContext _definitionerOfPermission;
 		ISearcherCanvas _searcherCanvas;
 		ILikesOfCanvasService _likesService;
+		IRuleIntegrationUser _integrationUser;
 
 		public UsersCanvasesController(	IFabricCanvasOperation fabricOperate, 
 										IEditMainVerstionInCanvas editMain,
 										IDefinitionerOfPermissionByHttpContext definitionerOfPermission,
 										ISearcherCanvas searcher,
-										ILikesOfCanvasService likes) 
+										ILikesOfCanvasService likes,
+										IRuleIntegrationUser integrationUser) 
 		{
 			_fabricCanvasOperation = fabricOperate;
 			_editMainVersiton = editMain;	
 			_definitionerOfPermission = definitionerOfPermission;
 			_searcherCanvas = searcher;
 			_likesService = likes;
+			_integrationUser = integrationUser;
 		}
 
 		[HttpGet("search/{keyword}")]
@@ -73,7 +76,7 @@ namespace RisovavitiApi.Controllers
 		[HttpGet("get")]
 		public async Task<IActionResult> Get(int skip, int take)
 		{
-			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 
 			var canvases = await getter.GetAsync(skip, take);
 			return Ok(canvases);
@@ -102,7 +105,7 @@ namespace RisovavitiApi.Controllers
 
 		async Task<OkObjectResult> TryGetCanvasById(int id)
 		{
-			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 			var canvas = await getter.GetAsync(id);
 			PermissionResult permission = await _definitionerOfPermission.GetPermissionResult(canvas);
 			if (permission.Read ?? false)
@@ -119,7 +122,7 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("add")]
 		public async Task<IActionResult> Add([FromBody] CanvasAddResult result)
 		{
-			var adder = _fabricCanvasOperation.CreateAdderCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+			var adder = _fabricCanvasOperation.CreateAdderCanvas(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 			await adder.AddCanvas(result);
 			return Ok();
 		}
@@ -129,8 +132,8 @@ namespace RisovavitiApi.Controllers
 		{
 			try
 			{
-				var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
-				var editer = _fabricCanvasOperation.CreateEditerCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+				var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
+				var editer = _fabricCanvasOperation.CreateEditerCanvas(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 
 				var canvas = await getter.GetAsync(id);
 				PermissionResult permissions = await _definitionerOfPermission.GetPermissionResult(canvas);
@@ -151,7 +154,7 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("edit/mainVersion")]
 		public async Task<IActionResult> EditMainVerstion([FromBody] MainVersionInCanvasResutl editResult)
 		{
-			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 			var canvas = await getter.GetAsync(editResult.CanvasId);
 			PermissionResult permissions = await _definitionerOfPermission.GetPermissionResult(canvas);
 			if (!(permissions.Edit ?? false))
@@ -165,7 +168,7 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("edit/{id}")]
 		public async Task<IActionResult> EditCanvas(int id, [FromBody] CanvasEditerResult newCanvas)
 		{
-			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+			var getter = _fabricCanvasOperation.CreateGetterCanvas(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 			var canvas = await getter.GetAsync(id);
 			PermissionResult permissions = await _definitionerOfPermission.GetPermissionResult(canvas);
 			if (!(permissions.Edit ?? false))
@@ -184,7 +187,7 @@ namespace RisovavitiApi.Controllers
 
 		OkResult TryEditCanvas(int id, CanvasEditerResult newCanvas)
 		{
-			var editer = _fabricCanvasOperation.CreateEditerCanvas(UserGetterByContext.GetUserIntegration(HttpContext));
+			var editer = _fabricCanvasOperation.CreateEditerCanvas(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 			newCanvas.Id = id;
 			editer.UpdateCanvas(newCanvas);
 			return Ok();

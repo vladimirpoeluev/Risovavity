@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Logic.JwtBearerAuthentication.Interface;
 using RisovavitiApi.UserOperate;
 using System.Security.Claims;
+using DomainModel.Integration;
 
 namespace RisovavitiApi.Controllers
 {
@@ -13,10 +14,12 @@ namespace RisovavitiApi.Controllers
 	public class SessionController : Controller
 	{
 		private ISessionService _sessionService;
+		IRuleIntegrationUser _integrationUser;
 
-		public SessionController(ISessionService sessionService)
+		public SessionController(ISessionService sessionService, IRuleIntegrationUser integrationUser)
 		{
 			_sessionService = sessionService;
+			_integrationUser = integrationUser;
 		}
 		[HttpGet("get")]
 		public async Task<IActionResult> GetSessions()
@@ -53,7 +56,7 @@ namespace RisovavitiApi.Controllers
 
 		private UserResult GetUser()
 		{
-			return UserGetterByContext.GetUserIntegration(HttpContext);
+			return UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser);
 		}
 	}
 }

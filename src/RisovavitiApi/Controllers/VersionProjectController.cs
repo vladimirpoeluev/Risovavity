@@ -1,4 +1,5 @@
 ﻿using DomainModel.Exceptions;
+using DomainModel.Integration;
 using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest;
 using DomainModel.ResultsRequest.Canvas;
@@ -20,18 +21,21 @@ namespace RisovavitiApi.Controllers
 		IEditVersionProject _editVersionProject;
 		IDefinitionerOfPermissionByHttpContext _definitionerOfPermission;
 		ILikesOfVersitonService _likesService;
+		IRuleIntegrationUser _integrationUser;
 
 		public VersionProjectController(IFabricOperateVersionProject operate, 
 										IBuilderGetterVerionsByParent getterVerionsByParent,
 										IEditVersionProject editVersion,
 										IDefinitionerOfPermissionByHttpContext definitionerOfPermission,
-										ILikesOfVersitonService likes) 
+										ILikesOfVersitonService likes,
+										IRuleIntegrationUser integrationUser) 
 		{
 			_operate = operate;
 			_builder = getterVerionsByParent;
 			_editVersionProject = editVersion;
 			_definitionerOfPermission = definitionerOfPermission;
 			_likesService = likes;
+			_integrationUser = integrationUser;
 		}
 
 		[HttpGet("islike/{idVersion}")]
@@ -79,7 +83,7 @@ namespace RisovavitiApi.Controllers
 
 		async Task<OkObjectResult> TryGetById(int id) 
 		{
-			var getter = _operate.CreateGetter(UserGetterByContext.GetUserIntegration(HttpContext));
+			var getter = _operate.CreateGetter(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 			var vertion = await getter.GetVersionProjectByIdAsync(id);
 			PermissionResult permissionResult = await _definitionerOfPermission.GetPermissionResult(vertion);
 			if(!permissionResult.Read ?? false)
@@ -92,7 +96,7 @@ namespace RisovavitiApi.Controllers
 		[HttpGet("get")]
 		public async Task<IActionResult> Get(int skip, int take)
 		{
-			var getter = _operate.CreateGetter(UserGetterByContext.GetUserIntegration(HttpContext));
+			var getter = _operate.CreateGetter(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 			var versions = await getter.GetVersionProjectsAsync(skip, take);
 			return Ok(versions);
 		}
@@ -101,7 +105,7 @@ namespace RisovavitiApi.Controllers
 		public async Task<IActionResult> GetVersion(int id, int skip, int take)
 		{
 			VersionProjectResult project = await _operate
-				.CreateGetter(UserGetterByContext.GetUserIntegration(HttpContext))
+				.CreateGetter(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser))
 				.GetVersionProjectByIdAsync(id);
 			IEnumerable<VersionProjectResult> result = await _builder.Skip(skip)
 				.Take(take).ToGetter()
@@ -112,7 +116,7 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("add")]
 		public async Task<IActionResult> Add([FromBody] VersionProjectForAddResult result)
 		{
-			var adder = _operate.CreateAdder(UserGetterByContext.GetUserIntegration(HttpContext));
+			var adder = _operate.CreateAdder(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 			await adder.AddVertionProjectAsync(result);
 			return Ok();
 		}
@@ -120,7 +124,7 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("edit")]
 		public async Task<IActionResult> Edit([FromBody] VerstionProjectEditResutl newVerstion)
 		{
-			var getter = _operate.CreateGetter(UserGetterByContext.GetUserIntegration(HttpContext));
+			var getter = _operate.CreateGetter(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 			var vertion = await getter.GetVersionProjectByIdAsync(newVerstion.VerstionId);
 			PermissionResult permission = await _definitionerOfPermission.GetPermissionResult(vertion);
 			if(!permission.Edit ?? false)
@@ -134,14 +138,14 @@ namespace RisovavitiApi.Controllers
 		[HttpPost("delet/{id}")]
 		public async Task<IActionResult> Delet(int id)
 		{
-			var getter = _operate.CreateGetter(UserGetterByContext.GetUserIntegration(HttpContext));
+			var getter = _operate.CreateGetter(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 			var vertion = await getter.GetVersionProjectByIdAsync(id);
 			PermissionResult permission = await _definitionerOfPermission.GetPermissionResult(vertion);
 			if (!permission.Edit ?? false)
 			{
 				return Unauthorized();
 			}
-			var adder = _operate.CreateAdder(UserGetterByContext.GetUserIntegration(HttpContext));
+			var adder = _operate.CreateAdder(UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser));
 			await adder.DeleteVertionProjectAsync(id);
 			return Ok();
 		}

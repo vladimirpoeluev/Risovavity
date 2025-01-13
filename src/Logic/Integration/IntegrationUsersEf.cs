@@ -9,9 +9,9 @@ namespace Logic.Integration
 	public class IntegrationUsersEf : IRuleIntegrationUser
 	{
 		DatabaseContext db;
-		public IntegrationUsersEf() 
+		public IntegrationUsersEf(DatabaseContext databaseContext) 
 		{
-			db = new DatabaseContext();
+			db = databaseContext;
 		}
 		public bool Add(User user)
 		{

@@ -133,7 +133,7 @@ namespace RisovavitiApi.Controllers
 			_passwordEditer.User = GetUserIntegration();
 			await _passwordEditer.PasswordEditAsync(editPassword);
 			await _sessionService.DeleteAllSesstionByUserAsync(
-				UserGetterByContext.GetUserIntegration(HttpContext).Id.ToString());
+				UserGetterByContext.GetUserIntegration(HttpContext, _integrationUser).Id.ToString());
 			return Ok();
 		}
 

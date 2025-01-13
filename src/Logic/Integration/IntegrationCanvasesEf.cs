@@ -9,9 +9,9 @@ namespace Logic.Integration
 	public class IntegrationCanvasesEf : IRuleIntegrationCanvas
 	{
 		private DatabaseContext DatabaseContext { get; set; }
-		public IntegrationCanvasesEf() 
+		public IntegrationCanvasesEf(DatabaseContext databaseContext) 
 		{ 
-			DatabaseContext = new DatabaseContext();
+			DatabaseContext = databaseContext;
 		}
 
 		public bool Add(Canvas canvas)

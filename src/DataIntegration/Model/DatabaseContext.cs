@@ -7,9 +7,10 @@ namespace DataIntegration.Model;
 
 public partial class DatabaseContext : DbContext, IDataBaseModel
 {
-    //string ConnectionSting { get; set; } = "Host=localhost;Port=5000;Database=risovavity;Username=postgres;Password=password";
-    public DatabaseContext()
+    string ConnectionSting { get; set; } = "Host=localhost;Port=5000;Database=risovavity;Username=postgres;Password=password";
+    public DatabaseContext(string connectionString)
     {
+        ConnectionSting = connectionString;
     }
 
     public DatabaseContext(DbContextOptions<DatabaseContext> options)
@@ -32,7 +33,7 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-		optionsBuilder.UseNpgsql("Host=localhost;Port=5000;Database=risovavity;Username=postgres;Password=password");
+		optionsBuilder.UseNpgsql(ConnectionSting);
 		//optionsBuilder.UseSqlServer("Data Source=NIGHSVOLK\\SQLEXPRESS;Initial Catalog=Risovaviti;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
 	}
     protected override void OnModelCreating(ModelBuilder modelBuilder)

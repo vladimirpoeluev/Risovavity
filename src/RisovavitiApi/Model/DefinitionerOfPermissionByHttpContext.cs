@@ -10,10 +10,14 @@ namespace RisovavitiApi.Model
 	{
 		IDefinitionerOfPermission _definitioner;
 		IHttpContextAccessor _contextAccessor;
-		public DefinitionerOfPermissionByHttpContext(IDefinitionerOfPermission definitioner, IHttpContextAccessor contextAccessor)
+		IRuleIntegrationUser _integrationUser;
+		public DefinitionerOfPermissionByHttpContext(	IDefinitionerOfPermission definitioner, 
+														IHttpContextAccessor contextAccessor,
+														IRuleIntegrationUser integrationUser)
 		{
 			_definitioner = definitioner;
 			_contextAccessor = contextAccessor;
+			_integrationUser = integrationUser;
 		}
 
 		public async Task<PermissionResult> GetPermissionResult(CanvasResult canvasResult)
@@ -30,7 +34,7 @@ namespace RisovavitiApi.Model
 		{
 			return await Task.Run(() =>
 			{
-				return UserGetterByContext.GetUserIntegration(_contextAccessor.HttpContext);
+				return UserGetterByContext.GetUserIntegration(_contextAccessor.HttpContext, _integrationUser);
 			});
 		}
 	}

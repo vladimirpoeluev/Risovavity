@@ -23,6 +23,7 @@ using Logic.JwtBearerAuthentication;
 using Logic.CanvasLogic.VersionProjectOperate;
 using RisovavitiApi.Model.Interfaces;
 using RisovavitiApi.Model;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -96,14 +97,14 @@ builder.Configuration.AddJsonFile("Configure/appConfig.json");
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<IEntrance, Entrance>(h
-	=> new Entrance(new InputerSystem(new CreaterToken())));
+	=> new Entrance(new InputerSystem(new CreaterToken()), h.GetService<IRuleIntegrationUser>()));
 builder.Services.AddTransient<IRuleIntegrationUser, IntegrationUsersEf>();
 builder.Services.AddTransient<ICreateSaverToken, SingleSaveUserToken>();
 builder.Services.AddTransient<IGeneraterHash, GeneraterHash>();
 builder.Services.AddTransient<IRuleIntegrationUser, IntegrationUsersEf>();
 
 
-builder.Services.AddTransient<DatabaseContext, DatabaseContext>((h) => new DatabaseContext());
+builder.Services.AddTransient<DatabaseContext, DatabaseContext>((h) => new DatabaseContext(h.GetService<IConfiguration>()["postgres:connection"]));
 builder.Services.AddTransient<IDataBaseModel, DatabaseContext>((h) => h.GetService<DatabaseContext>());
 builder.Services.AddTransient<IUserDataBase, DatabaseContext>((h) => h.GetService<DatabaseContext>());
 builder.Services.AddTransient<ICanvasDataBase, DatabaseContext>((h) => h.GetService<DatabaseContext>());
@@ -153,10 +154,10 @@ new AuthorizeServiceRefresh(
 	h.GetRequiredService<IAdderSession>(),
 	h.GetRequiredService<IUserDataBase>()));
 
-builder.Services.AddTransient<IRedisService, RedisService>(h => new RedisService("localhost:6379"));
+builder.Services.AddTransient<IRedisService, RedisService>(h => new RedisService(h.GetService<IConfiguration>()["redis:connection"]));
 builder.Services.AddTransient<IEntranceUser, EntranceUser>();
 builder.Services.AddTransient<IDeleterSession, DeleterSession>();
-builder.Services.AddTransient<IGetterKeys, RedisService>(h => new RedisService("localhost:6379"));
+builder.Services.AddTransient<IGetterKeys, RedisService>(h => new RedisService(h.GetService<IConfiguration>()["redis:connection"]));
 builder.Services.AddTransient<ISessionService, SessionService>();
 
 builder.Services.AddTransient<IEmailService, EmailService>();

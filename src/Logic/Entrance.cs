@@ -2,6 +2,7 @@
 using DomainModel.Model;
 using Logic.Interface;
 using Logic.HashPassword;
+using DomainModel.Integration;
 
 namespace Logic
 {
@@ -9,15 +10,16 @@ namespace Logic
     {
         IInputerSystem _inputerSystem;
         IGeneraterHash _generaterHash;
-        public Entrance(IInputerSystem inputer) 
+        IRuleIntegrationUser userInt;
+        public Entrance(IInputerSystem inputer, IRuleIntegrationUser integrationUser) 
         {
             _generaterHash = new GeneraterHash();
             _inputerSystem = inputer;
+            userInt = integrationUser;
         }
 
         public string EntranceInSystem(string login, string password)
         {
-            var userInt = new IntegrationUsersEf();
             var users = userInt.Get(login);
             if (users.Length == 1)
             {
