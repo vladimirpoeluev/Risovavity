@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace DataIntegration.Migrations
+namespace ConsoleApp1.Migrations
 {
     /// <inheritdoc />
-    public partial class PasswordEdit : Migration
+    public partial class Obratno2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -13,14 +13,14 @@ namespace DataIntegration.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Password",
                 table: "User",
-                type: "varchar(200)",
+                type: "character varying(250)",
                 unicode: false,
-                maxLength: 50,
+                maxLength: 250,
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "varchar(50)",
+                oldType: "character varying(200)",
                 oldUnicode: false,
-                oldMaxLength: 50);
+                oldMaxLength: 250);
         }
 
         /// <inheritdoc />
@@ -29,14 +29,14 @@ namespace DataIntegration.Migrations
             migrationBuilder.AlterColumn<string>(
                 name: "Password",
                 table: "User",
-                type: "varchar(50)",
+                type: "character varying(200)",
                 unicode: false,
-                maxLength: 50,
+                maxLength: 250,
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "varchar(200)",
+                oldType: "character varying(250)",
                 oldUnicode: false,
-                oldMaxLength: 50);
+                oldMaxLength: 250);
         }
     }
 }

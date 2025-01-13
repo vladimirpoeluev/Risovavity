@@ -12,7 +12,7 @@ namespace DataIntegration.RedisDataBase
 		}
 
 		public IDatabase GetDataBase()
-		{
+		{ 
 			return _connetion.GetDatabase();
 		}
 	}

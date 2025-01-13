@@ -1,18 +1,20 @@
 ﻿using DataIntegration.Interface.InterfaceOfModel;
 using DomainModel.Model;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.Logging;
 
 namespace DataIntegration.Model;
 
 public partial class DatabaseContext : DbContext, IDataBaseModel
 {
+    //string ConnectionSting { get; set; } = "Host=localhost;Port=5000;Database=risovavity;Username=postgres;Password=password";
     public DatabaseContext()
     {
     }
 
     public DatabaseContext(DbContextOptions<DatabaseContext> options)
-        : base(options) {}
+        : base(options) {
+    }
 
     public virtual DbSet<LikeOfCanvas> LikeOfCanvas { get; set; }
     public virtual DbSet<Canvas> Canvas { get; set; }
@@ -30,8 +32,9 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Data Source=NIGHSVOLK\\SQLEXPRESS;Initial Catalog=Risovaviti;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
-    }
+		optionsBuilder.UseNpgsql("Host=localhost;Port=5000;Database=risovavity;Username=postgres;Password=password");
+		//optionsBuilder.UseSqlServer("Data Source=NIGHSVOLK\\SQLEXPRESS;Initial Catalog=Risovaviti;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+	}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<VersionProject>(entity =>

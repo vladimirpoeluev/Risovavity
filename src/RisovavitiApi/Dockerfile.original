@@ -1,0 +1,4 @@
+FROM bitnami/aspnet-core:latest
+WORKDIR /app
+COPY . .
+CMD ["dotnet", "run"]
