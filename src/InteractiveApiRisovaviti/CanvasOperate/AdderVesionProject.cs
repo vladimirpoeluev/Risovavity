@@ -22,9 +22,9 @@ namespace InteractiveApiRisovaviti.CanvasOperate
 			await poster.ExecuteRequestAsync("api/VersionProject/add");
 		}
 
-		public Task DeleteVertionProjectAsync(int id)
+		public async Task DeleteVertionProjectAsync(int id)
 		{
-			throw new NotImplementedException();
+			await _operates.CreatePostPatser<object>(_user, null).ExecuteRequestAsync($"api/VersionProject/delet/{id}");
 		}
 	}
 }

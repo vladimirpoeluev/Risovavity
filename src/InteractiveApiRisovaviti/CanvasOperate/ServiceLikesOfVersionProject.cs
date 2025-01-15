@@ -10,7 +10,7 @@ namespace InteractiveApiRisovaviti.CanvasOperate
 		IAuthenticationUser User { get; set; }
 		FabricAutoControllerIntegraion _fabricAuto;
 		public ServiceLikesOfVersionProject(FabricAutoControllerIntegraion fabricAuto,
-									IAuthenticationUser user)
+											IAuthenticationUser user)
 		{
 			_fabricAuto = fabricAuto;
 			User = user;
