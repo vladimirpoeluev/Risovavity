@@ -162,4 +162,13 @@
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="Registrating" xml:space="preserve">
+    <value>Registrating</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
 </root>

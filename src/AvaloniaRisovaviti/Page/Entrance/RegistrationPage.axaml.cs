@@ -35,10 +35,15 @@ namespace AvaloniaRisovaviti
 
         void TryRegistration()
         {
-            if(_viewModel.RegistrationForm.Password == _viewModel.RepeatPassword)
+            if (_viewModel.RegistrationForm.Password == _viewModel.RepeatPassword)
             {
-				_registarion.RegistrionUser(_viewModel.RegistrationForm);
-				this.Content = App.Container.Resolve<EntrancePage>();
+               // _registarion.RegistrionUser(_viewModel.RegistrationForm);
+                var vm = App.Container.Resolve<ConfimationEmailViewModel>();
+                vm.Email = _viewModel.RegistrationForm.Email;
+
+                var page = new ConfimationEmailView(vm);
+
+				this.Content = page;
 			}
             else
             {

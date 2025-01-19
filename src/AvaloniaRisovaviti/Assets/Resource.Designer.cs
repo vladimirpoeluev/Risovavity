@@ -70,6 +70,24 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Code.
+        /// </summary>
+        public static string Code {
+            get {
+                return ResourceManager.GetString("Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Confirm.
+        /// </summary>
+        public static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Email.
         /// </summary>
         public static string Email {
@@ -156,6 +174,15 @@ namespace AvaloniaRisovaviti.Assets {
         public static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Registrating.
+        /// </summary>
+        public static string Registrating {
+            get {
+                return ResourceManager.GetString("Registrating", resourceCulture);
             }
         }
         

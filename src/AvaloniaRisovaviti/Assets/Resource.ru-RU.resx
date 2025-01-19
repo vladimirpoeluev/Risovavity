@@ -159,7 +159,16 @@
   <data name="Back" xml:space="preserve">
     <value>Назад</value>
   </data>
+  <data name="Register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
   <data name="Registrating" xml:space="preserve">
     <value>Загегистрироваться</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Код</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Подтвердить</value>
   </data>
 </root>

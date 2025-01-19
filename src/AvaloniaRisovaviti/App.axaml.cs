@@ -47,6 +47,8 @@ namespace AvaloniaRisovaviti
             builder.RegisterType<ConfimationUserView>();
             builder.RegisterType<ConfimationUserViewModel>();
             builder.RegisterType<ConfirmationViaEmail>().As<IConfirmationViaEmail>();
+            builder.RegisterType<ConfimationEmailViewModel>();
+            builder.RegisterType<ConfimationEmailView>();
         }
 
         public override void OnFrameworkInitializationCompleted()
