@@ -12,9 +12,18 @@ public partial class CanvasPage : UserControl
     public CanvasPage()
     {
         InitializeComponent();
-        _viewModel = new CanvasPageViewModel();
-        DataContext = _viewModel;
+        TryInitViewModel();
     }
+
+    void TryInitViewModel()
+    {
+        try
+        {
+            _viewModel = new CanvasPageViewModel();
+            DataContext = _viewModel;
+        }
+        catch { }
+	}
 
     public void NavAddCanvas_Click(object obj, RoutedEventArgs args)
     {

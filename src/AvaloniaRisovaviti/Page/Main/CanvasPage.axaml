@@ -6,9 +6,6 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.CanvasPage"
 			 x:DataType="vm:CanvasPageViewModel">
-	<Design.DataContext>
-		<vm:CanvasPageViewModel/>
-	</Design.DataContext>
 	
 	<Grid HorizontalAlignment="Stretch" 
 		  ColumnDefinitions="auto,*">
@@ -33,6 +30,10 @@
 							<Image Source="{Binding ImageData}"
 									Width="250"/>
 							<TextBlock Text="{Binding CanvasResult.Name}"/>
+							<Button Content="Delete"
+									IsVisible="{Binding Permission.Edit}"/>
+							<Button Content="Edit"
+									IsVisible="{Binding Permission.Edit}"/>
 						</StackPanel>
 					</Button>
 				</DataTemplate>

@@ -44,11 +44,24 @@ namespace AvaloniaRisovaviti.Model
             _getterImage = new GetterImageProject(Authentication.AuthenticationUser.User);
             _image = new Bitmap("Accets\\8.gif");
             SetImageTask();
+            SetPermission();
 		}
 
         async void SetPermission()
         {
-            Permission = await _definitioner.GetPermissionAsync(CanvasResult);
+            try
+            {
+				Permission = await _definitioner.GetPermissionAsync(CanvasResult);
+			}
+            catch {
+                Permission = new PermissionResult()
+                {
+                    AddVerstion = false,
+                    Edit = false,
+                    Read = false,
+                };
+            }
+            
         }
 
         private async void SetImageTask()
