@@ -10,13 +10,25 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Avalonia.Controls;
 using System.Linq;
+using InteractiveApiRisovaviti.Interface;
+using Autofac;
+using InteractiveApiRisovaviti.ControllerIntegration;
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
+using DomainModel.ResultsRequest;
 
 namespace AvaloniaRisovaviti.Model
 {
-    public class CanvasResultWithImage : INotifyPropertyChanged
+    public class CanvasResultWithImage : ReactiveObject, INotifyPropertyChanged
 	{
         public CanvasResult CanvasResult { get; set; }
         IGetterImageProject _getterImage {  get; set; }
+
+        [Reactive]
+        public PermissionResult Permission { get; set; }
+
+        IDefinitionerOfPermission _definitioner = new DefinitionerOfPermission(Authentication.AuthenticationUser.User, App.Container.Resolve<FabricAutoControllerIntegraion>());
+        
         IImage _image;
 
 		public IImage ImageData { 
@@ -34,6 +46,11 @@ namespace AvaloniaRisovaviti.Model
             SetImageTask();
 		}
 
+        async void SetPermission()
+        {
+            Permission = await _definitioner.GetPermissionAsync(CanvasResult);
+        }
+
         private async void SetImageTask()
         {
             try
@@ -42,10 +59,7 @@ namespace AvaloniaRisovaviti.Model
                 _image = new Bitmap(new MemoryStream(imageResult.Image));
                 OnPropertyChanged(nameof(ImageData));
             }
-            catch
-            {
-
-            }
+            catch{}
         }
 
         public static IEnumerable<CanvasResultWithImage> CanvasResultWithImageFromCanvasResult(IEnumerable<CanvasResult> objects)
