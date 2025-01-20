@@ -16,6 +16,8 @@ using InteractiveApiRisovaviti.ControllerIntegration;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using DomainModel.ResultsRequest;
+using System.Reactive;
+using System.Reactive.Subjects;
 
 namespace AvaloniaRisovaviti.Model
 {
@@ -23,9 +25,13 @@ namespace AvaloniaRisovaviti.Model
 	{
         public CanvasResult CanvasResult { get; set; }
         IGetterImageProject _getterImage {  get; set; }
+        IEditerCanvas _editer;
 
         [Reactive]
         public PermissionResult Permission { get; set; }
+
+        public ReactiveCommand<Unit, Task<CanvasResult>> DeleteCanvas { get; set; }
+        public ReactiveCommand<Unit, Task<CanvasResult>> UpdateCanvas { get; set; }
 
         IDefinitionerOfPermission _definitioner = new DefinitionerOfPermission(Authentication.AuthenticationUser.User, App.Container.Resolve<FabricAutoControllerIntegraion>());
         
@@ -40,12 +46,27 @@ namespace AvaloniaRisovaviti.Model
 
         public CanvasResultWithImage(CanvasResult result)
         {
+            _editer = App.Container.Resolve<IEditerCanvas>();
             CanvasResult = result;
             _getterImage = new GetterImageProject(Authentication.AuthenticationUser.User);
             _image = new Bitmap("Accets\\8.gif");
+            DeleteCanvas = ReactiveCommand.Create(Delete);
+            UpdateCanvas = ReactiveCommand.Create(Update);
             SetImageTask();
             SetPermission();
 		}
+
+        async Task<CanvasResult> Update()
+        {
+
+            return CanvasResult;
+        }
+
+        async Task<CanvasResult> Delete()
+        {
+            await _editer.DeleteCanvasAsync(CanvasResult.Id);
+            return CanvasResult;
+        } 
 
         async void SetPermission()
         {

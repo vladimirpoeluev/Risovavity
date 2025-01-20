@@ -31,7 +31,8 @@
 									Width="250"/>
 							<TextBlock Text="{Binding CanvasResult.Name}"/>
 							<Button Content="Delete"
-									IsVisible="{Binding Permission.Edit}"/>
+									IsVisible="{Binding Permission.Edit}"
+									Command="{Binding DeleteCanvas}"/>
 							<Button Content="Edit"
 									IsVisible="{Binding Permission.Edit}"/>
 						</StackPanel>

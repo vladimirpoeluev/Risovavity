@@ -34,6 +34,7 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 				TokensRefreshAndAccess tokens = await _fabricAuto
 					.CreateGetPatser(new AuthenticationUser(_tokens.Refresh))
 					.GetResultAsync<TokensRefreshAndAccess>("api/Auto/access");
+				_tokens = tokens;
 				return true;
 			}
 			catch (Exception) 
