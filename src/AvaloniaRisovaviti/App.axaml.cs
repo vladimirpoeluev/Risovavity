@@ -3,6 +3,7 @@ using Autofac.Core;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using AvaloniaRisovaviti.ViewModel.Canvas;
 using AvaloniaRisovaviti.ViewModel.Main;
 using AvaloniaRisovaviti.ViewModel.Profile.SafetyModels;
 using DomainModel.Integration;
@@ -67,6 +68,8 @@ namespace AvaloniaRisovaviti
             builder.RegisterType<ServiceLikesOfCanvas>().As<ILikesOfCanvasService>();
             builder.RegisterType<ServiceLikesOfVersionProject>().As<ILikesOfVersitonService>();
             builder.RegisterType<TwoFactorAuthService>().As<ITwoFactorAuthService>();
+
+            builder.RegisterType<EditCanvasViewModel>();
         }
 
         public override void OnFrameworkInitializationCompleted()
