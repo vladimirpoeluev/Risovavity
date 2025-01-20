@@ -4,5 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.EditCanvasView">
-  Welcome to Avalonia!
+	<Grid>
+		<StackPanel HorizontalAlignment="Center"
+					VerticalAlignment="Center">
+			<TextBlock Text="Название"/>
+			<TextBox Watermark="Ключевое слово"/>
+			<TextBlock Text="Описание"/>
+			<TextBox Watermark="Опиши проект"/>
+			<Button Content="Изменить"
+					HorizontalAlignment="Center"/>
+		</StackPanel>
+	</Grid>
 </UserControl>
