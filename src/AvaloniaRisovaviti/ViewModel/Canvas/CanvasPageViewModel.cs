@@ -5,6 +5,8 @@ using DomainModel.ResultsRequest.Canvas;
 using InteractiveApiRisovaviti.CanvasOperate;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
+using ReactiveUI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -14,12 +16,15 @@ using System.Windows.Input;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
-    public class CanvasPageViewModel : INotifyPropertyChanged
+    public class CanvasPageViewModel : ReactiveObject, INotifyPropertyChanged
     {
         IEnumerable<CanvasResultWithImage> _canvases;
         IGetterCanvas _getterCanvas;
         int countCart;
         const int stepLoad = 5;
+
+        public event Action<Task<CanvasResult>> OnDeleteItem;
+        public event Action<Task<CanvasResult>> OnClickUpdateItem;
 
         public IEnumerable<CanvasResultWithImage> Canvases
         {
@@ -39,6 +44,19 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             OnPropertyChanged(nameof(Canvases));
             TryInitCart();
         }
+
+        void ClickUpdateItem(Task<CanvasResult> canvasResult)
+        {
+            OnClickUpdateItem(canvasResult);
+        }
+
+        async void DeleteItem(Task<CanvasResult> canvas)
+        {
+            var canvasresult = await canvas;
+            _canvases = _canvases.Where((entity) => entity.CanvasResult != canvasresult);
+            OnPropertyChanged(nameof(Canvases));
+			OnDeleteItem(canvas);
+		}
 
         public async void TryInitCart()
         {
@@ -62,7 +80,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         async Task InitCart()
         {
             IEnumerable<CanvasResult> result = await _getterCanvas.GetAsync(countCart, stepLoad);
-            _canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result));
+            _canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem));
             countCart += stepLoad;
             OnPropertyChanged(nameof(Canvases));
         }

@@ -75,9 +75,7 @@ public class VersionProjectResultWithImage : ReactiveObject
 
 	async void LoadImage()
 	{
-		
 		ImageResult result = await _getterImage.GetImageResult(VersionProjectResult.Id);
 		Image = ImageAvaloniaConverter.ConvertByteInImage(result.Image);
-		
 	}
 }

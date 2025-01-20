@@ -34,6 +34,7 @@
 									IsVisible="{Binding Permission.Edit}"
 									Command="{Binding DeleteCanvas}"/>
 							<Button Content="Edit"
+									Command="{Binding UpdateCanvas}"
 									IsVisible="{Binding Permission.Edit}"/>
 						</StackPanel>
 					</Button>

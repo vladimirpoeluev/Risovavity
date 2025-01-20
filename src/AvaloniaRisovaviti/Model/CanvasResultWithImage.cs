@@ -17,7 +17,7 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using DomainModel.ResultsRequest;
 using System.Reactive;
-using System.Reactive.Subjects;
+using System;
 
 namespace AvaloniaRisovaviti.Model
 {
@@ -45,7 +45,7 @@ namespace AvaloniaRisovaviti.Model
         }
 
         public CanvasResultWithImage(CanvasResult result)
-        {
+        { 
             _editer = App.Container.Resolve<IEditerCanvas>();
             CanvasResult = result;
             _getterImage = new GetterImageProject(Authentication.AuthenticationUser.User);
@@ -73,6 +73,7 @@ namespace AvaloniaRisovaviti.Model
             try
             {
 				Permission = await _definitioner.GetPermissionAsync(CanvasResult);
+                OnPropertyChanged(nameof(Permission));
 			}
             catch {
                 Permission = new PermissionResult()
@@ -96,9 +97,20 @@ namespace AvaloniaRisovaviti.Model
             catch{}
         }
 
-        public static IEnumerable<CanvasResultWithImage> CanvasResultWithImageFromCanvasResult(IEnumerable<CanvasResult> objects)
+        public static IEnumerable<CanvasResultWithImage> CanvasResultWithImageFromCanvasResult( IEnumerable<CanvasResult> objects, 
+                                                                                                Action<Task<CanvasResult>> action = null, 
+                                                                                                Action<Task<CanvasResult>> deleteAction = null)
         {
-            return objects.Select(entity => new CanvasResultWithImage(entity));
+            return objects.Select(entity => 
+            {
+                var result = new CanvasResultWithImage(entity);
+                if(action != null)
+					result.UpdateCanvas.Subscribe(action);
+                if(deleteAction != null)
+                    result.DeleteCanvas.Subscribe(deleteAction);
+				return result;
+
+			});
         }
 
 		public void SelectCanvas(object? window)
