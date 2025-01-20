@@ -5,7 +5,10 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using AvaloniaRisovaviti.ViewModel.Main;
 using AvaloniaRisovaviti.ViewModel.Profile.SafetyModels;
+using DomainModel.Integration;
+using DomainModel.Integration.CanvasOperation;
 using InteractiveApiRisovaviti;
+using InteractiveApiRisovaviti.CanvasOperate;
 using InteractiveApiRisovaviti.ControllerIntegration;
 using InteractiveApiRisovaviti.Exceptions;
 using InteractiveApiRisovaviti.Interface;
@@ -49,6 +52,21 @@ namespace AvaloniaRisovaviti
             builder.RegisterType<ConfirmationViaEmail>().As<IConfirmationViaEmail>();
             builder.RegisterType<ConfimationEmailViewModel>();
             builder.RegisterType<ConfimationEmailView>();
+
+            builder.RegisterType<AdderVesionProject>().As<IAdderVersionProject>();
+            builder.RegisterType<DefinitionerOfPermission>()
+                .As<InteractiveApiRisovaviti.Interface.IDefinitionerOfPermission>();
+            builder.RegisterType<AdderCanvasParseApi>().As<IAdderCanvas>();
+            builder.RegisterType<EditerCanvas>().As<IEditerCanvas>();
+            builder.RegisterType<EditMainVersionInCanvas>().As<IEditMainVerstionInCanvas>();
+            builder.RegisterType<EditVersionProject>().As<IEditVersionProject>();
+            builder.RegisterType<GetterCanvasParseApi>().As<IGetterCanvas>();
+            builder.RegisterType<GetterVersionProject>().As<IGetterVersionProject>();
+            builder.RegisterType<GetterVersionProjectByParent>().As<IGetterVersionByParentVersion>();
+            builder.RegisterType<SearchCanvas>().As<ISearcherCanvas>();
+            builder.RegisterType<ServiceLikesOfCanvas>().As<ILikesOfCanvasService>();
+            builder.RegisterType<ServiceLikesOfVersionProject>().As<ILikesOfVersitonService>();
+            builder.RegisterType<TwoFactorAuthService>().As<ITwoFactorAuthService>();
         }
 
         public override void OnFrameworkInitializationCompleted()

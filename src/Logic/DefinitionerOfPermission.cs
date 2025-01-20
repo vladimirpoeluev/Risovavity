@@ -1,6 +1,5 @@
 ﻿
 using DomainModel.Integration;
-using DomainModel.Model;
 using DomainModel.ResultsRequest;
 using DomainModel.ResultsRequest.Canvas;
 
