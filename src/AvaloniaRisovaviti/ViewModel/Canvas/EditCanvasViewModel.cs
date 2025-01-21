@@ -21,7 +21,19 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		IEditerCanvas _editer;
 
-		public CanvasResult CanvasResult { get; set; }
+		CanvasResult _canvasResult;
+
+		public CanvasResult CanvasResult { get
+			{
+				return _canvasResult;
+			}
+			set 
+			{
+				_canvasResult = value;
+				Name = value.Name;
+				Description = value.Description;
+			}
+		}
 
 		public EditCanvasViewModel(IEditerCanvas editer)
 		{

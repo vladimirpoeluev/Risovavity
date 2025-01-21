@@ -27,9 +27,9 @@ public partial class CanvasPage : UserControl
         }
         catch { }
 	}
-    private void ClickUpdateEvent(Task<CanvasResult> result)
+    private async void ClickUpdateEvent(Task<CanvasResult> result)
     {
-        Content = new EditCanvasView();
+        Content = new EditCanvasView(await result);
     }
 
     public void NavAddCanvas_Click(object obj, RoutedEventArgs args)

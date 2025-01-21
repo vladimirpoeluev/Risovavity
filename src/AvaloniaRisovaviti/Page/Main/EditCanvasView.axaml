@@ -2,17 +2,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaloniaRisovaviti.EditCanvasView">
+             xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaRisovaviti.EditCanvasView"
+			 x:DataType="vm:EditCanvasViewModel">
 	<Grid>
 		<StackPanel HorizontalAlignment="Center"
 					VerticalAlignment="Center">
 			<TextBlock Text="Название"/>
-			<TextBox Watermark="Ключевое слово"/>
+			<TextBox Watermark="Ключевое слово"
+					 Text="{Binding Name}"/>
 			<TextBlock Text="Описание"/>
-			<TextBox Watermark="Опиши проект"/>
+			<TextBox Watermark="Опиши проект"
+					 Text="{Binding Description}"/>
 			<Button Content="Изменить"
-					HorizontalAlignment="Center"/>
+					HorizontalAlignment="Center"
+					Command="{Binding EditCanvas}"/>
 		</StackPanel>
 	</Grid>
 </UserControl>
