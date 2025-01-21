@@ -13,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reactive;
+using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -40,19 +42,41 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             }
         }
 
+        public ReactiveCommand<string, Unit> SeacherCommand { get; set; }
+
 
         public CanvasResultWithImage SelectedCanvas { get; set; } = new CanvasResultWithImage(new CanvasResult());
 
         public CanvasPageViewModel()
         {
+            SeacherCommand = ReactiveCommand.Create<string>(SearchByString);
             _getterCanvas = new GetterCanvasParseApi(Authentication.AuthenticationUser.User);
             _searcherCanvas = App.Container.Resolve<ISearcherCanvas>();
             _canvases = new List<CanvasResultWithImage>();
             countCart = 0;
             OnPropertyChanged(nameof(Canvases));
-            TryInitCart();
+            this.WhenAnyValue(vm => vm.SearchString)
+                .Where(value => value != string.Empty)
+                .Throttle(TimeSpan.FromSeconds(0.6))
+                .InvokeCommand(SeacherCommand);
+            this.WhenAnyValue(vm => vm.SearchString)
+                .Where(value => value == string.Empty)
+                .Subscribe((e) =>
+                {
+                    countCart = 0;
+                    _canvases = new List<CanvasResultWithImage>();
+                    TryInitCart();
+                });
+
+			TryInitCart();
         }
 
+        public async void SearchByString(string searchString)
+        {
+			IEnumerable<CanvasResult> result = await _searcherCanvas.Search(searchString);
+			_canvases = CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem);
+			OnPropertyChanged(nameof(Canvases));
+		}
         public async void Search()
         {
             IEnumerable<CanvasResult> result = await _searcherCanvas.Search(SearchString);
