@@ -1,18 +1,20 @@
+using Autofac;
 using Avalonia.Controls;
 using AvaloniaRisovaviti.Model;
+using DomainModel.Integration;
 using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest.Canvas;
 using InteractiveApiRisovaviti.CanvasOperate;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Dto;
 using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
@@ -20,12 +22,15 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
     {
         IEnumerable<CanvasResultWithImage> _canvases;
         IGetterCanvas _getterCanvas;
+        ISearcherCanvas _searcherCanvas;
         int countCart;
         const int stepLoad = 5;
 
         public event Action<Task<CanvasResult>> OnDeleteItem;
         public event Action<Task<CanvasResult>> OnClickUpdateItem;
 
+        [Reactive]
+        public string SearchString { get; set; } = string.Empty;
         public IEnumerable<CanvasResultWithImage> Canvases
         {
             get
@@ -39,10 +44,18 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         public CanvasPageViewModel()
         {
             _getterCanvas = new GetterCanvasParseApi(Authentication.AuthenticationUser.User);
+            _searcherCanvas = App.Container.Resolve<ISearcherCanvas>();
             _canvases = new List<CanvasResultWithImage>();
             countCart = 0;
             OnPropertyChanged(nameof(Canvases));
             TryInitCart();
+        }
+
+        public async void Search()
+        {
+            IEnumerable<CanvasResult> result = await _searcherCanvas.Search(SearchString);
+			_canvases = CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem);
+            OnPropertyChanged(nameof(Canvases));
         }
 
         void ClickUpdateItem(Task<CanvasResult> canvasResult)
