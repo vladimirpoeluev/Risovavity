@@ -31,6 +31,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
         [Reactive]
         public string SearchString { get; set; } = string.Empty;
+
         public IEnumerable<CanvasResultWithImage> Canvases
         {
             get
@@ -38,6 +39,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
                 return _canvases;
             }
         }
+
 
         public CanvasResultWithImage SelectedCanvas { get; set; } = new CanvasResultWithImage(new CanvasResult());
 

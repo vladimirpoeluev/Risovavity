@@ -18,6 +18,7 @@ using ReactiveUI.Fody.Helpers;
 using DomainModel.ResultsRequest;
 using System.Reactive;
 using System;
+using DynamicData.Binding;
 
 namespace AvaloniaRisovaviti.Model
 {
@@ -26,11 +27,17 @@ namespace AvaloniaRisovaviti.Model
         public CanvasResult CanvasResult { get; set; }
         IGetterImageProject _getterImage {  get; set; }
         IEditerCanvas _editer;
+        ILikesOfCanvasService _likesService;
 
         [Reactive]
         public PermissionResult Permission { get; set; }
+		[Reactive]
+		public int CountLikes { get; set; }
 
-        public ReactiveCommand<Unit, Task<CanvasResult>> DeleteCanvas { get; set; }
+        [Reactive]
+        public bool? IsLike { get; set; }
+
+		public ReactiveCommand<Unit, Task<CanvasResult>> DeleteCanvas { get; set; }
         public ReactiveCommand<Unit, Task<CanvasResult>> UpdateCanvas { get; set; }
 
         IDefinitionerOfPermission _definitioner = new DefinitionerOfPermission(Authentication.AuthenticationUser.User, App.Container.Resolve<FabricAutoControllerIntegraion>());
@@ -45,20 +52,40 @@ namespace AvaloniaRisovaviti.Model
         }
 
         public CanvasResultWithImage(CanvasResult result)
-        { 
+        {
             _editer = App.Container.Resolve<IEditerCanvas>();
-            CanvasResult = result;
+			_likesService = App.Container.Resolve<ILikesOfCanvasService>();
+			CanvasResult = result;
             _getterImage = new GetterImageProject(Authentication.AuthenticationUser.User);
             _image = new Bitmap("Accets\\8.gif");
             DeleteCanvas = ReactiveCommand.Create(Delete);
             UpdateCanvas = ReactiveCommand.Create(Update);
             SetImageTask();
             SetPermission();
+            InfoLikesLoad();
+            this.WhenAnyValue(vm => vm.IsLike).Subscribe(UpdateLikeChecked);
 		}
+
+        async void UpdateLikeChecked(bool? e)
+        {
+			
+            if (!e.HasValue) return;
+            if(e.Value)
+                await _likesService.Like(CanvasResult.Id);
+            if (!e.Value)
+                await _likesService.UnLike(CanvasResult.Id);
+			CountLikes = await _likesService.CouintLikes(CanvasResult.Id);
+			OnPropertyChanged(nameof(CountLikes));
+		}
+
+        async void InfoLikesLoad()
+        {
+            IsLike = await _likesService.IsLike(CanvasResult.Id);
+            CountLikes = await _likesService.CouintLikes(CanvasResult.Id);
+        }
 
         async Task<CanvasResult> Update()
         {
-
             return CanvasResult;
         }
 
