@@ -18,7 +18,6 @@ using ReactiveUI.Fody.Helpers;
 using DomainModel.ResultsRequest;
 using System.Reactive;
 using System;
-using DynamicData.Binding;
 
 namespace AvaloniaRisovaviti.Model
 {
@@ -68,7 +67,6 @@ namespace AvaloniaRisovaviti.Model
 
         async void UpdateLikeChecked(bool? e)
         {
-			
             if (!e.HasValue) return;
             if(e.Value)
                 await _likesService.Like(CanvasResult.Id);

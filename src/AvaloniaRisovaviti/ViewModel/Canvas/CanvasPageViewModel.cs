@@ -57,7 +57,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             OnPropertyChanged(nameof(Canvases));
             this.WhenAnyValue(vm => vm.SearchString)
                 .Where(value => value != string.Empty)
-                .Throttle(TimeSpan.FromSeconds(0.6))
+                .Throttle(TimeSpan.FromSeconds(0.5))
                 .InvokeCommand(SeacherCommand);
             this.WhenAnyValue(vm => vm.SearchString)
                 .Where(value => value == string.Empty)
