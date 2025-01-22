@@ -20,7 +20,18 @@
 			<StackPanel Grid.Row="1">
 				<TextBlock Text="{Binding Canvas.Name}"/>
 				<TextBlock Text="{Binding Canvas.Description}"/>
-				<Button Content="Добавить версию"
+				<WrapPanel>
+					<TextBlock Text="Количество лайков"/>
+					<CheckBox/>
+				</WrapPanel>
+				<WrapPanel IsVisible="{Binding Permission.Edit}">
+					<Button Content="Удалить" Command="{Binding Delete}"/>
+					<Button Content="Изменить" Command="{Binding Update}"/>
+					<Button Content="Назначить главной версией"
+							IsEnabled="{Binding IsMainVersion}"
+							Command="{Binding SelectMainVersion}"/>
+				</WrapPanel>
+				<Button Content="Наследоваться от версии"
 						Click="ButtonAddVersion_Click"/>
 			</StackPanel>
 		</Grid>

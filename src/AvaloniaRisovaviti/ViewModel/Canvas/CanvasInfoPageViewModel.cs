@@ -4,7 +4,6 @@ using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest.Canvas;
 using InteractiveApiRisovaviti.CanvasOperate;
 using InteractiveApiRisovaviti.Interface;
-using System.IO;
 using Avalonia.Platform;
 using System.Threading.Tasks;
 using ReactiveUI.Fody.Helpers;
@@ -12,10 +11,13 @@ using System.Collections.Generic;
 using AvaloniaRisovaviti.Model;
 using System.Collections.ObjectModel;
 using System.Linq;
-using DynamicData.Binding;
 using ReactiveUI;
 using System;
 using AvaloniaRisovaviti.ProfileShows;
+using System.Reactive;
+using DomainModel.ResultsRequest;
+using Autofac;
+using System.Reactive.Linq;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
@@ -29,11 +31,25 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         public IImage Image { get; set; }
         [Reactive]
         public IEnumerable<VersionProjectResultWithImage> Descendants { get; set; }
+		[Reactive]
+		public PermissionResult Permission { get; set; }
 
-        IGetterVersionProject _getterVersion;
+        [Reactive]
+        public bool IsMainVersion { get; 
+            set; } 
+
+		IDefinitionerOfPermission _definitioner { get; set; }
+		IAdderVersionProject _adderVersionProject { get; set; }
+
+		public ReactiveCommand<Unit, Task<VersionProjectResult>> Delete { get; set; }
+		public ReactiveCommand<Unit, VersionProjectResult> Update { get; set; }
+        public ReactiveCommand<Unit, Task> SelectMainVersion { get; set; }
+
+		IGetterVersionProject _getterVersion;
         IGetterCanvas _getterCanvas;
         IGetterImageProject _getterImage;
         IGetterProjectByParentBuilder _getterDescendants;
+        IEditMainVerstionInCanvas _editMainVersion;
 
         int _skip = 0;
         const int _take = 50;
@@ -42,18 +58,76 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         {
             Image = new Bitmap(AssetLoader.Open(new Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
             IAuthenticationUser user = Authentication.AuthenticationUser.User;
-            _getterVersion = new GetterVersionProject(user);
+			Delete = ReactiveCommand.Create(DeleteVersion);
+			Update = ReactiveCommand.Create(UpdateVersion);
+            SelectMainVersion = ReactiveCommand.Create(SelectVersion);
+			_definitioner = App.Container.Resolve<IDefinitionerOfPermission>();
+			_adderVersionProject = App.Container.Resolve<IAdderVersionProject>();
+			_getterVersion = new GetterVersionProject(user);
             _getterCanvas = new GetterCanvasParseApi(user);
             _getterImage = new GetterImageProject(user);
             _getterDescendants = new GetterProjectByParentBuilder(user);
+            _editMainVersion = App.Container.Resolve<IEditMainVerstionInCanvas>();
             Descendants = new ObservableCollection<VersionProjectResultWithImage>();
+            SettingsNode();
         }
 
-        public CanvasInfoPageViewModel(CanvasResult canvasResult) : this()
+		public CanvasInfoPageViewModel(CanvasResult canvasResult) : this()
+		{
+			Canvas = canvasResult;
+			LoadInfo();
+		}
+
+        void SettingsNode()
         {
-            Canvas = canvasResult;
-            LoadInfo();
+            this.WhenAnyValue(vm => vm.Canvas, vm => vm.VersionProject)
+                .Select((canvas) => canvas.Item2.Id == canvas.Item1.VersionId)
+                .ToProperty(this, vm => vm.IsMainVersion);
         }
+
+        async Task SelectVersion()
+        {
+            await _editMainVersion.SelectMainVerstion(new MainVersionInCanvasResutl()
+            {
+                VersitonId = VersionProject.Id,
+                CanvasId = Canvas.Id,
+            });
+        }
+
+        
+		async Task LoadPermission()
+		{
+			try
+			{
+				Permission = await _definitioner.GetPermissionAsync(VersionProject);
+			}
+			catch
+			{
+				Permission = new PermissionResult()
+				{
+					AddVerstion = false,
+					Edit = false,
+					Read = false,
+				};
+			}
+		}
+
+		VersionProjectResult UpdateVersion()
+		{
+			return VersionProject;
+		}
+
+		async Task<VersionProjectResult> DeleteVersion()
+		{
+			await _adderVersionProject.DeleteVertionProjectAsync(VersionProject.Id);
+            SetVersion(new VersionProjectResult()
+            {
+                Id = VersionProject.ParentVertionProject
+            });
+			return VersionProject;
+		}
+
+		
 
         public async void SetVersion(VersionProjectResult value)
         {
@@ -64,15 +138,17 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             await LoadVersionProject(value.Id);
             await LoadImage();
             await LoadDescendans();
+            LoadPermission();
         }
 
         async void LoadInfo()
         {
             await LoadCanvas();
             await LoadVersionProject();
-            await LoadImage();
-            await LoadDescendans();
-        }
+			LoadPermission();
+            LoadImage();
+            LoadDescendans();
+		}
 
         async Task LoadCanvas()
         {
