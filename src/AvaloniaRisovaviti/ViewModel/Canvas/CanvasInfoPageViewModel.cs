@@ -33,10 +33,11 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         public IEnumerable<VersionProjectResultWithImage> Descendants { get; set; }
 		[Reactive]
 		public PermissionResult Permission { get; set; }
+        [Reactive]
+        public PermissionResult PermissionCanvas { get; set; }
 
         [Reactive]
-        public bool IsMainVersion { get; 
-            set; } 
+        public bool IsMainVersion { get; set; } = true;
 
 		IDefinitionerOfPermission _definitioner { get; set; }
 		IAdderVersionProject _adderVersionProject { get; set; }
@@ -57,7 +58,8 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         public CanvasInfoPageViewModel()
         {
             Image = new Bitmap(AssetLoader.Open(new Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
-            IAuthenticationUser user = Authentication.AuthenticationUser.User;
+			SettingsNode();
+			IAuthenticationUser user = Authentication.AuthenticationUser.User;
 			Delete = ReactiveCommand.Create(DeleteVersion);
 			Update = ReactiveCommand.Create(UpdateVersion);
             SelectMainVersion = ReactiveCommand.Create(SelectVersion);
@@ -69,7 +71,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             _getterDescendants = new GetterProjectByParentBuilder(user);
             _editMainVersion = App.Container.Resolve<IEditMainVerstionInCanvas>();
             Descendants = new ObservableCollection<VersionProjectResultWithImage>();
-            SettingsNode();
+            
         }
 
 		public CanvasInfoPageViewModel(CanvasResult canvasResult) : this()
@@ -80,10 +82,15 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
         void SettingsNode()
         {
-            this.WhenAnyValue(vm => vm.Canvas, vm => vm.VersionProject)
-                .Select((canvas) => canvas.Item2.Id == canvas.Item1.VersionId)
-                .ToProperty(this, vm => vm.IsMainVersion);
+            this.WhenAnyValue(vm => vm.Canvas)
+                .Select((canvas) => canvas.VersionId != VersionProject.Id)
+                .ToProperty(this, (vm) => vm.IsMainVersion);
         }
+
+		private bool H(CanvasInfoPageViewModel model)
+		{
+            return model.IsMainVersion;
+		}
 
         async Task SelectVersion()
         {
@@ -92,6 +99,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
                 VersitonId = VersionProject.Id,
                 CanvasId = Canvas.Id,
             });
+            Canvas.VersionId = VersionProject.Id;
         }
 
         
@@ -100,6 +108,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			try
 			{
 				Permission = await _definitioner.GetPermissionAsync(VersionProject);
+                PermissionCanvas = await _definitioner.GetPermissionAsync(Canvas);
 			}
 			catch
 			{
