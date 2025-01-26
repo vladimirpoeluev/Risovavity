@@ -35,7 +35,10 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 		public PermissionResult Permission { get; set; }
         [Reactive]
         public PermissionResult PermissionCanvas { get; set; }
-
+        [Reactive]
+        public int CountLike { get; set; }
+        [Reactive]
+        public bool? IsLikes { get; set; }
         [Reactive]
         public bool IsMainVersion { get; set; } = true;
 
@@ -51,6 +54,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         IGetterImageProject _getterImage;
         IGetterProjectByParentBuilder _getterDescendants;
         IEditMainVerstionInCanvas _editMainVersion;
+        ILikesOfVersitonService _likesService;
 
         int _skip = 0;
         const int _take = 50;
@@ -65,13 +69,13 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             SelectMainVersion = ReactiveCommand.Create(SelectVersion);
 			_definitioner = App.Container.Resolve<IDefinitionerOfPermission>();
 			_adderVersionProject = App.Container.Resolve<IAdderVersionProject>();
+            _likesService = App.Container.Resolve<ILikesOfVersitonService>();
 			_getterVersion = new GetterVersionProject(user);
             _getterCanvas = new GetterCanvasParseApi(user);
             _getterImage = new GetterImageProject(user);
             _getterDescendants = new GetterProjectByParentBuilder(user);
             _editMainVersion = App.Container.Resolve<IEditMainVerstionInCanvas>();
             Descendants = new ObservableCollection<VersionProjectResultWithImage>();
-            
         }
 
 		public CanvasInfoPageViewModel(CanvasResult canvasResult) : this()
@@ -82,15 +86,27 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
         void SettingsNode()
         {
-            this.WhenAnyValue(vm => vm.Canvas)
-                .Select((canvas) => canvas.VersionId != VersionProject.Id)
+            this.WhenAnyValue(vm => vm.VersionProject)
+                .Select((version) => Canvas.VersionId != version.Id)
                 .ToProperty(this, (vm) => vm.IsMainVersion);
-        }
 
-		private bool H(CanvasInfoPageViewModel model)
-		{
-            return model.IsMainVersion;
-		}
+            this.WhenAnyValue(vm => vm.IsLikes)
+                .Subscribe(async (value) =>
+                {
+                    
+                    if (value == null)
+                        return;
+                    if (value.Value)
+                    {
+                        await _likesService.Like(VersionProject.Id);
+                    }
+                    else
+                    {
+                        await _likesService.UnLike(VersionProject.Id);
+                    }
+					await LoadLikes();
+				});
+        }
 
         async Task SelectVersion()
         {
@@ -129,16 +145,23 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 		async Task<VersionProjectResult> DeleteVersion()
 		{
 			await _adderVersionProject.DeleteVertionProjectAsync(VersionProject.Id);
-            SetVersion(new VersionProjectResult()
+            await SetVersion(new VersionProjectResult()
             {
                 Id = VersionProject.ParentVertionProject
             });
 			return VersionProject;
 		}
 
-		
+		public async void BackVersion()
+        {
+            if (VersionProject.ParentVertionProject != -1)
+            await SetVersion(new VersionProjectResult()
+            {
+                Id = VersionProject.ParentVertionProject
+            });
+        }
 
-        public async void SetVersion(VersionProjectResult value)
+        public async Task SetVersion(VersionProjectResult value)
         {
             if (value == null)
                 return;
@@ -147,17 +170,21 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             await LoadVersionProject(value.Id);
             await LoadImage();
             await LoadDescendans();
-            LoadPermission();
+            await Task.WhenAll([LoadPermission(), LoadLikes()]);
         }
 
         async void LoadInfo()
         {
             await LoadCanvas();
             await LoadVersionProject();
-			LoadPermission();
-            LoadImage();
-            LoadDescendans();
+            await Task.WhenAll(LoadPermission(), LoadImage(), LoadDescendans());
 		}
+
+        async Task LoadLikes()
+        {
+            IsLikes = await _likesService.IsLike(VersionProject.Id);
+            CountLike = await _likesService.CouintLikes(VersionProject.Id);
+        }
 
         async Task LoadCanvas()
         {

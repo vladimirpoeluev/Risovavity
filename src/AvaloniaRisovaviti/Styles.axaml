@@ -2,27 +2,116 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Design.PreviewWith>
     <Border Padding="20">
-      <!-- Add Controls for Previewer Here -->
+		<UniformGrid>
+			<StackPanel>
+				<Button Content="Кнопка"/>
+				<Button Content="Опасные кнопки" Classes="dangerous"/>
+				<Button Content="Кнопка"/>
+			</StackPanel>
+			<StackPanel Width="200">
+				<TextBox Text="Текстовое поле"/>
+				<TextBox Text="Пароль поле"/>
+				<TextBox Watermark="Вводная марка"/>
+			</StackPanel>
+			<StackPanel>
+				<TextBlock Text="Текст"/>
+				<TextBlock Text="H1 text" Classes="h1"/>
+				<TextBlock Text="H2 text" Classes="h2"/>
+				<TextBlock Text="H3 text" Classes="h3"/>
+			</StackPanel>
+
+			<StackPanel>
+				<CheckBox Content="Чек-бокс"/>
+				<CheckBox	Classes="like"
+							Content="Кнопка лайка"/>
+			</StackPanel>
+			
+		</UniformGrid>
     </Border>
   </Design.PreviewWith>
+	<Styles.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceInclude Source="/ColorResource.axaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+		
+	</Styles.Resources>
 
-	
   <!-- Add Styles Here -->
-
+	<!--TextBox styles-->
+	<Style Selector="TextBox">
+		<Setter Property="Background" Value="{DynamicResource light}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource lightfon}"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+	<Style Selector="TextBox:pointerover">
+		<Setter Property="Background" Value="{DynamicResource ll}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource lll}"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+	
+	<!-- CheckBox styles -->
+	<Style Selector="CheckBox.like">
+		
+	</Style>
+	
+	<!-- Label styles -->
 	<Style Selector="Label">
+		<Setter Property="FontFamily" Value="{DynamicResource font}"/>
+	</Style>
+	
+	<!-- TextBlock styles -->
+	<Style Selector="TextBlock">
+		<Setter Property="FontFamily" Value="{DynamicResource font}"/>
 	</Style>
 	
 	<Style Selector="TextBlock.h1">
-		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="FontSize" Value="30"/>
+		<Setter Property="FontWeight" Value="Black"/>
+	</Style>
+	<Style Selector="TextBlock.h2">
+		<Setter Property="FontSize" Value="25"/>
 		<Setter Property="FontWeight" Value="Bold"/>
 	</Style>
+	<Style Selector="TextBlock.h3">
+		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="FontWeight" Value="DemiBold"/>
+	</Style>
+	
+	<!-- Button styles -->
+	<Style Selector="Button /template/ ContentPresenter">
+		<Setter Property="CornerRadius" Value="50"/>
+	</Style>
 	<Style Selector="Button">
-		<Setter Property="Margin" Value="0"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="Foreground" Value="{DynamicResource accent-light}"/>
+		<Setter Property="FontFamily" Value="Robot"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="Margin" Value="5"/>
 		<Setter Property="HorizontalAlignment" Value="Stretch"/>
 		<Setter Property="CornerRadius" Value="0"/>
+		<Setter Property="Background" Value="{DynamicResource medding}"/>
+	</Style>
+	<Style Selector="Button.dangerous">
+		<Setter Property="Background" Value="{DynamicResource red}"/>
+	</Style>
+	<Style Selector="Button:pointerover.dangerous">
+		<Setter Property="Background" Value="{DynamicResource red-light}"/>
+	</Style>
+	<Style Selector="Button:pointerover /template/ ContentPresenter">
+		<Setter Property="BorderBrush" Value="{DynamicResource light}"/>
+		<Setter Property="Background" Value="{DynamicResource light}"/>
+		<Setter Property="Foreground" Value="{DynamicResource black}"/>
+		<Setter Property="FontFamily" Value="{DynamicResource font}"/>
 	</Style>
 	<Style Selector="Button.navbar">
 		<Setter Property="VerticalAlignment" Value="Bottom"/>
 		<Setter Property="HorizontalAlignment" Value="Center"/>
+	</Style>
+
+	<!--Grid styles-->
+	<Style Selector="Window">
+		<Setter Property="Background" Value="{StaticResource accent-lightfon}"/>
 	</Style>
 </Styles>

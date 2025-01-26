@@ -25,27 +25,42 @@ public class VersionProjectResultWithImage : ReactiveObject
 	[Reactive]
 	public PermissionResult Permission { get; set; }
 
+	[Reactive]
+	public int CountLike { get; set; }
+
 	IGetterImageProject _getterImage { get; set; }
 	IDefinitionerOfPermission _definitioner { get; set; }
 	IAdderVersionProject _adderVersionProject { get; set; }
+	ILikesOfVersitonService _likesService;
 
 	public ReactiveCommand<Unit, Task<VersionProjectResult>> Delete { get; set; }
 	public ReactiveCommand<Unit, VersionProjectResult> Update { get; set; }
+	public VersionProjectResultWithImage()
+	{
+		Image = new Bitmap(AssetLoader.Open(new System.Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
+	}
 
-	public VersionProjectResultWithImage(VersionProjectResult versionProject)
+	public VersionProjectResultWithImage(VersionProjectResult versionProject) : this()
 	{
 		_definitioner = App.Container.Resolve<IDefinitionerOfPermission>();
 		_adderVersionProject = App.Container.Resolve<IAdderVersionProject>();
+		_likesService = App.Container.Resolve<ILikesOfVersitonService>();
 		Delete = ReactiveCommand.Create(DeleteVersion);
 		Update = ReactiveCommand.Create(UpdateVersion);
 		VersionProjectResult = versionProject;
 		_getterImage = new GetterImageProject(Authentication.AuthenticationUser.User);
-		Image = new Bitmap(AssetLoader.Open(new System.Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
-		LoadImage();
-		LoadPermission();
+		LoadInfo();
+	}
+	async void LoadInfo()
+	{
+		await Task.WhenAll(LoadLikes(), LoadImage(), LoadPermission());
+	}
+	async Task LoadLikes()
+	{
+		CountLike = await _likesService.CouintLikes(VersionProjectResult.Id);
 	}
 
-	async void LoadPermission()
+	async Task LoadPermission()
 	{
 		try
 		{
@@ -73,7 +88,7 @@ public class VersionProjectResultWithImage : ReactiveObject
 		return VersionProjectResult;
 	}
 
-	async void LoadImage()
+	async Task LoadImage()
 	{
 		ImageResult result = await _getterImage.GetImageResult(VersionProjectResult.Id);
 		Image = ImageAvaloniaConverter.ConvertByteInImage(result.Image);

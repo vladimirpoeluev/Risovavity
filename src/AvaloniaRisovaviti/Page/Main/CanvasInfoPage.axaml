@@ -15,14 +15,19 @@
 	<Grid ColumnDefinitions="*,*">
 		<Grid Grid.Column="0"
 			  RowDefinitions="2.5*,*">
-			<Image Source="{Binding Image}"
-				   Grid.Row="0"/>
+			<Grid RowDefinitions="auto, *">
+				<Button Content="Родитель"
+						Command="{Binding BackVersion}"/>
+				<Image Source="{Binding Image}"
+				   Grid.Row="1"/>
+			</Grid>
+
 			<StackPanel Grid.Row="1">
-				<TextBlock Text="{Binding Canvas.Name}"/>
-				<TextBlock Text="{Binding Canvas.Description}"/>
+				<TextBlock Text="{Binding VersionProject.Name}"/>
+				<TextBlock Text="{Binding VersionProject.Description}"/>
 				<WrapPanel>
-					<TextBlock Text="Количество лайков"/>
-					<CheckBox/>
+					<TextBlock Text="{Binding CountLike}"/>
+					<CheckBox IsChecked="{Binding IsLikes}"/>
 				</WrapPanel>
 				<WrapPanel>
 					<WrapPanel IsVisible="{Binding Permission.Edit}">
@@ -47,7 +52,10 @@
 						<Grid>
 							<Image Source="{Binding Image}"
 								   Width="100"/>
-							<TextBlock Text="{Binding VersionProjectResult.Name}"/>
+							<StackPanel>
+								<TextBlock Text="{Binding VersionProjectResult.Name}"/>
+								<TextBlock Text="{Binding CountLike}"/>
+							</StackPanel>
 						</Grid>
 					</Button>
 				</DataTemplate>

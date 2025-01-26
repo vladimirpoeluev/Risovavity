@@ -14,8 +14,8 @@
 	<Grid>
 		<StackPanel HorizontalAlignment="Center"
 					VerticalAlignment="Center">
-			<Label Content="{x:Static assets:Resource.Registration}" 
-				   FontSize="25"/>
+			<TextBlock	Text="{x:Static assets:Resource.Registration}" 
+						Classes="h1"/>
 			<Label Content="{x:Static assets:Resource.NameOfUser}"/>
 			<TextBox Text="{Binding RegistrationForm.Name}"/>
 			<Label Content="{x:Static assets:Resource.Email}"/>

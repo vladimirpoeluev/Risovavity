@@ -7,14 +7,14 @@
 			 x:Class="AvaloniaRisovaviti.EntrancePage"
 			 x:DataType="vm:EntrancePageViewModel">
 	<Design.DataContext>
-		<vm:AuthorViewModel/>
+		<vm:EntrancePageViewModel/>
 	</Design.DataContext>
 	<Grid>
 		<StackPanel HorizontalAlignment="Center"
 					VerticalAlignment="Center"
 					Width="300">
-			<Label Content="Вход"
-				   FontSize="35"/>
+			<TextBlock	Text="Вход"
+						Classes="h1"/>
 			<Label Content="Логин"/>
 			<TextBox Text="{Binding Login}"/>
 			<Label Content="Пароль"/>

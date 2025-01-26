@@ -1,5 +1,6 @@
 ﻿using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using AvaloniaRisovaviti.Model;
 using AvaloniaRisovaviti.ViewModel.Canvas;
 using DomainModel.ResultsRequest.Canvas;
 
@@ -7,7 +8,7 @@ namespace AvaloniaRisovaviti.ViewModel.Fake
 {
 	internal class FakeCanvasInfoPageViewModel : CanvasInfoPageViewModel
 	{
-		public FakeCanvasInfoPageViewModel() : base()
+		public FakeCanvasInfoPageViewModel()
 		{
 			this.Canvas = new CanvasResult() 
 			{
@@ -20,6 +21,18 @@ namespace AvaloniaRisovaviti.ViewModel.Fake
 				Name = "Test name of project",
 				Description = "Test description of project"
 			};
+			Descendants = 
+				[
+				new VersionProjectResultWithImage()
+				{ 
+					VersionProjectResult = new VersionProjectResult(){
+						Id = 1,
+						Description = "Test",
+						Name = "Test",
+						AuthorId = 1,
+					}
+				}
+				];
 		}
 	}
 }

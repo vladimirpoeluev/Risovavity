@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="Accets\breakImage.png" />
+    <None Remove="Accets\DmitrievaSP.otf" />
     <None Remove="Accets\IconRisovaviti.ico" />
     <None Remove="Accets\image.jpg" />
     <None Remove="Accets\placeholder.png" />
@@ -35,6 +36,7 @@
 
   <ItemGroup>
     <AvaloniaResource Include="Accets\breakImage.png" />
+    <AvaloniaResource Include="Accets\DmitrievaSP.otf" />
     <AvaloniaResource Include="Accets\IconRisovaviti.ico">
     </AvaloniaResource>
     <AvaloniaResource Include="Accets\image.jpg" />
