@@ -8,7 +8,7 @@ public partial class EntranceWindow : Window
     public EntranceWindow()
     {
         InitializeComponent();
-        Content = App.Container.Resolve<EntrancePage>();
+        window.Content = App.Container.Resolve<EntrancePage>();
     }
 
     private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
@@ -18,6 +18,6 @@ public partial class EntranceWindow : Window
 
     private void Reg_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
-        this.Content = new RegistrationPage();
+		window.Content = new RegistrationPage();
     }
 }

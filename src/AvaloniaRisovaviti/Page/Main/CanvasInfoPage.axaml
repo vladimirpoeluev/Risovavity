@@ -27,11 +27,14 @@
 				<TextBlock Text="{Binding VersionProject.Description}"/>
 				<WrapPanel>
 					<TextBlock Text="{Binding CountLike}"/>
-					<CheckBox IsChecked="{Binding IsLikes}"/>
+					<CheckBox IsChecked="{Binding IsLikes}"
+							  Classes="like"/>
 				</WrapPanel>
 				<WrapPanel>
 					<WrapPanel IsVisible="{Binding Permission.Edit}">
-						<Button Content="Удалить" Command="{Binding Delete}"/>
+						<Button Content="Удалить" 
+								Command="{Binding Delete}"
+								Classes="dangerous"/>
 						<Button Content="Изменить" Command="{Binding Update}"/>
 					</WrapPanel>
 					<Button Content="Назначить главной версией"
@@ -54,7 +57,11 @@
 								   Width="100"/>
 							<StackPanel>
 								<TextBlock Text="{Binding VersionProjectResult.Name}"/>
-								<TextBlock Text="{Binding CountLike}"/>
+								<StackPanel Orientation="Horizontal">
+									<CheckBox Classes="like"
+											  IsChecked="true"/>
+									<TextBlock Text="{Binding CountLike}"/>
+								</StackPanel>
 							</StackPanel>
 						</Grid>
 					</Button>

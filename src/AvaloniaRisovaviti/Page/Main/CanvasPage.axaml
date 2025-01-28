@@ -39,7 +39,8 @@
 								<TextBlock Text="{Binding CanvasResult.Name}"/>
 								<WrapPanel>
 									<TextBlock Text="{Binding CountLikes}"/>
-									<CheckBox IsChecked="{Binding IsLike}"/>
+									<CheckBox IsChecked="{Binding IsLike}"
+											  Classes="like"/>
 								</WrapPanel>
 								<Button Content="Delete"
 										IsVisible="{Binding Permission.Edit}"

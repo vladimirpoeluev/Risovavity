@@ -3,7 +3,6 @@ using Avalonia.Controls;
 using InteractiveApiRisovaviti;
 using System;
 using AvaloniaRisovaviti.ViewModel.Main;
-using System.Net.Http;
 using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.Interface;
 using Autofac;

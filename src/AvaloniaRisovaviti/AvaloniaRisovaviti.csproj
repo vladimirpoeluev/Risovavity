@@ -10,21 +10,26 @@
 
   <ItemGroup>
     <None Remove="Accets\breakImage.png" />
+    <None Remove="Accets\CartoonFunCyrillic.ttf" />
     <None Remove="Accets\DmitrievaSP.otf" />
     <None Remove="Accets\IconRisovaviti.ico" />
     <None Remove="Accets\image.jpg" />
     <None Remove="Accets\placeholder.png" />
+    <None Remove="Accets\RubikBubbles-Regular.ttf" />
+    <None Remove="Assets\Fonts\Nunito-Black.ttf" />
   </ItemGroup>
 
+
+	
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="8.1.1" />
-    <PackageReference Include="Avalonia" Version="11.2.2" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.2.2" />
-    <PackageReference Include="Avalonia.ReactiveUI" Version="11.2.2" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.2" />
-    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.2" />
+    <PackageReference Include="Autofac" Version="8.2.0" />
+    <PackageReference Include="Avalonia" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.3" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.3" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.2.2" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.2.3" />
     <PackageReference Include="Markdown.Avalonia" Version="11.0.2" />
     <PackageReference Include="Markdown.Avalonia.Tight" Version="11.0.2" />
     <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
@@ -34,9 +39,11 @@
     <ProjectReference Include="..\InteractiveApiRisovaviti\InteractiveApiRisovaviti.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<AvaloniaResource Include="Assets\**" />
+	</ItemGroup>
   <ItemGroup>
     <AvaloniaResource Include="Accets\breakImage.png" />
-    <AvaloniaResource Include="Accets\DmitrievaSP.otf" />
     <AvaloniaResource Include="Accets\IconRisovaviti.ico">
     </AvaloniaResource>
     <AvaloniaResource Include="Accets\image.jpg" />
@@ -48,6 +55,7 @@
 
   <ItemGroup>
     <AvaloniaResource Include="Accets\placeholder.png" />
+    <AvaloniaResource Include="Assets\Fonts\RubikBubbles-Regular.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -71,6 +79,12 @@
 
   <ItemGroup>
     <Folder Include="Accets\Resurce\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Update="Assets\Fonts\CartoonFunCyrillic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AvaloniaResource>
   </ItemGroup>
 
   <ItemGroup>

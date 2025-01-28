@@ -47,14 +47,14 @@
 						Classes="navbar"
 						Click="Canvas_Click"/>
 				<Button Content="Выход"
-						Classes="navbar"
+						Classes="navbar dangerous"
 						Click="ExitProfile_Click"/>
 			</UniformGrid>
 		</Grid>
 
-		<Grid Grid.Row="1">
-			<local:CanvasPage x:Name="frameMain"/>
-		</Grid>
+		<TransitioningContentControl x:Name="frameMain" Grid.Row="1">
+			<local:CanvasPage />
+		</TransitioningContentControl>
 
 		<Grid Grid.Row="2">
 			<Grid.ColumnDefinitions>

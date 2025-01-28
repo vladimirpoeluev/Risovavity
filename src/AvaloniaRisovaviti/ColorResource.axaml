@@ -29,7 +29,7 @@
 		<SolidColorBrush x:Key="accent-medding-light">#FFF486</SolidColorBrush>
 
 		<SolidColorBrush x:Key="red">#F33D6E</SolidColorBrush>
-		<SolidColorBrush x:Key="red-light">#F36D91</SolidColorBrush>
+		<SolidColorBrush x:Key="red-light">#F5B4C5</SolidColorBrush>
 	
 	
 </ResourceDictionary>

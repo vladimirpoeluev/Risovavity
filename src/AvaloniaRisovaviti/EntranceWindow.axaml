@@ -10,5 +10,6 @@
 	    MinHeight="250"
 		MinWidth="780">
 	
+	<TransitioningContentControl x:Name="window"/>
 		
 </Window>

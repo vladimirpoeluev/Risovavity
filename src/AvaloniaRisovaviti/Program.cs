@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Media;
 using Avalonia.ReactiveUI;
 using InteractiveApiRisovaviti.Exceptions;
 using System;
@@ -21,8 +22,6 @@ namespace AvaloniaRisovaviti
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .UseReactiveUI()
-                .WithInterFont()
-                .LogToTrace();
+                .UseReactiveUI();
     }
 }

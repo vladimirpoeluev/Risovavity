@@ -7,7 +7,7 @@
 	<Application.Resources>
 	</Application.Resources>
     <Application.Styles>
-		<StyleInclude Source="/Styles.axaml"/>
         <FluentTheme />
+		<StyleInclude Source="/Styles.axaml"/>
     </Application.Styles>
 </Application>
