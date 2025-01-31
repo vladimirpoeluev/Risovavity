@@ -43,6 +43,7 @@
 											  Classes="like"/>
 								</WrapPanel>
 								<Button Content="Delete"
+										Classes="dangerous"
 										IsVisible="{Binding Permission.Edit}"
 										Command="{Binding DeleteCanvas}"/>
 								<Button Content="Edit"

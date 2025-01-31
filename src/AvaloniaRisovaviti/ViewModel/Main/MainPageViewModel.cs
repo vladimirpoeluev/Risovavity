@@ -33,9 +33,16 @@ namespace AvaloniaRisovaviti.ViewModel.Main
 
         public MainPageViewModel()
         {
-            _profile = new(Authentication.AuthenticationUser.User);
-            _setterImage = new ProfileSetterImage(_profile);
-            InitUser();
+            try
+            {
+				_profile = new(Authentication.AuthenticationUser.User);
+				_setterImage = new ProfileSetterImage(_profile);
+				InitUser();
+			}
+            catch
+            {
+				new Avalonia.Media.Imaging.Bitmap("Accets/icoUser.png");
+			}
         }
 
         public void InitUser()

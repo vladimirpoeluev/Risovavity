@@ -2,7 +2,6 @@ using Autofac;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using AvaloniaRisovaviti.ViewModel.Main;
-using InteractiveApiRisovaviti.Interface;
 
 namespace AvaloniaRisovaviti;
 
@@ -12,8 +11,16 @@ public partial class MainPage : UserControl
     public MainPage()
     {
         InitializeComponent();
-        viewModel = new MainPageViewModel();
-        DataContext = viewModel; 
+        try
+        {
+			viewModel = new MainPageViewModel();
+			DataContext = viewModel;
+		}
+        catch
+        {
+
+        }
+       
     }
 
     public void MyCanvas_Click(object ob, RoutedEventArgs e)

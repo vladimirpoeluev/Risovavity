@@ -11,10 +11,8 @@
 		<vm:AuthorViewModel/>
 	</Design.DataContext>
 	
-	<Grid Background="Aquamarine"
-		  RowDefinitions="*, auto">
+	<Grid RowDefinitions="*, auto">
 		<ListBox ItemsSource="{Binding Authors}"
-				 Background="AliceBlue"
 				 ScrollViewer.VerticalScrollBarVisibility="Visible">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
