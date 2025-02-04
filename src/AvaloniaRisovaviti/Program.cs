@@ -2,6 +2,7 @@
 using Avalonia.Media;
 using Avalonia.ReactiveUI;
 using InteractiveApiRisovaviti.Exceptions;
+using InteractiveApiRisovaviti.HttpIntegration;
 using System;
 
 namespace AvaloniaRisovaviti
@@ -14,7 +15,16 @@ namespace AvaloniaRisovaviti
         [STAThread]
         public static void Main(string[] args) 
         {
-            BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+            try
+            {
+				BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
+			}
+            catch(Exception ex)
+            {
+                Authentication.AuthenticationUser.User = new NotAuthenticationUser();
+                Main(args);
+            }
+            
 			
 		} 
 

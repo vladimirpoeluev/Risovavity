@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using AvaloniaRisovaviti.Cript;
 using AvaloniaRisovaviti.Cript.Interfaces;
-using InteractiveApiRisovaviti;
 using InteractiveApiRisovaviti.Interface;
 using System.Threading.Tasks;
 
@@ -22,8 +21,8 @@ namespace AvaloniaRisovaviti.Authentication
 			} 
 			set 
 			{
-				_user = value;
 				Session.SetSessionAsync(value);
+				_user = value;
 			} 
 		} 
 

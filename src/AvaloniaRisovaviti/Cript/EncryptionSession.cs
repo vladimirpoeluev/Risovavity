@@ -105,6 +105,13 @@
 		/// <returns>The <see cref="Task"/></returns>
 		public async Task SetSessionAsync(IAuthenticationUser sessionName)
 		{
+			if(sessionName is NotAuthenticationUser)
+			{
+				using FileStream fileStream = new(path, FileMode.Create);
+				using StreamWriter fileWriter = new StreamWriter(fileStream);
+				await fileWriter.WriteAsync(string.Empty);
+				return;
+			}
 			using (FileStream fileStream = new(path, FileMode.Create))
 			{
 				using (Aes aes = Aes.Create())

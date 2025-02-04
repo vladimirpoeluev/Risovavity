@@ -141,6 +141,10 @@
 		</Setter>
 	</Style>
 
+	<!-- Grid styles-->
+	<Style Selector="Grid.navbar">
+		<Setter Property="Background" Value="{DynamicResource accent-medding}"/>
+	</Style>
 	
 	
 	<!-- Label styles -->
@@ -168,6 +172,8 @@
 	
 	
 	<!-- Button styles -->
+	
+
 	<Style Selector="Button /template/ ContentPresenter">
 		<Setter Property="CornerRadius" Value="50"/>
 		
@@ -183,8 +189,15 @@
 		<Setter Property="BorderThickness" Value="2"/>
 		
 	</Style>
+	<Style Selector="Button.navbar">
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="Background" Value="{DynamicResource accent-medding-light}"/>
+		<Setter Property="Foreground" Value="{DynamicResource medding}"/>
+	</Style>
 	<Style Selector="Button.dangerous">
 		<Setter Property="Background" Value="{DynamicResource red}"/>
+		<Setter Property="Foreground" Value="{DynamicResource accent-light}"/>
 	</Style>
 	<Style Selector="Button:pointerover /template/ ContentPresenter">
 		<Setter Property="Background" Value="{DynamicResource light}"/>
@@ -202,11 +215,7 @@
 		<Setter Property="BorderBrush" Value="{DynamicResource red}"/>
 	</Style>
 	
-	<Style Selector="Button.navbar">
-		<Setter Property="VerticalAlignment" Value="Bottom"/>
-		<Setter Property="HorizontalAlignment" Value="Center"/>
-	</Style>
-
+	
 	<!--Grid styles-->
 	<Style Selector="Window">
 		<Setter Property="Background" Value="{StaticResource accent-lightfon}"/>

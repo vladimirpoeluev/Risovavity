@@ -12,8 +12,10 @@ using InteractiveApiRisovaviti;
 using InteractiveApiRisovaviti.CanvasOperate;
 using InteractiveApiRisovaviti.ControllerIntegration;
 using InteractiveApiRisovaviti.Exceptions;
+using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.Interface;
 using System;
+using System.Net;
 
 namespace AvaloniaRisovaviti
 {
@@ -79,6 +81,15 @@ namespace AvaloniaRisovaviti
             {
                 desktop.MainWindow = new EntranceWindow();
             }
+
+            AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
+            {
+                if (e.ExceptionObject is AuthorizeException)
+                {
+                    Authentication.AuthenticationUser.User = new NotAuthenticationUser();
+                    new EntranceWindow().Show();
+				}
+            };
 
             base.OnFrameworkInitializationCompleted();
         }
