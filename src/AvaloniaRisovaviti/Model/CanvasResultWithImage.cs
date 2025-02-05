@@ -18,6 +18,7 @@ using ReactiveUI.Fody.Helpers;
 using DomainModel.ResultsRequest;
 using System.Reactive;
 using System;
+using System.Reactive.Linq;
 
 namespace AvaloniaRisovaviti.Model
 {
@@ -62,8 +63,17 @@ namespace AvaloniaRisovaviti.Model
             SetImageTask();
             SetPermission();
             InfoLikesLoad();
+            this.WhenAnyValue(vm => vm.IsLike)
+                .Where(islike => islike == null)
+                .Subscribe(UpdateLike);
             this.WhenAnyValue(vm => vm.IsLike).Subscribe(UpdateLikeChecked);
 		}
+
+        async void UpdateLike(bool? islike)
+        {
+            await InfoLikesLoad();
+            OnPropertyChanged(nameof(IsLike));
+        }
 
         async void UpdateLikeChecked(bool? e)
         {
@@ -76,7 +86,7 @@ namespace AvaloniaRisovaviti.Model
 			OnPropertyChanged(nameof(CountLikes));
 		}
 
-        async void InfoLikesLoad()
+        async Task InfoLikesLoad()
         {
             IsLike = await _likesService.IsLike(CanvasResult.Id);
             CountLikes = await _likesService.CouintLikes(CanvasResult.Id);
