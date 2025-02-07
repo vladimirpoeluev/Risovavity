@@ -124,7 +124,7 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на You agree to [privacy terms](https://localhost:7281/privacy.html).
+        ///   Ищет локализованную строку, похожую на You agree to [privacy terms](https://localhost:32806/privacy.html).
         /// </summary>
         public static string MDAgreement {
             get {

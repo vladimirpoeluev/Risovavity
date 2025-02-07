@@ -154,7 +154,7 @@
     <value>Name</value>
   </data>
   <data name="MDAgreement" xml:space="preserve">
-    <value>You agree to [privacy terms](https://localhost:7281/privacy.html)</value>
+    <value>You agree to [privacy terms](http://localhost:32806/privacy.html)</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>

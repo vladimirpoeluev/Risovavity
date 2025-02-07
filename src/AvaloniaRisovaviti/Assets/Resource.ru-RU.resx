@@ -154,7 +154,7 @@
     <value>Имя пользователя</value>
   </data>
   <data name="MDAgreement" xml:space="preserve">
-    <value>Вы соглашайтесь на [условия конфидициальности](https://localhost:7281/privacy.html)</value>
+    <value>Вы соглашайтесь на [условия конфидициальности](http://localhost:32806/privacy.html)</value>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Назад</value>
