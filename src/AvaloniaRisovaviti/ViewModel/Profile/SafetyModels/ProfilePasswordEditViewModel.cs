@@ -5,6 +5,13 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Linq;
+using Autofac;
+using ReactiveUI;
+using MsBox.Avalonia;
+using System.Threading.Tasks;
+using System.Reactive.Linq;
+using DynamicData.Binding;
+using ReactiveUI.Fody.Helpers;
 
 namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
 {
@@ -14,13 +21,21 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
         Error,
         None
     }
-    internal class ProfilePasswordEditViewModel : INotifyPropertyChanged
+    internal class ProfilePasswordEditViewModel : ReactiveObject, INotifyPropertyChanged
     {
+        bool? isTwoAutentication;
         string _errorMessage;
+        private DomainModel.Integration.ITwoFactorAuthService _twoFactorAuthService;
         public string OldPassword { get; set; } = string.Empty;
         public string NewPassword { get; set; } = string.Empty;
         public string RepeatNewPassword { get; set; } = string.Empty;
         public StateEditPassword State { get; set; } = StateEditPassword.None;
+        [Reactive]
+        public bool? TwoFactAuthentivation 
+        {
+            get;
+            set;       
+        }
         public string ErrorMessage
         {
             get => _errorMessage;
@@ -35,6 +50,43 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
         public ProfilePasswordEditViewModel()
         {
             _passwordEditer = new InteractiveApiRisovaviti.Profile(Authentication.AuthenticationUser.User);
+            _twoFactorAuthService = App.Container.Resolve<DomainModel.Integration.ITwoFactorAuthService>();
+			TwoFactAuthentivation = false;
+            InitTwoAuto();
+            this.WhenAnyValue(vm => vm.TwoFactAuthentivation)
+                .Where(isAuto => isAuto != null)
+                .InvokeCommand(ReactiveCommand.Create(async (bool? isauto) => {
+                    await _twoFactorAuthService.SetAsync(isauto ?? false);
+                    return isauto ?? false;
+                }));
+        }
+
+        private async void InitTwoAuto()
+        {
+            bool? istwoauto = await TryGetAutoAsync();
+
+			if ((istwoauto) != null)
+                TwoFactAuthentivation = istwoauto;
+            OnPropertyChanged(nameof(TwoFactAuthentivation));
+        }   
+
+        async Task<bool?> TryGetAutoAsync()
+        {
+            try
+            {
+				return await _twoFactorAuthService.GetAsync();
+			}
+            catch (Exception)
+            {
+				MessageBoxManager.GetMessageBoxStandard(new MsBox.Avalonia.Dto.MessageBoxStandardParams()
+				{
+					ContentMessage = "Произошла ошибка получения вида аутентификации пользователя",
+					ContentTitle = "Ошибка",
+					Icon = MsBox.Avalonia.Enums.Icon.Error
+				});
+                return null;
+			}
+            
         }
 
         public void PasswordEdit()

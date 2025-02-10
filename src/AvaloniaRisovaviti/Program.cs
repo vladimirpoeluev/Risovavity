@@ -1,7 +1,5 @@
 ﻿using Avalonia;
-using Avalonia.Media;
 using Avalonia.ReactiveUI;
-using InteractiveApiRisovaviti.Exceptions;
 using InteractiveApiRisovaviti.HttpIntegration;
 using System;
 

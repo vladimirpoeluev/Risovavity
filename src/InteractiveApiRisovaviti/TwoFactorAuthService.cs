@@ -22,7 +22,7 @@ namespace InteractiveApiRisovaviti
 
 		public async Task SetAsync(bool value)
 		{
-			await controllerIntegraion.CreatePostPatser<object>(User, null).ExecuteRequestAsync($"api/settings-auth/{value}");
+			await controllerIntegraion.CreatePostPatser<object>(User, null).ExecuteRequestAsync($"api/settings-auth/set-auth/{value}");
 		}
 	}
 }
