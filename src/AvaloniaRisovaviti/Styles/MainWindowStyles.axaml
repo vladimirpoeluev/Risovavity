@@ -1,0 +1,66 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20"
+			Width="600">
+		<Grid	Grid.Row="1"
+				ColumnDefinitions="Auto, *"
+				RowDefinitions="*, auto"
+				Classes="navbar"
+				Height="500">
+
+			<StackPanel Margin="5"
+						Grid.Column="0">
+				<Button>
+					<StackPanel>
+						<Image Height="50"
+							   Source="avares://AvaloniaRisovaviti/Accets/breakImage.png"/>
+						<TextBlock	HorizontalAlignment="Center"
+									Text="Имя"/>
+					</StackPanel>
+				</Button>
+				<StackPanel Height="50"
+							VerticalAlignment="Bottom">
+					<Button Content="Мои рисунки"
+							Classes="navbar"/>
+					<Button Content="Авторы"
+							Classes="navbar"/>
+					<Button Content="Интерактивные холсты"
+							Classes="navbar"/>
+					<Button Content="Комьюнити"
+							Classes="navbar"/>
+
+				</StackPanel>
+
+			</StackPanel>
+			<StackPanel Grid.Row="1">
+				<Button Grid.Column="1"
+						Content="Обновить даные"
+						Classes="navbar"/>
+				<Button Content="Выход"
+						Classes="dangerous navbar"/>
+			</StackPanel>
+
+		</Grid>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Add Styles Here -->
+	<Style Selector="Grid.navbar">
+		<Setter Property="Width" Value="100"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="Transitions">
+			<Setter.Value>
+				<Transitions>
+					<DoubleTransition Property="Width" Duration="0:0:0.07"/>
+				</Transitions>
+			</Setter.Value>
+		</Setter>
+	</Style> 
+	<Style Selector="Grid.navbar:pointerover">
+		<Setter	Property="Width" Value="230"/>
+	</Style>
+	<Style Selector="Button">
+		
+	</Style>
+</Styles>

@@ -18,7 +18,7 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
 		private ISessionService _sessionServierService;
 
 		public SessionListViewModel(){}
-		public SessionListViewModel(ISessionService sessionService) 
+		public SessionListViewModel(ISessionService sessionService)   
 		{
 			_sessionServierService = sessionService;
 			SessionList = new List<SessionViewModel>();
@@ -28,18 +28,41 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
 
 		public async void LoadInfo()
 		{
-			IEnumerable<SessionAuthorizeObject> result = await _sessionServierService.GetSessionAsync();
+			IEnumerable<SessionAuthorizeObject> result = new List<SessionAuthorizeObject>();
+			try
+			{
+				result = await _sessionServierService.GetSessionAsync();
+			}
+			catch
+			{
+				//TODO Сделать с лучшае ошибки 
+			}
 			SessionList = result.Select(entity => new SessionViewModel(_sessionServierService, entity));
 		}
 
 		public async void DeleteSession(string refresh)
 		{
-			await _sessionServierService.DeleteSessionAsync(refresh);
+			try
+			{
+				await _sessionServierService.DeleteSessionAsync(refresh);
+			}
+			catch
+			{
+				//TODO: Сделать в случае ошибки
+			}
 		}
 
 		public async void DeleteAllSession()
 		{
-			await _sessionServierService.DeleteAllSessionAsync();
+			try
+			{
+				await _sessionServierService.DeleteAllSessionAsync();
+			}
+			catch
+			{
+				//TODO: Сделать в случае ошибки
+			}
+			
 		} 
 
 		

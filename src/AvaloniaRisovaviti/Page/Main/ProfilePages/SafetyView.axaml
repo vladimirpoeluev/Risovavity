@@ -17,7 +17,11 @@
 					HorizontalAlignment="Stretch"/>
 		</WrapPanel>
 		<Grid Grid.Column="1">
-			<UserControl x:Name="page"/>
+			<TransitioningContentControl x:Name="page">
+				<TransitioningContentControl.PageTransition>
+					<PageSlide Duration="00:00:00.500" Orientation="Vertical"/>
+				</TransitioningContentControl.PageTransition>
+			</TransitioningContentControl>
 		</Grid>
 	</Grid>
 </UserControl>
