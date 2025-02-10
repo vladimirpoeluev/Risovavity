@@ -7,18 +7,22 @@
 	<UniformGrid>
 		<Button HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
-				Click="NavSafety_Click">
+				Click="NavSafety_Click"
+				Classes="safety-nextbutton">
 			Безопасность
 		</Button>
 		<Button HorizontalAlignment="Stretch"
-				VerticalAlignment="Stretch">
+				VerticalAlignment="Stretch"
+				Classes="profile-settings-nextbutton">
 			Настройки профиля
 		</Button>
 		<Button HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
-				Content="Что то еще"/>
+				Content="Настройки приложения"
+				Classes="app-settings-nextbutton"/>
 		<Button HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
-				Content="Что то чтотное"/>
+				Content="О приложении"
+				Classes="app-description-nextbutton"/>
 	</UniformGrid>
 </UserControl>

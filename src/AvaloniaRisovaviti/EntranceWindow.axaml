@@ -9,7 +9,10 @@
 		Icon="/Accets/IconRisovaviti.ico"
 	    MinHeight="250"
 		MinWidth="780">
+
+	<Grid>
+		<TransitioningContentControl x:Name="window"/>
+	</Grid>
 	
-	<TransitioningContentControl x:Name="window"/>
 		
 </Window>
