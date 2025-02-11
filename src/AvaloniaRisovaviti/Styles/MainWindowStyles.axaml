@@ -19,7 +19,7 @@
 									 Classes="icon-user"
 									 Source="avares://AvaloniaRisovaviti/Accets/breakImage.png"/>
 							  <TextBlock	HorizontalAlignment="Center"
-										  Text="Имя"/>
+											Text="Имя"/>
 						  </StackPanel>
 					  </Button>
 					  <StackPanel Height="50"
@@ -86,23 +86,33 @@
 			<Setter.Value>
 				<EllipseGeometry Center="30,30"
 								 RadiusX="30"
-								 RadiusY="30"/>
+								 RadiusY="40"/>
 			</Setter.Value>
 		</Setter>
 	</Style>
+	
 	<Style Selector="Button.navbar">
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate>
-					<Border>
 						<StackPanel Orientation="Horizontal"
 									HorizontalAlignment="Stretch">
 							<PathIcon Data="{DynamicResource unlike}"
-									  Width="90"/>
-							<TextBlock Text="{Binding $parent[Button].Content}"/>
+									  Width="90"
+									  Foreground="{Binding $parent[Button].Foreground}"/>
+							<TextBlock Text="{Binding $parent[Button].Content}"
+									   Foreground="{Binding $parent[Button].Foreground}">
+							</TextBlock>
 						</StackPanel>
-					</Border>
 				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Foreground" Value="{DynamicResource black}"/>
+		<Setter Property="Transitions">
+			<Setter.Value>
+				<Transitions>
+					<BrushTransition Property="Foreground" Duration="0:0:0.20"/>
+				</Transitions>
 			</Setter.Value>
 		</Setter>
 	</Style>
@@ -110,58 +120,21 @@
 
 	
 	<Style Selector="Button.navbar.dangerous">
-		<Setter Property="Template">
+		<Setter Property="Foreground" Value="{DynamicResource red-light}"/>
+		<Setter Property="Transitions">
 			<Setter.Value>
-				<ControlTemplate>
-					<Border>
-						<StackPanel Orientation="Horizontal"
-									HorizontalAlignment="Stretch">
-							<PathIcon Data="{DynamicResource unlike}"
-									  Width="90"
-									  Foreground="{DynamicResource red-light}"/>
-							<TextBlock Text="{Binding $parent[Button].Content}"
-									   Foreground="{DynamicResource red-light}"/>
-						</StackPanel>
-					</Border>
-				</ControlTemplate>
+				<Transitions>
+					<BrushTransition Property="Foreground" Duration="0:0:0.20"/>
+				</Transitions>
 			</Setter.Value>
 		</Setter>
 	</Style>
+	
 
 	<Style Selector="Button.navbar:pointerover">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate>
-					<Border>
-						<StackPanel Orientation="Horizontal"
-									HorizontalAlignment="Stretch">
-							<PathIcon Data="{DynamicResource unlike}"
-									  Width="90"
-									  Foreground="{DynamicResource black}"/>
-							<TextBlock Text="{Binding $parent[Button].Content}"
-									   Foreground="{DynamicResource black}"/>
-						</StackPanel>
-					</Border>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
+		<Setter Property="Foreground" Value="Black"/>
 	</Style>
 	<Style Selector="Button.navbar.dangerous:pointerover">
-		<Setter Property="Template">
-			<Setter.Value>
-				<ControlTemplate>
-					<Border>
-						<StackPanel Orientation="Horizontal"
-									HorizontalAlignment="Stretch">
-							<PathIcon Data="{DynamicResource unlike}"
-									  Width="90"
-									  Foreground="{DynamicResource red}"/>
-							<TextBlock Text="{Binding $parent[Button].Content}"
-									   Foreground="{DynamicResource red}"/>
-						</StackPanel>
-					</Border>
-				</ControlTemplate>
-			</Setter.Value>
-		</Setter>
+		<Setter Property="Foreground" Value="{DynamicResource red}"/>
 	</Style>
 </Styles>
