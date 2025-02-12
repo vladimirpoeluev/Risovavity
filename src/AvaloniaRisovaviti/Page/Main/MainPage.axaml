@@ -24,7 +24,6 @@
 				RowDefinitions="*, auto"
 				Classes="navbar">
 			
-			
 			<StackPanel Margin="5"
 						Grid.Column="0">
 				<Button Click="Profile_Click"
@@ -40,16 +39,16 @@
 				<StackPanel Height="50"
 							VerticalAlignment="Bottom">
 					<Button Content="Мои рисунки"
-							Classes="navbar"
+							Classes="navbar myworks"
 							Click="MyCanvas_Click"/>
 					<Button Content="Авторы"
-							Classes="navbar"
+							Classes="navbar authors"
 							Click="Authors_Click"/>
 					<Button Content="Интерактивные холсты"
-							Classes="navbar"
+							Classes="navbar likeswork"
 							Click="InteractiveCanvas_Click"/>
 					<Button Content="Комьюнити"
-							Classes="navbar"
+							Classes="navbar works"
 							Click="Canvas_Click"/>
 					
 				</StackPanel>
@@ -59,7 +58,7 @@
 				<Button Grid.Column="1"
 						Content="Обновить даные"
 						Click="UpdateData_Click"
-						Classes="navbar"/>
+						Classes="navbar update"/>
 				<Button Content="Выход"
 						Classes="dangerous navbar"
 						Click="ExitProfile_Click"/>
