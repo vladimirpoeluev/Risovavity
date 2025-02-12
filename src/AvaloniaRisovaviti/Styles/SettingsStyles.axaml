@@ -1,0 +1,46 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20">
+		<UniformGrid Height="300">
+			<Button HorizontalAlignment="Stretch"
+					VerticalAlignment="Stretch"
+					Classes="safety-nextbutton">
+				Безопасность
+			</Button>
+			<Button HorizontalAlignment="Stretch"
+					VerticalAlignment="Stretch"
+					Classes="profile-settings-nextbutton">
+				Настройки профиля
+			</Button>
+			<Button HorizontalAlignment="Stretch"
+					VerticalAlignment="Stretch"
+					Content="Настройки приложения"
+					Classes="app-settings-nextbutton"/>
+			<Button HorizontalAlignment="Stretch"
+					VerticalAlignment="Stretch"
+					Content="О приложении"
+					Classes="app-description-nextbutton"/>
+		</UniformGrid>
+    </Border>
+  </Design.PreviewWith>
+
+	<Styles.Resources>
+		<StreamGeometry x:Key="safety">
+			M12 2C9.79 2 8 3.79 8 6v4H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2h-2V6c0-2.21-1.79-4-4-4zm-2 4c0-1.1.9-2 2-2s2 .9 2 2v4h-4V6zm6 14H6v-8h12v8z
+		</StreamGeometry>
+	</Styles.Resources>
+	<Style Selector="Button.safety-nextbutton /template/ ContentPresenter">
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Content">
+			<Setter.Value>
+				<Template>
+					<StackPanel>
+						<PathIcon Data="{DynamicResource safety}"/>
+						<TextBlock Text="{Binding $parent[Bu"
+					</StackPanel>
+				</Template>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</Styles>
