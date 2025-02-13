@@ -36,8 +36,9 @@
 			<Setter.Value>
 				<Template>
 					<StackPanel>
-						<PathIcon Data="{DynamicResource safety}"/>
-						<TextBlock Text="{Binding $parent[Bu"
+						<PathIcon Data="{DynamicResource safety}"
+								  Foreground="{Binding $parent[Button]}"/>
+						<TextBlock Text="{Binding $parent[Button].Content}"/>
 					</StackPanel>
 				</Template>
 			</Setter.Value>
