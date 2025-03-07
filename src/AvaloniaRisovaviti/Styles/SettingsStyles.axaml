@@ -29,6 +29,15 @@
 		<StreamGeometry x:Key="safety">
 			M12 2C9.79 2 8 3.79 8 6v4H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2h-2V6c0-2.21-1.79-4-4-4zm-2 4c0-1.1.9-2 2-2s2 .9 2 2v4h-4V6zm6 14H6v-8h12v8z
 		</StreamGeometry>
+		<StreamGeometry x:Key="settings-profile">
+			M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 0v4m0 0a7 7 0 0 0 7-7h2a9 9 0 0 1-9 9m-7-7a7 7 0 0 0 7 7v2a9 9 0 0 1-9-9m14-5a2 2 0 1 0-4 0 2 2 0 0 0 4 0zM5 5a2 2 0 1 0-4 0 2 2 0 0 0 4 0z
+		</StreamGeometry>
+		<StreamGeometry x:Key="settings-app">
+			M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7-3a6.97 6.97 0 0 1-1.17 3.86l1.42 1.42a1 1 0 0 1 0 1.41l-1.41 1.41a1 1 0 0 1-1.41 0l-1.42-1.42A6.97 6.97 0 0 1 12 19a6.97 6.97 0 0 1-3.86-1.17l-1.42 1.42a1 1 0 0 1-1.41 0L4.2 17.7a1 1 0 0 1 0-1.41l1.42-1.42A6.97 6.97 0 0 1 5 12a6.97 6.97 0 0 1 1.17-3.86L4.75 6.72a1 1 0 0 1 0-1.41L6.16 3.9a1 1 0 0 1 1.41 0l1.42 1.42A6.97 6.97 0 0 1 12 5a6.97 6.97 0 0 1 3.86 1.17l1.42-1.42a1 1 0 0 1 1.41 0l1.41 1.41a1 1 0 0 1 0 1.41l-1.42 1.42A6.97 6.97 0 0 1 19 12z
+		</StreamGeometry>
+		<StreamGeometry x:Key="about-app">
+			
+		</StreamGeometry>
 	</Styles.Resources>
 	<Style Selector="Button.safety-nextbutton /template/ ContentPresenter">
 		<Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -37,7 +46,25 @@
 				<Template>
 					<StackPanel>
 						<PathIcon Data="{DynamicResource safety}"
-								  Foreground="{Binding $parent[Button]}"/>
+								  Foreground="{Binding $parent[Button].Foreground}"
+								  Height="30"
+								  Width="30"/>
+						<TextBlock Text="{Binding $parent[Button].Content}"/>
+					</StackPanel>
+				</Template>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style Selector="Button.profile-settings-nextbutton /template/ ContentPresenter">
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Content">
+			<Setter.Value>
+				<Template>
+					<StackPanel>
+						<PathIcon Data="{DynamicResource settings-profile}"
+								  Foreground="{Binding $parent[Button].Foreground}"
+								  Height="30"
+								  Width="30"/>
 						<TextBlock Text="{Binding $parent[Button].Content}"/>
 					</StackPanel>
 				</Template>

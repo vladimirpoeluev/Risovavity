@@ -23,7 +23,7 @@ namespace Logic.CanvasLogic
 				Id = e.Id,
 				UserId = e.AuthorId,
 				VersionId = e.MainVersionId
-			}).Where(e => e.Name.Contains(keyworld)).ToListAsync();
+			}).Where(e => e.Name.Contains(keyworld) || e.Description.Contains(keyworld)).ToListAsync();
 		}
 	}
 }
