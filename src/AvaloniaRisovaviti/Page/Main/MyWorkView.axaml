@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
+			 xmlns:us="using:AvaloniaRisovaviti"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaRisovaviti.MyWorkView"
+			 x:DataType="vm:MyWorkViewModel">
+	<Grid RowDefinitions="auto,*">
+		<TabControl TabStripPlacement="Right">
+			<TabItem Header="Холсты">
+				<us:MyCanvasesView/>
+			</TabItem>
+			<TabItem Header="Версии">
+				<us:MyVersionsView/>
+			</TabItem>
+		</TabControl>
+	</Grid>
+</UserControl>

@@ -37,7 +37,7 @@ public partial class MainPage : UserControl
     }
     public void Canvas_Click(object ob, RoutedEventArgs e)
     {
-       frameMain.Content = new CanvasPage();
+       frameMain.Content = new MyWorkView();
     }
 
     public void Profile_Click(object ob, RoutedEventArgs e) 
