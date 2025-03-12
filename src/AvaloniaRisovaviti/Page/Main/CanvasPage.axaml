@@ -6,6 +6,9 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.CanvasPage"
 			 x:DataType="vm:CanvasPageViewModel">
+	<UserControl.Styles>
+		<StyleInclude Source="avares://AvaloniaRisovaviti/Styles/CanvasStyles.axaml"/>
+	</UserControl.Styles>
 	<Grid RowDefinitions="auto,*">
 		<Grid ColumnDefinitions="*,auto">
 			<TextBox Text="{Binding SearchString}"/>
@@ -29,7 +32,8 @@
 					 SelectedValueBinding="{Binding .}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
-						<Button HorizontalAlignment="Stretch"
+						<!--
+							<Button HorizontalAlignment="Stretch"
 								VerticalAlignment="Stretch"
 								Command="{Binding SelectCanvas}"
 								CommandParameter="{Binding $parent[UserControl]}">
@@ -50,6 +54,50 @@
 										Command="{Binding UpdateCanvas}"
 										IsVisible="{Binding Permission.Edit}"/>
 							</StackPanel>
+							
+						</Button>
+						-->			
+
+						<Button HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								Command="{Binding SelectCanvas}"
+								CommandParameter="{Binding $parent[UserControl]}"
+								Classes="cart">
+							<Grid RowDefinitions="*,auto">
+
+								<Grid Background="White">
+									<Image Source="{Binding ImageData}"/>
+								</Grid>
+
+
+								<DockPanel Grid.Row="0" Classes="menu"
+										   VerticalAlignment="Bottom">
+									<TextBlock Text="{Binding CanvasResult.Name}"
+											   Classes="h2"
+											   DockPanel.Dock="Top"/>
+									<WrapPanel DockPanel.Dock="Left">
+										<CheckBox IsChecked="{Binding IsLike}"
+												  Classes="like"
+												  VerticalAlignment="Center"/>
+										<TextBlock Text="{Binding CountLikes}"
+												   Classes="h3"
+												   VerticalAlignment="Center"/>
+									</WrapPanel>
+
+									<StackPanel DockPanel.Dock="Right"
+												Orientation="Horizontal"
+												Classes="menu-admin">
+										<Button Content="Delete"
+												Classes="dangerous del"
+												Command="{Binding DeleteCanvas}"
+												IsVisible="{Binding Permission.Edit}"/>
+										<Button Content="Edit"
+												Command="{Binding UpdateCanvas}"
+												IsVisible="{Binding Permission.Edit}"/>
+									</StackPanel>
+								</DockPanel>
+
+							</Grid>
 						</Button>
 					</DataTemplate>
 				</ListBox.ItemTemplate>

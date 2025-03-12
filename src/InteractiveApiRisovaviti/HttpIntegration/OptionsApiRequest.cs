@@ -3,6 +3,6 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 {
 	internal class OptionsApiRequest
 	{
-		public static Uri BaseAddress { get; } = new Uri("http://localhost:32806/");
+		public static Uri BaseAddress { get; } = new Uri("https://localhost:7281");
 	}
 }

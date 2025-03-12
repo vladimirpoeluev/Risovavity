@@ -1,0 +1,81 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20">
+		<Button HorizontalAlignment="Stretch"
+				VerticalAlignment="Stretch"
+				CommandParameter="{Binding $parent[UserControl]}"
+				Classes="cart">
+			<Grid RowDefinitions="*,auto">
+				<StackPanel Background="White">
+					<Image Source="avares://AvaloniaRisovaviti/Accets/breakImage.png"/>
+				</StackPanel>
+				
+				
+				<DockPanel Grid.Row="0" Classes="menu"
+						   VerticalAlignment="Bottom">
+					<TextBlock Text="Name"
+							   Classes="h1"
+							   DockPanel.Dock="Top"/>
+					<WrapPanel DockPanel.Dock="Left">
+						<CheckBox IsChecked="True"
+								  Classes="like"
+								  VerticalAlignment="Center"/>
+						<TextBlock Text="3"
+								   Classes="h3"
+								   VerticalAlignment="Center"/>
+					</WrapPanel>
+
+					<StackPanel DockPanel.Dock="Right"
+								HorizontalAlignment="Stretch"
+								Orientation="Horizontal"
+								Classes="menu-admin">
+						<Button Content="Delete"
+								Classes="dangerous del"
+								IsVisible="True"/>
+						<Button Content="Edit"
+								IsVisible="True"
+								Classes="edit"/>
+					</StackPanel>
+				</DockPanel>
+				
+			</Grid>
+		</Button>
+    </Border>
+  </Design.PreviewWith>
+
+  <!-- Add Styles Here -->
+	<Style Selector="Button.cart">
+		<Setter Property="Height" Value="350"/>
+		<Setter Property="Width" Value="350"/>
+	</Style>
+	
+	<Style Selector="Button.cart >> DockPanel.menu">
+		<Setter Property="IsVisible" Value="False"/>
+		<Setter Property="Background" Value="{DynamicResource medding}"/>
+		<Setter Property="Transitions">
+			<Setter.Value>
+				<Transitions>
+					<BrushTransition Property="Background" Duration="0:0:0.3"/>
+				</Transitions>
+			</Setter.Value>
+		</Setter>		
+	</Style>
+
+	<Style Selector="Button.cart >> DockPanel.menu /template/ ContentPresenter">
+		<Setter Property="Padding" Value="10"/>
+		
+		
+	</Style>
+	
+	<Style Selector="Button.cart:pointerover >> DockPanel.menu">
+		<Setter Property="IsVisible" Value="True"/>
+		<Setter Property="Background" Value="{DynamicResource light}"/>
+		
+	</Style>
+
+	<Style Selector="StackPanel.menu-admin /template/ ContentPresenter">
+		<Setter Property="VerticalAlignment" Value="Bottom"/>
+		<Setter Property="HorizontalAlignment" Value="Right"/>
+	</Style>
+</Styles>

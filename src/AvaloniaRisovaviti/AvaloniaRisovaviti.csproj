@@ -17,6 +17,7 @@
     <None Remove="Accets\placeholder.png" />
     <None Remove="Accets\RubikBubbles-Regular.ttf" />
     <None Remove="Assets\Fonts\Nunito-Black.ttf" />
+    <None Remove="Assets\Icons\users.svg" />
   </ItemGroup>
 
 
