@@ -9,22 +9,17 @@
 	<UserControl.Styles>
 		<StyleInclude Source="avares://AvaloniaRisovaviti/Styles/CanvasStyles.axaml"/>
 	</UserControl.Styles>
-	<Grid RowDefinitions="auto,*">
+	<Grid RowDefinitions="auto,*,auto">
 		<Grid ColumnDefinitions="*,auto">
 			<TextBox Text="{Binding SearchString}"/>
 			<Button Content="Поиск"
 					HorizontalAlignment="Right"
 					Command="{Binding Search}"/>
 		</Grid>
-		<Grid HorizontalAlignment="Stretch"
-		  ColumnDefinitions="auto,*"
-			  Grid.Row="1">
-			<Button Grid.Column="0"
-					Click="NavAddCanvas_Click"
-					Content="Добавить холст"
-					HorizontalAlignment="Left"
-					VerticalAlignment="Top"
-					Background="LightGreen"/>
+		<Grid	HorizontalAlignment="Stretch"
+				ColumnDefinitions="auto,*"
+				Grid.Row="1">
+			
 			<ListBox ItemsSource="{Binding Canvases}"
 					 Grid.Column="1"
 					 SelectionChanged="ListBox_SelectionChanged"
@@ -32,31 +27,7 @@
 					 SelectedValueBinding="{Binding .}">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
-						<!--
-							<Button HorizontalAlignment="Stretch"
-								VerticalAlignment="Stretch"
-								Command="{Binding SelectCanvas}"
-								CommandParameter="{Binding $parent[UserControl]}">
-							<StackPanel>
-								<Image Source="{Binding ImageData}"
-										Width="250"/>
-								<TextBlock Text="{Binding CanvasResult.Name}"/>
-								<WrapPanel>
-									<TextBlock Text="{Binding CountLikes}"/>
-									<CheckBox IsChecked="{Binding IsLike}"
-											  Classes="like"/>
-								</WrapPanel>
-								<Button Content="Delete"
-										Classes="dangerous"
-										IsVisible="{Binding Permission.Edit}"
-										Command="{Binding DeleteCanvas}"/>
-								<Button Content="Edit"
-										Command="{Binding UpdateCanvas}"
-										IsVisible="{Binding Permission.Edit}"/>
-							</StackPanel>
-							
-						</Button>
-						-->			
+								
 
 						<Button HorizontalAlignment="Stretch"
 								VerticalAlignment="Stretch"
@@ -107,8 +78,13 @@
 					</ItemsPanelTemplate>
 				</ListBox.ItemsPanel>
 			</ListBox>
-			<Button Content="Ещё"
-					Command="{Binding TryInitCart}"/>
+			
 		</Grid>
+		<Button Content="Ещё"
+				Command="{Binding TryInitCart}"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Bottom"
+				Grid.Row="2"/>
 	</Grid>
+	
 </UserControl>
