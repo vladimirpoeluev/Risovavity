@@ -4,7 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.Error404View">
-	<Grid>
-		
+	<Grid ColumnDefinitions="*,auto">
+		<Image Source="avares://AvaloniaRisovaviti/Assets/Icons/error-404.png"/>
+		<Grid Grid.Column="1">
+			<StackPanel VerticalAlignment="Center">
+				<TextBlock Classes="h1">
+					Ошибка поиска ресурса
+				</TextBlock>
+				<TextBlock>
+					- Проверьте точно ли существует данный ресурс <LineBreak/>
+					- Обновите страницу с ресурсом
+				</TextBlock>
+			</StackPanel>
+		</Grid>
+
 	</Grid>
 </UserControl>

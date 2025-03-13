@@ -4,5 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.ErrorAuthorizeView">
-  Welcome to Avalonia!
+	<Grid ColumnDefinitions="*,auto">
+		<Image Source="avares://AvaloniaRisovaviti/Assets/Icons/error-authorize.jpg"
+			   Margin="10"/>
+		<Grid Grid.Column="1">
+			<StackPanel VerticalAlignment="Center">
+				<TextBlock Classes="h1">
+					Ошибка авторизации
+				</TextBlock>
+				<TextBlock>
+					- Повторите запрос <LineBreak/>
+					- Заново авторизуйтесь
+					- Обратитесь к администратру
+				</TextBlock>
+			</StackPanel>
+		</Grid>
+
+	</Grid>
 </UserControl>
