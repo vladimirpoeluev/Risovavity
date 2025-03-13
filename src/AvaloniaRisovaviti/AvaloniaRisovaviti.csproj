@@ -17,6 +17,7 @@
     <None Remove="Accets\placeholder.png" />
     <None Remove="Accets\RubikBubbles-Regular.ttf" />
     <None Remove="Assets\Fonts\Nunito-Black.ttf" />
+    <None Remove="Assets\Icons\errro-connect-icon.png" />
     <None Remove="Assets\Icons\users.svg" />
   </ItemGroup>
 
@@ -34,6 +35,7 @@
     <PackageReference Include="Markdown.Avalonia" Version="11.0.2" />
     <PackageReference Include="Markdown.Avalonia.Tight" Version="11.0.2" />
     <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
+    <PackageReference Include="System.Reactive" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
