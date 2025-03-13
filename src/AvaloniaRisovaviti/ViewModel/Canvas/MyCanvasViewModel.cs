@@ -1,29 +1,28 @@
 using System;
 using System.Collections.Generic;
 using AvaloniaRisovaviti.Model;
-using DomainModel.Integration.CanvasOperation;
 using DomainModel.Integration;
 using DomainModel.ResultsRequest.Canvas;
 using System.Threading.Tasks;
 using ReactiveUI;
 using Autofac;
-using InteractiveApiRisovaviti.CanvasOperate;
 using MsBox.Avalonia.Dto;
 using MsBox.Avalonia;
 using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
+using InteractiveApiRisovaviti.Interface;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
 	public class MyCanvasViewModel : ReactiveObject
 	{
 		IEnumerable<CanvasResultWithImage> _canvases;
-		IGetterCanvas _getterCanvas;
-		ISearcherCanvas _searcherCanvas;
+		IGetterWorkByAuthorId _getterWorkByAuthorId;
+		InteractiveApiRisovaviti.Profile _profile;
 		int countCart;
-		const int stepLoad = 5;
+		const int stepLoad = 20;
 
 		public event Action<Task<CanvasResult>> OnDeleteItem;
 		public event Action<Task<CanvasResult>> OnClickUpdateItem;
@@ -43,10 +42,9 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 		public CanvasResultWithImage SelectedCanvas { get; set; }
 
 		public MyCanvasViewModel()
-		{
-			SeacherCommand = ReactiveCommand.Create<string, Task>(SearchByString);
-			_getterCanvas = new GetterCanvasParseApi(Authentication.AuthenticationUser.User);
-			_searcherCanvas = App.Container.Resolve<ISearcherCanvas>();
+		{			
+			_getterWorkByAuthorId = App.Container.Resolve<IGetterWorkByAuthorId>();
+			_profile = new InteractiveApiRisovaviti.Profile(App.Container.Resolve<IAuthenticationUser>());
 			_canvases = new List<CanvasResultWithImage>();
 			countCart = 0;
 			OnPropertyChanged(nameof(Canvases));
@@ -54,19 +52,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			Task.WaitAll(TryInitCart());
 		}
 
-		public async Task SearchByString(string searchString)
-		{
-
-			if (searchString.Trim() == string.Empty)
-			{
-				await TryInitCart();
-			}
-			IEnumerable<CanvasResult> result = await _searcherCanvas.Search(searchString);
-			_canvases = CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem);
-			OnPropertyChanged(nameof(Canvases));
-
-
-		}
+		
 
 		void ClickUpdateItem(Task<CanvasResult> canvasResult)
 		{
@@ -102,13 +88,11 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		async Task InitCart()
 		{
-			IEnumerable<CanvasResult> result = await _getterCanvas.GetAsync(countCart, stepLoad);
+			IEnumerable<CanvasResult> result = await _getterWorkByAuthorId.GetCanvasByAuthorId(_profile.ProfileUser.Id, countCart, stepLoad);
 			_canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem));
 			countCart += stepLoad;
 			OnPropertyChanged(nameof(Canvases));
 		}
-
-
 		#region INotifyPropertyChanged Implementation
 		public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -120,6 +104,5 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			}
 		}
 		#endregion
-
 	}
 }

@@ -38,9 +38,9 @@
 				</Button>
 				<StackPanel Height="50"
 							VerticalAlignment="Bottom">
-					<Button Content="Мои рисунки"
+					<Button Content="Мои работы"
 							Classes="navbar myworks"
-							Click="MyCanvas_Click"/>
+							Click="Canvas_Click"/>
 					<Button Content="Авторы"
 							Classes="navbar authors"
 							Click="Authors_Click"/>
@@ -49,7 +49,7 @@
 							Click="InteractiveCanvas_Click"/>
 					<Button Content="Комьюнити"
 							Classes="navbar works"
-							Click="Canvas_Click"/>
+							Click="MyCanvas_Click"/>
 					
 				</StackPanel>
 					

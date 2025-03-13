@@ -73,6 +73,7 @@ namespace AvaloniaRisovaviti
 
             builder.RegisterType<MyCanvasViewModel>();
             builder.RegisterType<MyVersionViewModel>();
+            builder.RegisterType<GetterWorksByAuthorId>().As<IGetterWorkByAuthorId>();
 
             builder.RegisterType<EditCanvasViewModel>();
         }

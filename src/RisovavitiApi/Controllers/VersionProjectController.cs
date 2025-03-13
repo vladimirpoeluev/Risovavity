@@ -3,6 +3,7 @@ using DomainModel.Integration;
 using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest;
 using DomainModel.ResultsRequest.Canvas;
+using Logic;
 using Logic.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,13 +23,15 @@ namespace RisovavitiApi.Controllers
 		IDefinitionerOfPermissionByHttpContext _definitionerOfPermission;
 		ILikesOfVersitonService _likesService;
 		IRuleIntegrationUser _integrationUser;
+		IGetterWorkByAuthorId _getterWorkByAuthorId;
 
 		public VersionProjectController(IFabricOperateVersionProject operate, 
 										IBuilderGetterVerionsByParent getterVerionsByParent,
 										IEditVersionProject editVersion,
 										IDefinitionerOfPermissionByHttpContext definitionerOfPermission,
 										ILikesOfVersitonService likes,
-										IRuleIntegrationUser integrationUser) 
+										IRuleIntegrationUser integrationUser,
+										IGetterWorkByAuthorId getterWorkByAuthor) 
 		{
 			_operate = operate;
 			_builder = getterVerionsByParent;
@@ -36,6 +39,13 @@ namespace RisovavitiApi.Controllers
 			_definitionerOfPermission = definitionerOfPermission;
 			_likesService = likes;
 			_integrationUser = integrationUser;
+			_getterWorkByAuthorId = getterWorkByAuthor;
+		}
+
+		[HttpGet("get/by-auhtorid/{id}")]
+		public async Task<IActionResult> GetByAuthor(int id, int skip, int take)
+		{
+			return Ok(await _getterWorkByAuthorId.GetVersionProjectResultsByAuthorId(id, skip, take));
 		}
 
 		[HttpGet("islike/{idVersion}")]

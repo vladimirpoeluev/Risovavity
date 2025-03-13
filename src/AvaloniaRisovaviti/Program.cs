@@ -1,6 +1,5 @@
 ﻿using Avalonia;
 using Avalonia.ReactiveUI;
-using InteractiveApiRisovaviti.HttpIntegration;
 using System;
 
 namespace AvaloniaRisovaviti
@@ -13,17 +12,7 @@ namespace AvaloniaRisovaviti
         [STAThread]
         public static void Main(string[] args) 
         {
-            try
-            {
-				BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
-			}
-            catch(Exception ex)
-            {
-                Authentication.AuthenticationUser.User = new NotAuthenticationUser();
-                Main(args);
-            }
-            
-			
+			BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);  
 		} 
 
         // Avalonia configuration, don't remove; also used by visual designer.

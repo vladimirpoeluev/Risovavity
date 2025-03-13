@@ -170,6 +170,8 @@ builder.Services.AddTransient<IDefinitionerOfPermission, DefinitionerOfPermissio
 builder.Services.AddTransient<IDefinitionerOfPermissionByHttpContext, DefinitionerOfPermissionByHttpContext>();
 builder.Services.AddTransient<ILikesOfCanvasService, LikesOfCanvasService>();
 builder.Services.AddTransient<ILikesOfVersitonService, LikesOfVersionService>();
+
+builder.Services.AddTransient<IGetterWorkByAuthorId, GetterWorkByAuthorId>();
 #endregion
 
 

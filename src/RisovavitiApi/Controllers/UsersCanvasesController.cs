@@ -25,13 +25,15 @@ namespace RisovavitiApi.Controllers
 		ISearcherCanvas _searcherCanvas;
 		ILikesOfCanvasService _likesService;
 		IRuleIntegrationUser _integrationUser;
+		IGetterWorkByAuthorId _getterWorkByAuthorId;
 
 		public UsersCanvasesController(	IFabricCanvasOperation fabricOperate, 
 										IEditMainVerstionInCanvas editMain,
 										IDefinitionerOfPermissionByHttpContext definitionerOfPermission,
 										ISearcherCanvas searcher,
 										ILikesOfCanvasService likes,
-										IRuleIntegrationUser integrationUser) 
+										IRuleIntegrationUser integrationUser,
+										IGetterWorkByAuthorId getterByAuthor) 
 		{
 			_fabricCanvasOperation = fabricOperate;
 			_editMainVersiton = editMain;	
@@ -39,6 +41,13 @@ namespace RisovavitiApi.Controllers
 			_searcherCanvas = searcher;
 			_likesService = likes;
 			_integrationUser = integrationUser;
+			_getterWorkByAuthorId = getterByAuthor;
+		}
+
+		[HttpGet("get/by-auhtorid/{id}")]
+		public async Task<IActionResult> GetByAuthor(int id, int skip, int take)
+		{
+			return Ok(await _getterWorkByAuthorId.GetCanvasByAuthorId(id, skip, take));
 		}
 
 		[HttpGet("search/{keyword}")]
