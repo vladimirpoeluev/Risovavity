@@ -4,5 +4,73 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.MyVersionsView">
-  Welcome to Avalonia!
+	<Grid RowDefinitions="auto,*">
+		<DockPanel>
+			<Button Content="Добавить работу"
+					HorizontalAlignment="Left"
+					DockPanel.Dock="Left"/>
+			<TextBlock Text="Мои версии"
+					   Classes="h1"
+					   HorizontalAlignment="Right"/>
+		</DockPanel>
+
+		<Grid RowDefinitions="auto,*,auto"
+			  Grid.Row="1">
+			<Grid	HorizontalAlignment="Stretch"
+					ColumnDefinitions="auto,*"
+					Grid.Row="1">
+
+				<ListBox Grid.Column="1">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+
+
+							<Button HorizontalAlignment="Stretch"
+									VerticalAlignment="Stretch"
+									Classes="cart">
+								<Grid RowDefinitions="*,auto">
+
+									<Grid Background="White">
+										<Image />
+									</Grid>
+
+
+									<DockPanel Grid.Row="0" Classes="menu"
+											   VerticalAlignment="Bottom">
+										<TextBlock Classes="h2"
+												   DockPanel.Dock="Top"/>
+										<WrapPanel DockPanel.Dock="Left">
+											<CheckBox Classes="like"
+													  VerticalAlignment="Center"/>
+											<TextBlock Classes="h3"
+													   VerticalAlignment="Center"/>
+										</WrapPanel>
+
+										<StackPanel DockPanel.Dock="Right"
+													Orientation="Horizontal"
+													Classes="menu-admin">
+											<Button Content="Delete"
+													Classes="dangerous del"/>
+											<Button Content="Edit"/>
+										</StackPanel>
+									</DockPanel>
+
+								</Grid>
+							</Button>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+					<ListBox.ItemsPanel>
+						<ItemsPanelTemplate>
+							<WrapPanel/>
+						</ItemsPanelTemplate>
+					</ListBox.ItemsPanel>
+				</ListBox>
+
+			</Grid>
+			<Button Content="Ещё"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Bottom"
+					Grid.Row="2"/>
+		</Grid>
+	</Grid>
 </UserControl>
