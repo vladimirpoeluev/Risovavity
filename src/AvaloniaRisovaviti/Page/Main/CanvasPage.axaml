@@ -24,7 +24,8 @@
 					 Grid.Column="1"
 					 SelectionChanged="ListBox_SelectionChanged"
 					 SelectedValue="{Binding SelectedCanvas}"
-					 SelectedValueBinding="{Binding .}">
+					 SelectedValueBinding="{Binding .}"
+					 HorizontalAlignment="Stretch">
 				<ListBox.ItemTemplate>
 					<DataTemplate>
 								
@@ -74,7 +75,7 @@
 				</ListBox.ItemTemplate>
 				<ListBox.ItemsPanel>
 					<ItemsPanelTemplate>
-						<WrapPanel/>
+						<WrapPanel HorizontalAlignment="Center"/>
 					</ItemsPanelTemplate>
 				</ListBox.ItemsPanel>
 			</ListBox>

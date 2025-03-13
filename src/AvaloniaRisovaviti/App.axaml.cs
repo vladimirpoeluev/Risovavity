@@ -71,6 +71,9 @@ namespace AvaloniaRisovaviti
             builder.RegisterType<ServiceLikesOfVersionProject>().As<ILikesOfVersitonService>();
             builder.RegisterType<TwoFactorAuthService>().As<ITwoFactorAuthService>();
 
+            builder.RegisterType<MyCanvasViewModel>();
+            builder.RegisterType<MyVersionViewModel>();
+
             builder.RegisterType<EditCanvasViewModel>();
         }
 

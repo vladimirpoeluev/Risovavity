@@ -44,7 +44,7 @@
 					<Button Content="Авторы"
 							Classes="navbar authors"
 							Click="Authors_Click"/>
-					<Button Content="Понравившиеся холсты"
+					<Button Content="Понравившиеся"
 							Classes="navbar likeswork"
 							Click="InteractiveCanvas_Click"/>
 					<Button Content="Комьюнити"
