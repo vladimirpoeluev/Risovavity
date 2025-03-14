@@ -7,16 +7,16 @@
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.FormAddVersionPage"
 			 x:DataType="vm:FormAddVersionViewModel">
-	<Design.DataContext>
-		<fvm:FakeCanvasInfoPageViewModel/>
-	</Design.DataContext>
+	
 	<Grid ColumnDefinitions="*,*"
 		  RowDefinitions="auto,*">
 		<StackPanel>
-			<TextBlock Text="Старая версия"/>
+			<TextBlock Text="Старая версия"
+					   Classes="h2"/>
 		</StackPanel>
 		<StackPanel Grid.Column="1">
-			<TextBlock Text="Новая версия"/>
+			<TextBlock Text="Новая версия"
+					   Classes="h2"/>
 		</StackPanel>
 		<Grid Grid.Row="1"
 			  RowDefinitions="2*,*">
@@ -28,7 +28,7 @@
 		</Grid>
 		<Grid Grid.Column="1"
 			  Grid.Row="1"
-			  RowDefinitions="2*,*">
+			  RowDefinitions="2*,auto">
 			<Image Source="{Binding NewImageProjectResult}"/>
 			<StackPanel Grid.Row="1">
 				<Button Content="Выбрать изображение"
