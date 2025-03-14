@@ -2,7 +2,10 @@
 using AvaloniaRisovaviti.Services.Interface;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.Services
@@ -32,14 +35,14 @@ namespace AvaloniaRisovaviti.Services
 			return info;
 		}
 
-		public Task<Guid> GetGuids()
+		public async Task<IEnumerable<Guid>> GetGuids()
 		{
-			throw new NotImplementedException();
+			return Directory.GetDirectories(Path).Select(str => new Guid(str)).ToList();
 		}
 
-		public Task OpenForEdit(Guid guid)
+		public void OpenForEdit(Guid guid)
 		{
-			throw new NotImplementedException();
+			Process.Start(new ProcessStartInfo($"{Path}/{guid}/image"));
 		}
 	}
 }
