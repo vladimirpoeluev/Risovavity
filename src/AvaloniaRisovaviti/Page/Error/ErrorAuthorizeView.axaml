@@ -8,7 +8,8 @@
 		<Image Source="avares://AvaloniaRisovaviti/Assets/Icons/error-authorize.jpg"
 			   Margin="10"/>
 		<Grid Grid.Column="1">
-			<StackPanel VerticalAlignment="Center">
+			<StackPanel VerticalAlignment="Center"
+						Margin="5">
 				<TextBlock Classes="h1">
 					Ошибка авторизации
 				</TextBlock>
