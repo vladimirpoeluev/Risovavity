@@ -3,10 +3,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
+			 xmlns:us="using:AvaloniaRisovaviti.Model"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.MyVersionsView"
 			 x:DataType="vm:MyVersionViewModel"
 			 Loaded="UserControl_Loaded">
+	<UserControl.Styles>
+		<StyleInclude Source="/Styles/CanvasStyles.axaml"/>
+	</UserControl.Styles>
 	<Grid RowDefinitions="auto,*">
 		<DockPanel>
 			<Button Content="Добавить работу"
@@ -22,10 +26,12 @@
 			<Grid	HorizontalAlignment="Stretch"
 					ColumnDefinitions="auto,*"
 					Grid.Row="1">
-
-				<ListBox Grid.Column="1">
+				
+				<ListBox Grid.Column="1"
+						 ItemsSource="{Binding VersionsProject}"
+						 ScrollViewer.VerticalScrollBarVisibility="Visible">
 					<ListBox.ItemTemplate>
-						<DataTemplate>
+						<DataTemplate DataType="us:VersionProjectResultWithImage">
 
 
 							<Button HorizontalAlignment="Stretch"
@@ -34,27 +40,31 @@
 								<Grid RowDefinitions="*,auto">
 
 									<Grid Background="White">
-										<Image />
+										<Image Source="{Binding Image}"/>
 									</Grid>
 
 
 									<DockPanel Grid.Row="0" Classes="menu"
 											   VerticalAlignment="Bottom">
 										<TextBlock Classes="h2"
-												   DockPanel.Dock="Top"/>
+												   DockPanel.Dock="Top"
+												   Text="{Binding VersionProjectResult.Name}"/>
 										<WrapPanel DockPanel.Dock="Left">
 											<CheckBox Classes="like"
 													  VerticalAlignment="Center"/>
 											<TextBlock Classes="h3"
-													   VerticalAlignment="Center"/>
+													   VerticalAlignment="Center"
+													   Text="{Binding CountLike}"/>
 										</WrapPanel>
 
 										<StackPanel DockPanel.Dock="Right"
 													Orientation="Horizontal"
 													Classes="menu-admin">
 											<Button Content="Delete"
-													Classes="dangerous del"/>
-											<Button Content="Edit"/>
+													Classes="dangerous del"
+													IsVisible="{Binding Permission.Delete}"/>
+											<Button Content="Edit"
+													IsVisible="{Binding Permission.Edit}"/>
 										</StackPanel>
 									</DockPanel>
 
