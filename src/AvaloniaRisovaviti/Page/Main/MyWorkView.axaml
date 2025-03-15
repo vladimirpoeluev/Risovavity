@@ -16,6 +16,7 @@
 				<us:MyVersionsView/>
 			</TabItem>
 			<TabItem Header="Черновики">
+				<us:DraftesView/>
 			</TabItem>
 		</TabControl>
 	</Grid>

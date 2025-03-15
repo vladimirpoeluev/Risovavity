@@ -3,6 +3,8 @@ using Autofac.Core;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using AvaloniaRisovaviti.Services;
+using AvaloniaRisovaviti.Services.Interface;
 using AvaloniaRisovaviti.ViewModel.Canvas;
 using AvaloniaRisovaviti.ViewModel.Main;
 using AvaloniaRisovaviti.ViewModel.Profile.SafetyModels;
@@ -74,6 +76,9 @@ namespace AvaloniaRisovaviti
             builder.RegisterType<MyCanvasViewModel>();
             builder.RegisterType<MyVersionViewModel>();
             builder.RegisterType<GetterWorksByAuthorId>().As<IGetterWorkByAuthorId>();
+
+            builder.RegisterType<GetterDraftProject>().As<IGetterDraftProject>();
+            builder.RegisterType<AdderNewProject>().As<IAdderNewProject>();
 
             builder.RegisterType<EditCanvasViewModel>();
         }
