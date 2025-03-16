@@ -11,6 +11,8 @@ using AvaloniaRisovaviti.ProfileShows;
 using System.IO;
 using MsBox.Avalonia;
 using System;
+using AvaloniaRisovaviti.Services.Interface;
+using Autofac;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
@@ -28,11 +30,14 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		[Reactive] public string Error { get; set; } = string.Empty;
 
+		private ImageResult OldImage {  get; set; }
 		private string Path { get; set; }
 
 		IGetterVersionProject _getterVersion;
 		IGetterImageProject _getterImageProject;
 		IAdderVersionProject _adderVersion;
+		IAdderNewProject _addProject;
+		IGetterDraftProject _getterDraftProject;
 		
 		public FormAddVersionViewModel() 
 		{
@@ -43,6 +48,8 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			_getterVersion = new GetterVersionProject(Authentication.AuthenticationUser.User);
 			_getterImageProject = new GetterImageProject(Authentication.AuthenticationUser.User);
 			_adderVersion = new AdderVesionProject(Authentication.AuthenticationUser.User);
+			_addProject = App.Container.Resolve<IAdderNewProject>();
+			_getterDraftProject = App.Container.Resolve<IGetterDraftProject>();
 		}
 
 		public FormAddVersionViewModel(VersionProjectResult parent) : this()
@@ -60,6 +67,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 		{
 			ProjectResult = await _getterVersion.GetVersionProjectByIdAsync(ProjectResult.Id);
 			ImageResult result = await _getterImageProject.GetImageResult(ProjectResult.Id);
+			OldImage = result;
 			ImageOldProjectReasult = ImageAvaloniaConverter.ConvertByteInImage(result.Image);
 		}
 
@@ -87,6 +95,21 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 				MessageBoxManager.GetMessageBoxStandard("LF", $"{ex.Message}");
 			}
 			
+		}
+
+		public async Task OpenEditerForEdit()
+		{
+			Guid identity = await _addProject.AddProject(new Model.DraftModel()
+			{
+				DraftInfo = new Model.DraftInfo()
+				{
+					Description = NewProjectResult.Description,
+					Name = NewProjectResult.Name,
+				},
+				Guid = Guid.NewGuid(),
+				Images = OldImage.Image
+			});
+			_getterDraftProject.OpenForEdit(identity);
 		}
 	}
 }

@@ -33,7 +33,8 @@
 			<StackPanel Grid.Row="1">
 				<Button Content="Выбрать существующий проект"
 						Click="SelectImage_Click"/>
-				<Button Content="Создать новый проект"/>
+				<Button Content="Создать новый проект"
+						Command="{Binding OpenEditerForEdit}"/>
 				<TextBlock Text="Наименование"/>
 				<TextBox Watermark="Коротко об ващем улучшении..."
 						 Text="{Binding NewProjectResult.Name}"/>

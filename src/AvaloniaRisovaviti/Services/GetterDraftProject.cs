@@ -42,7 +42,7 @@ namespace AvaloniaRisovaviti.Services
 
 		public void OpenForEdit(Guid guid)
 		{
-			Process.Start(new ProcessStartInfo($"{Path}/{guid}/image"));
+			Process.Start($"{Path}/{guid}/image");
 		}
 	}
 }

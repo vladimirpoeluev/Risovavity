@@ -1,6 +1,6 @@
-using Avalonia;
+using Autofac;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+using AvaloniaRisovaviti.ViewModel.Canvas;
 
 namespace AvaloniaRisovaviti;
 
@@ -9,5 +9,6 @@ public partial class DraftesView : UserControl
     public DraftesView()
     {
         InitializeComponent();
+        DataContext = App.Container.Resolve<DraftesViewModel>();
     }
 }
