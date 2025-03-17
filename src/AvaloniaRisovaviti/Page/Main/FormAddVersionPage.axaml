@@ -33,8 +33,14 @@
 			<StackPanel Grid.Row="1">
 				<Button Content="Выбрать существующий проект"
 						Click="SelectImage_Click"/>
-				<Button Content="Создать новый проект"
-						Command="{Binding OpenEditerForEdit}"/>
+				<Grid ColumnDefinitions="auto,*">
+					<Button Content="()"
+							Command="{Binding UpdateNewProject}"/>
+					<Button Content="Создать новый проект"
+							Command="{Binding OpenEditerForEdit}"
+							Grid.Column="1"/>
+				</Grid>
+				
 				<TextBlock Text="Наименование"/>
 				<TextBox Watermark="Коротко об ващем улучшении..."
 						 Text="{Binding NewProjectResult.Name}"/>

@@ -9,5 +9,6 @@ namespace AvaloniaRisovaviti.Model
 		public Guid Guid { get; set; }
 		public DraftInfo DraftInfo { get; set; }
 		public byte[] Images { get; set; }
+		
 	}
 }

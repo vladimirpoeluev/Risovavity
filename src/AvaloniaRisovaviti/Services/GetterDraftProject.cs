@@ -1,4 +1,5 @@
-﻿using AvaloniaRisovaviti.Model;
+﻿using Avalonia.Controls;
+using AvaloniaRisovaviti.Model;
 using AvaloniaRisovaviti.Services.Interface;
 using Newtonsoft.Json;
 using System;
@@ -17,16 +18,26 @@ namespace AvaloniaRisovaviti.Services
 
 		public async Task<DraftModel> GetDraftModel(Guid guid)
 		{
+			return await GetDraftModel(guid, "image");
+		}
+		public async Task<DraftModel> GetDraftModel(Guid guid, string filename)
+		{
 			if (!Directory.Exists($"{Path}/{guid}"))
 				throw new Exception();
 			DraftModel info = new DraftModel();
-			
-			using FileStream reader = new FileStream($"{Path}/{guid}/image", FileMode.Open);
+			info.Guid = guid;
+			using FileStream reader = new FileStream($"{Path}/{guid}/{filename}", FileMode.Open);
+			info.Images = new byte[reader.Length];
 			await reader.ReadAsync(info.Images);
 
 			using StreamReader readerJson = new StreamReader($"{Path}/{guid}/info.json");
 			ConvertDraftInfo(await readerJson.ReadToEndAsync());
 			return info;
+		}
+
+		public async Task<IEnumerable<string>> GetImagesByProject(Guid guid)
+		{
+			return Directory.EnumerateFiles($"{Path}/{guid}").Where(str => str != "info.json");
 		}
 
 		private DraftInfo ConvertDraftInfo(string json)
@@ -45,7 +56,8 @@ namespace AvaloniaRisovaviti.Services
 			Process.Start(new ProcessStartInfo
 			{
 				FileName = Environment.CurrentDirectory + @$"\{Path}\{guid}\image",
-				UseShellExecute = true
+				UseShellExecute = true,
+				UseCredentialsForNetworkingOnly = true
 			}); 
 		}
 	}

@@ -1,18 +1,21 @@
 ﻿
+using Autofac;
+using Avalonia.Controls;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using DomainModel.ResultsRequest.Canvas;
-using ReactiveUI.Fody.Helpers;
-using InteractiveApiRisovaviti.CanvasOperate;
-using DomainModel.Integration.CanvasOperation;
-using System.Threading.Tasks;
+using AvaloniaRisovaviti.Model;
 using AvaloniaRisovaviti.ProfileShows;
-using System.IO;
-using MsBox.Avalonia;
-using System;
+using AvaloniaRisovaviti.Services;
 using AvaloniaRisovaviti.Services.Interface;
-using Autofac;
+using DomainModel.Integration.CanvasOperation;
+using DomainModel.ResultsRequest.Canvas;
+using InteractiveApiRisovaviti.CanvasOperate;
+using MsBox.Avalonia;
+using ReactiveUI.Fody.Helpers;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
@@ -32,6 +35,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		private ImageResult OldImage {  get; set; }
 		private string Path { get; set; }
+		private Guid GuidNewProject { get; set; }
 
 		IGetterVersionProject _getterVersion;
 		IGetterImageProject _getterImageProject;
@@ -109,7 +113,27 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 				Guid = Guid.NewGuid(),
 				Images = OldImage.Image
 			});
+			GuidNewProject = identity;
 			_getterDraftProject.OpenForEdit(identity);
+		}
+
+		public async Task UpdateNewProject()
+		{
+			try
+			{
+				if (GuidNewProject != Guid.Empty)
+				{
+					DraftModel model = await _getterDraftProject.GetDraftModel(GuidNewProject);
+					Path = Environment.CurrentDirectory + @$"\{AdderNewProject.Path}\{model.Guid}\image";
+					NewImageProjectResult = ImageAvaloniaConverter.ConvertByteInImage(model.Images);
+				}
+			}
+			catch(Exception ex)
+			{
+
+			}
+			
+			
 		}
 	}
 }
