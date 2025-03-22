@@ -20,9 +20,11 @@
 			<Image Source="{Binding Image}"
 						MaxHeight="500"
 						Grid.Row="0"
-						Margin="5"/>
+						Margin="5"
+						VerticalAlignment="Top"/>
 			
-			<StackPanel Grid.Row="1">
+			<StackPanel Grid.Row="1"
+						VerticalAlignment="Top">
 				<Button Margin="5"
 					Content="Вставить изображение"
 					Click="Click_MenuImage"/>

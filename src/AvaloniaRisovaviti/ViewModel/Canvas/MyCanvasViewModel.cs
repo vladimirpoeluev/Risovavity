@@ -26,6 +26,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		public event Action<Task<CanvasResult>> OnDeleteItem;
 		public event Action<Task<CanvasResult>> OnClickUpdateItem;
+		public event Action OnNavAddCanvas;
 
 
 		public IEnumerable<CanvasResultWithImage> Canvases
@@ -52,7 +53,10 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			Task.WaitAll(TryInitCart());
 		}
 
-		
+		public void AddCanvas()
+		{
+			OnNavAddCanvas();
+		}
 
 		void ClickUpdateItem(Task<CanvasResult> canvasResult)
 		{

@@ -14,10 +14,11 @@
 	
 	<Grid ColumnDefinitions="*,*">
 		<Grid Grid.Column="0"
-			  RowDefinitions="2.5*,*">
-			<Grid RowDefinitions="auto, *">
+			  RowDefinitions="*,auto">
+			<Grid RowDefinitions="auto,*, auto">
 				<Button Content="Родитель"
 						Command="{Binding BackVersion}"/>
+				
 				<TransitioningContentControl Content="{Binding Image}"
 											 Grid.Row="1">
 					<TransitioningContentControl.PageTransition>
@@ -30,43 +31,55 @@
 						</DataTemplate>
 					</TransitioningContentControl.ContentTemplate>
 				</TransitioningContentControl>
-				</Grid>
-			
-
-			<StackPanel Grid.Row="1">
-				<TextBlock Text="{Binding VersionProject.Name}"/>
-				<TextBlock Text="{Binding VersionProject.Description}"/>
-				<WrapPanel>
-					<TextBlock Text="{Binding CountLike}"/>
-					<CheckBox IsChecked="{Binding IsLikes}"
-							  Classes="like"/>
-				</WrapPanel>
-				<WrapPanel>
-					<WrapPanel IsVisible="{Binding Permission.Edit}">
-						<Button Content="Удалить" 
-								Command="{Binding Delete}"
-								Classes="dangerous"/>
-						<Button Content="Изменить" Command="{Binding Update}"/>
+				
+			</Grid>
+			<Grid Grid.Row="1">
+				<DockPanel>
+					<TextBlock Text="{Binding VersionProject.Name}"
+							   DockPanel.Dock="Top"/>
+					<TextBlock Text="{Binding VersionProject.Description}"
+							   DockPanel.Dock="Top"/>
+					<WrapPanel DockPanel.Dock="Top">
+						<TextBlock Text="{Binding CountLike}"/>
+						<CheckBox IsChecked="{Binding IsLikes}"
+								  Classes="like"/>
 					</WrapPanel>
+					<UniformGrid DockPanel.Dock="Bottom"
+							   IsVisible="{Binding Permission.Edit}">
+							<Button Content="Удалить"
+									Command="{Binding Delete}"
+									Classes="dangerous"/>
+							<Button Content="Изменить"
+									Command="{Binding Update}"/>
+					</UniformGrid>
 					<Button Content="Назначить главной версией"
 							IsEnabled="{Binding IsMainVersion}"
 							Command="{Binding SelectMainVersion}"
-							IsVisible="{Binding PermissionCanvas.Edit}"/>
-				</WrapPanel>
-				<Button Content="Наследоваться от версии"
-						Click="ButtonAddVersion_Click"/>
-			</StackPanel>
+							IsVisible="{Binding PermissionCanvas.Edit}"
+							HorizontalAlignment="Stretch"
+							DockPanel.Dock="Bottom"/>
+					<Button Content="Наследоваться от версии"
+							Click="ButtonAddVersion_Click"
+							DockPanel.Dock="Bottom"/>
+
+				</DockPanel>
+
+			</Grid>
 		</Grid>
+			
+
+			
 		<ListBox Grid.Column="1"
 				 ItemsSource="{Binding Descendants}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Button CommandParameter="{Binding VersionProjectResult}"
 							Command="{Binding Path=$parent[UserControl].((vm:CanvasInfoPageViewModel)DataContext).SetVersion}">
-						<Grid>
+						<Grid ColumnDefinitions="*,auto">
 							<Image Source="{Binding Image}"
-								   Width="100"/>
-							<StackPanel>
+								   Width="250"
+								   HorizontalAlignment="Left"/>
+							<StackPanel Grid.Column="1">
 								<TextBlock Text="{Binding VersionProjectResult.Name}"/>
 								<StackPanel Orientation="Horizontal">
 									<CheckBox Classes="like"

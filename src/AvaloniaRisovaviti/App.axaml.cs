@@ -82,6 +82,7 @@ namespace AvaloniaRisovaviti
 
             builder.RegisterType<EditCanvasViewModel>();
             builder.RegisterType<DraftesViewModel>();
+            builder.RegisterType<FormAddNewCanvas>();
         }
 
         public override void OnFrameworkInitializationCompleted()

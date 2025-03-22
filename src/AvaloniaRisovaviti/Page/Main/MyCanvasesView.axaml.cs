@@ -9,6 +9,15 @@ public partial class MyCanvasesView : UserControl
     public MyCanvasesView()
     {
         InitializeComponent();
-        DataContext = App.Container.Resolve<MyCanvasViewModel>();
+        var vm = App.Container.Resolve<MyCanvasViewModel>();
+
+		DataContext = vm;
+
+        vm.OnNavAddCanvas += Nav_AddCanvas;
+    }
+
+    public void Nav_AddCanvas()
+    {
+        Content = App.Container.Resolve<FormAddNewCanvas>();
     }
 }

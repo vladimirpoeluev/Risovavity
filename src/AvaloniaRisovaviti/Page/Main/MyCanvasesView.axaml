@@ -13,7 +13,8 @@
 		<DockPanel>
 			<Button Content="Добавить работу"
 					HorizontalAlignment="Left"
-					DockPanel.Dock="Left"/>
+					DockPanel.Dock="Left"
+					Command="{Binding AddCanvas}"/>
 			<TextBlock Text="Мои холсты"
 					   Classes="h1"
 					   HorizontalAlignment="Right"/>
