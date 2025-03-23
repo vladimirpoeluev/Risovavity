@@ -4,7 +4,7 @@ using System;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
-	internal class DraftItemViewModel
+	public class DraftItemViewModel
 	{
 		public DraftInfo Info { get; set; }
 		public IImage Image { get; set; }

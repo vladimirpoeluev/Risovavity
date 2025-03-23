@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.Services.Interface
 {
-    internal interface IGetterDraftProject
+    public interface IGetterDraftProject
     {
         Task<DraftModel> GetDraftModel(Guid guid);
         Task<IEnumerable<Guid>> GetGuids();
