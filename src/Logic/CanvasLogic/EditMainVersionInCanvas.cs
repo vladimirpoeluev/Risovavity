@@ -1,7 +1,6 @@
 ﻿using DataIntegration.Interface.InterfaceOfModel;
 using DataIntegration.Model;
 using DomainModel.Integration.CanvasOperation;
-using DomainModel.Model;
 using DomainModel.ResultsRequest.Canvas;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

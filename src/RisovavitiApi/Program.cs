@@ -112,6 +112,7 @@ builder.Services.AddTransient<IInteractiveCanvasDataBase, DatabaseContext>();
 builder.Services.AddTransient<IVersionsProjectsDataBase, DatabaseContext>();
 builder.Services.AddTransient<IRoleDataBase, DatabaseContext>();
 builder.Services.AddTransient<IStatusesDataBase, DatabaseContext>();
+builder.Services.AddTransient<IFabricDBContext, FabricDBContext>();
 
 builder.Services.AddTransient<IRuleIntegrationCanvas, IntegrationCanvasesEf>();
 builder.Services.AddTransient<ISearcherCanvas, SearcherCanvas>();
