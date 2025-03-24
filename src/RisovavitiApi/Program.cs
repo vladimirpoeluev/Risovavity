@@ -173,6 +173,7 @@ builder.Services.AddTransient<ILikesOfCanvasService, LikesOfCanvasService>();
 builder.Services.AddTransient<ILikesOfVersitonService, LikesOfVersionService>();
 
 builder.Services.AddTransient<IGetterWorkByAuthorId, GetterWorkByAuthorId>();
+builder.Services.AddTransient<IGetterWorksByLikes, GetterWorksByLikes>();
 #endregion
 
 
