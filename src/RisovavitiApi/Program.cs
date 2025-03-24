@@ -104,14 +104,14 @@ builder.Services.AddTransient<IGeneraterHash, GeneraterHash>();
 builder.Services.AddTransient<IRuleIntegrationUser, IntegrationUsersEf>();
 
 
-builder.Services.AddTransient<DatabaseContext, DatabaseContext>((h) => new DatabaseContext(h.GetService<IConfiguration>()["postgres:connection"]));
-builder.Services.AddTransient<IDataBaseModel, DatabaseContext>((h) => h.GetService<DatabaseContext>());
-builder.Services.AddTransient<IUserDataBase, DatabaseContext>((h) => h.GetService<DatabaseContext>());
-builder.Services.AddTransient<ICanvasDataBase, DatabaseContext>((h) => h.GetService<DatabaseContext>());
-builder.Services.AddTransient<IInteractiveCanvasDataBase, DatabaseContext>((h) => h.GetService<DatabaseContext>());
-builder.Services.AddTransient<IVersionsProjectsDataBase, DatabaseContext>((h) => h.GetService<DatabaseContext>());
-builder.Services.AddTransient<IRoleDataBase, DatabaseContext>((h) => h.GetService<DatabaseContext>());
-builder.Services.AddTransient<IStatusesDataBase, DatabaseContext>((h) => h.GetService<DatabaseContext>());
+builder.Services.AddTransient<DatabaseContext, DatabaseContext>();
+builder.Services.AddTransient<IDataBaseModel, DatabaseContext>();
+builder.Services.AddTransient<IUserDataBase, DatabaseContext>();
+builder.Services.AddTransient<ICanvasDataBase, DatabaseContext>();
+builder.Services.AddTransient<IInteractiveCanvasDataBase, DatabaseContext>();
+builder.Services.AddTransient<IVersionsProjectsDataBase, DatabaseContext>();
+builder.Services.AddTransient<IRoleDataBase, DatabaseContext>();
+builder.Services.AddTransient<IStatusesDataBase, DatabaseContext>();
 
 builder.Services.AddTransient<IRuleIntegrationCanvas, IntegrationCanvasesEf>();
 builder.Services.AddTransient<ISearcherCanvas, SearcherCanvas>();

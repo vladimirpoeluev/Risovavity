@@ -57,7 +57,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			ProjectResult = new VersionProjectResult();
 			NewProjectResult = new VersionProjectResult();
 			ImageOldProjectReasult = new Bitmap("Accets\\8.gif");
-			NewImageProjectResult = new Bitmap(AssetLoader.Open(new System.Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
+			NewImageProjectResult = new Bitmap(AssetLoader.Open(new Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
 			_getterVersion = new GetterVersionProject(Authentication.AuthenticationUser.User);
 			_getterImageProject = new GetterImageProject(Authentication.AuthenticationUser.User);
 			_adderVersion = new AdderVesionProject(Authentication.AuthenticationUser.User);
@@ -68,6 +68,8 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 				{
 					if (GuidNewProject != Guid.Empty)
 					{
+						if (SelectedName == string.Empty || SelectedName == null)
+							SelectedName = "image";
 						NewImageProjectResult =
 							new Bitmap(Environment.CurrentDirectory + @$"\{AdderNewProject.Path}\{GuidNewProject}\{SelectedName}");
 						Path = Environment.CurrentDirectory + @$"\{AdderNewProject.Path}\{GuidNewProject}\{SelectedName}";

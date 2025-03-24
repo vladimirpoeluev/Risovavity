@@ -1,6 +1,7 @@
 ﻿using DataIntegration.Interface.InterfaceOfModel;
 using DomainModel.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace DataIntegration.Model;
@@ -8,10 +9,10 @@ namespace DataIntegration.Model;
 public partial class DatabaseContext : DbContext, IDataBaseModel
 {
     string ConnectionSting { get; set; } = "Host=localhost;Port=5000;Database=risovavity;Username=postgres;Password=password";
-    public DatabaseContext(string connectionString)
+    public DatabaseContext(IConfiguration configuration)
     {
-        ConnectionSting = connectionString;
-    }
+        ConnectionSting = configuration["postgres:connection"];
+	}
 
     public DatabaseContext(DbContextOptions<DatabaseContext> options)
         : base(options) {
