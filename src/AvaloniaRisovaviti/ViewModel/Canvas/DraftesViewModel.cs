@@ -1,4 +1,6 @@
-﻿using AvaloniaRisovaviti.Services.Interface;
+﻿using AvaloniaRisovaviti.Model;
+using AvaloniaRisovaviti.ProfileShows;
+using AvaloniaRisovaviti.Services.Interface;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using System;
@@ -23,16 +25,19 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 		public override async void Load()
 		{
 			IEnumerable<Guid> guids = await _getterDraft.GetGuids();
-			Items = guids.Select(guid =>
+			List<DraftItemViewModel> items = new List<DraftItemViewModel>();
+			foreach(Guid guid in guids)
 			{
-				return new DraftItemViewModel()
+				DraftModel model = await _getterDraft.GetDraftModel(guid);
+
+				items.Add(new DraftItemViewModel()
 				{
-					Info = new Model.DraftInfo()
-					{
-						Name = "Test data"
-					}
-				};
-			});
+					Image = ImageAvaloniaConverter.ConvertByteInImage(model.Images),
+					Info = model.DraftInfo,
+				});
+
+			}
+			Items = items;
 		}
 	}
 }

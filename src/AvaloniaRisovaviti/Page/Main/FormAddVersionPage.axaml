@@ -31,11 +31,20 @@
 			  RowDefinitions="2*,auto">
 			<Image Source="{Binding NewImageProjectResult}"/>
 			<StackPanel Grid.Row="1">
+			
 				<Button Content="Выбрать существующий проект"
-						Click="SelectImage_Click"/>
+						Click="SelectImage_Click" Grid.Column="1"/>
+		
+				<ComboBox ItemsSource="{Binding ImageNames}"
+						  SelectedItem="{Binding SelectedName}"
+						  HorizontalAlignment="Stretch"/>
 				<Grid ColumnDefinitions="auto,*">
-					<Button Content="()"
+					<UniformGrid Rows="1" >
+						<Button Content="()"
 							Command="{Binding UpdateNewProject}"/>
+						<Button Command="{Binding NextEdit}"
+								Content="E"/>
+					</UniformGrid>
 					<Button Content="Создать новый проект"
 							Command="{Binding OpenEditerForEdit}"
 							Grid.Column="1"/>

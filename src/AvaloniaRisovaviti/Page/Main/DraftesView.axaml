@@ -35,7 +35,7 @@
 								<Grid RowDefinitions="*,auto">
 
 									<Grid Background="White">
-										<Image />
+										<Image Source="{Binding Image}"/>
 									</Grid>
 
 

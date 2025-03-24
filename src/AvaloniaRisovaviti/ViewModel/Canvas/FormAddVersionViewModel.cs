@@ -10,11 +10,15 @@ using AvaloniaRisovaviti.Services;
 using AvaloniaRisovaviti.Services.Interface;
 using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest.Canvas;
+using DynamicData.Binding;
 using InteractiveApiRisovaviti.CanvasOperate;
 using MsBox.Avalonia;
 using ReactiveUI.Fody.Helpers;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
+using System.Security.Principal;
 using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
@@ -35,7 +39,12 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		private ImageResult OldImage {  get; set; }
 		private string Path { get; set; }
+		[Reactive]
 		private Guid GuidNewProject { get; set; }
+		[Reactive]
+		public IEnumerable<string> ImageNames { get; set; }
+		[Reactive]
+		public string SelectedName { get; set; } = "image";
 
 		IGetterVersionProject _getterVersion;
 		IGetterImageProject _getterImageProject;
@@ -54,6 +63,16 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			_adderVersion = new AdderVesionProject(Authentication.AuthenticationUser.User);
 			_addProject = App.Container.Resolve<IAdderNewProject>();
 			_getterDraftProject = App.Container.Resolve<IGetterDraftProject>();
+			this.WhenValueChanged((vm) => vm.SelectedName)
+				.Subscribe((str) => 
+				{
+					if (GuidNewProject != Guid.Empty)
+					{
+						NewImageProjectResult =
+							new Bitmap(Environment.CurrentDirectory + @$"\{AdderNewProject.Path}\{GuidNewProject}\{SelectedName}");
+						Path = Environment.CurrentDirectory + @$"\{AdderNewProject.Path}\{GuidNewProject}\{SelectedName}";
+					}
+				});
 		}
 
 		public FormAddVersionViewModel(VersionProjectResult parent) : this()
@@ -96,7 +115,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			}
 			catch (Exception ex)
 			{
-				MessageBoxManager.GetMessageBoxStandard("LF", $"{ex.Message}");
+				MessageBoxManager.GetMessageBoxStandard("Ошибка: ", $"{ex.Message}");
 			}
 			
 		}
@@ -115,6 +134,25 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			});
 			GuidNewProject = identity;
 			_getterDraftProject.OpenForEdit(identity);
+			
+		}
+		public bool CanNextEdit()
+		{
+			return GuidNewProject != Guid.Empty; 
+		}
+		public async void NextEdit()
+		{
+			try
+			{
+				if (GuidNewProject != Guid.Empty)
+				{
+					_getterDraftProject.OpenForEdit(GuidNewProject, SelectedName);
+				}
+			}
+			catch (Exception)
+			{
+
+			}
 		}
 
 		public async Task UpdateNewProject()
@@ -124,8 +162,9 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 				if (GuidNewProject != Guid.Empty)
 				{
 					DraftModel model = await _getterDraftProject.GetDraftModel(GuidNewProject);
-					Path = Environment.CurrentDirectory + @$"\{AdderNewProject.Path}\{model.Guid}\image";
+					Path = Environment.CurrentDirectory + @$"\{AdderNewProject.Path}\{model.Guid}\{SelectedName}";
 					NewImageProjectResult = ImageAvaloniaConverter.ConvertByteInImage(model.Images);
+					ImageNames = await _getterDraftProject.GetImagesByProject(model.Guid);
 				}
 			}
 			catch(Exception ex)

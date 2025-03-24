@@ -9,6 +9,8 @@ namespace AvaloniaRisovaviti.Services.Interface
     {
         Task<DraftModel> GetDraftModel(Guid guid);
         Task<IEnumerable<Guid>> GetGuids();
-        void OpenForEdit(Guid guid);
+        Task<IEnumerable<string>> GetImagesByProject(Guid guid);
+		void OpenForEdit(Guid guid);
+        void OpenForEdit(Guid guid, string namaImage);
     }
 }

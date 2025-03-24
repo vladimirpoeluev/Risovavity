@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.Services
@@ -37,7 +38,7 @@ namespace AvaloniaRisovaviti.Services
 
 		public async Task<IEnumerable<string>> GetImagesByProject(Guid guid)
 		{
-			return Directory.EnumerateFiles($"{Path}/{guid}").Where(str => str != "info.json");
+			return Directory.EnumerateFiles($"{Path}/{guid}", "image*").Where(str => str != "info.json").Select(str => str.Replace($"{Path}/{guid}\\", string.Empty));
 		}
 
 		private DraftInfo ConvertDraftInfo(string json)
@@ -48,17 +49,23 @@ namespace AvaloniaRisovaviti.Services
 
 		public async Task<IEnumerable<Guid>> GetGuids()
 		{
-			return Directory.GetDirectories(Path).Select(str => new Guid(str)).ToList();
+			IEnumerable<string> dir = Directory.GetDirectories(Path).Select((str) => new string(str.Skip(9).ToArray()));
+			return dir.Select(str => new Guid(str)).ToList();
 		}
+		
 
 		public void OpenForEdit(Guid guid)
 		{
+			OpenForEdit(guid, "image");
+		}
+
+		public void OpenForEdit(Guid guid, string nameImage)
+		{
 			Process.Start(new ProcessStartInfo
 			{
-				FileName = Environment.CurrentDirectory + @$"\{Path}\{guid}\image",
-				UseShellExecute = true,
-				UseCredentialsForNetworkingOnly = true
-			}); 
+				FileName = Environment.CurrentDirectory + @$"\{Path}\{guid}\{nameImage}",
+				UseShellExecute = true
+			});
 		}
 	}
 }
