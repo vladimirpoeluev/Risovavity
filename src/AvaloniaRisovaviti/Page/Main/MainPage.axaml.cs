@@ -33,7 +33,7 @@ public partial class MainPage : UserControl
     }
     public void InteractiveCanvas_Click(object ob, RoutedEventArgs e)
     {
-       frameMain.Content = new InteractiveCanvasPage();
+       frameMain.Content = new LikedWorksView();
     }
     public void Canvas_Click(object ob, RoutedEventArgs e)
     {

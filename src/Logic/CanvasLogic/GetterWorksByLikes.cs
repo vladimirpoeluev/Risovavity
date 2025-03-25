@@ -9,7 +9,7 @@ namespace Logic.CanvasLogic;
 public class GetterWorksByLikes : IGetterWorksByLikes
 {
 	IFabricDBContext _fabricDB;
-	public GetterWorksByLikes(IFabricDBContext fabricDB) 
+	public GetterWorksByLikes(IFabricDBContext fabricDB)
 	{
 		_fabricDB = fabricDB;
 	}
@@ -28,3 +28,4 @@ public class GetterWorksByLikes : IGetterWorksByLikes
 					.Where(u => u.UserId == userId).Skip(range.Skip).Take(range.Take)
 					.Select(e => new VersionProjectResult(e.VersionProject)).ToListAsync();
 	}
+}

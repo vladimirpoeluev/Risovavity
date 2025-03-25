@@ -79,10 +79,12 @@ namespace AvaloniaRisovaviti
 
             builder.RegisterType<GetterDraftProject>().As<IGetterDraftProject>();
             builder.RegisterType<AdderNewProject>().As<IAdderNewProject>();
+            builder.RegisterType<GetterWorksByLikes>().As<IGetterWorksByLikes>();
 
             builder.RegisterType<EditCanvasViewModel>();
             builder.RegisterType<DraftesViewModel>();
             builder.RegisterType<FormAddNewCanvas>();
+            builder.RegisterType<LikedCanvasViewModel>();
         }
 
         public override void OnFrameworkInitializationCompleted()
