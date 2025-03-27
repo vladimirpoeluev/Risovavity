@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.IO;
 using Avalonia.Platform;
+using MsBox.Avalonia;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
@@ -44,7 +45,8 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         public async Task AddCanvas()
         {
             await _adderCanvas.AddCanvas(CanvasResult);
-        }
+            await MessageBoxManager.GetMessageBoxStandard("Холст был добавлен", "Перейдите во вкладку Мои работы").ShowAsync();
+		}
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler? PropertyChanged;
 

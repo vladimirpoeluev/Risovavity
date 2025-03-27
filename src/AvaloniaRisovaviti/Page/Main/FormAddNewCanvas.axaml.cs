@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Platform;
 using Avalonia.Interactivity;
 using AvaloniaRisovaviti.ViewModel.Canvas;
+using MsBox.Avalonia;
 
 namespace AvaloniaRisovaviti;
 
@@ -37,5 +38,6 @@ public partial class FormAddNewCanvas : UserControl
     public async void AddNewCanvas_Click(object obj, RoutedEventArgs args)
     {
         await viewModel.AddCanvas();
-    }
+		
+	}
 }

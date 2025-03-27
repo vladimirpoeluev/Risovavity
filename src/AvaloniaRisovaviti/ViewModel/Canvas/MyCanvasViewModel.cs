@@ -76,6 +76,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			try
 			{
 				await InitCart();
+				
 			}
 			catch
 			{

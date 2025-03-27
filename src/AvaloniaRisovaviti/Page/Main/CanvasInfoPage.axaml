@@ -66,9 +66,7 @@
 
 			</Grid>
 		</Grid>
-			
-
-			
+		
 		<ListBox Grid.Column="1"
 				 ItemsSource="{Binding Descendants}">
 			<ListBox.ItemTemplate>
