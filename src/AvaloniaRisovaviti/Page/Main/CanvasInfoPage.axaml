@@ -40,9 +40,9 @@
 					<TextBlock Text="{Binding VersionProject.Description}"
 							   DockPanel.Dock="Top"/>
 					<WrapPanel DockPanel.Dock="Top">
-						<TextBlock Text="{Binding CountLike}"/>
 						<CheckBox IsChecked="{Binding IsLikes}"
 								  Classes="like"/>
+						<TextBlock Text="{Binding CountLike}"/>
 					</WrapPanel>
 					<UniformGrid DockPanel.Dock="Bottom"
 							   IsVisible="{Binding Permission.Edit}">

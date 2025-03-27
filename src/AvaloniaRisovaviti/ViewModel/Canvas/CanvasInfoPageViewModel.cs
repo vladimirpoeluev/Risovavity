@@ -177,7 +177,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         {
             await LoadCanvas();
             await LoadVersionProject();
-            await Task.WhenAll(LoadPermission(), LoadImage(), LoadDescendans());
+            await Task.WhenAll(LoadPermission(), LoadImage(), LoadDescendans(), LoadLikes());
 		}
 
         async Task LoadLikes()

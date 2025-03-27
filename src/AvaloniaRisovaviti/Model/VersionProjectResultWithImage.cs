@@ -2,15 +2,18 @@ using Autofac;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using AvaloniaEdit.Utils;
 using AvaloniaRisovaviti.ProfileShows;
 using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest;
 using DomainModel.ResultsRequest.Canvas;
+using DynamicData.Binding;
 using InteractiveApiRisovaviti.CanvasOperate;
 using InteractiveApiRisovaviti.Interface;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.Model;
@@ -27,6 +30,8 @@ public class VersionProjectResultWithImage : ReactiveObject
 
 	[Reactive]
 	public int CountLike { get; set; }
+	[Reactive]
+	public bool? IsLiked { get; set; }
 
 	IGetterImageProject _getterImage { get; set; }
 	IDefinitionerOfPermission _definitioner { get; set; }
@@ -49,7 +54,15 @@ public class VersionProjectResultWithImage : ReactiveObject
 		Update = ReactiveCommand.Create(UpdateVersion);
 		VersionProjectResult = versionProject;
 		_getterImage = new GetterImageProject(Authentication.AuthenticationUser.User);
+		this.WhenValueChanged(vm => vm.IsLiked)
+			.Where(isLiked => isLiked != null)
+			.Subscribe(async (isLiked) =>
+			{
+				if (isLiked ?? false) await _likesService.Like(VersionProjectResult.Id);
+				else await _likesService.UnLike(VersionProjectResult.Id);
+			});
 		LoadInfo();
+		
 	}
 	async void LoadInfo()
 	{
@@ -58,6 +71,7 @@ public class VersionProjectResultWithImage : ReactiveObject
 	async Task LoadLikes()
 	{
 		CountLike = await _likesService.CouintLikes(VersionProjectResult.Id);
+		IsLiked = await _likesService.IsLike(VersionProjectResult.Id);
 	}
 
 	async Task LoadPermission()

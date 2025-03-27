@@ -16,7 +16,8 @@
 				Grid.Row="1">
 
 			<ListBox Grid.Column="1"
-					 HorizontalAlignment="Stretch">
+					 HorizontalAlignment="Stretch"
+				ItemsSource="{Binding Versions}">
 				<ListBox.ItemTemplate>
 					<DataTemplate DataType="us:VersionProjectResultWithImage">
 						<Button HorizontalAlignment="Stretch"
@@ -36,6 +37,7 @@
 											   DockPanel.Dock="Top"/>
 									<WrapPanel DockPanel.Dock="Left">
 										<CheckBox Classes="like"
+												  IsChecked="{Binding IsLiked}"
 												  VerticalAlignment="Center"/>
 										<TextBlock Classes="h3"
 												   VerticalAlignment="Center"

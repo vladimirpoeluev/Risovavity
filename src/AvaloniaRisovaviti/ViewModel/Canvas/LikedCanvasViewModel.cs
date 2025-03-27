@@ -18,7 +18,8 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 		int next = 20;
 		IGetterWorksByLikes _getterWorksByLikes;
 		InteractiveApiRisovaviti.Profile _profile;
-		public LikedCanvasViewModel(IGetterWorksByLikes getterWorks, IAuthenticationUser user) 
+		public LikedCanvasViewModel(IGetterWorksByLikes getterWorks, 
+									IAuthenticationUser user) 
 		{
 			_getterWorksByLikes = getterWorks;
 			_profile = new InteractiveApiRisovaviti.Profile(user);
