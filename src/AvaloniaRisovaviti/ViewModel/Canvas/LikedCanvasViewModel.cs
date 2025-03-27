@@ -37,7 +37,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			IEnumerable<CanvasResultWithImage> canvases = 
 				(await _getterWorksByLikes.GetCanvas(idUser, new DomainModel.RangeTakeAndSkip(couint, next)))
 				.Select(e => new CanvasResultWithImage(e));
-			Canvases = canvases;
+			Canvases = Canvases.Concat(canvases);
 			couint += next;
 		}
 	}

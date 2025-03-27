@@ -1,0 +1,64 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:us="using:AvaloniaRisovaviti.Model"
+			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaRisovaviti.LikedVersionProjectView"
+			 x:DataType="vm:LikedVersionsProjectViewModel">
+	<UserControl.Styles>
+		<StyleInclude Source="/Styles/CanvasStyles.axaml"/>
+	</UserControl.Styles>
+	<Grid RowDefinitions="auto,*,auto">
+		<Grid	HorizontalAlignment="Stretch"
+				ColumnDefinitions="auto,*"
+				Grid.Row="1">
+
+			<ListBox Grid.Column="1"
+					 HorizontalAlignment="Stretch">
+				<ListBox.ItemTemplate>
+					<DataTemplate DataType="us:VersionProjectResultWithImage">
+						<Button HorizontalAlignment="Stretch"
+								VerticalAlignment="Stretch"
+								Classes="cart">
+							<Grid RowDefinitions="*,auto">
+
+								<Grid Background="White">
+									<Image Source="{Binding Image}"/>
+								</Grid>
+
+
+								<DockPanel Grid.Row="0" Classes="menu"
+										   VerticalAlignment="Bottom">
+									<TextBlock Classes="h2"
+											   Text="{Binding VersionProjectResult.Name}"
+											   DockPanel.Dock="Top"/>
+									<WrapPanel DockPanel.Dock="Left">
+										<CheckBox Classes="like"
+												  VerticalAlignment="Center"/>
+										<TextBlock Classes="h3"
+												   VerticalAlignment="Center"
+												   Text="{Binding CountLike}"/>
+									</WrapPanel>
+
+								</DockPanel>
+
+							</Grid>
+						</Button>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+				<ListBox.ItemsPanel>
+					<ItemsPanelTemplate>
+						<WrapPanel HorizontalAlignment="Center"/>
+					</ItemsPanelTemplate>
+				</ListBox.ItemsPanel>
+			</ListBox>
+
+		</Grid>
+		<Button Content="Ещё"
+				HorizontalAlignment="Right"
+				VerticalAlignment="Bottom"
+				Grid.Row="2"/>
+		</Grid>
+</UserControl>

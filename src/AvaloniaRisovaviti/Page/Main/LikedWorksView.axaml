@@ -11,6 +11,7 @@
 				<us:LikedCanvasView/>
 			</TabItem>
 			<TabItem Header="Версии">
+				<us:LikedVersionProjectView/>
 			</TabItem>
 		</TabControl>
 	</Grid>
