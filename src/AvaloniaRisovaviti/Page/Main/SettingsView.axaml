@@ -22,7 +22,8 @@
 		<Button HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
 				Content="Настройки приложения"
-				Classes="app-settings-nextbutton"/>
+				Classes="app-settings-nextbutton"
+				Click="Button_Click"/>
 		<Button HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
 				Content="О приложении"

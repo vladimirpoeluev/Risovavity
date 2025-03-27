@@ -6,7 +6,8 @@
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.CanvasInfoPage"
-			 x:DataType="vm:CanvasInfoPageViewModel">
+			 x:DataType="vm:CanvasInfoPageViewModel"
+			 >
 	
 	<Design.DataContext>
 		<fvm:FakeCanvasInfoPageViewModel/>
@@ -27,7 +28,13 @@
 					<TransitioningContentControl.ContentTemplate>
 						<DataTemplate DataType="Bitmap">
 							<Image Source="{Binding}"
-							   Grid.Row="1"/>
+									Grid.Row="1">
+								<Image.GestureRecognizers>
+								<PinchGestureRecognizer/>
+								<ScrollGestureRecognizer CanHorizontallyScroll="True" 
+														 CanVerticallyScroll="True"/>
+								</Image.GestureRecognizers>
+							</Image>
 						</DataTemplate>
 					</TransitioningContentControl.ContentTemplate>
 				</TransitioningContentControl>

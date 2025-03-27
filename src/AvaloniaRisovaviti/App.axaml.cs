@@ -1,8 +1,10 @@
 using Autofac;
 using Autofac.Core;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.Styling;
 using AvaloniaRisovaviti.Services;
 using AvaloniaRisovaviti.Services.Interface;
 using AvaloniaRisovaviti.ViewModel.Canvas;
@@ -17,7 +19,6 @@ using InteractiveApiRisovaviti.Exceptions;
 using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.Interface;
 using System;
-using System.Net;
 
 namespace AvaloniaRisovaviti
 {
@@ -30,8 +31,6 @@ namespace AvaloniaRisovaviti
             var builder = new ContainerBuilder();
             ConfiguredContaner(builder);
             Container = builder.Build();
-            
-
             AvaloniaXamlLoader.Load(this);
         }
 
@@ -90,6 +89,7 @@ namespace AvaloniaRisovaviti
 
         public override void OnFrameworkInitializationCompleted()
         {
+            
             Assets.Resource.Culture = new System.Globalization.CultureInfo("ru-RU");
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {

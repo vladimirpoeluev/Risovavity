@@ -1,0 +1,33 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Design.PreviewWith>
+		<UniformGrid>
+			<Rectangle Fill="{DynamicResource lightfon}" Width="100" Height="100"/>
+			<Rectangle Fill="{DynamicResource light}" Width="100" Height="100"/>
+			<Rectangle Fill="{DynamicResource black}" Width="100" Height="100"/>
+			<Rectangle Fill="{DynamicResource medding}" Width="100" Height="100"/>
+			<Rectangle Fill="{DynamicResource light-medding}" Width="100" Height="100"/>
+			<Rectangle Fill="{DynamicResource accent-lightfon}" Width="100" Height="100"/>
+			<Rectangle Fill="{DynamicResource accent-light}" Width="100" Height="100"/>
+			<Rectangle Fill="{DynamicResource accent-black}" Width="100" Height="100"/>
+			<Rectangle Fill="{DynamicResource accent-medding}" Width="100" Height="100"/>
+			<Rectangle Fill="{DynamicResource accent-medding-light}" Width="100" Height="100"/>
+			<Rectangle Fill="{DynamicResource red}" Width="100" Height="100"/>
+			<Rectangle Fill="{DynamicResource red-light}" Width="100" Height="100"/>
+		</UniformGrid>
+	</Design.PreviewWith>
+	<SolidColorBrush x:Key="lightfon">#846BC9</SolidColorBrush>
+	<SolidColorBrush x:Key="light">#6B49C9</SolidColorBrush>
+	<SolidColorBrush x:Key="black">#1F0760</SolidColorBrush>
+	<SolidColorBrush x:Key="medding">#3B286F</SolidColorBrush>
+	<SolidColorBrush x:Key="light-medding">#371793</SolidColorBrush>
+
+	<SolidColorBrush x:Key="accent-lightfon">#9E66C7</SolidColorBrush>
+	<SolidColorBrush x:Key="accent-light">#8F42C7</SolidColorBrush>
+	<SolidColorBrush x:Key="accent-black">#38055E</SolidColorBrush>
+	<SolidColorBrush x:Key="accent-medding">#4E246C</SolidColorBrush>
+	<SolidColorBrush x:Key="accent-medding-light">#5A0F90</SolidColorBrush>
+
+	<SolidColorBrush x:Key="red">#F33D6E</SolidColorBrush>
+	<SolidColorBrush x:Key="red-light">#F5B4C5</SolidColorBrush>
+</ResourceDictionary>

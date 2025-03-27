@@ -224,6 +224,6 @@
 	
 	<!--Grid styles-->
 	<Style Selector="Window">
-		<Setter Property="Background" Value="{StaticResource accent-lightfon}"/>
+		<Setter Property="Background" Value="{DynamicResource accent-lightfon}"/>
 	</Style>
 </Styles>

@@ -16,4 +16,8 @@ public partial class SettingsView : UserControl
 	{
         Content = App.Container.Resolve<SafetyView>();
 	}
+    private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        Content = new SettingsAppView();
+    }
 }

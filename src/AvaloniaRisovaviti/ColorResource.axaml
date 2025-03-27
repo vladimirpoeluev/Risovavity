@@ -1,35 +1,47 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<Design.PreviewWith>
-		<UniformGrid>
-			<Rectangle Fill="{DynamicResource lightfon}" Width="100" Height="100"/>
-			<Rectangle Fill="{DynamicResource light}" Width="100" Height="100"/>
-			<Rectangle Fill="{DynamicResource black}" Width="100" Height="100"/>
-			<Rectangle Fill="{DynamicResource medding}" Width="100" Height="100"/>
-			<Rectangle Fill="{DynamicResource light-medding}" Width="100" Height="100"/>
-			<Rectangle Fill="{DynamicResource accent-lightfon}" Width="100" Height="100"/>
-			<Rectangle Fill="{DynamicResource accent-light}" Width="100" Height="100"/>
-			<Rectangle Fill="{DynamicResource accent-black}" Width="100" Height="100"/>
-			<Rectangle Fill="{DynamicResource accent-medding}" Width="100" Height="100"/>
-			<Rectangle Fill="{DynamicResource accent-medding-light}" Width="100" Height="100"/>
-			<Rectangle Fill="{DynamicResource red}" Width="100" Height="100"/>
-			<Rectangle Fill="{DynamicResource red-light}" Width="100" Height="100"/>
-		</UniformGrid>
+		<ThemeVariantScope RequestedThemeVariant="Dark">
+			<UniformGrid>
+				<Rectangle Fill="{DynamicResource lightfon}" Width="100" Height="100"/>
+				<Rectangle Fill="{DynamicResource light}" Width="100" Height="100"/>
+				<Rectangle Fill="{DynamicResource black}" Width="100" Height="100"/>
+				<Rectangle Fill="{DynamicResource medding}" Width="100" Height="100"/>
+				<Rectangle Fill="{DynamicResource light-medding}" Width="100" Height="100"/>
+				<Rectangle Fill="{DynamicResource accent-lightfon}" Width="100" Height="100"/>
+				<Rectangle Fill="{DynamicResource accent-light}" Width="100" Height="100"/>
+				<Rectangle Fill="{DynamicResource accent-black}" Width="100" Height="100"/>
+				<Rectangle Fill="{DynamicResource accent-medding}" Width="100" Height="100"/>
+				<Rectangle Fill="{DynamicResource accent-medding-light}" Width="100" Height="100"/>
+				<Rectangle Fill="{DynamicResource red}" Width="100" Height="100"/>
+				<Rectangle Fill="{DynamicResource red-light}" Width="100" Height="100"/>
+			</UniformGrid>
+		</ThemeVariantScope>
+		
 	</Design.PreviewWith>	
-		<SolidColorBrush x:Key="lightfon">#F6F0FF</SolidColorBrush>
-		<SolidColorBrush x:Key="light">#DEC5FF</SolidColorBrush>
-		<SolidColorBrush x:Key="black">#A977EC</SolidColorBrush>
-		<SolidColorBrush x:Key="medding">#B98EF1</SolidColorBrush>
-		<SolidColorBrush x:Key="light-medding">#C090FF</SolidColorBrush>
-			
-		<SolidColorBrush x:Key="accent-lightfon">#FFFDEE</SolidColorBrush>
-		<SolidColorBrush x:Key="accent-light">#FFF9C0</SolidColorBrush>
-		<SolidColorBrush x:Key="accent-black">#ECE16E</SolidColorBrush>
-		<SolidColorBrush x:Key="accent-medding">#F1E885</SolidColorBrush>
-		<SolidColorBrush x:Key="accent-medding-light">#FFF486</SolidColorBrush>
 
-		<SolidColorBrush x:Key="red">#F33D6E</SolidColorBrush>
-		<SolidColorBrush x:Key="red-light">#F5B4C5</SolidColorBrush>
-	
-	
+
+		<ResourceDictionary.ThemeDictionaries>
+			<ResourceDictionary x:Key="Light">
+					<SolidColorBrush x:Key="lightfon">#F6F0FF</SolidColorBrush>
+					<SolidColorBrush x:Key="light">#DEC5FF</SolidColorBrush>
+					<SolidColorBrush x:Key="black">#A977EC</SolidColorBrush>
+					<SolidColorBrush x:Key="medding">#B98EF1</SolidColorBrush>
+					<SolidColorBrush x:Key="light-medding">#C090FF</SolidColorBrush>
+
+					<SolidColorBrush x:Key="accent-lightfon">#FFFDEE</SolidColorBrush>
+					<SolidColorBrush x:Key="accent-light">#FFF9C0</SolidColorBrush>
+					<SolidColorBrush x:Key="accent-black">#ECE16E</SolidColorBrush>
+					<SolidColorBrush x:Key="accent-medding">#F1E885</SolidColorBrush>
+					<SolidColorBrush x:Key="accent-medding-light">#FFF486</SolidColorBrush>
+
+					<SolidColorBrush x:Key="red">#F33D6E</SolidColorBrush>
+					<SolidColorBrush x:Key="red-light">#F5B4C5</SolidColorBrush>
+			</ResourceDictionary>
+			<ResourceDictionary x:Key="Dark">
+				<ResourceDictionary.MergedDictionaries>
+					<ResourceInclude Source="/Themes/DarkThemeColors.axaml"/>
+				</ResourceDictionary.MergedDictionaries>
+			</ResourceDictionary>
+		</ResourceDictionary.ThemeDictionaries>
 </ResourceDictionary>
