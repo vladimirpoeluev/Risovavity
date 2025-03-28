@@ -241,6 +241,15 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Language.
+        /// </summary>
+        public static string txtLang {
+            get {
+                return ResourceManager.GetString("txtLang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Liked .
         /// </summary>
         public static string txtLikedWork {
@@ -264,6 +273,15 @@ namespace AvaloniaRisovaviti.Assets {
         public static string txtSettingsApp {
             get {
                 return ResourceManager.GetString("txtSettingsApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Themes.
+        /// </summary>
+        public static string txtThemes {
+            get {
+                return ResourceManager.GetString("txtThemes", resourceCulture);
             }
         }
     }

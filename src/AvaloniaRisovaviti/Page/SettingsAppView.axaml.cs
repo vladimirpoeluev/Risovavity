@@ -1,3 +1,4 @@
+using Autofac;
 using Avalonia.Controls;
 using AvaloniaRisovaviti.ViewModel.Other;
 
@@ -8,6 +9,6 @@ public partial class SettingsAppView : UserControl
     public SettingsAppView()
     {
         InitializeComponent();
-        DataContext = new SettingsAppViewModel();
+        DataContext = App.Container.Resolve<SettingsAppViewModel>();
     }
 }

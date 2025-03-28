@@ -5,10 +5,12 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
+using AvaloniaRisovaviti.Model;
 using AvaloniaRisovaviti.Services;
 using AvaloniaRisovaviti.Services.Interface;
 using AvaloniaRisovaviti.ViewModel.Canvas;
 using AvaloniaRisovaviti.ViewModel.Main;
+using AvaloniaRisovaviti.ViewModel.Other;
 using AvaloniaRisovaviti.ViewModel.Profile.SafetyModels;
 using DomainModel.Integration;
 using DomainModel.Integration.CanvasOperation;
@@ -85,27 +87,25 @@ namespace AvaloniaRisovaviti
             builder.RegisterType<FormAddNewCanvas>();
             builder.RegisterType<LikedCanvasViewModel>();
             builder.RegisterType<LikedVersionsProjectViewModel>();
+            builder.RegisterType<SettingsAppService>().As<ISettingsAppService>();
+            builder.RegisterType<SettingsAppViewModel>();
         }
 
-        public override void OnFrameworkInitializationCompleted()
+        public override async void OnFrameworkInitializationCompleted()
         {
-            
-            Assets.Resource.Culture = new System.Globalization.CultureInfo("ru-RU");
-            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+           
+			if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
                 desktop.MainWindow = new EntranceWindow();
             }
 
-            AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
-            {
-                if (e.ExceptionObject is AuthorizeException)
-                {
-                    Authentication.AuthenticationUser.User = new NotAuthenticationUser();
-                    new EntranceWindow().Show();
-				}
-            };
+			var settingsService = Container.Resolve<ISettingsAppService>();
+			SettingsApp settings = await settingsService.GetSettings();
 
-            base.OnFrameworkInitializationCompleted();
+			Assets.Resource.Culture = new System.Globalization.CultureInfo(settings.Lang);
+			this.RequestedThemeVariant = settings.Theme == "Light" ? ThemeVariant.Light : ThemeVariant.Dark;
+
+			base.OnFrameworkInitializationCompleted();
         }
 
         void TryException(Exception ex)

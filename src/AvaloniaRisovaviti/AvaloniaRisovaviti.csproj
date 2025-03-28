@@ -91,6 +91,10 @@
     <AvaloniaResource Update="Assets\Fonts\CartoonFunCyrillic.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AvaloniaResource>
+    <AvaloniaResource Update="Assets\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </AvaloniaResource>
   </ItemGroup>
 
   <ItemGroup>

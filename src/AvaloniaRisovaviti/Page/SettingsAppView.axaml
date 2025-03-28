@@ -11,11 +11,11 @@
 		<StackPanel HorizontalAlignment="Center">
 			<TextBlock Text="{x:Static us:Resource.txtSettingsApp}"
 					   Classes="h1"/>
-			<TextBlock Text=""/>
+			<TextBlock Text="{x:Static us:Resource.txtThemes}"/>
 			<ComboBox HorizontalAlignment="Stretch"
 					  ItemsSource="{Binding Themes}"
 					  SelectedItem="{Binding SelectedTheme}"/>
-			<TextBlock Text=""/>
+			<TextBlock Text="{x:Static us:Resource.txtLang}"/>
 			<ComboBox HorizontalAlignment="Stretch"
 					  SelectedItem="{Binding SelectedLanguage}"
 					  ItemsSource="{Binding Language}"/>
