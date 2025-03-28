@@ -171,4 +171,25 @@
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="txtSettingsApp" xml:space="preserve">
+    <value>Settings app</value>
+  </data>
+  <data name="txtMyWork" xml:space="preserve">
+    <value>My work</value>
+  </data>
+  <data name="txtAuthors" xml:space="preserve">
+    <value>Authors</value>
+  </data>
+  <data name="txtAuthorsWorks" xml:space="preserve">
+    <value>Authors works</value>
+  </data>
+  <data name="txtLikedWork" xml:space="preserve">
+    <value>Liked </value>
+  </data>
+  <data name="txtLang" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="txtThemes" xml:space="preserve">
+    <value>Themes</value>
+  </data>
 </root>

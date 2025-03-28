@@ -171,4 +171,25 @@
   <data name="Confirm" xml:space="preserve">
     <value>Подтвердить</value>
   </data>
+  <data name="txtSettingsApp" xml:space="preserve">
+    <value>Настройки приложения</value>
+  </data>
+  <data name="txtMyWork" xml:space="preserve">
+    <value>Мои работы</value>
+  </data>
+  <data name="txtAuthors" xml:space="preserve">
+    <value>Авторы</value>
+  </data>
+  <data name="txtAuthorsWorks" xml:space="preserve">
+    <value>Работы авторов</value>
+  </data>
+  <data name="txtLikedWork" xml:space="preserve">
+    <value>Понравивщиеся</value>
+  </data>
+  <data name="txtLang" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="txtThemes" xml:space="preserve">
+    <value>Темы</value>
+  </data>
 </root>

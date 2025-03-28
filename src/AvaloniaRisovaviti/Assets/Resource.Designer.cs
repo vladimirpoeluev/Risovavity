@@ -124,7 +124,7 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на You agree to [privacy terms](https://localhost:32806/privacy.html).
+        ///   Ищет локализованную строку, похожую на You agree to [privacy terms](http://localhost:32806/privacy.html).
         /// </summary>
         public static string MDAgreement {
             get {
@@ -219,6 +219,51 @@ namespace AvaloniaRisovaviti.Assets {
         public static string TextConfid {
             get {
                 return ResourceManager.GetString("TextConfid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Authors.
+        /// </summary>
+        public static string txtAuthors {
+            get {
+                return ResourceManager.GetString("txtAuthors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Authors works.
+        /// </summary>
+        public static string txtAuthorsWorks {
+            get {
+                return ResourceManager.GetString("txtAuthorsWorks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Liked .
+        /// </summary>
+        public static string txtLikedWork {
+            get {
+                return ResourceManager.GetString("txtLikedWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на My work.
+        /// </summary>
+        public static string txtMyWork {
+            get {
+                return ResourceManager.GetString("txtMyWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Settings app.
+        /// </summary>
+        public static string txtSettingsApp {
+            get {
+                return ResourceManager.GetString("txtSettingsApp", resourceCulture);
             }
         }
     }

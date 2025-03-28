@@ -3,19 +3,22 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Other"
+			 xmlns:us="using:AvaloniaRisovaviti.Assets"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.SettingsAppView"
 			 x:DataType="vm:SettingsAppViewModel">
 	<Grid>
 		<StackPanel HorizontalAlignment="Center">
-			<TextBlock Text="Настройки приложения"
+			<TextBlock Text="{x:Static us:Resource.txtSettingsApp}"
 					   Classes="h1"/>
-			<TextBlock Text="Темы"/>
+			<TextBlock Text=""/>
 			<ComboBox HorizontalAlignment="Stretch"
 					  ItemsSource="{Binding Themes}"
 					  SelectedItem="{Binding SelectedTheme}"/>
-			<TextBlock Text="Язык"/>
-			<ComboBox HorizontalAlignment="Stretch"/>
+			<TextBlock Text=""/>
+			<ComboBox HorizontalAlignment="Stretch"
+					  SelectedItem="{Binding SelectedLanguage}"
+					  ItemsSource="{Binding Language}"/>
 		</StackPanel>
 	</Grid>
 </UserControl>
