@@ -1,8 +1,10 @@
 ﻿using DataIntegration.Model;
 using DomainModel.Integration.CanvasOperation;
+using DomainModel.Model;
 using DomainModel.ResultsRequest;
 using DomainModel.ResultsRequest.Canvas;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.InteropServices;
 
 namespace Logic.CanvasLogic.VersionProjectOperate
 {
@@ -34,9 +36,20 @@ namespace Logic.CanvasLogic.VersionProjectOperate
 			await _db.VersionsProjects.Where(v => v.ParentOfVersionId == id)
 				.ExecuteUpdateAsync((e) => 
 				e.SetProperty(v => v.ParentOfVersionId, version.ParentOfVersionId));
-			await _db.Canvas.Where(canvas => canvas.MainVersionId == id).ExecuteDeleteAsync();
+			await CanvasesOperate(id, version);
 			_db.VersionsProjects.Remove(version);
 			await _db.SaveChangesAsync();
+		}
+
+		private async Task CanvasesOperate(int id, VersionProject version)
+		{
+			if (version.ParentOfVersionId == null)
+				await _db.Canvas.Where(canvas => canvas.MainVersionId == id)
+					.ExecuteDeleteAsync();
+			else
+				await _db.Canvas.Where(canvas => canvas.MainVersionId == id)
+					.ExecuteUpdateAsync(e => e.SetProperty(versionEdit => versionEdit.MainVersionId,
+					version.ParentOfVersionId));
 		}
 	}
 }
