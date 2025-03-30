@@ -31,6 +31,10 @@ namespace Logic.CanvasLogic.VersionProjectOperate
 		public async Task DeleteVertionProjectAsync(int id)
 		{
 			var version = await _db.VersionsProjects.Where(e => e.Id == id).FirstAsync();
+			await _db.VersionsProjects.Where(v => v.ParentOfVersionId == id)
+				.ExecuteUpdateAsync((e) => 
+				e.SetProperty(v => v.ParentOfVersionId, version.ParentOfVersionId));
+			await _db.Canvas.Where(canvas => canvas.MainVersionId == id).ExecuteDeleteAsync();
 			_db.VersionsProjects.Remove(version);
 			await _db.SaveChangesAsync();
 		}
