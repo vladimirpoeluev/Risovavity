@@ -13,13 +13,17 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
     {
         ConnectionSting = configuration["postgres:connection"];
 	}
+	public DatabaseContext()
+	{
+	}
 
-    public DatabaseContext(DbContextOptions<DatabaseContext> options)
+	public DatabaseContext(DbContextOptions<DatabaseContext> options)
         : base(options) {
     }
 
     public virtual DbSet<LikeOfCanvas> LikeOfCanvas { get; set; }
     public virtual DbSet<Canvas> Canvas { get; set; }
+    public virtual DbSet<TotpRestoreAccess> TotpRestoreAccesses { get; set; }
 
     public virtual DbSet<InteractiveCanvas> InteractiveCanvas { get; set; }
 
@@ -39,6 +43,14 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
 	}
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<TotpRestoreAccess>(entity =>
+        {
+            entity.HasKey(e => e.UserId);
+            entity.Property(e => e.SecretKey).HasMaxLength(64);
+            entity.HasOne(e => e.User)
+            .WithOne(e => e.TotpRestoreAccess)
+            .HasForeignKey<TotpRestoreAccess>(e => e.UserId); 
+        });
         modelBuilder.Entity<VersionProject>(entity =>
         {
             entity.HasKey(e => e.Id);
