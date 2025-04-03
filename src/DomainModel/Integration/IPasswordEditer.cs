@@ -7,5 +7,6 @@ namespace DomainModel.Integration
 	{
 		User User { get; set; }
 		Task PasswordEditAsync(EditPasswordResult editResult);
+		Task PasswordEditAsync(EditNewPasswordResul editResult);
 	}
 }

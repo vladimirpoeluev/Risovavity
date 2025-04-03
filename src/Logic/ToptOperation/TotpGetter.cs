@@ -18,11 +18,10 @@ namespace Logic.ToptOperation
 		
 		public async Task<TotpKeysResult> CreateKeyAsync(int userId)
 		{
-			TotpRestoreAccess? restoreAccess = await context.TotpRestoreAccesses.Where(entityt => entityt.UserId == userId).FirstOrDefaultAsync();
-			if (restoreAccess != null)
-			{
-				restoreAccess = await AddTotprestoreAccess(userId);
-			}
+			await context.TotpRestoreAccesses.Where(entityt => entityt.UserId == userId).ExecuteDeleteAsync();
+			
+			TotpRestoreAccess restoreAccess = await AddTotprestoreAccess(userId);
+
 
 			return new TotpKeysResult() 
 			{
@@ -33,10 +32,11 @@ namespace Logic.ToptOperation
 
 		private async Task<TotpRestoreAccess> AddTotprestoreAccess(int userId)
 		{
-			byte[] key = KeyGeneration.GenerateRandomKey();
+			byte[] key = KeyGeneration.GenerateRandomKey(20);
 			await context.AddAsync(new TotpRestoreAccess() 
 			{
 				SecretKey = Base32Encoding.ToString(key),
+				SecretKeyByte = key,
 				UserId = userId
 			});
 			await context.SaveChangesAsync();

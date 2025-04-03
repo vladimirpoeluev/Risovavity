@@ -53,4 +53,10 @@ public class PasswordEditer : IPasswordEditer
 		if (!_hash.Verify(editProfileResult.OldPassword, User.Password))
 			throw new Exception("Пароль был введен неверно");
 	}
+
+	public async Task PasswordEditAsync(EditNewPasswordResul editResult)
+	{
+		await _db.Users.Where(user => User.Id == user.Id)
+			.ExecuteUpdateAsync((d) => d.SetProperty((user) => user.Password, _hash.Generate(editResult.Password)));
+	}
 }

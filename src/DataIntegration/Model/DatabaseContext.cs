@@ -47,6 +47,7 @@ public partial class DatabaseContext : DbContext, IDataBaseModel
         {
             entity.HasKey(e => e.UserId);
             entity.Property(e => e.SecretKey).HasMaxLength(64);
+            entity.Property(e => e.SecretKeyByte).HasMaxLength(64);
             entity.HasOne(e => e.User)
             .WithOne(e => e.TotpRestoreAccess)
             .HasForeignKey<TotpRestoreAccess>(e => e.UserId); 

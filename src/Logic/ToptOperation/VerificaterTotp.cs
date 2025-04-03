@@ -3,7 +3,6 @@ using DomainModel.Integration.TotpOperation;
 using DomainModel.Model;
 using Microsoft.EntityFrameworkCore;
 using OtpNet;
-using System.Text;
 
 namespace Logic.ToptOperation
 {
@@ -22,9 +21,10 @@ namespace Logic.ToptOperation
 			{
 				return false;
 			}
-			Totp totp = new Totp(Encoding.ASCII.GetBytes(restoreAccess.SecretKey));
+			byte[] key = restoreAccess.SecretKeyByte;
+			Totp totp = new Totp(key);
 			
-			return totp.VerifyTotp(DateTime.Now, code, out long time);
+			return totp.VerifyTotp(code, out long time);
 		}
 	}
 }

@@ -24,6 +24,8 @@ using Logic.CanvasLogic.VersionProjectOperate;
 using RisovavitiApi.Model.Interfaces;
 using RisovavitiApi.Model;
 using Microsoft.Extensions.DependencyInjection;
+using DomainModel.Integration.TotpOperation;
+using Logic.ToptOperation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -187,6 +189,8 @@ builder.Services.AddTransient<ILikesOfVersitonService, LikesOfVersionService>();
 
 builder.Services.AddTransient<IGetterWorkByAuthorId, GetterWorkByAuthorId>();
 builder.Services.AddTransient<IGetterWorksByLikes, GetterWorksByLikes>();
+builder.Services.AddTransient<ITotpGetter, TotpGetter>();
+builder.Services.AddTransient<IVerifycaterTotp, VerificaterTotp>();
 #endregion
 
 

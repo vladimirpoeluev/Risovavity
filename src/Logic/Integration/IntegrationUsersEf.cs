@@ -25,7 +25,7 @@ namespace Logic.Integration
 			var user = db.Users
 					.Include(u => u.Role)
 					.Where(u => u.Id == id)
-					.First();
+					.FirstOrDefault();
 			return user;
 		}
 
