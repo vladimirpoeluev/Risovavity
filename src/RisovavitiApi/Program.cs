@@ -85,6 +85,19 @@ builder.Services.AddAuthentication(o => {
 			IssuerSigningKey = OptionsJwtTokens.GetSecurityKeyRefresh(),
 			ValidateIssuerSigningKey = true,
 		};
+	})
+	.AddJwtBearer("restore", options =>
+	{
+		options.TokenValidationParameters = new TokenValidationParameters
+		{
+			ValidateIssuer = true,
+			ValidIssuer = OptionsJwtTokens.ISSUER,
+			ValidateAudience = true,
+			ValidAudience = OptionsJwtTokens.AUDIENCE,
+			ValidateLifetime = true,
+			IssuerSigningKey = OptionsJwtTokens.GetSecurityKeyRestore(),
+			ValidateIssuerSigningKey = true,
+		};
 	});
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
