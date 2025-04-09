@@ -37,6 +37,7 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.2.3" />
     <PackageReference Include="Markdown.Avalonia" Version="11.0.2" />
     <PackageReference Include="Markdown.Avalonia.Tight" Version="11.0.2" />
+    <PackageReference Include="QRCode.Avalonia" Version="1.0.0" />
     <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
     <PackageReference Include="System.Reactive" Version="6.0.1" />
   </ItemGroup>
@@ -85,6 +86,7 @@
 
   <ItemGroup>
     <Folder Include="Accets\Resurce\" />
+    <Folder Include="Page\Entrance\RestoreViews\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -55,4 +55,9 @@ public partial class EntrancePage : UserControl
     {
         this.Content = new RegistrationPage();
     }
+
+	private void Button_Click1(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+	{
+        this.Content = new RestoreAccessView();
+	}
 }

@@ -14,7 +14,8 @@
 					Content="Пароли и настройки аутентификации"
 					Click="NavPasswordEdid_Click"/>
 			<Button Content="Способы восстановления"
-					HorizontalAlignment="Stretch"/>
+					HorizontalAlignment="Stretch"
+					Click="Button_Click_1"/>
 		</WrapPanel>
 		<Grid Grid.Column="1">
 			<TransitioningContentControl x:Name="page">

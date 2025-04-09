@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Other"
+			 xmlns:usc="clr-namespace:DomainModel.ResultsRequest.TotpModels;assembly=DomainModel"
+			 xmlns:use="clr-namespace:DomainModel.ResultsRequest;assembly=DomainModel"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaRisovaviti.RestoreAccessView"
+			 x:DataType="vm:RestoreAccessViewModel">
+	<Grid RowDefinitions="auto,*,auto">
+		<TextBlock Text="Восстановление доступа"
+				   Classes="h1"/>
+		<TransitioningContentControl Content="{Binding View}"
+									 Grid.Row="1">
+			<TransitioningContentControl.PageTransition>
+				<CompositePageTransition>
+					<CrossFade Duration="0:00:00.500" />
+					<PageSlide Duration="0:00:00.500" Orientation="Horizontal" />
+					<PageSlide Duration="0:00:00.500" Orientation="Vertical" />
+				</CompositePageTransition>
+			</TransitioningContentControl.PageTransition>
+			<TransitioningContentControl.DataTemplates>
+				<DataTemplate DataType="vm:FormSendingCodeAccessViewModel">
+					<StackPanel>
+						<TextBlock Text="Введите логин"/>
+						<TextBox Text="{Binding Login}"/>
+						<TextBlock Text="Введите код"/>
+						<TextBox Text="{Binding TotpCode}"/>
+					</StackPanel>
+				</DataTemplate>
+				<DataTemplate DataType="vm:FormNewPasswordViewModel">
+					<StackPanel>
+						<TextBlock Text="Введите новый пароль"/>
+						<TextBox Text="{Binding EditNewPasswordResult.Password}"/>
+						<TextBlock Text="Повторите новый пароль"/>
+						<TextBox Text="{Binding Password}"/>
+						<Button Content="Сменить пароль"
+								Command="{Binding EditPassword}"/>
+					</StackPanel>
+				</DataTemplate>
+			</TransitioningContentControl.DataTemplates>
+		</TransitioningContentControl>
+		<Button Grid.Row="2"
+				Command="{Binding BackInEntrance}"
+				Content="Назад"/>
+	</Grid>
+</UserControl>

@@ -20,6 +20,8 @@
 			<Label Content="Пароль"/>
 			<TextBox PasswordChar="⚫" Text="{Binding Password}" FontSize="10"/>
 			<TextBlock Foreground="Red" Text="{Binding Error}"/>
+			<Button Content="Забыли пароль?"
+					Click="Button_Click1"/>
 			<Button HorizontalAlignment="Stretch"
 					Margin="5"
 					Click="Button_Click">

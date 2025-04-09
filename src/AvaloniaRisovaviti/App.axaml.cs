@@ -20,6 +20,8 @@ using InteractiveApiRisovaviti.ControllerIntegration;
 using InteractiveApiRisovaviti.Exceptions;
 using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.Interface;
+using InteractiveApiRisovaviti.Interface.Topt;
+using InteractiveApiRisovaviti.TotpOperate;
 using System;
 
 namespace AvaloniaRisovaviti
@@ -89,6 +91,10 @@ namespace AvaloniaRisovaviti
             builder.RegisterType<LikedVersionsProjectViewModel>();
             builder.RegisterType<SettingsAppService>().As<ISettingsAppService>();
             builder.RegisterType<SettingsAppViewModel>();
+            builder.RegisterType<GetterTotpKey>().As<IGetterTotp>();
+            builder.RegisterType<AccessRecovery>().As<IAccessRecovery>();
+            builder.RegisterType<SettingAccessRecoveryViewModel>();
+            builder.RegisterType<RestoreAccessViewModel>();
         }
 
         public override async void OnFrameworkInitializationCompleted()

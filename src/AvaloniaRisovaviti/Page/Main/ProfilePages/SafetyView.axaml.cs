@@ -21,4 +21,9 @@ public partial class SafetyView : UserControl
     {
         page.Content = new ProfilePasswordEdit();
     }
+
+	private void Button_Click_1(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+	{
+        page.Content = new SettingAccessRecoveryView();
+	}
 }
