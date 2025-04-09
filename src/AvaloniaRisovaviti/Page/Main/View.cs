@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Interactivity;
+using AvaloniaEdit.Utils;
 using AvaloniaRisovaviti.ViewModel;
 
 namespace AvaloniaRisovaviti.Page.Main
@@ -17,7 +18,8 @@ namespace AvaloniaRisovaviti.Page.Main
 			set
 			{
 				_viewModel = value;
-				DataContext = value;
+				DataContext = _viewModel;
+				InitError(_viewModel);
 			}
 		}
 		public View()
@@ -31,6 +33,18 @@ namespace AvaloniaRisovaviti.Page.Main
 			{
 				ViewModel.Load();
 			}
+		}
+		private void InitError(BaseViewModel baseView)
+		{
+			baseView.Error.Subscribe(error =>
+			{
+				Content = error;
+			});
+			baseView.ErrorView = (error) =>
+			{
+				this.Content = error.Content;
+			};
+			
 		}
 	}
 }

@@ -25,18 +25,14 @@ namespace AvaloniaRisovaviti.ViewModel.Other
 
 		public override async void Load()
 		{
-			try
+			TryActionAsync(async () =>
 			{
 				Keys = await getterTotp.GetKey();
 				using var qrGenerator = new QRCodeGenerator();
 				using var qrCodeData = qrGenerator.CreateQrCode(Keys.TotpKeysForQR, QRCodeGenerator.ECCLevel.H);
 				using var qr = new BitmapByteQRCode(qrCodeData);
 				QRCode = ImageAvaloniaConverter.ConvertByteInImage(qr.GetGraphic(20));
-			}
-			catch
-			{
-				//TODO: Реализовать переход на окна ошибок
-			}
+			});
 			base.Load();
 		}
 	}
