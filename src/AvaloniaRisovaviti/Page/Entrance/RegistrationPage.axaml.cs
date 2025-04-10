@@ -4,10 +4,11 @@ using InteractiveApiRisovaviti;
 using Avalonia.Interactivity;
 using AvaloniaRisovaviti.ViewModel.Main;
 using Autofac;
+using AvaloniaRisovaviti.Page.Main;
 
 namespace AvaloniaRisovaviti
 {
-    public partial class RegistrationPage : UserControl
+    public partial class RegistrationPage : View
     {
 		RegistrationPageViewModel _viewModel;
         IRegistarion _registarion;
@@ -15,7 +16,7 @@ namespace AvaloniaRisovaviti
         {   
             InitializeComponent();
             _viewModel = new RegistrationPageViewModel();
-            DataContext = _viewModel;
+            ViewModel = _viewModel;
             _registarion = new Registration(Authentication.AuthenticationUser.User);
             
         }

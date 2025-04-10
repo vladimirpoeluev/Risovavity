@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace AvaloniaRisovaviti.ViewModel.Main
 {
-    internal class RegistrationPageViewModel : INotifyPropertyChanged
+    internal class RegistrationPageViewModel : BaseViewModel, INotifyPropertyChanged
     {
         string _error;
         public RegistrationForm RegistrationForm { get; set; }

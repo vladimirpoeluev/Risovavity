@@ -1,17 +1,18 @@
 using Autofac;
 using Avalonia.Controls;
+using AvaloniaRisovaviti.Page.Main;
 using AvaloniaRisovaviti.ViewModel.Main;
 
 namespace AvaloniaRisovaviti;
 
-public partial class ConfimationUserView : UserControl
+public partial class ConfimationUserView : View
 {
     public ConfimationUserViewModel ViewModel { get; set; }
     public ConfimationUserView(ConfimationUserViewModel viewModel)
     {
         InitializeComponent();
         ViewModel = viewModel;
-        DataContext = viewModel;
+        base.ViewModel = viewModel;
     }
 
 	private async void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

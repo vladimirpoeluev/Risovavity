@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel.Main
 {
-	public class ConfimationUserViewModel
+	public class ConfimationUserViewModel : BaseViewModel
 	{
 		IConfirmationViaEmail _confirmationViaEmail;
 		public UserConfirmationResult Code { get; set; }
