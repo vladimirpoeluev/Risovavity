@@ -4,6 +4,7 @@ using InteractiveApiRisovaviti.Models;
 using ReactiveUI.Fody.Helpers;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
 {
@@ -23,46 +24,36 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
 			_sessionServierService = sessionService;
 			SessionList = new List<SessionViewModel>();
 			CurrentSession = new SessionAuthorizeObject();
-			LoadInfo();
+			
 		}
 
-		public async void LoadInfo()
+		public override async void Load()
+		{
+			base.Load();
+			await LoadInfo();
+		}
+
+		public async Task LoadInfo()
 		{
 			IEnumerable<SessionAuthorizeObject> result = new List<SessionAuthorizeObject>();
-			try
+			await TryActionAsync(async () =>
 			{
 				result = await _sessionServierService.GetSessionAsync();
-			}
-			catch
-			{
-				//TODO Сделать с лучшае ошибки 
-			}
+			});
 			SessionList = result.Select(entity => new SessionViewModel(_sessionServierService, entity));
 		}
 
 		public async void DeleteSession(string refresh)
 		{
-			try
+			await TryActionAsync(async () =>
 			{
 				await _sessionServierService.DeleteSessionAsync(refresh);
-			}
-			catch
-			{
-				//TODO: Сделать в случае ошибки
-			}
+			});
 		}
 
 		public async void DeleteAllSession()
 		{
-			try
-			{
-				await _sessionServierService.DeleteAllSessionAsync();
-			}
-			catch
-			{
-				//TODO: Сделать в случае ошибки
-			}
-			
+			await TryActionAsync(_sessionServierService.DeleteAllSessionAsync);
 		} 
 
 		

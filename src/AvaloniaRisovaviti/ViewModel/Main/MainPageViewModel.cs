@@ -6,7 +6,7 @@ using AvaloniaRisovaviti.ProfileShows;
 
 namespace AvaloniaRisovaviti.ViewModel.Main
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : BaseViewModel, INotifyPropertyChanged
     {
         IImage _image;
         InteractiveApiRisovaviti.Profile _profile;
@@ -37,18 +37,27 @@ namespace AvaloniaRisovaviti.ViewModel.Main
             {
 				_profile = new(Authentication.AuthenticationUser.User);
 				_setterImage = new ProfileSetterImage(_profile);
-				InitUser();
+				
 			}
             catch
             {
 				new Avalonia.Media.Imaging.Bitmap("Accets/icoUser.png");
 			}
         }
+		public override void Load()
+		{
+            
+			InitUser();
+			base.Load();
+		}
 
-        public void InitUser()
+		public void InitUser()
         {
-            UserResult = _profile.ProfileUser;
-            Image = _setterImage.UpdateImage();
+            TryAction(() =>
+            {
+				UserResult = _profile.ProfileUser;
+				Image = _setterImage.UpdateImage();
+			});
         }
 
         #region INotifyPropertyChanged Implementation

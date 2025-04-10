@@ -20,7 +20,7 @@ namespace AvaloniaRisovaviti.ViewModel.Other
 		public FormSendingCodeAccessViewModel CodeToptConfirmation { get; set; } = new FormSendingCodeAccessViewModel();
 
 		private IAccessRecovery recovery;
-		public Action Back { get; set; } = () => { MessageBoxManager.GetMessageBoxStandard("Сбой", "Переход на страницу входа сломан"); };
+		public Action Back { get; set; } = () => { MessageBoxManager.GetMessageBoxStandard("Сбой!!!", "Переход на страницу входа сломан"); };
 
 		public RestoreAccessViewModel(IAccessRecovery recovery)
 		{
@@ -32,6 +32,10 @@ namespace AvaloniaRisovaviti.ViewModel.Other
 		}
 
 		public async Task SendCodeRecovery()
+		{
+			await TryActionAsync(SendCodeRecoveryWithError);
+		}
+		private async Task SendCodeRecoveryWithError()
 		{
 			IEditPasswordForRecovery editerPassword = await recovery.Recovery(new CodeToptConfirmationResult()
 			{

@@ -67,7 +67,7 @@ namespace AvaloniaRisovaviti.ViewModel
 			}
 		}
 
-		public async void TryActionAsync(Func<Task> action)
+		public async Task TryActionAsync(Func<Task> action)
 		{
 			try
 			{

@@ -1,11 +1,12 @@
 using Autofac;
-using Avalonia.Controls;
 using Avalonia.Interactivity;
+using AvaloniaRisovaviti.Page.Main;
 using AvaloniaRisovaviti.ViewModel.Main;
+using MsBox.Avalonia;
 
 namespace AvaloniaRisovaviti;
 
-public partial class MainPage : UserControl
+public partial class MainPage : View
 {
     MainPageViewModel viewModel;
     public MainPage()
@@ -14,7 +15,7 @@ public partial class MainPage : UserControl
         try
         {
 			viewModel = new MainPageViewModel();
-			DataContext = viewModel;
+			ViewModel = viewModel;
 		}
         catch
         {
@@ -47,8 +48,15 @@ public partial class MainPage : UserControl
 
     public async void ExitProfile_Click(object ob, RoutedEventArgs e) 
     {
-        await Authentication.AuthenticationUser.ExitSystem();
-        this.Content = App.Container.Resolve<EntrancePage>();
+        try
+        {
+			await Authentication.AuthenticationUser.ExitSystem();
+		}
+        catch 
+        {
+            MessageBoxManager.GetMessageBoxStandard("Ошибка!!!", "Выход из системы вызвал ошибку");
+        }
+        Content = App.Container.Resolve<EntrancePage>();
     }
 
     public void UpdateData_Click(object ob, RoutedEventArgs e)
