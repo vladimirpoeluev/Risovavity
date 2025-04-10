@@ -21,7 +21,7 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
         Error,
         None
     }
-    internal class ProfilePasswordEditViewModel : ReactiveObject, INotifyPropertyChanged
+    internal class ProfilePasswordEditViewModel : BaseViewModel, INotifyPropertyChanged
     {
         bool? isTwoAutentication;
         string _errorMessage;
@@ -56,17 +56,24 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
             this.WhenAnyValue(vm => vm.TwoFactAuthentivation)
                 .Where(isAuto => isAuto != null)
                 .InvokeCommand(ReactiveCommand.Create(async (bool? isauto) => {
-                    await _twoFactorAuthService.SetAsync(isauto ?? false);
+                    await TryActionAsync(async () =>
+                    {
+						await _twoFactorAuthService.SetAsync(isauto ?? false);
+					});
                     return isauto ?? false;
                 }));
         }
 
         private async void InitTwoAuto()
         {
-            bool? istwoauto = await TryGetAutoAsync();
+            await TryActionAsync(async () =>
+            {
+				bool? istwoauto = await TryGetAutoAsync();
 
-			if ((istwoauto) != null)
-                TwoFactAuthentivation = istwoauto;
+				if ((istwoauto) != null)
+					TwoFactAuthentivation = istwoauto;
+			});
+				
             OnPropertyChanged(nameof(TwoFactAuthentivation));
         }   
 
@@ -74,7 +81,12 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
         {
             try
             {
-				return await _twoFactorAuthService.GetAsync();
+                bool? isAuto = null;
+                await TryActionAsync(async () =>
+                {
+                    isAuto = await _twoFactorAuthService.GetAsync();
+                });
+                return isTwoAutentication;
 			}
             catch (Exception)
             {
@@ -92,7 +104,7 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
         public void PasswordEdit()
         {
             if (ValidPasswords())
-            {
+            { 
                 TryPasswordUpdate();
             }
         }
@@ -116,7 +128,11 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
         {
             try
             {
-                _passwordEditer.PasswordUpdate(OldPassword, NewPassword);
+                TryAction(() =>
+                {
+					_passwordEditer.PasswordUpdate(OldPassword, NewPassword);
+				});
+                
                 State = StateEditPassword.Ok;
             }
             catch (Exception)
