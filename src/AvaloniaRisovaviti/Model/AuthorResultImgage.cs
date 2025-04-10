@@ -31,10 +31,18 @@ namespace AvaloniaRisovaviti.Model
 
 		async void TryGetterIcon(IUserAvatarGetter getter)
 		{
-			UserAvatarResult result = await getter.GetAvatarUserAsync(AuthorResult.UserId);
-			byte[] bytes = result.AvatarResult;
-			if(bytes != null)
-				Icon = ProfileShows.ImageAvaloniaConverter.ConvertByteInImage(bytes);
+			try
+			{
+				UserAvatarResult result = await getter.GetAvatarUserAsync(AuthorResult.UserId);
+				byte[] bytes = result.AvatarResult;
+				if (bytes != null)
+					Icon = ProfileShows.ImageAvaloniaConverter.ConvertByteInImage(bytes);
+			}
+			catch
+			{
+				Icon = ProfileShows.ImageAvaloniaConverter.ConvertByteInImage([]);
+			}
+			
 			OnPropertyChanged(nameof(Icon));
 		}
 

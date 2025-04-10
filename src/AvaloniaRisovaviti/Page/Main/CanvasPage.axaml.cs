@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using AvaloniaRisovaviti.Page.Main;
 using AvaloniaRisovaviti.ViewModel.Canvas;
 using DomainModel.ResultsRequest.Canvas;
 using MsBox.Avalonia;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti;
 
-public partial class CanvasPage : UserControl
+public partial class CanvasPage : View
 {
     CanvasPageViewModel _viewModel;
     public CanvasPage()
@@ -23,7 +24,7 @@ public partial class CanvasPage : UserControl
         {
             _viewModel = new CanvasPageViewModel();
             _viewModel.OnClickUpdateItem += ClickUpdateEvent;
-            DataContext = _viewModel;
+            ViewModel = _viewModel;
         }
         catch { }
 	}

@@ -90,10 +90,14 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		async Task LoadOldVersionProject()
 		{
-			ProjectResult = await _getterVersion.GetVersionProjectByIdAsync(ProjectResult.Id);
-			ImageResult result = await _getterImageProject.GetImageResult(ProjectResult.Id);
-			OldImage = result;
-			ImageOldProjectReasult = ImageAvaloniaConverter.ConvertByteInImage(result.Image);
+			await TryActionAsync(async () =>
+			{
+				ProjectResult = await _getterVersion.GetVersionProjectByIdAsync(ProjectResult.Id);
+				ImageResult result = await _getterImageProject.GetImageResult(ProjectResult.Id);
+				OldImage = result;
+				ImageOldProjectReasult = ImageAvaloniaConverter.ConvertByteInImage(result.Image);
+			});
+			
 		}
 
 		public void SetImage(string path)
@@ -107,12 +111,15 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			try
 			{
 				byte[] image = ImageAvaloniaConverter.ConvertImageInByte(new StreamReader(Path).BaseStream);
-				await _adderVersion.AddVertionProjectAsync(new VersionProjectForAddResult()
+				await TryActionAsync(async () => 
 				{
-					Image = image,
-					ParentVertionProjectId = ProjectResult.Id,
-					Name = NewProjectResult.Name,
-					Descriptoin = NewProjectResult.Description,
+					await _adderVersion.AddVertionProjectAsync(new VersionProjectForAddResult()
+					{
+						Image = image,
+						ParentVertionProjectId = ProjectResult.Id,
+						Name = NewProjectResult.Name,
+						Descriptoin = NewProjectResult.Description,
+					});
 				});
 			}
 			catch (Exception ex)

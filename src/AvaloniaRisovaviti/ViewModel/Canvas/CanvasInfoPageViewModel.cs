@@ -93,28 +93,36 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             this.WhenAnyValue(vm => vm.IsLikes)
                 .Subscribe(async (value) =>
                 {
+
+                    await TryActionAsync(async () =>
+                    {
+						if (value == null)
+							return;
+						if (value.Value)
+						{
+							await _likesService.Like(VersionProject.Id);
+						}
+						else
+						{
+							await _likesService.UnLike(VersionProject.Id);
+						}
+						await LoadLikes();
+					});
                     
-                    if (value == null)
-                        return;
-                    if (value.Value)
-                    {
-                        await _likesService.Like(VersionProject.Id);
-                    }
-                    else
-                    {
-                        await _likesService.UnLike(VersionProject.Id);
-                    }
-					await LoadLikes();
 				});
         }
 
         async Task SelectVersion()
         {
-            await _editMainVersion.SelectMainVerstion(new MainVersionInCanvasResutl()
+            await TryActionAsync(async () =>
             {
-                VersitonId = VersionProject.Id,
-                CanvasId = Canvas.Id,
-            });
+				await _editMainVersion.SelectMainVerstion(new MainVersionInCanvasResutl()
+				{
+					VersitonId = VersionProject.Id,
+					CanvasId = Canvas.Id,
+				});
+			});
+            
             Canvas.VersionId = VersionProject.Id;
         }
 
@@ -144,11 +152,15 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		async Task<VersionProjectResult> DeleteVersion()
 		{
-			await _adderVersionProject.DeleteVertionProjectAsync(VersionProject.Id);
-            await SetVersion(new VersionProjectResult()
+            await TryActionAsync(async () =>
             {
-                Id = VersionProject.ParentVertionProject
-            });
+				await _adderVersionProject.DeleteVertionProjectAsync(VersionProject.Id);
+				await SetVersion(new VersionProjectResult()
+				{
+					Id = VersionProject.ParentVertionProject
+				});
+			});
+			
 			return VersionProject;
 		}
 
@@ -163,57 +175,81 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
         public async Task SetVersion(VersionProjectResult value)
         {
-            if (value == null)
-                return;
-            _skip = 0;
-            VersionProject = value;
-            await LoadVersionProject(value.Id);
-            await LoadImage();
-            await LoadDescendans();
-            await Task.WhenAll([LoadPermission(), LoadLikes()]);
+            await TryActionAsync(async () =>
+            {
+                if (value == null)
+                    return;
+                _skip = 0;
+                VersionProject = value;
+                await LoadVersionProject(value.Id);
+                await LoadImage();
+                await LoadDescendans();
+                await Task.WhenAll([LoadPermission(), LoadLikes()]);
+            });
         }
 
         async void LoadInfo()
         {
-            await LoadCanvas();
-            await LoadVersionProject();
-            await Task.WhenAll(LoadPermission(), LoadImage(), LoadDescendans(), LoadLikes());
+            await TryActionAsync(async () =>
+            {
+                await LoadCanvas();
+                await LoadVersionProject();
+                await Task.WhenAll(LoadPermission(), LoadImage(), LoadDescendans(), LoadLikes());
+            });
 		}
 
         async Task LoadLikes()
         {
-            IsLikes = await _likesService.IsLike(VersionProject.Id);
-            CountLike = await _likesService.CouintLikes(VersionProject.Id);
+            await TryActionAsync(async () => { 
+                IsLikes = await _likesService.IsLike(VersionProject.Id);
+                CountLike = await _likesService.CouintLikes(VersionProject.Id);
+            });
         }
 
         async Task LoadCanvas()
         {
-            Canvas = await _getterCanvas.GetAsync(Canvas.Id);
+            await TryActionAsync(async () =>
+            {
+				Canvas = await _getterCanvas.GetAsync(Canvas.Id);
+			});
+            
         }
 
         async Task LoadVersionProject()
         {
-            await LoadVersionProject(Canvas.VersionId);
+            await TryActionAsync(async () =>
+            {
+                await LoadVersionProject(Canvas.VersionId);
+            });
         }
 
         async Task LoadVersionProject(int idVerionsProject)
         {
-            VersionProject = await _getterVersion.GetVersionProjectByIdAsync(idVerionsProject);
+            await TryActionAsync(async () =>
+            {
+                VersionProject = await _getterVersion.GetVersionProjectByIdAsync(idVerionsProject);
+            });
         }
 
         async Task LoadImage()
         {
-            ImageResult result = await _getterImage.GetImageResult(VersionProject.Id);
-            Image = ImageAvaloniaConverter.ConvertByteInImage(result.Image);
+            await TryActionAsync(async () =>
+            {
+                ImageResult result = await _getterImage.GetImageResult(VersionProject.Id);
+                Image = ImageAvaloniaConverter.ConvertByteInImage(result.Image);
+            });
         }
 
         public async Task LoadDescendans()
         {
-            IEnumerable<VersionProjectResult> result = await _getterDescendants.SetSkip(_skip)
+            await TryActionAsync(async () =>
+            {
+                IEnumerable<VersionProjectResult> result = await _getterDescendants.SetSkip(_skip)
                 .SetTake(_take).Build().GetVersionsByParent(VersionProject);
-            IEnumerable<VersionProjectResultWithImage> parentsWithImage = result.Select(x => new VersionProjectResultWithImage(x));
-            _skip += _take;
-            Descendants = new ObservableCollection<VersionProjectResultWithImage>(parentsWithImage);
+                IEnumerable<VersionProjectResultWithImage> parentsWithImage = result.Select(x => new VersionProjectResultWithImage(x));
+                _skip += _take;
+                Descendants = new ObservableCollection<VersionProjectResultWithImage>(parentsWithImage);
+            });
         }
 
     }

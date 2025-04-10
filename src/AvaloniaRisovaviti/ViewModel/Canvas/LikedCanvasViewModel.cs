@@ -34,12 +34,16 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		public async Task LoadCanvases()
 		{
-			int idUser = _profile.ProfileUser.Id;
-			IEnumerable<CanvasResultWithImage> canvases = 
-				(await _getterWorksByLikes.GetCanvas(idUser, new DomainModel.RangeTakeAndSkip(couint, next)))
-				.Select(e => new CanvasResultWithImage(e));
-			Canvases = Canvases.Concat(canvases);
-			couint += next;
+			await TryActionAsync(async () =>
+			{
+				int idUser = _profile.ProfileUser.Id;
+				IEnumerable<CanvasResultWithImage> canvases =
+					(await _getterWorksByLikes.GetCanvas(idUser, new DomainModel.RangeTakeAndSkip(couint, next)))
+					.Select(e => new CanvasResultWithImage(e));
+				Canvases = Canvases.Concat(canvases);
+				couint += next;
+			});
+			
 		}
 	}
 }

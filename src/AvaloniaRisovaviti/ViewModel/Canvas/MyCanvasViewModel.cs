@@ -13,10 +13,11 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 using InteractiveApiRisovaviti.Interface;
+using AvaloniaEdit.CodeCompletion;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
-	public class MyCanvasViewModel : ReactiveObject
+	public class MyCanvasViewModel : BaseViewModel
 	{
 		IEnumerable<CanvasResultWithImage> _canvases;
 		IGetterWorkByAuthorId _getterWorkByAuthorId;
@@ -49,8 +50,12 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			_canvases = new List<CanvasResultWithImage>();
 			countCart = 0;
 			OnPropertyChanged(nameof(Canvases));
-			
-			Task.WaitAll(TryInitCart());
+		}
+
+		public override async void Load()
+		{
+			await TryInitCart();
+			base.Load();
 		}
 
 		public void AddCanvas()
@@ -75,8 +80,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 		{
 			try
 			{
-				await InitCart();
-				
+				await TryActionAsync(InitCart);
 			}
 			catch
 			{
@@ -93,9 +97,17 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		async Task InitCart()
 		{
-			IEnumerable<CanvasResult> result = await _getterWorkByAuthorId.GetCanvasByAuthorId(_profile.ProfileUser.Id, countCart, stepLoad);
-			_canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem));
-			countCart += stepLoad;
+			await TryActionAsync(async () =>
+			{
+				IEnumerable<CanvasResult> result = await _getterWorkByAuthorId.GetCanvasByAuthorId(_profile.ProfileUser.Id, countCart, stepLoad);
+				_canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem).Select((entity) =>
+				{
+					entity.ErrorView = this.ErrorView;
+					return entity;
+				}));
+				countCart += stepLoad;
+			});
+			
 			OnPropertyChanged(nameof(Canvases));
 		}
 		#region INotifyPropertyChanged Implementation

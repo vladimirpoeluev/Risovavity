@@ -12,7 +12,7 @@ using MsBox.Avalonia;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
-    internal class FormAddNewCanvasViewModel : INotifyPropertyChanged
+    internal class FormAddNewCanvasViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public CanvasAddResult CanvasResult { get; set; }
         private IAdderCanvas _adderCanvas;
@@ -44,7 +44,11 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
         public async Task AddCanvas()
         {
-            await _adderCanvas.AddCanvas(CanvasResult);
+            await TryActionAsync(async () =>
+            {
+                await _adderCanvas.AddCanvas(CanvasResult);
+            });
+            
             await MessageBoxManager.GetMessageBoxStandard("Холст был добавлен", "Перейдите во вкладку Мои работы").ShowAsync();
 		}
         #region INotifyPropertyChanged Implementation

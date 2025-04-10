@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel.Author
 {
-    internal class AuthorViewModel : INotifyPropertyChanged
+    internal class AuthorViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public IEnumerable<AuthorResult> AuthorResults { get; set; } = new List<AuthorResult>();
         public IEnumerable<AuthorResultImage> Authors { get; set; } = new List<AuthorResultImage>();
@@ -43,7 +43,13 @@ namespace AvaloniaRisovaviti.ViewModel.Author
 
         private async Task<IEnumerable<AuthorResult>> GetAuthors()
         {
-            IEnumerable<AuthorResult> authors = await _authorsGetter.GetAuthorsRange(_countShowedUser, stepAdd);
+			IEnumerable<AuthorResult> authors = new List<AuthorResult>();
+
+			await TryActionAsync(async () =>
+            {
+                authors = await _authorsGetter.GetAuthorsRange(_countShowedUser, stepAdd);
+			});
+             
             _countShowedUser += stepAdd;
             return authors;
         }

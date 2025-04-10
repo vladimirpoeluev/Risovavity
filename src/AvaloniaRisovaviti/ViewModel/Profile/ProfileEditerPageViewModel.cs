@@ -10,7 +10,7 @@ using System.Security.Principal;
 
 namespace AvaloniaRisovaviti.ViewModel.Profile
 {
-    internal class ProfileEditerPageViewModel : INotifyPropertyChanged
+    internal class ProfileEditerPageViewModel : BaseViewModel, INotifyPropertyChanged
     {
         IImage _image;
         public UserResult UserResult { get; set; } = new UserResult();
@@ -27,28 +27,23 @@ namespace AvaloniaRisovaviti.ViewModel.Profile
         public ProfileEditerPageViewModel()
         {
             Image = new Avalonia.Media.Imaging.Bitmap("Accets/icoUser.png");
-            InitUserProfile();
+            
         }
+		public override void Load()
+		{
+			base.Load();
+			InitUserProfile();
+		}
 
-        public void InitUserProfile()
+		public void InitUserProfile()
         {
-            try
+            TryAction(() =>
             {
 				InteractiveApiRisovaviti.Profile profile = new(Authentication.AuthenticationUser.User);
-                ProfileSetterImage setterImage = new ProfileSetterImage(profile);
-                UserResult = profile.ProfileUser;
-                Image = setterImage.UpdateImage();
-            }
-            catch (Exception)
-            {
-                UserResult = new UserResult()
-                {
-                    Name = "Пользователь не опознан",
-                    Email = "Данные неопознаны",
-                    IdRoleNavigation = new RoleResult() { Name = "Роль не опознана" }
-                };
-
-            }
+				ProfileSetterImage setterImage = new ProfileSetterImage(profile);
+				UserResult = profile.ProfileUser;
+				Image = setterImage.UpdateImage();
+			});
         }
 
         #region INotifyPropertyChanged Implementation

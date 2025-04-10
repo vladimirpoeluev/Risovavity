@@ -26,8 +26,6 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			_iteraterItems = new IteraterItems(20, LoadVersions);
 		}
 
-		
-
 		public override void Load()
 		{
 			base.Load();
@@ -36,11 +34,15 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		public async void LoadVersions((int skip, int take) range)
 		{
-			var versions = (await _getterWorks.GetVersionProject(_profile.ProfileUser.Id,
+			await TryActionAsync(async () =>
+			{
+				var versions = (await _getterWorks.GetVersionProject(_profile.ProfileUser.Id,
 								new DomainModel.RangeTakeAndSkip(range.skip, range.take)))
 								.Select(e => new VersionProjectResultWithImage(e));
 
-			Versions = Versions.Concat(versions);
+				Versions = Versions.Concat(versions);
+			});
+			
 		}
 
 	}

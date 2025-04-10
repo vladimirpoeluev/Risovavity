@@ -3,13 +3,14 @@ using Avalonia.Controls;
 using Avalonia.Dialogs;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
+using AvaloniaRisovaviti.Page.Main;
 using AvaloniaRisovaviti.ProfileShows;
 using AvaloniaRisovaviti.ViewModel.Profile;
 using InteractiveApiRisovaviti;
 
 namespace AvaloniaRisovaviti;
 
-public partial class ProfileEditerPage : UserControl
+public partial class ProfileEditerPage : View
 {
     ProfileEditerPageViewModel viewModel;
 	Profile Profile { get; set; }
@@ -17,7 +18,7 @@ public partial class ProfileEditerPage : UserControl
     {
         InitializeComponent();
         viewModel = new ProfileEditerPageViewModel();
-        DataContext = viewModel;
+        ViewModel = viewModel;
 		Profile = new Profile(Authentication.AuthenticationUser.User);
 	}
 

@@ -1,19 +1,20 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Platform;
 using Avalonia.Interactivity;
+using AvaloniaRisovaviti.Page.Main;
 using AvaloniaRisovaviti.ViewModel.Canvas;
 using MsBox.Avalonia;
 
 namespace AvaloniaRisovaviti;
 
-public partial class FormAddNewCanvas : UserControl
+public partial class FormAddNewCanvas : View
 {
     FormAddNewCanvasViewModel viewModel;
     public FormAddNewCanvas()
     {
 		InitializeComponent();
         viewModel = new FormAddNewCanvasViewModel();
-        DataContext = viewModel;
+        ViewModel = viewModel;
     }
 
     public async void AddNewImage_Click(object obj, RoutedEventArgs e)

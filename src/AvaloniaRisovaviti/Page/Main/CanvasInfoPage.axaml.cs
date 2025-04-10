@@ -1,17 +1,18 @@
 using Avalonia.Controls;
+using AvaloniaRisovaviti.Page.Main;
 using AvaloniaRisovaviti.ViewModel.Canvas;
 using DomainModel.ResultsRequest.Canvas;
 
 namespace AvaloniaRisovaviti;
 
-public partial class CanvasInfoPage : UserControl
+public partial class CanvasInfoPage : View
 {
     CanvasInfoPageViewModel _viewModel;
     public CanvasInfoPage()
     {
         InitializeComponent();
         _viewModel = new CanvasInfoPageViewModel();
-        DataContext = _viewModel;
+        ViewModel = _viewModel;
     }
 
     public CanvasInfoPage(CanvasResult canvas) : this()

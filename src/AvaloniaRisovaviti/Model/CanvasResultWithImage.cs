@@ -19,10 +19,11 @@ using DomainModel.ResultsRequest;
 using System.Reactive;
 using System;
 using System.Reactive.Linq;
+using AvaloniaRisovaviti.ViewModel;
 
 namespace AvaloniaRisovaviti.Model
 {
-    public class CanvasResultWithImage : ReactiveObject, INotifyPropertyChanged
+    public class CanvasResultWithImage : BaseViewModel, INotifyPropertyChanged
 	{
         public CanvasResult CanvasResult { get; set; }
         IGetterImageProject _getterImage {  get; set; }
@@ -71,25 +72,32 @@ namespace AvaloniaRisovaviti.Model
 
         async void UpdateLike(bool? islike)
         {
-            await InfoLikesLoad();
+            await TryActionAsync(InfoLikesLoad);
             OnPropertyChanged(nameof(IsLike));
         }
 
         async void UpdateLikeChecked(bool? e)
         {
-            if (!e.HasValue) return;
-            if(e.Value)
-                await _likesService.Like(CanvasResult.Id);
-            if (!e.Value)
-                await _likesService.UnLike(CanvasResult.Id);
-			CountLikes = await _likesService.CouintLikes(CanvasResult.Id);
+            await TryActionAsync(async () =>
+            {
+				if (!e.HasValue) return;
+				if (e.Value)
+					await _likesService.Like(CanvasResult.Id);
+				if (!e.Value)
+					await _likesService.UnLike(CanvasResult.Id);
+				CountLikes = await _likesService.CouintLikes(CanvasResult.Id);
+			});
+            
 			OnPropertyChanged(nameof(CountLikes));
 		}
 
         async Task InfoLikesLoad()
         {
-            IsLike = await _likesService.IsLike(CanvasResult.Id);
-            CountLikes = await _likesService.CouintLikes(CanvasResult.Id);
+            await TryActionAsync(async () =>
+            {
+                IsLike = await _likesService.IsLike(CanvasResult.Id);
+                CountLikes = await _likesService.CouintLikes(CanvasResult.Id);
+            });
         }
 
         async Task<CanvasResult> Update()
@@ -99,7 +107,10 @@ namespace AvaloniaRisovaviti.Model
 
         async Task<CanvasResult> Delete()
         {
-            await _editer.DeleteCanvasAsync(CanvasResult.Id);
+            await TryActionAsync(async () =>
+            {
+                await _editer.DeleteCanvasAsync(CanvasResult.Id);
+            });
             return CanvasResult;
         } 
 
@@ -123,13 +134,12 @@ namespace AvaloniaRisovaviti.Model
 
         private async void SetImageTask()
         {
-            try
+            await TryActionAsync(async () =>
             {
                 ImageResult imageResult = await _getterImage.GetImageResult(CanvasResult.VersionId);
                 _image = new Bitmap(new MemoryStream(imageResult.Image));
                 OnPropertyChanged(nameof(ImageData));
-            }
-            catch{}
+            });
         }
 
         public static IEnumerable<CanvasResultWithImage> CanvasResultWithImageFromCanvasResult( IEnumerable<CanvasResult> objects, 

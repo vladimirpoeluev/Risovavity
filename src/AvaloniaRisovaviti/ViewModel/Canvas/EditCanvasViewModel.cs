@@ -43,14 +43,18 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		async Task<CanvasResult> EditClick()
 		{
-			await _editer.UpdateCanvasAsync(new CanvasEditerResult()
+			await TryActionAsync(async () =>
 			{
-				Id = CanvasResult.Id,
-				Description = Description,
-				Title = Name,
-				StatusId = 1,
-				VersionProjectId = CanvasResult.VersionId,
+				await _editer.UpdateCanvasAsync(new CanvasEditerResult()
+				{
+					Id = CanvasResult.Id,
+					Description = Description,
+					Title = Name,
+					StatusId = 1,
+					VersionProjectId = CanvasResult.VersionId,
+				});
 			});
+			
 			return CanvasResult;
 		}
 

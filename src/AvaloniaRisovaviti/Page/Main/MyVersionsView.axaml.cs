@@ -1,14 +1,11 @@
 using Autofac;
-using Avalonia;
-using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
+using AvaloniaRisovaviti.Page.Main;
 using AvaloniaRisovaviti.ViewModel.Canvas;
-using ReactiveUI;
 
 namespace AvaloniaRisovaviti;
 
-public partial class MyVersionsView : ReactiveUserControl<MyVersionViewModel>
+public partial class MyVersionsView : View
 {
     MyVersionViewModel _viewModel;
     public MyVersionsView()
@@ -16,7 +13,7 @@ public partial class MyVersionsView : ReactiveUserControl<MyVersionViewModel>
         InitializeComponent();
         _viewModel = App.Container.Resolve<MyVersionViewModel>();
 
-		this.DataContext = _viewModel;
+		ViewModel = _viewModel;
 		
 	}
 
