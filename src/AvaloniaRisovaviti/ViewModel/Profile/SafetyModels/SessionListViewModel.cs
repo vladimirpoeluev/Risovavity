@@ -40,7 +40,7 @@ namespace AvaloniaRisovaviti.ViewModel.Profile.SafetyModels
 			{
 				result = await _sessionServierService.GetSessionAsync();
 			});
-			SessionList = result.Select(entity => new SessionViewModel(_sessionServierService, entity));
+			SessionList = result.Select(entity => new SessionViewModel(_sessionServierService, entity, this));
 		}
 
 		public async void DeleteSession(string refresh)
