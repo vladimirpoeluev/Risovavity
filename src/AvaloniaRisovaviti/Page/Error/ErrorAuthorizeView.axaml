@@ -15,10 +15,14 @@
 				</TextBlock>
 				<TextBlock>
 					- Повторите запрос <LineBreak/>
-					- Заново авторизуйтесь
+					- Заново авторизуйтесь<LineBreak/>
 					- Обратитесь к администратру
 				</TextBlock>
 			</StackPanel>
+			<Button HorizontalAlignment="Right"
+					VerticalAlignment="Bottom"
+					Content="Перейти во вкладку авторизации"
+					Click="Button_Click"/>
 		</Grid>
 
 	</Grid>

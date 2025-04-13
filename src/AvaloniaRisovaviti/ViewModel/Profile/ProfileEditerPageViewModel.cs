@@ -1,19 +1,17 @@
 using Avalonia.Media;
 using AvaloniaRisovaviti.ProfileShows;
 using DomainModel.ResultsRequest;
-using InteractiveApiRisovaviti;
-using System;
-using System.Collections.Generic;
+using ReactiveUI.Fody.Helpers;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Security.Principal;
 
 namespace AvaloniaRisovaviti.ViewModel.Profile
 {
-    internal class ProfileEditerPageViewModel : BaseViewModel, INotifyPropertyChanged
+	internal class ProfileEditerPageViewModel : BaseViewModel, INotifyPropertyChanged
     {
         IImage _image;
-        public UserResult UserResult { get; set; } = new UserResult();
+        [Reactive]
+        public UserResult UserResult { get; set; }
         public IImage Image
         {
             get => _image;
@@ -27,7 +25,7 @@ namespace AvaloniaRisovaviti.ViewModel.Profile
         public ProfileEditerPageViewModel()
         {
             Image = new Avalonia.Media.Imaging.Bitmap("Accets/icoUser.png");
-            
+            UserResult = new UserResult();
         }
 		public override void Load()
 		{
@@ -44,6 +42,7 @@ namespace AvaloniaRisovaviti.ViewModel.Profile
 				UserResult = profile.ProfileUser;
 				Image = setterImage.UpdateImage();
 			});
+            OnPropertyChanged(nameof(UserResult));
         }
 
         #region INotifyPropertyChanged Implementation

@@ -81,14 +81,14 @@ namespace AvaloniaRisovaviti.ViewModel
 			}
 			catch (RequstException ex)
 			{
-				if (ex.ErrorMessageRequest.NumberError == 404)
+				if (ex.ErrorMessageRequest?.NumberError == 404)
 				{
 
 					if (ErrorView != null)
 						ErrorView(new Error404View());
 					Error.Execute(new Error404View());
 				}
-				else if (ex.ErrorMessageRequest.NumberError == 500)
+				else if (ex.ErrorMessageRequest?.NumberError == 500)
 				{
 					if (ErrorView != null)
 						ErrorView(new Error500View());

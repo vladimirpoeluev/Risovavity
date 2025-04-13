@@ -20,7 +20,7 @@ namespace AvaloniaRisovaviti.Authentication
 				return _user; 
 			} 
 			set 
-			{
+			{	
 				Session.SetSessionAsync(value);
 				_user = value;
 			} 

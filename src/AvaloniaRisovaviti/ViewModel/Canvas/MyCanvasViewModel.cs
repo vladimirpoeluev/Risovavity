@@ -36,6 +36,11 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			{
 				return _canvases;
 			}
+			set
+			{
+				_canvases = value;
+				OnPropertyChanged(nameof(Canvases));
+			}
 		}
 
 		public ReactiveCommand<string, Task> SeacherCommand { get; set; }
@@ -49,12 +54,13 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			_profile = new InteractiveApiRisovaviti.Profile(App.Container.Resolve<IAuthenticationUser>());
 			_canvases = new List<CanvasResultWithImage>();
 			countCart = 0;
-			OnPropertyChanged(nameof(Canvases));
+			
 		}
 
 		public override async void Load()
 		{
 			await TryInitCart();
+			OnPropertyChanged(nameof(Canvases));
 			base.Load();
 		}
 
@@ -100,12 +106,12 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			await TryActionAsync(async () =>
 			{
 				IEnumerable<CanvasResult> result = await _getterWorkByAuthorId.GetCanvasByAuthorId(_profile.ProfileUser.Id, countCart, stepLoad);
-				_canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem).Select((entity) =>
+				Canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem).Select((entity) =>
 				{
 					entity.ErrorView = this.ErrorView;
 					return entity;
 				}));
-				countCart += stepLoad;
+				countCart = 0;
 			});
 			
 			OnPropertyChanged(nameof(Canvases));

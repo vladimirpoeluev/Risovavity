@@ -19,8 +19,8 @@ public partial class EntrancePage : UserControl
         InitializeComponent();
         try
         {
-			if (Authentication.AuthenticationUser.User != AuthenticationUser.NotAuthenticationUser)
-			{
+            if(!(Authentication.AuthenticationUser.User is NotAuthenticationUser))
+            {
 				Content = new MainPage();
 			}
 		}
