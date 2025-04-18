@@ -1,5 +1,4 @@
-﻿using Fizzler;
-using InteractiveApiRisovaviti.ControllerIntegration;
+﻿using InteractiveApiRisovaviti.ControllerIntegration;
 using InteractiveApiRisovaviti.Interface;
 using InteractiveApiRisovaviti.Models;
 using System.Text;
@@ -10,7 +9,7 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 	{
 		FabricAutoControllerIntegraion _fabricAuto;
 		TokensRefreshAndAccess _tokens;
-		protected virtual string NameOfApp { get; set; } = "AvaloniaAppRef";
+		protected virtual string NameOfApp { get; set; } = Environment.MachineName;
 		protected virtual string VersionOfApp { get; set; } = "0.3.3";
 
 		public AuthenticationUserByRefresh(TokensRefreshAndAccess tokens, FabricAutoControllerIntegraion fabricAuto)

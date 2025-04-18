@@ -20,7 +20,11 @@ namespace Logic
 				{
 					Image = entity.Image,
 					Name = entity.Name,
-				}).FirstAsync();
+				}).FirstOrDefaultAsync() ?? new ImageResult()
+				{
+					Name = "Breaked image",
+					Image = [],
+				};
 		}
 	}
 }

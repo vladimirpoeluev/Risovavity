@@ -52,8 +52,12 @@ namespace AvaloniaRisovaviti.Model
             }
         }
 
-        public CanvasResultWithImage(CanvasResult result)
+        public CanvasResultWithImage(CanvasResult result, Action<UserControl> errorView = null)
         {
+            if(errorView != null)
+            {
+                this.ErrorView = errorView;
+            }
             _editer = App.Container.Resolve<IEditerCanvas>();
 			_likesService = App.Container.Resolve<ILikesOfCanvasService>();
 			CanvasResult = result;
@@ -70,7 +74,7 @@ namespace AvaloniaRisovaviti.Model
             this.WhenAnyValue(vm => vm.IsLike).Subscribe(UpdateLikeChecked);
 		}
 
-        async void UpdateLike(bool? islike)
+		async void UpdateLike(bool? islike)
         {
             await TryActionAsync(InfoLikesLoad);
             OnPropertyChanged(nameof(IsLike));
@@ -142,13 +146,14 @@ namespace AvaloniaRisovaviti.Model
             });
         }
 
-        public static IEnumerable<CanvasResultWithImage> CanvasResultWithImageFromCanvasResult( IEnumerable<CanvasResult> objects, 
-                                                                                                Action<Task<CanvasResult>> action = null, 
-                                                                                                Action<Task<CanvasResult>> deleteAction = null)
+        public static IEnumerable<CanvasResultWithImage> CanvasResultWithImageFromCanvasResult(IEnumerable<CanvasResult> objects,
+                                                                                                Action<Task<CanvasResult>> action = null,
+                                                                                                Action<Task<CanvasResult>> deleteAction = null,
+                                                                                                Action<UserControl> errorView = null)
         {
             return objects.Select(entity => 
             {
-                var result = new CanvasResultWithImage(entity);
+                var result = new CanvasResultWithImage(entity, errorView);
                 if(action != null)
 					result.UpdateCanvas.Subscribe(action);
                 if(deleteAction != null)

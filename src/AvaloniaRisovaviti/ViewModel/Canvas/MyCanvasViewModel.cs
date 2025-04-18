@@ -1,19 +1,20 @@
-using System;
-using System.Collections.Generic;
+using Autofac;
 using AvaloniaRisovaviti.Model;
+using AvaloniaRisovaviti.Services;
 using DomainModel.Integration;
 using DomainModel.ResultsRequest.Canvas;
-using System.Threading.Tasks;
-using ReactiveUI;
-using Autofac;
-using MsBox.Avalonia.Dto;
+using InteractiveApiRisovaviti.Interface;
 using MsBox.Avalonia;
+using MsBox.Avalonia.Dto;
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
-using InteractiveApiRisovaviti.Interface;
-using AvaloniaEdit.CodeCompletion;
+using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
@@ -22,6 +23,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 		IEnumerable<CanvasResultWithImage> _canvases;
 		IGetterWorkByAuthorId _getterWorkByAuthorId;
 		InteractiveApiRisovaviti.Profile _profile;
+		IteraterItems _iterator;
 		int countCart;
 		const int stepLoad = 20;
 
@@ -29,19 +31,8 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 		public event Action<Task<CanvasResult>> OnClickUpdateItem;
 		public event Action OnNavAddCanvas;
 
-
-		public IEnumerable<CanvasResultWithImage> Canvases
-		{
-			get
-			{
-				return _canvases;
-			}
-			set
-			{
-				_canvases = value;
-				OnPropertyChanged(nameof(Canvases));
-			}
-		}
+		[Reactive]
+		public IEnumerable<CanvasResultWithImage> Canvases { get; set; }
 
 		public ReactiveCommand<string, Task> SeacherCommand { get; set; }
 
@@ -53,8 +44,18 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			_getterWorkByAuthorId = App.Container.Resolve<IGetterWorkByAuthorId>();
 			_profile = new InteractiveApiRisovaviti.Profile(App.Container.Resolve<IAuthenticationUser>());
 			_canvases = new List<CanvasResultWithImage>();
-			countCart = 0;
-			
+			_iterator = new IteraterItems(20, NavItems);
+			Canvases = new List<CanvasResultWithImage>();
+		}
+
+		private async void NavItems((int skip, int take) range)
+		{
+			await TryActionAsync(async () =>
+			{
+				IEnumerable<CanvasResult> result = await _getterWorkByAuthorId.GetCanvasByAuthorId(_profile.ProfileUser.Id, range.skip, range.take);
+				Canvases = Canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem, ErrorView));
+			});
+			OnPropertyChanged(nameof(Canvases));
 		}
 
 		public override async void Load()
@@ -103,18 +104,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		async Task InitCart()
 		{
-			await TryActionAsync(async () =>
-			{
-				IEnumerable<CanvasResult> result = await _getterWorkByAuthorId.GetCanvasByAuthorId(_profile.ProfileUser.Id, countCart, stepLoad);
-				Canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem).Select((entity) =>
-				{
-					entity.ErrorView = this.ErrorView;
-					return entity;
-				}));
-				countCart = 0;
-			});
-			
-			OnPropertyChanged(nameof(Canvases));
+			_iterator.Next();
 		}
 		#region INotifyPropertyChanged Implementation
 		public event PropertyChangedEventHandler? PropertyChanged;

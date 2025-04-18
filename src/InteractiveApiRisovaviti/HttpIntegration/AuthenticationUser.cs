@@ -7,7 +7,7 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 	{
 		public static IAuthenticationUser NotAuthenticationUser { get; } = new NotAuthenticationUser();
 		private string Token { get; set; }
-		protected virtual string NameOfApp { get; set; } = $"AvaloniaAppNon";
+		protected virtual string NameOfApp { get; set; } = Environment.MachineName;
 		protected virtual string VersionOfApp { get; set; } = $"0.3.3";
 		public AuthenticationUser(string token) 
 		{

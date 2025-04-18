@@ -34,7 +34,7 @@ namespace Logic.CanvasLogic
 					Description = canvas.Description ?? String.Empty,
 					UserId = canvas.Author.Id,
 					VersionId = canvas.MainVersionId,
-				}).Where(entity => entity.Id == id).FirstAsync();
+				}).Where(entity => entity.Id == id).FirstOrDefaultAsync() ?? new CanvasResult();
 		}
 
 		public async Task<IEnumerable<CanvasResult>> GetAsync(int skip, int take)

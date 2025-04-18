@@ -44,7 +44,7 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 			client.DefaultRequestHeaders.Accept.Clear();
 			client.DefaultRequestHeaders.Accept.Add(
 				new MediaTypeWithQualityHeaderValue("application/json"));
-			client.Timeout = new TimeSpan(0, 0, 5);
+			client.Timeout = new TimeSpan(0, 0, 20);
 			User.SettingUpDataProvisioning(client);
 
 			return client;

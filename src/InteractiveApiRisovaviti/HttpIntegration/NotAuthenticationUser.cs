@@ -4,7 +4,7 @@ namespace InteractiveApiRisovaviti.HttpIntegration
 {
 	public class NotAuthenticationUser : IAuthenticationUser
 	{
-		protected virtual string NameOfApp { get; set; } = $"AvaloniaAppNon";
+		protected virtual string NameOfApp { get; set; } = Environment.MachineName;
 		protected virtual string VersionOfApp { get; set; } = $"0.3.3";
 
 		public void SettingUpDataProvisioning(HttpClient client)
