@@ -17,7 +17,8 @@
 		</Button>
 		<Button HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
-				Classes="profile-settings-nextbutton">
+				Classes="profile-settings-nextbutton"
+				Click="Button_Click_1">
 			Настройки профиля
 		</Button>
 		<Button HorizontalAlignment="Stretch"

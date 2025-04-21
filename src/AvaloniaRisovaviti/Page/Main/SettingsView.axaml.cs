@@ -20,4 +20,9 @@ public partial class SettingsView : UserControl
     {
         Content = new SettingsAppView();
     }
+
+	private void Button_Click_1(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+	{
+        Content = new ProfileEditerPage();
+	}
 }
