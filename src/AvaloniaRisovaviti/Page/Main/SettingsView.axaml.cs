@@ -1,7 +1,5 @@
 using Autofac;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 
 namespace AvaloniaRisovaviti;
 
@@ -25,4 +23,4 @@ public partial class SettingsView : UserControl
 	{
         Content = new ProfileEditerPage();
 	}
-}
+}      
