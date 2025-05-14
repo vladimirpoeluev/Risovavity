@@ -26,7 +26,8 @@
 			<TextBox PasswordChar="⚫" Text="{Binding RegistrationForm.Password}"/>
 			<Label Content="{x:Static assets:Resource.RepeatPassword}"/>
 			<TextBox PasswordChar="⚫"
-					 Text="{Binding RepeatPassword}"/>
+					 Text="{Binding RepeatPassword}"
+					 DataValidationErrors.Errors="{Binding Errors}"/>
 			<TextBlock Text="{Binding Error}" Foreground="Red"/>
 			<CheckBox Checked="CheckedConfidicialnosti" Unchecked="UnCheckedConfidicialnosti">
 				<TextBlock>

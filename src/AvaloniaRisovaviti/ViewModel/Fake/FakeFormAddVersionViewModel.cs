@@ -16,7 +16,7 @@ namespace AvaloniaRisovaviti.ViewModel.Fake
 				Name = "Test",
 				Description = "Test",
 			};
-			base.NewProjectResult = new DomainModel.ResultsRequest.Canvas.VersionProjectResult() 
+			base.NewProjectResult = new () 
 			{
 				Name = "Test2",
 				Description = "Test2",

@@ -17,17 +17,19 @@
     <None Remove="Accets\placeholder.png" />
     <None Remove="Accets\RubikBubbles-Regular.ttf" />
     <None Remove="Assets\Fonts\Nunito-Black.ttf" />
+    <None Remove="Assets\Icons\delete-sesstion.png" />
     <None Remove="Assets\Icons\error-404.png" />
     <None Remove="Assets\Icons\error-authorize.jpg" />
     <None Remove="Assets\Icons\errro-connect-icon.png" />
     <None Remove="Assets\Icons\server.png" />
+    <None Remove="Assets\Icons\user-avatar.png" />
     <None Remove="Assets\Icons\users.svg" />
   </ItemGroup>
 
 
 	
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="8.2.0" />
+    <PackageReference Include="Autofac" Version="8.3.0" />
     <PackageReference Include="Avalonia" Version="11.2.3" />
     <PackageReference Include="Avalonia.Desktop" Version="11.2.3" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.2.3" />

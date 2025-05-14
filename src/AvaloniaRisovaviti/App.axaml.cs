@@ -8,6 +8,7 @@ using Avalonia.Styling;
 using AvaloniaRisovaviti.Model;
 using AvaloniaRisovaviti.Services;
 using AvaloniaRisovaviti.Services.Interface;
+using AvaloniaRisovaviti.ViewModel.Author;
 using AvaloniaRisovaviti.ViewModel.Canvas;
 using AvaloniaRisovaviti.ViewModel.Main;
 using AvaloniaRisovaviti.ViewModel.Other;
@@ -95,6 +96,7 @@ namespace AvaloniaRisovaviti
             builder.RegisterType<AccessRecovery>().As<IAccessRecovery>();
             builder.RegisterType<SettingAccessRecoveryViewModel>();
             builder.RegisterType<RestoreAccessViewModel>();
+            builder.RegisterType<AuthorInfoViewModel>();
         }
 
         public override async void OnFrameworkInitializationCompleted()

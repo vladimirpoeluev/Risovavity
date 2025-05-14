@@ -5,6 +5,7 @@ using Avalonia.Interactivity;
 using AvaloniaRisovaviti.ViewModel.Main;
 using Autofac;
 using AvaloniaRisovaviti.Page.Main;
+using System.Linq;
 
 namespace AvaloniaRisovaviti
 {
@@ -48,14 +49,14 @@ namespace AvaloniaRisovaviti
 			}
             else
             {
-                _viewModel.Error = "������ �� �������";
+				_viewModel.Errors = _viewModel.Errors.Append("������ �� �������");
             }
             
 		}
 
         void ErrorRegistration()
         {
-            _viewModel.Error = "������ ������������ � ���� ������� ��� ���������� ���������� ������� ����� �����";
+            _viewModel.Errors = _viewModel.Errors.Append("������ ������������ � ���� ������� ��� ���������� ���������� ������� ����� �����");
         }
 
         public  void CheckedConfidicialnosti(object? obj, RoutedEventArgs e)

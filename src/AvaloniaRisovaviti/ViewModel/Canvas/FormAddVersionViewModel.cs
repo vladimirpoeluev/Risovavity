@@ -8,6 +8,7 @@ using AvaloniaRisovaviti.Model;
 using AvaloniaRisovaviti.ProfileShows;
 using AvaloniaRisovaviti.Services;
 using AvaloniaRisovaviti.Services.Interface;
+using AvaloniaRisovaviti.ViewModel.FormAdd;
 using DomainModel.Integration.CanvasOperation;
 using DomainModel.ResultsRequest.Canvas;
 using DynamicData.Binding;
@@ -15,10 +16,8 @@ using InteractiveApiRisovaviti.CanvasOperate;
 using MsBox.Avalonia;
 using ReactiveUI.Fody.Helpers;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Principal;
 using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
@@ -31,7 +30,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 		[Reactive] public IImage ImageOldProjectReasult { get; set; }
 
 		[Reactive]
-		public VersionProjectResult NewProjectResult { get; set; }
+		public VersionProjectViewModel NewProjectResult { get; set; }
 
 		[Reactive] public IImage NewImageProjectResult { get; set; }
 
@@ -55,7 +54,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 		public FormAddVersionViewModel() 
 		{
 			ProjectResult = new VersionProjectResult();
-			NewProjectResult = new VersionProjectResult();
+			NewProjectResult = new();
 			ImageOldProjectReasult = new Bitmap("Accets\\8.gif");
 			NewImageProjectResult = new Bitmap(AssetLoader.Open(new Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
 			_getterVersion = new GetterVersionProject(Authentication.AuthenticationUser.User);

@@ -1,0 +1,118 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Author"
+			 xmlns:svg="clr-namespace:Avalonia.Svg.Commands;assembly=Avalonia.Svg"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaRisovaviti.AuthorInfoView"
+			 x:DataType="vm:AuthorInfoViewModel">
+
+	<Grid RowDefinitions="auto, *">
+
+		<!--User info-->
+		<Grid>
+			
+			<StackPanel>
+				<Image Source="{Binding ImageAuthor}"
+						Height="100"/>
+				<TextBlock Text="{Binding AuthorName}"
+						   Classes="h2"/>
+			</StackPanel>
+		</Grid>
+
+		<!--User work-->
+		<Grid Grid.Row="1">
+			<TabControl>
+				<TabItem>
+					<TabItem.Header>
+						<TextBlock Text="Холсты" HorizontalAlignment="Center"/>
+					</TabItem.Header>
+					<Grid>
+						<ListBox HorizontalAlignment="Stretch"
+								 ItemsSource="{Binding Canvases}">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<Button HorizontalAlignment="Stretch"
+											VerticalAlignment="Stretch"
+											Classes="cart">
+										<Grid RowDefinitions="*,auto">
+
+											<Grid Background="White">
+												<Image Source="{Binding Image}"/>
+											</Grid>
+
+
+											<DockPanel Grid.Row="0" Classes="menu"
+													   VerticalAlignment="Bottom">
+												<TextBlock Text="{Binding Name}"
+														   Classes="h2"
+														   DockPanel.Dock="Top"/>
+												<WrapPanel DockPanel.Dock="Left">
+													
+													<TextBlock Text="{Binding CountLike}"
+															   Classes="h3"
+															   VerticalAlignment="Center"/>
+												</WrapPanel>
+											</DockPanel>
+
+										</Grid>
+									</Button>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+							<ListBox.ItemsPanel>
+								<ItemsPanelTemplate>
+									<WrapPanel HorizontalAlignment="Center"/>
+								</ItemsPanelTemplate>
+							</ListBox.ItemsPanel>
+						</ListBox>
+					</Grid>
+				</TabItem>
+				<TabItem>
+					<TabItem.Header>
+						<TextBlock Text="Версии" HorizontalAlignment="Center"/>
+					</TabItem.Header>
+
+					<ListBox HorizontalAlignment="Stretch"
+								 ItemsSource="{Binding VersionProjects}">
+						<ListBox.ItemTemplate>
+							<DataTemplate>
+								<Button HorizontalAlignment="Stretch"
+										VerticalAlignment="Stretch"
+										Classes="cart">
+									<Grid RowDefinitions="*,auto">
+
+										<Grid Background="White">
+											<Image Source="{Binding Image}"/>
+										</Grid>
+
+
+										<DockPanel Grid.Row="0" Classes="menu"
+												   VerticalAlignment="Bottom">
+											<TextBlock Text="{Binding Name}"
+													   Classes="h2"
+													   DockPanel.Dock="Top"/>
+											<WrapPanel DockPanel.Dock="Left">
+
+												<TextBlock Text="{Binding CountLike}"
+														   Classes="h3"
+														   VerticalAlignment="Center"/>
+											</WrapPanel>
+										</DockPanel>
+
+									</Grid>
+								</Button>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+						<ListBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<WrapPanel HorizontalAlignment="Center"/>
+							</ItemsPanelTemplate>
+						</ListBox.ItemsPanel>
+					</ListBox>
+				</TabItem>
+			</TabControl>
+		</Grid>
+		
+	</Grid>
+</UserControl>

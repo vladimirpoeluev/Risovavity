@@ -1,10 +1,12 @@
 ﻿
 using DomainModel.Model;
+using System.ComponentModel.DataAnnotations;
 
 namespace DomainModel.ResultsRequest
 {
 	public class RegistrationForm
 	{
+		
 		public string Name { get; set; }
 		public string Email { get; set; }
 		public string Login { get; set; }

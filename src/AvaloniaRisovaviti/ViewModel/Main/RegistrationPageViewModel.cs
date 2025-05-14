@@ -1,15 +1,17 @@
 using DomainModel.ResultsRequest;
-using System;
+using ReactiveUI.Fody.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
 
 namespace AvaloniaRisovaviti.ViewModel.Main
 {
-    internal class RegistrationPageViewModel : BaseViewModel, INotifyPropertyChanged
+	internal class RegistrationPageViewModel : BaseViewModel, INotifyPropertyChanged
     {
         string _error;
         public RegistrationForm RegistrationForm { get; set; }
+        [Required(ErrorMessage = "Поле не заполнено")]
         public string RepeatPassword { get; set; }
         public string Error
         {
@@ -21,12 +23,17 @@ namespace AvaloniaRisovaviti.ViewModel.Main
             }
         }
 
+        [Reactive]
+        public IEnumerable<string> Errors { get; set; }
+
         public RegistrationPageViewModel()
         {
             RegistrationForm = new RegistrationForm();
             _error = string.Empty;
             RepeatPassword = string.Empty;
+            Errors = new List<string>();
         }
+
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler? PropertyChanged;
 

@@ -2,6 +2,8 @@ using Avalonia.Controls;
 using InteractiveApiRisovaviti.Exceptions;
 using ReactiveUI;
 using System;
+using System.Collections;
+using System.ComponentModel;
 using System.Reactive;
 using System.Threading.Tasks;
 
@@ -12,11 +14,15 @@ namespace AvaloniaRisovaviti.ViewModel
 		public ReactiveCommand<Unit, Unit> LoadCommand { get; set; }
 		public ReactiveCommand<UserControl, UserControl> Error { get; set; }
 		public Action<UserControl> ErrorView { get; set; }
+		
+
 		public BaseViewModel() 
 		{
 			LoadCommand = ReactiveCommand.Create(Load);
 			Error = ReactiveCommand.Create<UserControl, UserControl>(ErrorMetod);
 		}
+
+		public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
 		public virtual void Load() {}
 
@@ -108,5 +114,6 @@ namespace AvaloniaRisovaviti.ViewModel
 				Error.Execute(new ErrorNotConnectView());
 			}
 		}
+
 	}
 }
