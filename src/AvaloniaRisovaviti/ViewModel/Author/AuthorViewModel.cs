@@ -1,7 +1,12 @@
+using AvaloniaEdit.Utils;
 using AvaloniaRisovaviti.Model;
 using DomainModel.ResultsRequest;
+using DynamicData.Binding;
 using InteractiveApiRisovaviti;
 using InteractiveApiRisovaviti.Interface;
+using MsBox.Avalonia;
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,13 +15,17 @@ using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel.Author
 {
-    internal class AuthorViewModel : BaseViewModel, INotifyPropertyChanged
+    public class AuthorViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public IEnumerable<AuthorResult> AuthorResults { get; set; } = new List<AuthorResult>();
         public IEnumerable<AuthorResultImage> Authors { get; set; } = new List<AuthorResultImage>();
-        private int _countShowedUser = 0;
+        [Reactive]
+        public AuthorResultImage SelectedAuthor { get; set; } = new AuthorResultImage(new AuthorResult());
+
+		private int _countShowedUser = 0;
         private const int stepAdd = 50;
         public bool IsCart { get; private set; } = true;
+
         IAuthorGetter _authorsGetter;
 
         public AuthorViewModel()

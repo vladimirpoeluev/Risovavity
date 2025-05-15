@@ -35,7 +35,8 @@
 								<DataTemplate>
 									<Button HorizontalAlignment="Stretch"
 											VerticalAlignment="Stretch"
-											Classes="cart">
+											Classes="cart"
+											Width="300">
 										<Grid RowDefinitions="*,auto">
 
 											<Grid Background="White">
@@ -73,13 +74,14 @@
 						<TextBlock Text="Версии" HorizontalAlignment="Center"/>
 					</TabItem.Header>
 
-					<ListBox HorizontalAlignment="Stretch"
-								 ItemsSource="{Binding VersionProjects}">
+					<ListBox	HorizontalAlignment="Stretch"
+								ItemsSource="{Binding VersionProjects}">
 						<ListBox.ItemTemplate>
 							<DataTemplate>
 								<Button HorizontalAlignment="Stretch"
 										VerticalAlignment="Stretch"
-										Classes="cart">
+										Classes="cart"
+										Width="300">
 									<Grid RowDefinitions="*,auto">
 
 										<Grid Background="White">

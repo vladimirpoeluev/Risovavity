@@ -30,7 +30,7 @@ public partial class MainPage : View
     }
     public void Authors_Click(object ob, RoutedEventArgs e)
     {
-       frameMain.Content = new AuthorsPage();
+       frameMain.Content = new AuthorsInfoPage();
     }
     public void InteractiveCanvas_Click(object ob, RoutedEventArgs e)
     {

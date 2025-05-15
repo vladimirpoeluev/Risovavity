@@ -97,6 +97,12 @@ namespace AvaloniaRisovaviti
             builder.RegisterType<SettingAccessRecoveryViewModel>();
             builder.RegisterType<RestoreAccessViewModel>();
             builder.RegisterType<AuthorInfoViewModel>();
+            builder.RegisterType<AuthorsInfoViewModel>();
+            builder.RegisterType<AuthorViewModel>();
+
+            builder.RegisterType<AvatarGetter>().As<IUserAvatarGetter>();
+            builder.RegisterType<AuthorGetter>().As<IAuthorGetter>();
+            builder.RegisterType<GetterImageProject>().As<IGetterImageProject>();
         }
 
         public override async void OnFrameworkInitializationCompleted()

@@ -5,6 +5,7 @@ namespace AvaloniaRisovaviti.ViewModel.Other
 {
 	public class CanvasViewModel : BaseViewModel
 	{
+		public int Id { get; set; }
 		[Reactive]
 		public string Name { get; set; }
 

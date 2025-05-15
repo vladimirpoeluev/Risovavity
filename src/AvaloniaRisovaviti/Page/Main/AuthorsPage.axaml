@@ -13,6 +13,7 @@
 	
 	<Grid RowDefinitions="*, auto">
 		<ListBox ItemsSource="{Binding Authors}"
+				 SelectedValue="{Binding SelectedAuthor, Mode=TwoWay}"
 				 ScrollViewer.VerticalScrollBarVisibility="Visible">
 			<ListBox.ItemTemplate>
 				<DataTemplate>

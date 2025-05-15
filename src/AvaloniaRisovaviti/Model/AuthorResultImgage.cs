@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 namespace AvaloniaRisovaviti.Model
 {
-	internal class AuthorResultImage : INotifyPropertyChanged
+	public class AuthorResultImage : INotifyPropertyChanged
 	{
 		public IImage Icon { get; set; }
 		public AuthorResult AuthorResult { get; set; }
