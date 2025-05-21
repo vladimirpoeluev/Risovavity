@@ -42,6 +42,9 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         [Reactive]
         public bool IsMainVersion { get; set; } = true;
 
+        [Reactive]
+        public bool IsEdit { get; set; } = false;
+
 		IDefinitionerOfPermission _definitioner { get; set; }
 		IAdderVersionProject _adderVersionProject { get; set; }
 
@@ -55,8 +58,10 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
         IGetterProjectByParentBuilder _getterDescendants;
         IEditMainVerstionInCanvas _editMainVersion;
         ILikesOfVersitonService _likesService;
+        IEditVersionProject _editVersionProject;
 
-        int _skip = 0;
+
+		int _skip = 0;
         const int _take = 50;
 
         public CanvasInfoPageViewModel()
@@ -70,6 +75,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 			_definitioner = App.Container.Resolve<IDefinitionerOfPermission>();
 			_adderVersionProject = App.Container.Resolve<IAdderVersionProject>();
             _likesService = App.Container.Resolve<ILikesOfVersitonService>();
+			_editVersionProject = App.Container.Resolve<IEditVersionProject>();
 			_getterVersion = new GetterVersionProject(user);
             _getterCanvas = new GetterCanvasParseApi(user);
             _getterImage = new GetterImageProject(user);
@@ -250,6 +256,22 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
                 _skip += _take;
                 Descendants = new ObservableCollection<VersionProjectResultWithImage>(parentsWithImage);
             });
+        }
+
+        public async void EditVersion()
+        {
+            if (IsEdit)
+            {
+                await _editVersionProject.Edit(
+                    new VerstionProjectEditResutl() 
+                    {
+                        NameEdit = VersionProject.Name,
+                        DescriptionEdit = VersionProject.Description,
+                        VerstionId = VersionProject.Id,
+                    });
+               await SetVersion(VersionProject);
+            }
+            IsEdit = !IsEdit;
         }
 
     }
