@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.CanvasPage"
 			 x:DataType="vm:CanvasPageViewModel">
@@ -12,7 +13,7 @@
 	<Grid RowDefinitions="auto,*,auto">
 		<Grid ColumnDefinitions="*,auto">
 			<TextBox Text="{Binding SearchString}"/>
-			<Button Content="Поиск"
+			<Button Content="{x:Static resource:Resource.search}"
 					HorizontalAlignment="Right"
 					Command="{Binding Search}"/>
 		</Grid>
@@ -59,11 +60,11 @@
 									<StackPanel DockPanel.Dock="Right"
 												Orientation="Horizontal"
 												Classes="menu-admin">
-										<Button Content="Delete"
+										<Button Content="{x:Static resource:Resource.delete}"
 												Classes="dangerous del"
 												Command="{Binding DeleteCanvas}"
 												IsVisible="{Binding Permission.Edit}"/>
-										<Button Content="Edit"
+										<Button Content="{x:Static resource:Resource.edit}"
 												Command="{Binding UpdateCanvas}"
 												IsVisible="{Binding Permission.Edit}"/>
 									</StackPanel>
@@ -81,7 +82,7 @@
 			</ListBox>
 			
 		</Grid>
-		<Button Content="Ещё"
+		<Button Content="{x:Static resource:Resource.more}"
 				Command="{Binding TryInitCart}"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Bottom"

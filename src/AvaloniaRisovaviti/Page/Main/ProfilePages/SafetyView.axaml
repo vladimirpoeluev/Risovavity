@@ -3,17 +3,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:AvaloniaRisovaviti"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.SafetyView">
 	<Grid ColumnDefinitions="auto,*">
 		<WrapPanel Orientation="Vertical">
-			<Button Content="Подклченные устройсва"
+			<Button Content="{x:Static resource:Resource.connectedDevices}"
 					HorizontalAlignment="Stretch"
 					Click="NavSession_Click"/>
 			<Button HorizontalAlignment="Stretch"
-					Content="Пароли и настройки аутентификации"
+					Content="{x:Static resource:Resource.authSettings}"
 					Click="NavPasswordEdid_Click"/>
-			<Button Content="Способы восстановления"
+			<Button Content="{x:Static resource:Resource.recoveryMethods}"
 					HorizontalAlignment="Stretch"
 					Click="Button_Click_1"/>
 		</WrapPanel>

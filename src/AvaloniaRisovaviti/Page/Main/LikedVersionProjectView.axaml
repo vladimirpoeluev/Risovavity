@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:us="using:AvaloniaRisovaviti.Model"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.LikedVersionProjectView"
 			 x:DataType="vm:LikedVersionsProjectViewModel">
@@ -58,7 +59,7 @@
 			</ListBox>
 
 		</Grid>
-		<Button Content="Ещё"
+		<Button Content="{x:Static resource:Resource.more}"
 				HorizontalAlignment="Right"
 				VerticalAlignment="Bottom"
 				Grid.Row="2"/>

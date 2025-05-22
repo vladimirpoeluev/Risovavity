@@ -11,24 +11,24 @@
 	<UniformGrid>
 		<Button HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
+				Content="{x:Static us:Resource.security}"
 				Click="NavSafety_Click"
 				Classes="safety-nextbutton">
-			Безопасность
 		</Button>
 		<Button HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
 				Classes="profile-settings-nextbutton"
+				Content="{x:Static us:Resource.profileSettings}"
 				Click="Button_Click_1">
-			Настройки профиля
 		</Button>
 		<Button HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
-				Content="Настройки приложения"
+				Content="{x:Static us:Resource.appSettings}"
 				Classes="app-settings-nextbutton"
 				Click="Button_Click"/>
 		<Button HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
-				Content="О приложении"
+				Content="{x:Static us:Resource.aboutApp}"
 				Classes="app-description-nextbutton"
 				Click="Button_Click_2"/>
 	</UniformGrid>

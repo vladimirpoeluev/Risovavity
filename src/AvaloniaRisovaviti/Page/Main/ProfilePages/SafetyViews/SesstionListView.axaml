@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:fvm="using:AvaloniaRisovaviti.ViewModel.Fake"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Profile.SafetyModels"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.SesstionListView"
 			 x:DataType="vm:SessionListViewModel">
@@ -28,10 +29,10 @@
 		</ListBox>
 		<UniformGrid Rows="1"
 					 Grid.Row="1">
-			<Button Content="Delete all"
+			<Button Content="{x:Static resource:Resource.deleteAll}"
 					HorizontalAlignment="Stretch"
 					Command="{Binding DeleteAllSession}"/>
-			<Button Content="Update"
+			<Button Content="{x:Static resource:Resource.txtUpdateInMainPage }"
 					HorizontalAlignment="Stretch"
 					Command="{Binding LoadInfo}"/>
 		</UniformGrid>

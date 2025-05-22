@@ -3,8 +3,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AvaloniaRisovaviti.ProfileEditerPage"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Profile"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
+             x:Class="AvaloniaRisovaviti.ProfileEditerPage"
 			 x:DataType="vm:ProfileEditerPageViewModel">
 
 	<Grid>
@@ -26,24 +27,24 @@
 			<StackPanel Grid.Row="1"
 						VerticalAlignment="Top">
 				<Button Margin="5"
-					Content="Вставить изображение"
+					Content="{x:Static resource:Resource.insertImage}"
 					Click="Click_MenuImage"/>
 				<Button Margin="5"
-						Content="Настройки"
+						Content="{x:Static resource:Resource.Settings}"
 						Click="NavEditPassword_Click"/>
 			</StackPanel>
 		</Grid>
 		<StackPanel Grid.Column="1">
-			<TextBlock Text="Профиль"
+			<TextBlock Text="{x:Static resource:Resource.Profile}"
 					   FontSize="20"/>
-			<TextBlock Text="Имя"/>
+			<TextBlock Text="{x:Static resource:Resource.name}"/>
 			<TextBox Text="{Binding UserResult.Name}"/>
-			<TextBlock Text="Почта"/>
+			<TextBlock Text="{x:Static resource:Resource.Email}"/>
 			<TextBlock Text="{Binding UserResult.Email}"/>
-			<TextBlock Text="Роль"/>
+			<TextBlock Text="{x:Static resource:Resource.role}"/>
 			<TextBlock Text="{Binding UserResult.IdRoleNavigation.Name}"/>
 			<Button Click="EditProfile" 
-					Content="Сохранить изменения"/>
+					Content="{x:Static resource:Resource.saveChanges}"/>
 			
 			
 		</StackPanel>

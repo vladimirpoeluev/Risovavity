@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Author"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
 			 xmlns:svg="clr-namespace:Avalonia.Svg.Commands;assembly=Avalonia.Svg"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.AuthorInfoView"
@@ -26,7 +27,7 @@
 			<TabControl>
 				<TabItem>
 					<TabItem.Header>
-						<TextBlock Text="Холсты" HorizontalAlignment="Center"/>
+						<TextBlock Text="{x:Static resource:Resource.canvases}" HorizontalAlignment="Center"/>
 					</TabItem.Header>
 					<Grid>
 						<ListBox HorizontalAlignment="Stretch"
@@ -71,7 +72,7 @@
 				</TabItem>
 				<TabItem>
 					<TabItem.Header>
-						<TextBlock Text="Версии" HorizontalAlignment="Center"/>
+						<TextBlock Text="{x:Static resource:Resource.versions}" HorizontalAlignment="Center"/>
 					</TabItem.Header>
 
 					<ListBox	HorizontalAlignment="Stretch"

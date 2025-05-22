@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
 			 xmlns:fvm="using:AvaloniaRisovaviti.ViewModel.Fake"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.FormAddVersionPage"
 			 x:DataType="vm:FormAddVersionViewModel">
@@ -11,11 +12,11 @@
 	<Grid ColumnDefinitions="*,*"
 		  RowDefinitions="auto,*">
 		<StackPanel>
-			<TextBlock Text="Старая версия"
+			<TextBlock Text="{x:Static resource:Resource.oldPassword}"
 					   Classes="h2"/>
 		</StackPanel>
 		<StackPanel Grid.Column="1">
-			<TextBlock Text="Новая версия"
+			<TextBlock Text="{x:Static resource:Resource.newVersion}"
 					   Classes="h2"/>
 		</StackPanel>
 		<Grid Grid.Row="1"
@@ -32,7 +33,7 @@
 			<Image Source="{Binding NewImageProjectResult}"/>
 			<StackPanel Grid.Row="1">
 			
-				<Button Content="Выбрать существующий проект"
+				<Button Content="{x:Static resource:Resource.selectExistingProject}"
 						Click="SelectImage_Click" Grid.Column="1"/>
 		
 				<ComboBox ItemsSource="{Binding ImageNames}"
@@ -45,20 +46,20 @@
 						<Button Command="{Binding NextEdit}"
 								Content="E"/>
 					</UniformGrid>
-					<Button Content="Создать новый проект"
+					<Button Content="{x:Static resource:Resource.createNewProject}"
 							Command="{Binding OpenEditerForEdit}"
 							Grid.Column="1"/>
 				</Grid>
 				
-				<TextBlock Text="Наименование"/>
+				<TextBlock Text="{x:Static resource:Resource.title}"/>
 				<TextBox Watermark="Коротко об ващем улучшении..."
 						 Text="{Binding NewProjectResult.Name}"/>
-				<TextBlock Text="Описание"/>
+				<TextBlock Text="{x:Static resource:Resource.description}"/>
 				<TextBox TextWrapping="Wrap"
 						 Text="{Binding NewProjectResult.Description}"
 						 ScrollViewer.VerticalScrollBarVisibility="Visible"
 						 Watermark="Опишите подробнее ваще изменение..."/>
-				<Button Content="Добавить версию"
+				<Button Content="{x:Static resource:Resource.addVersion}"
 						HorizontalAlignment="Center"
 						Click="AddVersionClick_Click"
 						Command="{Binding AddVersion}"/>

@@ -4,16 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:qr="clr-namespace:Avalonia.QRCode;assembly=Avalonia.QRCode"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Other"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.SettingAccessRecoveryView"
 			 x:DataType="vm:SettingAccessRecoveryViewModel">
 	<Grid RowDefinitions="auto,*,auto">
-		<TextBlock Text="Способы восстановления"
+		<TextBlock Text="{x:Static resource:Resource.recoveryMethods}"
 					   Classes="h1"/>
 			<Image Source="{Binding QRCode}"
 				   Grid.Row="1"/>
 		<StackPanel Grid.Row="2">
-			<TextBlock Text="Ключ"
+			<TextBlock Text="{x:Static resource:Resource.key}"
 					   Classes="h2"/>
 			<SelectableTextBlock Text="{Binding Keys.TotpKeys}"
 								Classes="h3"/>

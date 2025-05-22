@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.DraftesView"
 			 x:DataType="vm:DraftesViewModel">
@@ -11,10 +12,10 @@
 	</UserControl.Styles>
 	<Grid RowDefinitions="auto,*">
 		<DockPanel>
-			<Button Content="Добавить работу"
+			<Button Content="{x:Static resource:Resource.addWork}"
 					HorizontalAlignment="Left"
 					DockPanel.Dock="Left"/>
-			<TextBlock Text="Мои черновики"
+			<TextBlock Text="{x:Static resource:Resource.myDrafts}"
 					   Classes="h1"
 					   HorizontalAlignment="Right"/>
 		</DockPanel>
@@ -71,7 +72,7 @@
 				</ListBox>
 
 			</Grid>
-			<Button Content="Ещё"
+			<Button Content="{x:Static resource:Resource.more}"
 					HorizontalAlignment="Right"
 					VerticalAlignment="Bottom"
 					Grid.Row="2"/>

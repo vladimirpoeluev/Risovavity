@@ -4,18 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
 			 xmlns:us="using:AvaloniaRisovaviti"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.MyWorkView"
 			 x:DataType="vm:MyWorkViewModel">
 	<Grid RowDefinitions="*">
 		<TabControl TabStripPlacement="Right">
-			<TabItem Header="Холсты">
+			<TabItem Header="{x:Static resource:Resource.canvases}">
 				<us:MyCanvasesView/>
 			</TabItem>
-			<TabItem Header="Версии">
+			<TabItem Header="{x:Static resource:Resource.versions}">
 				<us:MyVersionsView/>
 			</TabItem>
-			<TabItem Header="Черновики">
+			<TabItem Header="{x:Static resource:Resource.drafts}">
 				<us:DraftesView/>
 			</TabItem>
 		</TabControl>

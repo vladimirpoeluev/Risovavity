@@ -14,14 +14,14 @@
 		<StackPanel HorizontalAlignment="Center"
 					VerticalAlignment="Center"
 					Width="300">
-			<TextBlock	Text="Вход"
+			<TextBlock	Text="{x:Static resourse:Resource.Entrance}"
 						Classes="h1"/>
 			<Label Content="{x:Static resourse:Resource.Login}"/>
 			<TextBox Text="{Binding Login}"/>
 			<Label Content="{x:Static resourse:Resource.Password}"/>
 			<TextBox PasswordChar="⚫" Text="{Binding Password}" FontSize="10"/>
 			<TextBlock Foreground="Red" Text="{Binding Error}"/>
-			<Button Content=">Забыли пароль?"
+			<Button Content="{x:Static resourse:Resource.forgetPasswort}"
 					Click="Button_Click1"/>
 			<Button HorizontalAlignment="Stretch"
 					Margin="5"

@@ -3,19 +3,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.EditCanvasView"
 			 x:DataType="vm:EditCanvasViewModel">
 	<Grid>
 		<StackPanel HorizontalAlignment="Center"
 					VerticalAlignment="Center">
-			<TextBlock Text="Название"/>
+			<TextBlock Text="{x:Static resource:Resource.title}"/>
 			<TextBox Watermark="Ключевое слово"
 					 Text="{Binding Name}"/>
-			<TextBlock Text="Описание"/>
+			<TextBlock Text="{x:Static resource:Resource.description}"/>
 			<TextBox Watermark="Опиши проект"
 					 Text="{Binding Description}"/>
-			<Button Content="Изменить"
+			<Button Content="{x:Static resource:Resource.edit}"
 					HorizontalAlignment="Center"
 					Command="{Binding EditCanvas}"/>
 		</StackPanel>

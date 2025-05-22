@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:fvm="using:AvaloniaRisovaviti.ViewModel.Fake"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.CanvasInfoPage"
 			 x:DataType="vm:CanvasInfoPageViewModel"
@@ -17,7 +18,7 @@
 		<Grid Grid.Column="0"
 			  RowDefinitions="*,auto">
 			<Grid RowDefinitions="auto,*, auto">
-				<Button Content="Родитель"
+				<Button Content="{x:Static resource:Resource.parent}"
 						Command="{Binding BackVersion}"/>
 				
 				<TransitioningContentControl Content="{Binding Image}"
@@ -62,19 +63,19 @@
 					</WrapPanel>
 					<UniformGrid DockPanel.Dock="Bottom"
 							   IsVisible="{Binding Permission.Edit}">
-							<Button Content="Удалить"
+							<Button Content="{x:Static resource:Resource.delete}"
 									Command="{Binding Delete}"
 									Classes="dangerous"/>
-							<Button Content="Изменить"
+							<Button Content="{x:Static resource:Resource.edit}"
 									Command="{Binding EditVersion}"/>
 					</UniformGrid>
-					<Button Content="Назначить главной версией"
+					<Button Content="{x:Static resource:Resource.setMainVersion}"
 							IsEnabled="{Binding IsMainVersion}"
 							Command="{Binding SelectMainVersion}"
 							IsVisible="{Binding PermissionCanvas.Edit}"
 							HorizontalAlignment="Stretch"
 							DockPanel.Dock="Bottom"/>
-					<Button Content="Наследоваться от версии"
+					<Button Content="{x:Static resource:Resource.inheritVersion}"
 							Click="ButtonAddVersion_Click"
 							DockPanel.Dock="Bottom"/>
 

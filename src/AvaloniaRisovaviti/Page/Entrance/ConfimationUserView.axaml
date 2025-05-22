@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Main"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
 			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.ConfimationUserView"
 			 x:DataType="vm:ConfimationUserViewModel">
@@ -14,7 +15,7 @@
 			<TextBlock Text="Код подтверждения"/>
 			<TextBox Text="{Binding Code.Code}"/>
 			<TextBlock Text="На почту, которую вы указали при регистрации должен прийти код подтвеждения"/>
-			<Button Content="Подтвердить"
+			<Button Content="{x:Static resource:Resource.Confirm}"
 					HorizontalAlignment="Center"
 					Click="Button_Click"/>
 		</StackPanel>

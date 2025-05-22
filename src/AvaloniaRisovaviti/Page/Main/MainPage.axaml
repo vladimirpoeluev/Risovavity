@@ -57,10 +57,10 @@
 			</StackPanel>
 			<StackPanel Grid.Row="1">
 				<Button Grid.Column="1"
-						Content="{}"
+						Content="{x:Static resource:Resource.txtUpdateInMainPage}"
 						Click="UpdateData_Click"
 						Classes="navbar update"/>
-				<Button Content="Выход"
+				<Button Content="{x:Static resource:Resource.Output}"
 						Classes="dangerous navbar"
 						Click="ExitProfile_Click"/>
 			</StackPanel>

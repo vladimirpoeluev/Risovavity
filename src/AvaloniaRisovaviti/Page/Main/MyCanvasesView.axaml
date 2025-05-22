@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.MyCanvasesView"
 			 x:DataType="vm:MyCanvasViewModel">
@@ -11,11 +12,11 @@
 	</UserControl.Styles>
 	<Grid RowDefinitions="auto,*">
 		<DockPanel>
-			<Button Content="Добавить работу"
+			<Button Content="{x:Static resource:Resource.addWork}"
 					HorizontalAlignment="Left"
 					DockPanel.Dock="Left"
 					Command="{Binding AddCanvas}"/>
-			<TextBlock Text="Мои холсты"
+			<TextBlock Text="{x:Static resource:Resource.myCanvases}"
 					   Classes="h1"
 					   HorizontalAlignment="Right"/>
 		</DockPanel>
@@ -59,11 +60,11 @@
 										<StackPanel DockPanel.Dock="Right"
 													Orientation="Horizontal"
 													Classes="menu-admin">
-											<Button Content="Delete"
+											<Button Content="{x:Static resource:Resource.delete}"
 													Classes="dangerous del"
 													Command="{Binding DeleteCanvas}"
 													IsVisible="{Binding Permission.Edit}"/>
-											<Button Content="Edit"
+											<Button Content="{x:Static resource:Resource.edit}"
 													Command="{Binding UpdateCanvas}"
 													IsVisible="{Binding Permission.Edit}"/>
 										</StackPanel>
@@ -81,7 +82,7 @@
 				</ListBox>
 
 			</Grid>
-			<Button Content="Ещё"
+			<Button Content="{x:Static resource:Resource.more}"
 					HorizontalAlignment="Right"
 					VerticalAlignment="Bottom"
 					Grid.Row="2"/>

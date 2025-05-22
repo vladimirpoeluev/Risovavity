@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Canvas"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
              x:Class="AvaloniaRisovaviti.FormAddNewCanvas"
 			 x:DataType="vm:FormAddNewCanvasViewModel">
 	<Design.DataContext>
@@ -19,26 +20,26 @@
 			<StackPanel Grid.Row="1"
 						VerticalAlignment="Top">
 				
-				<TextBlock Text="Загрузите свой проект"
+				<TextBlock Text="{x:Static resource:Resource.uploadProject}"
 						   FontSize="20"/>
-				<Button Content="Загрузить изображение"
+				<Button Content="{x:Static resource:Resource.insertImage}"
 						Margin="5"
 						Click="AddNewImage_Click"/>
 			</StackPanel>
 		</Grid>
 		<StackPanel Grid.Column="1">
-			<TextBlock Text="Заполните форму"
+			<TextBlock Text="{x:Static resource:Resource.fillForm}"
 					   FontSize="15"/>
-			<TextBlock Text="Холст"
+			<TextBlock Text="{x:Static resource:Resource.canvas}"
 					   FontSize="20"/>
 			<Border Margin="5"
 					Padding="2"
 					BorderBrush="LightGray"
 					BorderThickness="5">
 				<StackPanel>
-					<TextBlock Text="Наименование"/>
+					<TextBlock Text="{x:Static resource:Resource.title}"/>
 					<TextBox Text="{Binding CanvasResult.Title}"/>
-					<TextBlock Text="Описание"/>
+					<TextBlock Text="{x:Static resource:Resource.description}"/>
 					<TextBox Text="{Binding CanvasResult.Description}"
 							 ScrollViewer.VerticalScrollBarVisibility="Visible"
 							 TextWrapping="Wrap"/>
@@ -46,16 +47,16 @@
 					
 				</StackPanel>
 			</Border>
-			<TextBlock Text="Проект"
+			<TextBlock Text="{x:Static resource:Resource.project}"
 					   FontSize="20"/>
 			<Border Margin="5"
 					Padding="2"
 					BorderBrush="LightGray"
 					BorderThickness="5">
 				<StackPanel>
-					<TextBlock Text="Наименование"/>
+					<TextBlock Text="{x:Static resource:Resource.title}"/>
 					<TextBox Text="{Binding CanvasResult.VersionProject.Name}"/>
-					<TextBlock Text="Описание"/>
+					<TextBlock Text="{x:Static resource:Resource.description}"/>
 					<TextBox Text="{Binding CanvasResult.VersionProject.Description}"
 							 ScrollViewer.VerticalScrollBarVisibility="Visible"
 							 TextWrapping="Wrap"/>
@@ -65,7 +66,7 @@
 			
 			<Button HorizontalAlignment="Center"
 					VerticalAlignment="Center"
-					Content="Добавить новый холст"
+					Content="{x:Static resource:Resource.addNewCanvas}"
 					Background="LightGreen"
 					Command="{Binding AddCanvas}"/>
 			
