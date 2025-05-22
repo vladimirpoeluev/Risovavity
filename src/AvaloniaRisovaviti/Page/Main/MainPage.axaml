@@ -6,6 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AvaloniaRisovaviti.MainPage"
 			 xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Main"
+			 xmlns:resource="using:AvaloniaRisovaviti.Assets"
 			 x:DataType="vm:MainPageViewModel">
 	<UserControl.Styles>
 		<StyleInclude Source="avares://AvaloniaRisovaviti/Styles/MainWindowStyles.axaml"/>
@@ -38,16 +39,16 @@
 				</Button>
 				<StackPanel Height="50"
 							VerticalAlignment="Bottom">
-					<Button Content="Мои работы"
+					<Button Content="{x:Static resource:Resource.txtMyWork}"
 							Classes="navbar myworks"
 							Click="Canvas_Click"/>
-					<Button Content="Авторы"
+					<Button Content="{x:Static resource:Resource.txtAuthors}"
 							Classes="navbar authors"
 							Click="Authors_Click"/>
-					<Button Content="Понравившиеся"
+					<Button Content="{x:Static resource:Resource.txtLikedWork}"
 							Classes="navbar likeswork"
 							Click="InteractiveCanvas_Click"/>
-					<Button Content="Работы авторов"
+					<Button Content="{x:Static resource:Resource.txtAuthorsWorks}"
 							Classes="navbar works"
 							Click="MyCanvas_Click"/>
 					
@@ -56,7 +57,7 @@
 			</StackPanel>
 			<StackPanel Grid.Row="1">
 				<Button Grid.Column="1"
-						Content="Обновить даные"
+						Content="{}"
 						Click="UpdateData_Click"
 						Classes="navbar update"/>
 				<Button Content="Выход"

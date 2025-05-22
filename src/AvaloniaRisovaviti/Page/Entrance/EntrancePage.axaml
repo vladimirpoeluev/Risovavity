@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="using:AvaloniaRisovaviti.ViewModel.Main"
+			xmlns:resourse="using:AvaloniaRisovaviti.Assets"
 			 x:Class="AvaloniaRisovaviti.EntrancePage"
 			 x:DataType="vm:EntrancePageViewModel">
 	<Design.DataContext>
@@ -15,17 +16,17 @@
 					Width="300">
 			<TextBlock	Text="Вход"
 						Classes="h1"/>
-			<Label Content="Логин"/>
+			<Label Content="{x:Static resourse:Resource.Login}"/>
 			<TextBox Text="{Binding Login}"/>
-			<Label Content="Пароль"/>
+			<Label Content="{x:Static resourse:Resource.Password}"/>
 			<TextBox PasswordChar="⚫" Text="{Binding Password}" FontSize="10"/>
 			<TextBlock Foreground="Red" Text="{Binding Error}"/>
-			<Button Content="Забыли пароль?"
+			<Button Content=">Забыли пароль?"
 					Click="Button_Click1"/>
 			<Button HorizontalAlignment="Stretch"
 					Margin="5"
 					Click="Button_Click">
-				<TextBlock Text="Войти"
+				<TextBlock Text="{x:Static resourse:Resource.Input}"
 						   HorizontalAlignment="Center"/>
 			</Button>
 
@@ -33,7 +34,7 @@
 			<Button HorizontalAlignment="Stretch"
 					Margin="5"
 					Click="Reg_Click">
-				<TextBlock Text="Зарегистрироваться"
+				<TextBlock Text="{x:Static resourse:Resource.Registrating}"
 						   HorizontalAlignment="Center"/>
 			</Button>
 

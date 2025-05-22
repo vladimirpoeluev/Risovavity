@@ -61,11 +61,110 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на About App.
+        /// </summary>
+        public static string aboutApp {
+            get {
+                return ResourceManager.GetString("aboutApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Add New Canvas.
+        /// </summary>
+        public static string addNewCanvas {
+            get {
+                return ResourceManager.GetString("addNewCanvas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на  Add Version.
+        /// </summary>
+        public static string addVersion {
+            get {
+                return ResourceManager.GetString("addVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Add Work.
+        /// </summary>
+        public static string addWork {
+            get {
+                return ResourceManager.GetString("addWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на App Settings.
+        /// </summary>
+        public static string appSettings {
+            get {
+                return ResourceManager.GetString("appSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Incorrect login or password.
+        /// </summary>
+        public static string authError {
+            get {
+                return ResourceManager.GetString("authError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на  Auth Error.
+        /// </summary>
+        public static string authErrortxt {
+            get {
+                return ResourceManager.GetString("authErrortxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Passwords &amp; Auth Settings.
+        /// </summary>
+        public static string authSettings {
+            get {
+                return ResourceManager.GetString("authSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Back.
         /// </summary>
         public static string Back {
             get {
                 return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Canvas.
+        /// </summary>
+        public static string canvas {
+            get {
+                return ResourceManager.GetString("canvas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Canvases.
+        /// </summary>
+        public static string canvases {
+            get {
+                return ResourceManager.GetString("canvases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Change Password.
+        /// </summary>
+        public static string changePassword {
+            get {
+                return ResourceManager.GetString("changePassword", resourceCulture);
             }
         }
         
@@ -88,6 +187,78 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Connected Devices.
+        /// </summary>
+        public static string connectedDevices {
+            get {
+                return ResourceManager.GetString("connectedDevices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Connection Error.
+        /// </summary>
+        public static string connectionError {
+            get {
+                return ResourceManager.GetString("connectionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Create New Project.
+        /// </summary>
+        public static string createNewProject {
+            get {
+                return ResourceManager.GetString("createNewProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Delete.
+        /// </summary>
+        public static string delete {
+            get {
+                return ResourceManager.GetString("delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Delete All.
+        /// </summary>
+        public static string deleteAll {
+            get {
+                return ResourceManager.GetString("deleteAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Description.
+        /// </summary>
+        public static string description {
+            get {
+                return ResourceManager.GetString("description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Drafts.
+        /// </summary>
+        public static string drafts {
+            get {
+                return ResourceManager.GetString("drafts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Edit.
+        /// </summary>
+        public static string edit {
+            get {
+                return ResourceManager.GetString("edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Email.
         /// </summary>
         public static string Email {
@@ -106,11 +277,101 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на  Enter Code.
+        /// </summary>
+        public static string enterCode {
+            get {
+                return ResourceManager.GetString("enterCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Enter Login.
+        /// </summary>
+        public static string enterLogin {
+            get {
+                return ResourceManager.GetString("enterLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Entrance.
+        /// </summary>
+        public static string Entrance {
+            get {
+                return ResourceManager.GetString("Entrance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на  Fill in the Field.
+        /// </summary>
+        public static string fillField {
+            get {
+                return ResourceManager.GetString("fillField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на  Fill Out Form.
+        /// </summary>
+        public static string fillForm {
+            get {
+                return ResourceManager.GetString("fillForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Forgot your password?.
+        /// </summary>
+        public static string forgetPasswort {
+            get {
+                return ResourceManager.GetString("forgetPasswort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Go to Auth Tab.
+        /// </summary>
+        public static string goToAuthTab {
+            get {
+                return ResourceManager.GetString("goToAuthTab", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Inherit from version.
+        /// </summary>
+        public static string inheritVersion {
+            get {
+                return ResourceManager.GetString("inheritVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Login.
         /// </summary>
         public static string Input {
             get {
                 return ResourceManager.GetString("Input", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Insert Image.
+        /// </summary>
+        public static string insertImage {
+            get {
+                return ResourceManager.GetString("insertImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Key.
+        /// </summary>
+        public static string key {
+            get {
+                return ResourceManager.GetString("key", resourceCulture);
             }
         }
         
@@ -133,6 +394,51 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на  More.
+        /// </summary>
+        public static string more {
+            get {
+                return ResourceManager.GetString("more", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на My Canvases.
+        /// </summary>
+        public static string myCanvases {
+            get {
+                return ResourceManager.GetString("myCanvases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на My Drafts.
+        /// </summary>
+        public static string myDrafts {
+            get {
+                return ResourceManager.GetString("myDrafts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на My Versions.
+        /// </summary>
+        public static string myVersions {
+            get {
+                return ResourceManager.GetString("myVersions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Name.
+        /// </summary>
+        public static string name {
+            get {
+                return ResourceManager.GetString("name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Risovavity Avalonia.
         /// </summary>
         public static string NameApp {
@@ -151,6 +457,69 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на New Password.
+        /// </summary>
+        public static string newPassword {
+            get {
+                return ResourceManager.GetString("newPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на New Version.
+        /// </summary>
+        public static string newVersion {
+            get {
+                return ResourceManager.GetString("newVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Next.
+        /// </summary>
+        public static string next {
+            get {
+                return ResourceManager.GetString("next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Old Password.
+        /// </summary>
+        public static string oldPassword {
+            get {
+                return ResourceManager.GetString("oldPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Old Version.
+        /// </summary>
+        public static string oldVersion {
+            get {
+                return ResourceManager.GetString("oldVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Uutput.
+        /// </summary>
+        public static string Output {
+            get {
+                return ResourceManager.GetString("Output", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Parent.
+        /// </summary>
+        public static string parent {
+            get {
+                return ResourceManager.GetString("parent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Password.
         /// </summary>
         public static string Password {
@@ -165,6 +534,42 @@ namespace AvaloniaRisovaviti.Assets {
         public static string Profile {
             get {
                 return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Profile Settings.
+        /// </summary>
+        public static string profileSettings {
+            get {
+                return ResourceManager.GetString("profileSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Project.
+        /// </summary>
+        public static string project {
+            get {
+                return ResourceManager.GetString("project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Recovery Methods.
+        /// </summary>
+        public static string recoveryMethods {
+            get {
+                return ResourceManager.GetString("recoveryMethods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Account Recovery.
+        /// </summary>
+        public static string recoveryTitle {
+            get {
+                return ResourceManager.GetString("recoveryTitle", resourceCulture);
             }
         }
         
@@ -196,11 +601,83 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Repeat New Password.
+        /// </summary>
+        public static string repeatNewPassword {
+            get {
+                return ResourceManager.GetString("repeatNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Repeat password.
         /// </summary>
         public static string RepeatPassword {
             get {
                 return ResourceManager.GetString("RepeatPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Resource Search Error.
+        /// </summary>
+        public static string resourceSearchError {
+            get {
+                return ResourceManager.GetString("resourceSearchError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Role.
+        /// </summary>
+        public static string role {
+            get {
+                return ResourceManager.GetString("role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Save Changes.
+        /// </summary>
+        public static string saveChanges {
+            get {
+                return ResourceManager.GetString("saveChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Search.
+        /// </summary>
+        public static string search {
+            get {
+                return ResourceManager.GetString("search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Security.
+        /// </summary>
+        public static string security {
+            get {
+                return ResourceManager.GetString("security", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Select Existing Project.
+        /// </summary>
+        public static string selectExistingProject {
+            get {
+                return ResourceManager.GetString("selectExistingProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Set as main version.
+        /// </summary>
+        public static string setMainVersion {
+            get {
+                return ResourceManager.GetString("setMainVersion", resourceCulture);
             }
         }
         
@@ -219,6 +696,24 @@ namespace AvaloniaRisovaviti.Assets {
         public static string TextConfid {
             get {
                 return ResourceManager.GetString("TextConfid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Title.
+        /// </summary>
+        public static string title {
+            get {
+                return ResourceManager.GetString("title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Two-Factor Authentication.
+        /// </summary>
+        public static string twoFactorAuth {
+            get {
+                return ResourceManager.GetString("twoFactorAuth", resourceCulture);
             }
         }
         
@@ -282,6 +777,42 @@ namespace AvaloniaRisovaviti.Assets {
         public static string txtThemes {
             get {
                 return ResourceManager.GetString("txtThemes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Update.
+        /// </summary>
+        public static string txtUpdateInMainPage {
+            get {
+                return ResourceManager.GetString("txtUpdateInMainPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Unknown Error.
+        /// </summary>
+        public static string unknownError {
+            get {
+                return ResourceManager.GetString("unknownError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Upload Your Project.
+        /// </summary>
+        public static string uploadProject {
+            get {
+                return ResourceManager.GetString("uploadProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Versions.
+        /// </summary>
+        public static string versions {
+            get {
+                return ResourceManager.GetString("versions", resourceCulture);
             }
         }
     }

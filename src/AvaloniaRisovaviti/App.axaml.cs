@@ -36,7 +36,8 @@ namespace AvaloniaRisovaviti
             var builder = new ContainerBuilder();
             ConfiguredContaner(builder);
             Container = builder.Build();
-            AvaloniaXamlLoader.Load(this);
+			
+			AvaloniaXamlLoader.Load(this);
         }
 
         void ConfiguredContaner(ContainerBuilder builder)
@@ -103,22 +104,24 @@ namespace AvaloniaRisovaviti
             builder.RegisterType<AvatarGetter>().As<IUserAvatarGetter>();
             builder.RegisterType<AuthorGetter>().As<IAuthorGetter>();
             builder.RegisterType<GetterImageProject>().As<IGetterImageProject>();
-        }
+			
 
-        public override async void OnFrameworkInitializationCompleted()
+		}
+
+		public override async void OnFrameworkInitializationCompleted()
         {
-           
-			if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            {
-                desktop.MainWindow = new EntranceWindow();
-            }
-
 			var settingsService = Container.Resolve<ISettingsAppService>();
 			SettingsApp settings = await settingsService.GetSettings();
 
 			Assets.Resource.Culture = new System.Globalization.CultureInfo(settings.Lang);
+
 			this.RequestedThemeVariant = settings.Theme == "Light" ? ThemeVariant.Light : ThemeVariant.Dark;
 
+			if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+			{
+				desktop.MainWindow = new EntranceWindow();
+                desktop.MainWindow.Show();
+			}
 			base.OnFrameworkInitializationCompleted();
         }
 

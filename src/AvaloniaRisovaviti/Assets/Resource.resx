@@ -192,4 +192,181 @@
   <data name="txtThemes" xml:space="preserve">
     <value>Themes</value>
   </data>
+  <data name="forgetPasswort" xml:space="preserve">
+    <value>Forgot your password?</value>
+  </data>
+  <data name="Entrance" xml:space="preserve">
+    <value>Entrance</value>
+  </data>
+  <data name="txtUpdateInMainPage" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Uutput</value>
+  </data>
+  <data name="recoveryTitle" xml:space="preserve">
+    <value>Account Recovery</value>
+  </data>
+  <data name="enterLogin" xml:space="preserve">
+    <value>Enter Login</value>
+  </data>
+  <data name="enterCode" xml:space="preserve">
+    <value> Enter Code</value>
+  </data>
+  <data name="authError" xml:space="preserve">
+    <value>Incorrect login or password</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="inheritVersion" xml:space="preserve">
+    <value>Inherit from version</value>
+  </data>
+  <data name="parent" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+  <data name="setMainVersion" xml:space="preserve">
+    <value>Set as main version</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="saveChanges" xml:space="preserve">
+    <value>Save Changes</value>
+  </data>
+  <data name="insertImage" xml:space="preserve">
+    <value>Insert Image</value>
+  </data>
+  <data name="security" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="profileSettings" xml:space="preserve">
+    <value>Profile Settings</value>
+  </data>
+  <data name="appSettings" xml:space="preserve">
+    <value>App Settings</value>
+  </data>
+  <data name="aboutApp" xml:space="preserve">
+    <value>About App</value>
+  </data>
+  <data name="connectedDevices" xml:space="preserve">
+    <value>Connected Devices</value>
+  </data>
+  <data name="authSettings" xml:space="preserve">
+    <value>Passwords &amp; Auth Settings</value>
+  </data>
+  <data name="recoveryMethods" xml:space="preserve">
+    <value>Recovery Methods</value>
+  </data>
+  <data name="deleteAll" xml:space="preserve">
+    <value>Delete All</value>
+  </data>
+  <data name="oldPassword" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="newPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="repeatNewPassword" xml:space="preserve">
+    <value>Repeat New Password</value>
+  </data>
+  <data name="twoFactorAuth" xml:space="preserve">
+    <value>Two-Factor Authentication</value>
+  </data>
+  <data name="changePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="key" xml:space="preserve">
+    <value>Key</value>
+  </data>
+  <data name="myCanvases" xml:space="preserve">
+    <value>My Canvases</value>
+  </data>
+  <data name="myVersions" xml:space="preserve">
+    <value>My Versions</value>
+  </data>
+  <data name="myDrafts" xml:space="preserve">
+    <value>My Drafts</value>
+  </data>
+  <data name="addWork" xml:space="preserve">
+    <value>Add Work</value>
+  </data>
+  <data name="canvases" xml:space="preserve">
+    <value>Canvases</value>
+  </data>
+  <data name="versions" xml:space="preserve">
+    <value>Versions</value>
+  </data>
+  <data name="drafts" xml:space="preserve">
+    <value>Drafts</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value> More</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="uploadProject" xml:space="preserve">
+    <value>Upload Your Project</value>
+  </data>
+  <data name="fillForm" xml:space="preserve">
+    <value> Fill Out Form</value>
+  </data>
+  <data name="canvas" xml:space="preserve">
+    <value>Canvas</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="addNewCanvas" xml:space="preserve">
+    <value>Add New Canvas</value>
+  </data>
+  <data name="oldVersion" xml:space="preserve">
+    <value>Old Version</value>
+  </data>
+  <data name="newVersion" xml:space="preserve">
+    <value>New Version</value>
+  </data>
+  <data name="selectExistingProject" xml:space="preserve">
+    <value>Select Existing Project</value>
+  </data>
+  <data name="createNewProject" xml:space="preserve">
+    <value>Create New Project</value>
+  </data>
+  <data name="fillField" xml:space="preserve">
+    <value> Fill in the Field</value>
+  </data>
+  <data name="addVersion" xml:space="preserve">
+    <value> Add Version</value>
+  </data>
+  <data name="goToAuthTab" xml:space="preserve">
+    <value>Go to Auth Tab</value>
+  </data>
+  <data name="authErrortxt" xml:space="preserve">
+    <value> Auth Error</value>
+  </data>
+  <data name="resourceSearchError" xml:space="preserve">
+    <value>Resource Search Error</value>
+  </data>
+  <data name="connectionError" xml:space="preserve">
+    <value>Connection Error</value>
+  </data>
+  <data name="unknownError" xml:space="preserve">
+    <value>Unknown Error</value>
+  </data>
 </root>

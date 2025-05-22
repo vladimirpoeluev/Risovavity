@@ -192,4 +192,181 @@
   <data name="txtThemes" xml:space="preserve">
     <value>Темы</value>
   </data>
+  <data name="forgetPasswort" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="Entrance" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="txtUpdateInMainPage" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="recoveryTitle" xml:space="preserve">
+    <value>Восстановление доступа</value>
+  </data>
+  <data name="enterLogin" xml:space="preserve">
+    <value>Введите логин</value>
+  </data>
+  <data name="enterCode" xml:space="preserve">
+    <value>Введите код</value>
+  </data>
+  <data name="authError" xml:space="preserve">
+    <value>Логин или пароль были введены неверно</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="inheritVersion" xml:space="preserve">
+    <value>Наследоваться от версии</value>
+  </data>
+  <data name="parent" xml:space="preserve">
+    <value> Родитель</value>
+  </data>
+  <data name="setMainVersion" xml:space="preserve">
+    <value>Назначить главной версией</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="role" xml:space="preserve">
+    <value>Роль</value>
+  </data>
+  <data name="saveChanges" xml:space="preserve">
+    <value>Сохранить изменения</value>
+  </data>
+  <data name="insertImage" xml:space="preserve">
+    <value>Вставить изображение</value>
+  </data>
+  <data name="security" xml:space="preserve">
+    <value>Безопасность</value>
+  </data>
+  <data name="profileSettings" xml:space="preserve">
+    <value> Настройки профиля</value>
+  </data>
+  <data name="appSettings" xml:space="preserve">
+    <value>Настройки приложения</value>
+  </data>
+  <data name="aboutApp" xml:space="preserve">
+    <value>О приложении</value>
+  </data>
+  <data name="connectedDevices" xml:space="preserve">
+    <value>Подключенные устройства</value>
+  </data>
+  <data name="authSettings" xml:space="preserve">
+    <value>Пароли и настройки аутентификации</value>
+  </data>
+  <data name="recoveryMethods" xml:space="preserve">
+    <value>Способы восстановления</value>
+  </data>
+  <data name="deleteAll" xml:space="preserve">
+    <value>Удалить все</value>
+  </data>
+  <data name="oldPassword" xml:space="preserve">
+    <value>Старый пароль</value>
+  </data>
+  <data name="newPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="repeatNewPassword" xml:space="preserve">
+    <value>Повтор нового пароля</value>
+  </data>
+  <data name="twoFactorAuth" xml:space="preserve">
+    <value>Двухфакторная аутентификация</value>
+  </data>
+  <data name="changePassword" xml:space="preserve">
+    <value>Изменить пароль</value>
+  </data>
+  <data name="key" xml:space="preserve">
+    <value>Ключ</value>
+  </data>
+  <data name="myCanvases" xml:space="preserve">
+    <value>Мои холсты</value>
+  </data>
+  <data name="myVersions" xml:space="preserve">
+    <value>Мои версии</value>
+  </data>
+  <data name="myDrafts" xml:space="preserve">
+    <value> Мои черновики</value>
+  </data>
+  <data name="addWork" xml:space="preserve">
+    <value>Добавить работу</value>
+  </data>
+  <data name="canvases" xml:space="preserve">
+    <value>Холсты</value>
+  </data>
+  <data name="versions" xml:space="preserve">
+    <value>Версии</value>
+  </data>
+  <data name="drafts" xml:space="preserve">
+    <value>Черновики</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>Еще</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Далее</value>
+  </data>
+  <data name="uploadProject" xml:space="preserve">
+    <value>Загрузите свой проект</value>
+  </data>
+  <data name="fillForm" xml:space="preserve">
+    <value>Заполните форму</value>
+  </data>
+  <data name="canvas" xml:space="preserve">
+    <value>Холст</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="project" xml:space="preserve">
+    <value>Проект</value>
+  </data>
+  <data name="addNewCanvas" xml:space="preserve">
+    <value>Добавить новый холст</value>
+  </data>
+  <data name="oldVersion" xml:space="preserve">
+    <value>Старая версия</value>
+  </data>
+  <data name="newVersion" xml:space="preserve">
+    <value>Новая версия</value>
+  </data>
+  <data name="selectExistingProject" xml:space="preserve">
+    <value>выбрать существующий проект</value>
+  </data>
+  <data name="createNewProject" xml:space="preserve">
+    <value>Создать новый проект</value>
+  </data>
+  <data name="fillField" xml:space="preserve">
+    <value>Заполните поле</value>
+  </data>
+  <data name="addVersion" xml:space="preserve">
+    <value> Добавить версию</value>
+  </data>
+  <data name="goToAuthTab" xml:space="preserve">
+    <value>Перейти во вкладку авторизации</value>
+  </data>
+  <data name="authErrortxt" xml:space="preserve">
+    <value>Ошибка авторизации</value>
+  </data>
+  <data name="resourceSearchError" xml:space="preserve">
+    <value>Ошибка поиска ресурса</value>
+  </data>
+  <data name="connectionError" xml:space="preserve">
+    <value>Ошибка подключения</value>
+  </data>
+  <data name="unknownError" xml:space="preserve">
+    <value>Ошибка еще чего-то</value>
+  </data>
 </root>
