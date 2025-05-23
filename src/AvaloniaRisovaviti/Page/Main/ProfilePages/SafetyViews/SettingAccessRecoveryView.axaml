@@ -18,6 +18,9 @@
 					   Classes="h2"/>
 			<SelectableTextBlock Text="{Binding Keys.TotpKeys}"
 								Classes="h3"/>
+			<Button Content=">Генерация ключа"
+					Command="{Binding CreateKey}"/>
+			<TextBlock Text=">После генерации ключа прошлый ключ будет удален"/>
 		</StackPanel>
 			
 	</Grid>

@@ -13,7 +13,7 @@
 	<Grid>
 		<StackPanel HorizontalAlignment="Center"
 					VerticalAlignment="Center"
-					Width="300">
+					MinWidth="300">
 			<TextBlock	Text="{x:Static resourse:Resource.Entrance}"
 						Classes="h1"/>
 			<Label Content="{x:Static resourse:Resource.Login}"/>

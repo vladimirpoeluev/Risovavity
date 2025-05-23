@@ -23,9 +23,14 @@ namespace AvaloniaRisovaviti.ViewModel.Other
 			Keys.TotpKeysForQR = "https://github.com/MikeCodesDotNET/Avalonia-QRCode";
 		}
 
-		public override async void Load()
+		public override void Load()
 		{
-			TryActionAsync(async () =>
+			base.Load();
+		}
+
+		public async void CreateKey()
+		{
+			await TryActionAsync(async () =>
 			{
 				Keys = await getterTotp.GetKey();
 				using var qrGenerator = new QRCodeGenerator();
@@ -33,7 +38,6 @@ namespace AvaloniaRisovaviti.ViewModel.Other
 				using var qr = new BitmapByteQRCode(qrCodeData);
 				QRCode = ImageAvaloniaConverter.ConvertByteInImage(qr.GetGraphic(20));
 			});
-			base.Load();
 		}
 	}
 }
