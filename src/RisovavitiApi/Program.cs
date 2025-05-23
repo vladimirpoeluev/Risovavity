@@ -149,8 +149,9 @@ builder.Services.AddTransient<IGetterImageProject, GetterImageProject>();
 builder.Services.AddTransient<IBuilderGetterVerionsByParent, BuilderGetterVerionsByParent>();
 
 builder.Services.AddTransient<IAdderSessionByRefresh, AdderSessionByRefresh>(h => 
-new AdderSessionByRefresh(h.GetRequiredService<IRedisService>(),
-new CreaterTokenForRefresh()));
+	new AdderSessionByRefresh(h.GetRequiredService<IRedisService>(),
+	new CreaterTokenForRefresh(),
+	h.GetRequiredService<ISessionService>()));
 builder.Services.AddTransient<IGetterSessionByRefresh, GetterSessionByRefresh>();
 
 builder.Services.AddTransient<IAdderSession, AdderSession>(h =>
@@ -163,7 +164,7 @@ builder.Services.AddTransient<IAdderSession, AdderSession>(h =>
 builder.Services.AddTransient<ICreaterToken, CreaterToken>();
 builder.Services.AddTransient<IAutorizeServiceRefresh, AuthorizeServiceRefresh>(h =>
 new AuthorizeServiceRefresh(
-	new AdderSessionByRefresh(h.GetRequiredService<IRedisService>(), new CreaterTokenForRefresh()),
+	new AdderSessionByRefresh(h.GetRequiredService<IRedisService>(), new CreaterTokenForRefresh(), h.GetRequiredService<ISessionService>()),
 	new InputerSystem(h.GetRequiredService<ICreaterToken>()),
 	new GetterSessionByRefresh(h.GetRequiredService<IRedisService>()),
 	new DeleterSession(h.GetRequiredService<IRedisService>()),

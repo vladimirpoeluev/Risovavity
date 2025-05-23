@@ -97,6 +97,15 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на After generating a key, the previous key will be deleted.
+        /// </summary>
+        public static string afterGenerating {
+            get {
+                return ResourceManager.GetString("afterGenerating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на App Settings.
         /// </summary>
         public static string appSettings {
@@ -286,6 +295,15 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Login or password was entered incorrectly.
+        /// </summary>
+        public static string enteredIncorrectly {
+            get {
+                return ResourceManager.GetString("enteredIncorrectly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Enter Login.
         /// </summary>
         public static string enterLogin {
@@ -327,6 +345,15 @@ namespace AvaloniaRisovaviti.Assets {
         public static string forgetPasswort {
             get {
                 return ResourceManager.GetString("forgetPasswort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Generating a key.
+        /// </summary>
+        public static string generatingkey {
+            get {
+                return ResourceManager.GetString("generatingkey", resourceCulture);
             }
         }
         
@@ -502,7 +529,7 @@ namespace AvaloniaRisovaviti.Assets {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Uutput.
+        ///   Ищет локализованную строку, похожую на Output.
         /// </summary>
         public static string Output {
             get {

@@ -202,7 +202,7 @@
     <value>Update</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Uutput</value>
+    <value>Output</value>
   </data>
   <data name="recoveryTitle" xml:space="preserve">
     <value>Account Recovery</value>
@@ -368,5 +368,14 @@
   </data>
   <data name="unknownError" xml:space="preserve">
     <value>Unknown Error</value>
+  </data>
+  <data name="generatingkey" xml:space="preserve">
+    <value>Generating a key</value>
+  </data>
+  <data name="afterGenerating" xml:space="preserve">
+    <value>After generating a key, the previous key will be deleted</value>
+  </data>
+  <data name="enteredIncorrectly" xml:space="preserve">
+    <value>Login or password was entered incorrectly</value>
   </data>
 </root>

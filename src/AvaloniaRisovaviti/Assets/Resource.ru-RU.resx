@@ -369,4 +369,13 @@
   <data name="unknownError" xml:space="preserve">
     <value>Ошибка еще чего-то</value>
   </data>
+  <data name="generatingkey" xml:space="preserve">
+    <value>Генерация ключа</value>
+  </data>
+  <data name="afterGenerating" xml:space="preserve">
+    <value>После генерации ключа прошлый ключ будет удален</value>
+  </data>
+  <data name="enteredIncorrectly" xml:space="preserve">
+    <value>Логин или пароль были введены неверно</value>
+  </data>
 </root>

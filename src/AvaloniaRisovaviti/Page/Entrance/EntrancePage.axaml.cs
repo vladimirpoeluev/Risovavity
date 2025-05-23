@@ -6,6 +6,7 @@ using AvaloniaRisovaviti.ViewModel.Main;
 using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.Interface;
 using Autofac;
+using AvaloniaRisovaviti.Assets;
 
 namespace AvaloniaRisovaviti;
 
@@ -47,7 +48,7 @@ public partial class EntrancePage : UserControl
 		}
         catch(Exception)
         {
-            viewModel.Error = "Логин или пароль были введены неверно";
+            viewModel.Error = Resource.enteredIncorrectly;
         }        
     }
 
