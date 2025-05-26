@@ -184,7 +184,7 @@
     <value>Работы авторов</value>
   </data>
   <data name="txtLikedWork" xml:space="preserve">
-    <value>Понравивщиеся</value>
+    <value>Избранные</value>
   </data>
   <data name="txtLang" xml:space="preserve">
     <value>Язык</value>

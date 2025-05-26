@@ -75,6 +75,13 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 					}
 				});
 		}
+		
+		void ClearForm()
+		{
+			Path = null;
+			NewImageProjectResult = new Bitmap(AssetLoader.Open(new Uri("avares://AvaloniaRisovaviti/Accets/placeholder.png")));
+			NewProjectResult = new VersionProjectViewModel();
+		}
 
 		public FormAddVersionViewModel(VersionProjectResult parent) : this()
 		{
@@ -119,6 +126,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 						Name = NewProjectResult.Name,
 						Descriptoin = NewProjectResult.Description,
 					});
+					ClearForm();
 				});
 			}
 			catch (Exception ex)
