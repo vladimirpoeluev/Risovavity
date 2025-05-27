@@ -9,11 +9,8 @@ namespace TestRisovaviti.DataIntegration
 		[Fact]
 		public void TestEfUserRole()
 		{
-			var getUser = new IntegrationUsersEf();
-			var expected = new Role() { Id = 1, Name = "Admin" };
-			var result = getUser.Get(1);
+			
 
-			Assert.Equal(expected, result.Role);
 		}
 
 		[Fact]

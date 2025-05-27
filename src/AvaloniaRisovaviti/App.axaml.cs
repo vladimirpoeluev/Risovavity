@@ -1,7 +1,5 @@
 using Autofac;
-using Autofac.Core;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Avalonia.Styling;
@@ -19,7 +17,6 @@ using InteractiveApiRisovaviti;
 using InteractiveApiRisovaviti.CanvasOperate;
 using InteractiveApiRisovaviti.ControllerIntegration;
 using InteractiveApiRisovaviti.Exceptions;
-using InteractiveApiRisovaviti.HttpIntegration;
 using InteractiveApiRisovaviti.Interface;
 using InteractiveApiRisovaviti.Interface.Topt;
 using InteractiveApiRisovaviti.TotpOperate;

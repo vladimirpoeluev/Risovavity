@@ -1,7 +1,7 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<Design.PreviewWith>
-		<ThemeVariantScope RequestedThemeVariant="Dark">
+		<ThemeVariantScope RequestedThemeVariant="Light">
 			<UniformGrid>
 				<Rectangle Fill="{DynamicResource lightfon}" Width="100" Height="100"/>
 				<Rectangle Fill="{DynamicResource light}" Width="100" Height="100"/>
@@ -25,7 +25,7 @@
 			<ResourceDictionary x:Key="Light">
 					<SolidColorBrush x:Key="lightfon">#F6F0FF</SolidColorBrush>
 					<SolidColorBrush x:Key="light">#DEC5FF</SolidColorBrush>
-					<SolidColorBrush x:Key="black">#A977EC</SolidColorBrush>
+					<SolidColorBrush x:Key="black">#6a429e</SolidColorBrush>
 					<SolidColorBrush x:Key="medding">#B98EF1</SolidColorBrush>
 					<SolidColorBrush x:Key="light-medding">#C090FF</SolidColorBrush>
 
