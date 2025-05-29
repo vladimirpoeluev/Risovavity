@@ -126,6 +126,8 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 						Name = NewProjectResult.Name,
 						Descriptoin = NewProjectResult.Description,
 					});
+					await MessageBoxManager.GetMessageBoxStandard("Уведомление", $"Проект \"{NewProjectResult.Name}\" был успешно добавлен")
+						.ShowWindowAsync();
 					ClearForm();
 				});
 			}
