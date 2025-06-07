@@ -1,11 +1,7 @@
-using AvaloniaEdit.Utils;
 using AvaloniaRisovaviti.Model;
 using DomainModel.ResultsRequest;
-using DynamicData.Binding;
 using InteractiveApiRisovaviti;
 using InteractiveApiRisovaviti.Interface;
-using MsBox.Avalonia;
-using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel.Author
 {
-    public class AuthorViewModel : BaseViewModel, INotifyPropertyChanged
+	public class AuthorViewModel : BaseViewModel, INotifyPropertyChanged
     {
         public IEnumerable<AuthorResult> AuthorResults { get; set; } = new List<AuthorResult>();
         public IEnumerable<AuthorResultImage> Authors { get; set; } = new List<AuthorResultImage>();

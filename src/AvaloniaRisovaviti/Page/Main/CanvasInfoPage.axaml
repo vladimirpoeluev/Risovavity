@@ -56,11 +56,19 @@
 								 IsVisible="{Binding IsEdit}"/>
 					</Grid>
 					
-					<WrapPanel DockPanel.Dock="Top">
-						<CheckBox IsChecked="{Binding IsLikes}"
-								  Classes="like"/>
-						<TextBlock Text="{Binding CountLike}"/>
-					</WrapPanel>
+					<DockPanel DockPanel.Dock="Top"
+							   HorizontalAlignment="Stretch">
+						<WrapPanel DockPanel.Dock="Left">
+							<CheckBox IsChecked="{Binding IsLikes}"
+									  Classes="like"/>
+							<TextBlock Text="{Binding CountLike}"/>
+						</WrapPanel>
+						<WrapPanel DockPanel.Dock="Right"
+								   HorizontalAlignment="Right">
+							<Button Content="Save"/>
+						</WrapPanel>
+					</DockPanel>
+					
 					<UniformGrid DockPanel.Dock="Bottom"
 							   IsVisible="{Binding Permission.Edit}">
 							<Button Content="{x:Static resource:Resource.delete}"
@@ -89,18 +97,26 @@
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<Button CommandParameter="{Binding VersionProjectResult}"
+							HorizontalContentAlignment="Stretch"
+							Padding="0"
 							Command="{Binding Path=$parent[UserControl].((vm:CanvasInfoPageViewModel)DataContext).SetVersion}">
-						<Grid ColumnDefinitions="*,auto">
+						<Grid ColumnDefinitions="*,auto"
+							  HorizontalAlignment="Left">
 							<Image Source="{Binding Image}"
 								   Width="250"
 								   HorizontalAlignment="Left"/>
-							<StackPanel Grid.Column="1">
+							<StackPanel Grid.Column="1"
+										Margin="5"
+										HorizontalAlignment="Stretch">
 								<TextBlock Text="{Binding VersionProjectResult.Name}"/>
-								<StackPanel Orientation="Horizontal">
-									<CheckBox Classes="like"
-											  IsChecked="true"/>
-									<TextBlock Text="{Binding CountLike}"/>
-								</StackPanel>
+								
+								<StackPanel Orientation="Horizontal"
+												DockPanel.Dock="Left">
+										<CheckBox Classes="like"
+												  IsChecked="true"/>
+										<TextBlock Text="{Binding CountLike}"/>
+									</StackPanel>
+								
 							</StackPanel>
 						</Grid>
 					</Button>
