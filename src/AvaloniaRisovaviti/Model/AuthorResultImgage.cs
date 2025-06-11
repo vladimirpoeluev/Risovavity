@@ -34,7 +34,7 @@ namespace AvaloniaRisovaviti.Model
 			try
 			{
 				UserAvatarResult result = await getter.GetAvatarUserAsync(AuthorResult.UserId);
-				byte[] bytes = result.AvatarResult;
+				byte[] bytes = result?.AvatarResult ?? [];
 				if (bytes != null)
 					Icon = ProfileShows.ImageAvaloniaConverter.ConvertByteInImage(bytes);
 			}

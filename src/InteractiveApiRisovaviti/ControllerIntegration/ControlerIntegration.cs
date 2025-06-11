@@ -55,7 +55,10 @@ namespace InteractiveApiRisovaviti.ControllerIntegration
 			if (message.StatusCode != HttpStatusCode.OK)
 			{
 				var result = TryCheckStatusCode(message);
-				throw new RequstException(result);
+				throw new RequstException(result) 
+                {
+                    StatusCode = message.StatusCode.ToString()
+                };
 			}
 		}
 

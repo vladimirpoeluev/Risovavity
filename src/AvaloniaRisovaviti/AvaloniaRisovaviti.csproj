@@ -6,8 +6,8 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <StartupObject></StartupObject>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="Accets\breakImage.png" />
     <None Remove="Accets\CartoonFunCyrillic.ttf" />

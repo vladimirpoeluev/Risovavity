@@ -32,11 +32,11 @@ public partial class EntrancePage : UserControl
         DataContext = viewModel;
     }
 
-    private void Button_Click(object? obj, RoutedEventArgs e)
+    private async void Button_Click(object? obj, RoutedEventArgs e)
     {
         try
         {
-			Authentication.AuthenticationUser.User = entrance.IputSystem(viewModel.Login, viewModel.Password);
+			Authentication.AuthenticationUser.User = await entrance.InputSystemAsync(viewModel.Login, viewModel.Password);
             if(Authentication.AuthenticationUser.User == AuthenticationUser.NotAuthenticationUser)
             {
                 var view = App.Container.Resolve<ConfimationUserView>();
@@ -46,7 +46,7 @@ public partial class EntrancePage : UserControl
             }
 			this.Content = new MainPage();
 		}
-        catch(Exception)
+        catch(Exception ex)
         {
             viewModel.Error = Resource.enteredIncorrectly;
         }        
