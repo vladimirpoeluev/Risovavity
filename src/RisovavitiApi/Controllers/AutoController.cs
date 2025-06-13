@@ -49,7 +49,7 @@ namespace RisovavitiApi.Controllers
 			}
 			catch (Exception ex)
 			{
-				return NotFound(new ErrorMessageRequest() { Message = ex.Message, NumberError = 40 });
+				return NotFound(new ErrorMessageRequest() { Message = ex.Message + ex + ex.Source + ex.HelpLink, NumberError = 40 });
 			}
 		}
 
