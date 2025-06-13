@@ -1,3 +1,4 @@
+using AvaloniaEdit.Utils;
 using AvaloniaRisovaviti.Model;
 using DomainModel.Integration;
 using DomainModel.ResultsRequest.Canvas;
@@ -16,6 +17,8 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 	{
 		private IGetterWorkByAuthorId _getter;
 		private InteractiveApiRisovaviti.Profile _profile;
+		private int count = 0;
+		private int next = 20;
 		[Reactive]
 		public IEnumerable<VersionProjectResultWithImage> VersionsProject { get; set; }
 		public ReactiveCommand<Unit, Unit> Init { get; set; }
@@ -30,13 +33,34 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 		
 		private async Task InitVersionsProject()
 		{
-			await TryActionAsync(async () => 
-			{
-				IEnumerable<VersionProjectResult> versions = await _getter.GetVersionProjectResultsByAuthorId(_profile.ProfileUser.Id, 0, 20);
-				VersionsProject = versions.Select(v => new VersionProjectResultWithImage(v));
-			});
-			
+			count = 0;
+			await UpdateItem();
+			count += next;
 		}
 
+		private void DeleteItem(Task<VersionProjectResult> itemForDeleted)
+		{
+			VersionsProject = VersionsProject.Where(item => item.VersionProjectResult.Id != itemForDeleted.Id);
+		}
+
+		public async Task Next()
+		{
+			await UpdateItem();
+			count += next;
+		}
+
+		private async Task UpdateItem()
+		{
+			await TryActionAsync(async () =>
+			{
+				IEnumerable<VersionProjectResult> versions = await _getter.GetVersionProjectResultsByAuthorId(_profile.ProfileUser.Id, count, next);
+				VersionsProject = versions.Select(v => 
+				{
+					var item = new VersionProjectResultWithImage(v);
+					item.Delete.Subscribe(DeleteItem);
+					return item;
+				});
+			});
+		}
 	}
 }

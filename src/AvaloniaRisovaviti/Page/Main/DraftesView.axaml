@@ -55,8 +55,6 @@
 										<StackPanel DockPanel.Dock="Right"
 													Orientation="Horizontal"
 													Classes="menu-admin">
-											<Button Content="Delete"
-													Classes="dangerous del"/>
 										</StackPanel>
 									</DockPanel>
 

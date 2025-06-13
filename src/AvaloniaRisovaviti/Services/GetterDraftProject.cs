@@ -49,8 +49,16 @@ namespace AvaloniaRisovaviti.Services
 
 		public async Task<IEnumerable<Guid>> GetGuids()
 		{
-			IEnumerable<string> dir = Directory.GetDirectories(Path).Select((str) => new string(str.Skip(9).ToArray()));
-			return dir.Select(str => new Guid(str)).ToList();
+			try
+			{
+				IEnumerable<string> dir = Directory.GetDirectories(Path).Select((str) => new string(str.Skip(9).ToArray()));
+				return dir.Select(str => new Guid(str)).ToList();
+			}
+			catch
+			{
+				return new List<Guid>();
+			}
+			
 		}
 		
 

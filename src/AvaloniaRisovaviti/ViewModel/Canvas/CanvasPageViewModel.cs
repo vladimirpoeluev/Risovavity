@@ -14,8 +14,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reactive;
+using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
@@ -49,6 +51,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
         public CanvasPageViewModel()
         {
+            OnDeleteItem = new Action<Task<CanvasResult>>((s) => { });
             SeacherCommand = ReactiveCommand.Create<string, Task>(SearchByString);
             _getterCanvas = new GetterCanvasParseApi(Authentication.AuthenticationUser.User);
             _searcherCanvas = App.Container.Resolve<ISearcherCanvas>();
@@ -107,7 +110,8 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             var canvasresult = await canvas;
             _canvases = _canvases.Where((entity) => entity.CanvasResult != canvasresult);
             OnPropertyChanged(nameof(Canvases));
-			OnDeleteItem(canvas);
+            if(canvas is not null)
+			    OnDeleteItem(canvas);
 		}
 
         public async Task TryInitCart()
@@ -127,17 +131,19 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             }
         }
 
-
-
-        async Task InitCart()
+		AsyncLock asyncLock = new AsyncLock();
+		async Task InitCart()
         {
-            await TryActionAsync(async () => 
+            asyncLock.Wait(async () =>
             {
-				IEnumerable<CanvasResult> result = await _getterCanvas.GetAsync(countCart, stepLoad);
-				_canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem));
-				countCart += stepLoad;
+				await TryActionAsync(async () =>
+				{
+					IEnumerable<CanvasResult> result = await _getterCanvas.GetAsync(countCart, stepLoad);
+					_canvases = _canvases.Concat(CanvasResultWithImage.CanvasResultWithImageFromCanvasResult(result, ClickUpdateItem, DeleteItem));
+					countCart += stepLoad;
+				});
 			});
-            
+			
             OnPropertyChanged(nameof(Canvases));
         }
 

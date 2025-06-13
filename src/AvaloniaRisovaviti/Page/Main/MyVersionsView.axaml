@@ -63,9 +63,10 @@
 													Classes="menu-admin">
 											<Button Content="{x:Static resource:Resource.delete}"
 													Classes="dangerous del"
-													IsVisible="{Binding Permission.Delete}"/>
+													IsVisible="{Binding Permission.Delete}"
+													Command="{Binding Delete}"/>
 											<Button Content="{x:Static resource:Resource.edit}"
-													IsVisible="{Binding Permission.Edit}"/>
+													IsVisible="False"/>
 										</StackPanel>
 									</DockPanel>
 
@@ -84,7 +85,8 @@
 			<Button Content="{x:Static resource:Resource.more}"
 					HorizontalAlignment="Right"
 					VerticalAlignment="Bottom"
-					Grid.Row="2"/>
+					Grid.Row="2"
+					Command="{Binding Next}"/>
 		</Grid>
 	</Grid>
 </UserControl>
