@@ -65,7 +65,8 @@
 						</WrapPanel>
 						<WrapPanel DockPanel.Dock="Right"
 								   HorizontalAlignment="Right">
-							<Button Content="Save"/>
+							<Button Content="Save"
+									Command="{Binding Save}"/>
 						</WrapPanel>
 					</DockPanel>
 					

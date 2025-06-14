@@ -18,6 +18,9 @@ using System.Reactive;
 using DomainModel.ResultsRequest;
 using Autofac;
 using System.Reactive.Linq;
+using Avalonia.Controls;
+using AvaloniaRisovaviti.Page.Main;
+using AvaloniaRisovaviti.Services;
 
 namespace AvaloniaRisovaviti.ViewModel.Canvas
 {
@@ -47,6 +50,7 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
 
 		IDefinitionerOfPermission _definitioner { get; set; }
 		IAdderVersionProject _adderVersionProject { get; set; }
+        View _view;
 
 		public ReactiveCommand<Unit, Task<VersionProjectResult>> Delete { get; set; }
 		public ReactiveCommand<Unit, VersionProjectResult> Update { get; set; }
@@ -84,8 +88,9 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
             Descendants = new ObservableCollection<VersionProjectResultWithImage>();
         }
 
-		public CanvasInfoPageViewModel(CanvasResult canvasResult) : this()
+		public CanvasInfoPageViewModel(CanvasResult canvasResult, View view) : this()
 		{
+            _view = view;
 			Canvas = canvasResult;
 			LoadInfo();
 		}
@@ -272,6 +277,20 @@ namespace AvaloniaRisovaviti.ViewModel.Canvas
                await SetVersion(VersionProject);
             }
             IsEdit = !IsEdit;
+        }
+
+        public async void Save()
+        {
+            var toplevel = TopLevel.GetTopLevel(_view);
+            var files = await toplevel.StorageProvider.SaveFilePickerAsync(new Avalonia.Platform.Storage.FilePickerSaveOptions()
+            {
+                Title = "Место сохраниния проекта"
+            });
+            if (files is not null)
+            {
+				((Bitmap)Image).Save(files.Path.LocalPath + "." + (ImageSaver.GetImageFormat(Image).ToString().ToLower()));
+            }
+
         }
 
     }

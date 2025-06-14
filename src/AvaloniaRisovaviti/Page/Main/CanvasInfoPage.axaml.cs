@@ -17,7 +17,7 @@ public partial class CanvasInfoPage : View
 
     public CanvasInfoPage(CanvasResult canvas) : this()
     {
-		_viewModel = new CanvasInfoPageViewModel(canvas);
+		_viewModel = new CanvasInfoPageViewModel(canvas, this);
 		DataContext = _viewModel;
 	}
 

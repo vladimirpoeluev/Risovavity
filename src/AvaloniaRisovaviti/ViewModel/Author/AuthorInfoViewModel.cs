@@ -123,7 +123,7 @@ namespace AvaloniaRisovaviti.ViewModel.Author
 
 		async Task LoadImageForCanvas()
 		{
-			await TryActionAsync(async() =>
+			await TryActionAsync(async () =>
 			{
 				Canvases = Canvases.Select((item) =>
 				{
